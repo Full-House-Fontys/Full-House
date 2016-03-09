@@ -19,6 +19,6 @@ public class main extends javafx.application.Application {
         System.out.println(" is  dan Netbeans :P");
         System.out.println(" Ik ben Kees");
         System.out.println(" is gfgfhgfh dan Netbeans :P");
-        System.out.println("oke");
+        System.out.println("okejnnfsdfsdfdsf");
     }
 }
