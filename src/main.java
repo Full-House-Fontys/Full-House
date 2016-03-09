@@ -15,6 +15,9 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("IntelliJ is veel slechter dan Netbeans :P");
+        System.out.println(" is  dan Netbeans :P");
+        System.out.println(" Ik ben Kees");
         System.out.println(" is gfgfhgfh dan Netbeans :P");
         System.out.println("okejnnfsdfsdfdsf");
     }
