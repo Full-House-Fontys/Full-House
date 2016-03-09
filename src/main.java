@@ -16,5 +16,7 @@ public class main extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println(" is  dan Netbeans :P");
+
+        System.out.println(" Ik ben Kees");
     }
 }
