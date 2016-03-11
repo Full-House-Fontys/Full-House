@@ -40,5 +40,8 @@ public class main extends javafx.application.Application {
         } catch (SQLException ex){
             System.out.println("Connectie is niet gemaakt");
         }
+        finally{
+            System.exit(0);
+        }
     }
 }
