@@ -44,4 +44,19 @@ public class DBSpecifics {
                 return null;
         }
     }
+
+    static <T> String insertString(TableType tableType){
+        StringBuilder query = new StringBuilder("INSERT INTO " + tableType.getTableName() + " (");
+        StringBuilder values = new StringBuilder();
+        for(String colums : tableType.getColumns()){
+            if(!colums.equals("ID")){
+                query.append(colums +",");
+                values.append("?,");
+            }
+        }
+        query.setLength(query.length()-1);
+        values.setLength(values.length()-1);
+        query.append(") VALUES ("+values.toString()+ ")");
+        return query.toString();
+    }
 }

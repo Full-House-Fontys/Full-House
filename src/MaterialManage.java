@@ -44,6 +44,7 @@ public class MaterialManage {
             DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
             renewMaterials();
         }
+
     }
 
     public void updateMaterial(int matId, String name, String sort, double locX, double locY, boolean onLoc) {
