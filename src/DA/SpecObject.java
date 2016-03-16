@@ -4,6 +4,7 @@ import DBElements.Staff;
 
 import java.awt.geom.Point2D;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by kaj75 on 15-3-2016.
@@ -17,5 +18,9 @@ public class SpecObject {
         personeel.setLocation(location);
 
         return personeel;
+    }
+
+    public static String getColumn(ResultSet rs) throws Exception{
+        return rs.getString("COLUMN_NAME");
     }
 }

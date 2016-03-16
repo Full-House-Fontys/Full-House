@@ -21,14 +21,35 @@ public class DBRead {
         }
     }
 
+    static  <T> ArrayList<String> getColums(String tableName){
+        ArrayList<String> column = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String queryString = DBSpecifics.queryString(tableName, QueryType.COLUMN);
+            //ps = conn.prepareStatement(queryString);
+            ps.setString(1, tableName);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                column.add(SpecObject.getColumn(rs));
+            }
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        } finally {
+            closeAll(ps, rs);
+        }
+        return column;
+    }
+
     public <T> T getPojoForPrimarKey(Connection conn, String tableName, String primaryKey) throws Exception {
         T currentPojo = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String queryString = DBSpecifics.queryString(tableName,
-                    primaryKey, QueryType.READ);
+            String queryString = DBSpecifics.queryString(tableName, QueryType.READ, primaryKey);
             ps = conn.prepareStatement(queryString);
+            ps.setInt(1, Integer.parseInt(primaryKey));
+
             rs = ps.executeQuery();
             if (rs.next()) {
                 currentPojo = DBSpecifics.getPojoFromResultSet(tableName,
