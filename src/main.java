@@ -18,8 +18,6 @@ public class main extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            System.out.println("IntelliJ is veel sleechter dan Netbeans :P");
-            System.out.println("oke");
 
             String userName = "dbi329146";
             String passWord = "Fullhouseaapje";
