@@ -1,5 +1,7 @@
 package DA;
 
+import DBElements.Personeel;
+
 import java.awt.geom.Point2D;
 import java.sql.ResultSet;
 
