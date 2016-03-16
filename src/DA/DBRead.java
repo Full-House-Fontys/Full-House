@@ -13,10 +13,6 @@ import java.util.List;
  */
 public class DBRead {
 
-    public DBRead(){
-
-    }
-
     static void closeAll(PreparedStatement ps, ResultSet rs) {
         try {
             rs.close();
@@ -32,6 +28,7 @@ public class DBRead {
         ArrayList<String> column = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
+
         try {
             String queryString = DBSpecifics.queryString(tableName, QueryType.COLUMN, "");
             ps = DBConnection.getConn().prepareStatement(queryString);

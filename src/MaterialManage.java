@@ -31,7 +31,7 @@ public class MaterialManage {
 
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc){
         Material m = new Material(name, sort, locX, locY, onLoc);
-        DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
+        //DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
         renewMaterials();
     }
 
