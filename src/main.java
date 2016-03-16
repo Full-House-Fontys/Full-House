@@ -3,6 +3,9 @@
 //import static javafx.application.Application.*;
 
 import DA.DBConnection;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import DA.DBInsert;
 import DA.TableType;
 import DBElements.Staff;
@@ -24,7 +27,20 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Task.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 900, 650));
+        primaryStage.show();
+
+
+        DBConnection dbConnection = new DBConnection();
+
+//        catch (SQLException ex) {
+//            System.out.println("Connectie is niet gemaakt");
+//        }
+
         Staff staff = new Staff("s","s","s","s","s", new Point2D.Double(12.456,42.632), "s", 2, true);
         DBInsert.insertStaff(TableType.STAFF, staff);
+
     }
 }
