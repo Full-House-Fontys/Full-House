@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by kaj75 on 15-3-2016.
  */
 public class DBConnection {
-    Connection conn;
+    private static Connection conn;
 
     public DBConnection() throws Exception{
         try {
@@ -17,11 +17,14 @@ public class DBConnection {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, userName, passWord);
             DBRead read = new DBRead();
-            DBInsert.insertValue(conn, "PERSONEEL", read.getPojoForPrimarKey(conn, "PERSONEEL", "3"));
+            DBInsert.insertValue(conn, "PERSONEEL", read.getPojoForPrimarKey(conn, "PERSONEEL", "1"));
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }finally {
             conn.close();
         }
+    }
+    public static Connection getConn() {
+        return conn;
     }
 }
