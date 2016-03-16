@@ -3,6 +3,9 @@
 //import static javafx.application.Application.*;
 
 import DA.DBConnection;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.sql.*;
@@ -19,10 +22,17 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Task.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 900, 650));
+        primaryStage.show();
+
         try {
             DBConnection dbConnection = new DBConnection();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("Connectie is niet gemaakt");
         }
+
+
     }
 }
