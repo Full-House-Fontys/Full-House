@@ -19,7 +19,7 @@ public class DBInsert {
         }
     }
 
-    static <T> void insertValue(Connection conn, String tableName, T object)  {
+    public static <T> void insertValue(Connection conn, String tableName, T object)  {
         System.out.println(object.toString());
     }
 

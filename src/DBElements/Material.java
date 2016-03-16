@@ -5,40 +5,48 @@ package DBElements;
  */
 public class Material {
     private int id;
-    private String naam, soort;
-    private double locatieX, locatieY;
-    private boolean opLocatie;
+    private String name, sort;
+    private double locationX, locationY;
+    private boolean onLocation;
 
-    public Material(int id, String naam, String soort, double locatieX, double locatieY, boolean opLocatie) {
+    public Material(int id, String name, String sort, double locationX, double locationY, boolean onLocation) {
         this.id = id;
-        this.naam = naam;
-        this.soort = soort;
-        this.locatieX = locatieX;
-        this.locatieY = locatieY;
-        this.opLocatie = opLocatie;
+        this.name = name;
+        this.sort = sort;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.onLocation = onLocation;
+    }
+
+    public Material(String name, String sort, double locationX, double locationY, boolean onLocation) {
+        this.name = name;
+        this.sort = sort;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.onLocation = onLocation;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNaam() {
-        return naam;
+    public String getName() {
+        return name;
     }
 
-    public String getSoort() {
-        return soort;
+    public String getSort() {
+        return sort;
     }
 
-    public double getLocatieX() {
-        return locatieX;
+    public double getLocationX() {
+        return locationX;
     }
 
-    public double getLocatieY() {
-        return locatieY;
+    public double getLocationY() {
+        return locationY;
     }
 
-    public boolean isOpLocatie() {
-        return opLocatie;
+    public boolean isOnLocation() {
+        return onLocation;
     }
 }

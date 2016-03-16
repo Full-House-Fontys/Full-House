@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by kaj75 on 15-3-2016.
  */
 public class DBConnection {
-    Connection conn;
+    private static Connection conn;
 
     public DBConnection() throws Exception{
         try {
@@ -23,5 +23,8 @@ public class DBConnection {
         }finally {
             conn.close();
         }
+    }
+    public static Connection getConn() {
+        return conn;
     }
 }
