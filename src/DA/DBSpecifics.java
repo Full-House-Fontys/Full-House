@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  * Created by kaj75 on 15-3-2016.
  */
 public class DBSpecifics {
-    static String queryString(String tableName, QueryType type, String ... keyValue) {
+    static String queryString(String tableName, QueryType type, String keyValue) {
         StringBuilder firstHalf = new StringBuilder();
 
         switch (type) {
@@ -25,7 +25,7 @@ public class DBSpecifics {
             default:
         }
 
-        if (keyValue != null)
+        if (!keyValue.equals(""))
             switch (tableName) {
                 case "PERSONEEL":
                     firstHalf.append("ID = ?");

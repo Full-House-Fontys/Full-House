@@ -1,5 +1,7 @@
 package DA;
 
+import DBElements.Staff;
+
 import java.sql.*;
 
 /**
@@ -8,7 +10,8 @@ import java.sql.*;
 public class DBConnection {
     private static Connection conn;
 
-    public DBConnection() throws Exception{
+    public DBConnection(){
+        /*
         try {
             String userName = "dbi329146";
             String passWord = "Fullhouseaapje";
@@ -17,12 +20,13 @@ public class DBConnection {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, userName, passWord);
             DBRead read = new DBRead();
-            DBInsert.insertValue(conn, "PERSONEEL", read.getPojoForPrimarKey(conn, "PERSONEEL", "1"));
+            DBInsert.insertValue(conn, "PERSONEEL", read.getPojoForPrimarKey(conn, TableType.STAFF, "1"));
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }finally {
             conn.close();
         }
+        */
     }
     public static Connection getConn() {
         return conn;

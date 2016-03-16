@@ -33,6 +33,5 @@ public class main extends javafx.application.Application {
             System.out.println("Connectie is niet gemaakt");
         }
 
-
     }
 }
