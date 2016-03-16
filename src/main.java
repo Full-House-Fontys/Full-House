@@ -19,10 +19,6 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        try {
-            DBConnection dbConnection = new DBConnection();
-        } catch (SQLException ex){
-            System.out.println("Connectie is niet gemaakt");
-        }
+
     }
 }

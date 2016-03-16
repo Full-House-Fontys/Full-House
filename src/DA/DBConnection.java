@@ -10,7 +10,8 @@ import java.sql.*;
 public class DBConnection {
     private static Connection conn;
 
-    public DBConnection() throws Exception{
+    public DBConnection(){
+        /*
         try {
             String userName = "dbi329146";
             String passWord = "Fullhouseaapje";
@@ -25,6 +26,7 @@ public class DBConnection {
         }finally {
             conn.close();
         }
+        */
     }
     public static Connection getConn() {
         return conn;

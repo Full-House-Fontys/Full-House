@@ -12,6 +12,11 @@ import java.util.List;
  * Created by kaj75 on 15-3-2016.
  */
 public class DBRead {
+
+    public DBRead(){
+
+    }
+
     static void closeAll(PreparedStatement ps, ResultSet rs) {
         try {
             rs.close();
