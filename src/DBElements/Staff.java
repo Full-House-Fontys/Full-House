@@ -1,4 +1,4 @@
-package DA;
+package DBElements;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 /**
  * Created by kaj75 on 15-3-2016.
  */
-public class Personeel {
+public class Staff {
     private String name;
     private String lastName;
     private Point2D location;
@@ -35,7 +35,7 @@ public class Personeel {
         this.location = location;
     }
 
-    public Personeel(){
+    public Staff(){
         this.name = name;
         this.lastName = lastName;
         this.location = location;
@@ -43,7 +43,7 @@ public class Personeel {
 
     @Override
     public String toString() {
-        return "Personeel{" +
+        return "Staff{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", location=" + location +
