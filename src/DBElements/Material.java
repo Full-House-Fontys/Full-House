@@ -34,19 +34,39 @@ public class Material {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSort() {
         return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
     public double getLocationX() {
         return locationX;
     }
 
+    public void setLocationX(double locationX) {
+        this.locationX = locationX;
+    }
+
     public double getLocationY() {
         return locationY;
     }
 
+    public void setLocationY(double locationY) {
+        this.locationY = locationY;
+    }
+
     public boolean isOnLocation() {
         return onLocation;
+    }
+
+    public void setOnLocation(boolean onLocation) {
+        this.onLocation = onLocation;
     }
 }
