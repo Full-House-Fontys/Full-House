@@ -11,11 +11,11 @@ public class Mission {
     private String description;
     private ArrayList<Team> teams = new ArrayList<>();
 
-    public String getMissieNaam() {
+    public String getName() {
         return name;
     }
 
-    public String getOmschrijving() {
+    public String getDescription() {
         return description;
     }
 
@@ -34,6 +34,9 @@ public class Mission {
         return false;
     }
 
+    private void removeEverything() {
+    }
+
     /**
      * Removes a team from the mission
      * @param t : Team that will be removed from the mission.
@@ -42,4 +45,5 @@ public class Mission {
     public boolean removeTeam(Team t){
         return false;
     }
+
 }
