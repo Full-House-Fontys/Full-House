@@ -2,6 +2,7 @@ package DA;
 
 import DBElements.Staff;
 
+import javax.naming.Binding;
 import java.awt.geom.Point2D;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,16 +12,21 @@ import java.util.ArrayList;
  */
 public class SpecObject {
     public static Staff getPojo(ResultSet rs) throws Exception {
-        Staff personeel = new Staff();
-        personeel.setName(rs.getString("Voornaam"));
-        personeel.setLastName(rs.getString("Achternaam"));
-        Point2D location = new Point2D.Double(rs.getDouble("LocatieX"), rs.getDouble("LocatieY"));
-        personeel.setLocation(location);
+        Staff staff = new Staff();
 
-        return personeel;
+        staff.setName(rs.getString("Voornaam"));
+        staff.setLastName(rs.getString("Achternaam"));
+        Point2D location = new Point2D.Double(rs.getDouble("LocatieX"), rs.getDouble("LocatieY"));
+        staff.setLocation(location);
+
+        return staff;
     }
 
     public static String getColumn(ResultSet rs) throws Exception{
         return rs.getString("COLUMN_NAME");
+    }
+
+    public static String getDataType(ResultSet rs) throws Exception{
+        return rs.getString("DATA_TYPE");
     }
 }

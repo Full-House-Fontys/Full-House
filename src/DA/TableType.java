@@ -9,11 +9,19 @@ public enum  TableType {
     STAFF("PERSONEEL", (ArrayList<String>)DBRead.getColums("PERSONEEL"));
 
     private final String tableName;
-    private ArrayList<String> column;
+    private final ArrayList<String> columns;
 
     TableType(String tableName, ArrayList<String> column) {
         this.tableName = tableName;
-        this.column = column;
+        this.columns = column;
+    }
+
+    public String getTableName(){
+        return tableName;
+    }
+
+    public ArrayList<String> getColumns(){
+        return columns;
     }
 
     public String toString() {

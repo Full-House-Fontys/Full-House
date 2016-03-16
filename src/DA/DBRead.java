@@ -1,9 +1,11 @@
 package DA;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,12 +28,15 @@ public class DBRead {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String queryString = DBSpecifics.queryString(tableName, QueryType.COLUMN);
-            //ps = conn.prepareStatement(queryString);
+            String queryString = DBSpecifics.queryString(tableName, QueryType.COLUMN, "");
+            ps = DBConnection.getConn().prepareStatement(queryString);
             ps.setString(1, tableName);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                column.add(SpecObject.getColumn(rs));
+            while (rs.next()) {
+                String a = rs.getString("COLUMN_NAME");
+                if(a != null || a.equals("")){
+                    column.add(a);
+                }
             }
         } catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -41,19 +46,18 @@ public class DBRead {
         return column;
     }
 
-    public <T> T getPojoForPrimarKey(Connection conn, String tableName, String primaryKey) throws Exception {
+    public <T> T getPojoForPrimarKey(Connection conn, TableType tableType, String primaryKey) throws Exception {
         T currentPojo = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String queryString = DBSpecifics.queryString(tableName, QueryType.READ, primaryKey);
+            String queryString = DBSpecifics.queryString(tableType.getTableName(), QueryType.READ, primaryKey);
             ps = conn.prepareStatement(queryString);
             ps.setInt(1, Integer.parseInt(primaryKey));
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                currentPojo = DBSpecifics.getPojoFromResultSet(tableName,
-                        rs);
+                currentPojo = DBSpecifics.getPojoFromResultSet(tableType.getTableName(), rs);
             }
         } finally {
             closeAll(ps, rs);
