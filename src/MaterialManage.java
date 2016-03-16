@@ -2,6 +2,7 @@ import DA.*;
 import DBElements.Material;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +28,10 @@ public class MaterialManage {
             }
         }
         return null;
+    }
+
+    private List<Material> getMaterials(){
+        return Collections.unmodifiableList(materials);
     }
 
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) {

@@ -27,11 +27,12 @@ public class main extends javafx.application.Application {
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();
 
-        try {
-            DBConnection dbConnection = new DBConnection();
-        } catch (SQLException ex) {
-            System.out.println("Connectie is niet gemaakt");
-        }
+
+        DBConnection dbConnection = new DBConnection();
+
+//        catch (SQLException ex) {
+//            System.out.println("Connectie is niet gemaakt");
+//        }
 
     }
 }

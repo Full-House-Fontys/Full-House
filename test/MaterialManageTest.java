@@ -33,4 +33,9 @@ public class MaterialManageTest {
     public void testUpdateMaterial() throws Exception {
 
     }
+
+    @Test
+    public void testDeleteMaterial() throws Exception {
+
+    }
 }
