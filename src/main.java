@@ -3,6 +3,7 @@
 //import static javafx.application.Application.*;
 
 import DA.DBConnection;
+import DBElements.Material;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,8 +40,14 @@ public class main extends javafx.application.Application {
 //            System.out.println("Connectie is niet gemaakt");
 //        }
 
-        Staff staff = new Staff("s","s","s","s","s", new Point2D.Double(12.456,42.632), "s", 2, true);
-        DBInsert.insertStaff(TableType.STAFF, staff);
+        //Staff staff = new Staff("s","s","s","s","s", new Point2D.Double(12.456,42.632), "s", 2, true);
+        MaterialManage mm = new MaterialManage();
+        //mm.insertMaterial("AF-12-AD", "Ambulance", 12.24, 12.58, true);
+        mm.renewMaterials();
+        for (Material m : mm.getMaterials()) {
+            System.out.println(m.getId() + m.getName());
+        }
+        //DBInsert.insertStaff(TableType.STAFF, staff);
 
     }
 }

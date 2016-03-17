@@ -1,5 +1,8 @@
 package DA;
 
+import DBElements.Material;
+
+import java.awt.geom.Point2D;
 import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +27,7 @@ public class DBRead {
         }
     }
 
-    static  <T> ArrayList<String> getColums(String tableName){
+    static <T> ArrayList<String> getColums(String tableName) {
         ArrayList<String> column = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -36,11 +39,11 @@ public class DBRead {
             rs = ps.executeQuery();
             while (rs.next()) {
                 String a = rs.getString("COLUMN_NAME");
-                if(a != null || a.equals("")){
+                if (a != null || a.equals("")) {
                     column.add(a);
                 }
             }
-        } catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             closeAll(ps, rs);
@@ -68,13 +71,21 @@ public class DBRead {
     }
 
 
-    public <T> T getMaterials(Connection conn, String tableName) throws Exception {
-        List<T> materials = new ArrayList();
+    public List<Material> getMaterials(Connection conn) throws Exception {
+        List<Material> materials = new ArrayList();
         PreparedStatement ps = null;
         ResultSet rs = null;
-//        try{
-//            String queryString = DBSpecifics.queryString(tableName, QueryType.READ);
-//        }
-        return null;
+        try {
+            String queryString = DBSpecifics.queryString("Materiaal", QueryType.READ, "");
+            ps = conn.prepareStatement(queryString);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                materials.add(new Material(rs.getInt("ID"), rs.getString("naam"), rs.getString("soort"), new Point2D.Double(rs.getDouble("locatieX"), rs.getDouble("locatieY")), rs.getBoolean("opLocatie")));
+            }
+        }
+        finally{
+            closeAll(ps, rs);
+        }
+        return materials;
     }
 }

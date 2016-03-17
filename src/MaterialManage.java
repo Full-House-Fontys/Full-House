@@ -16,13 +16,13 @@ public class MaterialManage {
     public void renewMaterials() {
         materials.clear();
         try {
-            materials.addAll(db.getMaterials(DBConnection.getConn(), "materiaal"));
+            materials.addAll(db.getMaterials(DBConnection.getConn()));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private Material getMaterialById(int id) {
+    public Material getMaterialById(int id) {
         for (Material material : materials) {
             if (material.getId() == id) {
                 return material;
@@ -31,7 +31,7 @@ public class MaterialManage {
         return null;
     }
 
-    private List<Material> getMaterials(){
+    public List<Material> getMaterials(){
         return Collections.unmodifiableList(materials);
     }
 
