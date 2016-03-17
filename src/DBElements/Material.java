@@ -1,28 +1,28 @@
 package DBElements;
 
+import java.awt.geom.Point2D;
+
 /**
  * Created by jvdwi on 16-3-2016.
  */
 public class Material {
     private int id;
     private String name, sort;
-    private double locationX, locationY;
+    private Point2D location;
     private boolean onLocation;
 
-    public Material(int id, String name, String sort, double locationX, double locationY, boolean onLocation) {
+    public Material(int id, String name, String sort, Point2D location, boolean onLocation) {
         this.id = id;
         this.name = name;
         this.sort = sort;
-        this.locationX = locationX;
-        this.locationY = locationY;
+        this.location = location;
         this.onLocation = onLocation;
     }
 
-    public Material(String name, String sort, double locationX, double locationY, boolean onLocation) {
+    public Material(String name, String sort, Point2D location, boolean onLocation) {
         this.name = name;
         this.sort = sort;
-        this.locationX = locationX;
-        this.locationY = locationY;
+        this.location = location;
         this.onLocation = onLocation;
     }
 
@@ -46,20 +46,12 @@ public class Material {
         this.sort = sort;
     }
 
-    public double getLocationX() {
-        return locationX;
+    public Point2D getLocation() {
+        return location;
     }
 
-    public void setLocationX(double locationX) {
-        this.locationX = locationX;
-    }
-
-    public double getLocationY() {
-        return locationY;
-    }
-
-    public void setLocationY(double locationY) {
-        this.locationY = locationY;
+    public void setLocation(Point2D location) {
+        this.location = location;
     }
 
     public boolean isOnLocation() {

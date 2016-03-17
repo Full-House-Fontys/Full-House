@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * Created by kaj75 on 16-3-2016.
  */
 public enum  TableType {
-    STAFF("PERSONEEL", (ArrayList<String>)DBRead.getColums("PERSONEEL"));
+    STAFF("PERSONEEL", (ArrayList<String>)DBRead.getColums("PERSONEEL")),
+    MATERIAL("MATERIAAL", (ArrayList<String>)DBRead.getColums("MATERIAAL"));
 
     private final String tableName;
     private final ArrayList<String> columns;

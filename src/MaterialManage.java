@@ -4,6 +4,7 @@ import DBElements.Material;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.awt.geom.Point2D;
 
 /**
  * Created by jvdwi on 16-3-2016.
@@ -40,14 +41,14 @@ public class MaterialManage {
         } else if (!(sort != null | sort.trim().length() > 0)) {
             return;
         } else {
-            Material m = new Material(name, sort, locX, locY, onLoc);
-            DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
+            Material m = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
+            DBInsert.insertMaterial(TableType.MATERIAL, m);
             renewMaterials();
         }
 
     }
 
-    public void updateMaterial(int matId, String name, String sort, double locX, double locY, boolean onLoc) {
+    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) {
         Material m = getMaterialById(matId);
         boolean changed = false;
         if (!m.getName().equals(name)) {
@@ -62,12 +63,8 @@ public class MaterialManage {
                 changed = true;
             }
         }
-        if (m.getLocationX() != locX) {
-            m.setLocationX(locX);
-            changed = true;
-        }
-        if (m.getLocationY() != locY) {
-            m.setLocationY(locY);
+        if (!m.getLocation().equals(location)) {
+            m.setLocation(location);
             changed = true;
         }
         if (m.isOnLocation() != onLoc) {
@@ -75,7 +72,7 @@ public class MaterialManage {
             changed = true;
         }
         if (changed) {
-            DBUpdate.updateValue(DBConnection.getConn(), "materiaal", m);
+            DBUpdate.updateValue(TableType.MATERIAL, m);
             renewMaterials();
         }
     }
