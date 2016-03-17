@@ -28,7 +28,7 @@ public class DBInsert {
         }
     }
 
-    public static <T> void insertStaff(TableType tableType, Staff staff)  {
+    public static void insertStaff(TableType tableType, Staff staff)  {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -56,7 +56,7 @@ public class DBInsert {
         }
     }
 
-    public static <T> void insertMaterial(TableType tableType, Material material){
+    public static void insertMaterial(TableType tableType, Material material){
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {

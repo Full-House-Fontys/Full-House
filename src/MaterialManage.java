@@ -72,13 +72,13 @@ public class MaterialManage {
             changed = true;
         }
         if (changed) {
-            DBUpdate.updateValue(TableType.MATERIAL, m);
+            DBUpdate.updateMaterial(TableType.MATERIAL, m);
             renewMaterials();
         }
     }
 
     public void deleteMaterial(Material m) {
-        DBDelete.deleteValue(DBConnection.getConn(), "materiaal", m);
+        DBDelete.deleteMaterial(TableType.MATERIAL, m);
         renewMaterials();
     }
 }
