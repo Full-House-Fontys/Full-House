@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jvdwi on 16-3-2016.
  */
-public class MaterialManageTest {
+public class MaterialManagerTest {
 
     @Before
     public void setUp() throws Exception {

@@ -41,7 +41,7 @@ public class main extends javafx.application.Application {
 //        }
 
         //Staff staff = new Staff("s","s","s","s","s", new Point2D.Double(12.456,42.632), "s", 2, true);
-//        MaterialManage mm = new MaterialManage();
+//        MaterialManager mm = new MaterialManager();
 //        mm.insertMaterial("AF-12-AD", "Ambulance", 12.24, 12.58, true);
 //        mm.renewMaterials();
 //        System.out.println("==============Initial=================");

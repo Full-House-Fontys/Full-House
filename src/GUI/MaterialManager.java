@@ -1,3 +1,5 @@
+package GUI;
+
 import DA.*;
 import DBElements.Material;
 
@@ -9,9 +11,13 @@ import java.awt.geom.Point2D;
 /**
  * Created by jvdwi on 16-3-2016.
  */
-public class MaterialManage {
-    private List<Material> materials = new ArrayList();
+public class MaterialManager {
+    private List<Material> materials;
     private DBRead db = new DBRead();
+
+    public MaterialManager(){
+        materials = new ArrayList();
+    }
 
     public void renewMaterials() {
         materials.clear();
