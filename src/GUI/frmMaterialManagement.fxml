@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MaterialController">
+    <children>
+        <TableView id="tvMaterials" layoutX="14.0" layoutY="54.0" prefHeight="606.0" prefWidth="476.0">
+            <columns>
+                <TableColumn id="tcID" prefWidth="32.0" text="ID" />
+                <TableColumn id="tcName" prefWidth="118.0" text="Naam" />
+                <TableColumn id="tcSort" prefWidth="118.0" text="Soort" />
+                <TableColumn id="tcLocation" prefWidth="118.0" text="Locatie" />
+                <TableColumn id="tcOnLoc" prefWidth="87.0" text="Op locatie?" />
+            </columns>
+        </TableView>
+        <Label id="lblMatTxt" layoutX="14.0" layoutY="14.0" text="Alle materialen:" />
+      <Button id="btnNewMaterial" layoutX="527.0" layoutY="54.0" mnemonicParsing="false" text="Voeg nieuw materiaal toe" textAlignment="CENTER" />
+      <Button id="btnEditMaterial" disable="true" layoutX="510.0" layoutY="99.0" mnemonicParsing="false" text="Bewerk geselecteerd materiaal" textAlignment="CENTER" />
+      <Button id="btnDeleteMaterial" disable="true" layoutX="504.0" layoutY="144.0" mnemonicParsing="false" text="Verwijder geselecteerd materiaal" textAlignment="CENTER" />
+    </children>
+</Pane>
