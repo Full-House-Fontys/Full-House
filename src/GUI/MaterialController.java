@@ -30,9 +30,9 @@ public class MaterialController {
 
 
     public MaterialController() {
-        obsMat = FXCollections.observableArrayList();
         mm = new MaterialManager();
         mm.renewMaterials();
+
         Platform.runLater(() -> tvMaterials.setItems(obsMat));
     }
 }

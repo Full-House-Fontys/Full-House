@@ -2,6 +2,8 @@ package GUI;
 
 import DA.*;
 import DBElements.Material;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +14,11 @@ import java.awt.geom.Point2D;
  * Created by jvdwi on 16-3-2016.
  */
 public class MaterialManager {
-    private List<Material> materials;
+    private ObservableList<Material> materials;
     private DBRead db = new DBRead();
 
     public MaterialManager(){
-        materials = new ArrayList();
+        materials = FXCollections.observableArrayList(new ArrayList());
     }
 
     public void renewMaterials() {
