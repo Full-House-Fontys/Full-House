@@ -30,7 +30,7 @@ public class main extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/frmMaterialManagement.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 900, 650));
+        primaryStage.setScene(new Scene(root, 896, 716));
         primaryStage.show();
 
 

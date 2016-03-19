@@ -2,11 +2,13 @@ package GUI;
 
 import DBElements.Material;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.awt.geom.Point2D;
 
 /**
  * Created by fhict on 18-03-16.
@@ -16,23 +18,25 @@ public class MaterialController {
     private MaterialManager mm;
 
     @FXML
-    private TableView tvMaterials;
+    private TableView<Material> tvMaterials;
     @FXML
-    private TableColumn tcID;
+    private TableColumn<Material, Integer> tcID;
     @FXML
-    private TableColumn tcName;
+    private TableColumn<Material, String> tcName;
     @FXML
-    private TableColumn tcSort;
+    private TableColumn<Material, String> tcSort;
     @FXML
-    private TableColumn tcLocation;
+    private TableColumn<Material, Point2D> tcLocation;
     @FXML
-    private TableColumn tcOnLoc;
+    private TableColumn<Material, Boolean> tcOnLoc;
 
 
     public MaterialController() {
         mm = new MaterialManager();
         mm.renewMaterials();
 
-        Platform.runLater(() -> tvMaterials.setItems(obsMat));
+        Platform.runLater(() -> tvMaterials.setItems(mm.getMaterials()));
     }
+
+
 }

@@ -39,8 +39,8 @@ public class MaterialManager {
         return null;
     }
 
-    public List<Material> getMaterials(){
-        return Collections.unmodifiableList(materials);
+    public ObservableList<Material> getMaterials(){
+        return FXCollections.unmodifiableObservableList(materials);
     }
 
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) {

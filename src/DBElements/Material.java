@@ -50,6 +50,10 @@ public class Material {
         return location;
     }
 
+    public String getLocationString(){
+        return location.getX() + "; " + location.getY();
+    }
+
     public void setLocation(Point2D location) {
         this.location = location;
     }
