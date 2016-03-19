@@ -43,11 +43,11 @@ public class MaterialManager {
         return FXCollections.unmodifiableObservableList(materials);
     }
 
-    public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) {
+    public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
         if (!(name != null || name.trim().length() > 0)) {
-            return;
+            throw new IllegalArgumentException();
         } else if (!(sort != null | sort.trim().length() > 0)) {
-            return;
+            throw new IllegalArgumentException();
         } else {
             Material m = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
             DBInsert.insertMaterial(TableType.MATERIAL, m);
@@ -56,7 +56,7 @@ public class MaterialManager {
 
     }
 
-    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) {
+    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, Exception {
         Material m = getMaterialById(matId);
         boolean changed = false;
         if (!m.getName().equals(name)) {
@@ -64,11 +64,17 @@ public class MaterialManager {
                 m.setName(name);
                 changed = true;
             }
+            else {
+                throw new IllegalArgumentException();
+            }
         }
         if (!m.getSort().equals(sort)) {
             if (sort != null && sort.trim().length() > 0) {
                 m.setSort(sort);
                 changed = true;
+            }
+            else{
+                throw new IllegalArgumentException();
             }
         }
         if (!m.getLocation().equals(location)) {
@@ -82,6 +88,9 @@ public class MaterialManager {
         if (changed) {
             DBUpdate.updateMaterial(TableType.MATERIAL, m);
             renewMaterials();
+        }
+        else{
+            throw new Exception();
         }
     }
 
