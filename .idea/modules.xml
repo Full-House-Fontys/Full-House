@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FullHouseJavaApp.iml" filepath="$PROJECT_DIR$/FullHouseJavaApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Full-House.iml" filepath="$PROJECT_DIR$/Full-House.iml" />
     </modules>
   </component>
 </project>
