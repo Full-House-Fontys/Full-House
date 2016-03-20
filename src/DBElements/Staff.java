@@ -91,7 +91,7 @@ public class Staff {
 
     public Staff(String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, int teamID, boolean onLocation) {
         this.name = name;
-        this.prefix = prefix;
+        this.prefix = prefix==null ? "":prefix;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;

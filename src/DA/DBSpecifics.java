@@ -21,7 +21,7 @@ public class DBSpecifics {
                 firstHalf.append("INSERT INTO " + tableName);
                 break;
             case COLUMN:
-                firstHalf.append("SELECT COLUMN_NAME FROM dbi329146.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = ?");
+                firstHalf.append("SELECT COLUMN_NAME, DATA_TYPE FROM dbi329146.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = ?");
             default:
         }
 
@@ -48,12 +48,14 @@ public class DBSpecifics {
     static <T> String insertString(TableType tableType){
         StringBuilder query = new StringBuilder("INSERT INTO " + tableType.getTableName() + " (");
         StringBuilder values = new StringBuilder();
+        /*
         for(String colums : tableType.getColumns()){
             if(!colums.equals("ID")){
                 query.append(colums +",");
                 values.append("?,");
             }
         }
+        */
         query.setLength(query.length()-1);
         values.setLength(values.length()-1);
         query.append(") VALUES ("+values.toString()+ ")");

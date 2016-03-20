@@ -4,9 +4,7 @@ import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by kaj75 on 15-3-2016.
@@ -24,8 +22,8 @@ public class DBRead {
         }
     }
 
-    static  <T> ArrayList<String> getColums(String tableName){
-        ArrayList<String> column = new ArrayList<>();
+    static  <T> Map<String, String> getColums(String tableName){
+        Map<String, String> column = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -35,9 +33,10 @@ public class DBRead {
             ps.setString(1, tableName);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String a = rs.getString("COLUMN_NAME");
-                if(a != null || a.equals("")){
-                    column.add(a);
+                String key = rs.getString("COLUMN_NAME");
+                String value = rs.getString("DATA_TYPE");
+                if(key != null || key.equals("")){
+                    column.put(key, value);
                 }
             }
         } catch(Exception ex){

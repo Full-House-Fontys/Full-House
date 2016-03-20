@@ -1,17 +1,18 @@
 package DA;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by kaj75 on 16-3-2016.
  */
 public enum  TableType {
-    STAFF("PERSONEEL", (ArrayList<String>)DBRead.getColums("PERSONEEL"));
+    STAFF("PERSONEEL", (Map<String,String>)DBRead.getColums("PERSONEEL"));
 
     private final String tableName;
-    private final ArrayList<String> columns;
+    private final Map<String, String> columns;
 
-    TableType(String tableName, ArrayList<String> column) {
+    TableType(String tableName, Map<String, String> column) {
         this.tableName = tableName;
         this.columns = column;
     }
@@ -20,12 +21,11 @@ public enum  TableType {
         return tableName;
     }
 
-    public ArrayList<String> getColumns(){
+    public Map<String, String> getColumns(){
         return columns;
     }
 
     public String toString() {
         return tableName;
     }
-
 }

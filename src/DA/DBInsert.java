@@ -45,7 +45,7 @@ public class DBInsert {
             ps.setInt(9, staff.getTeamID());
             ps.setInt(10, staff.isOnLocation() ? 1:0);
 
-            ps.executeUpdate();
+            //ps.executeUpdate();
             connection.close();
 
         } catch(Exception ex){

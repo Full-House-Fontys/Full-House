@@ -41,7 +41,7 @@ public class MaterialManage {
             return;
         } else {
             Material m = new Material(name, sort, locX, locY, onLoc);
-            DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
+            //DBInsert.insertValue(DBConnection.getConn(), "materiaal", m);
             renewMaterials();
         }
 
@@ -75,7 +75,7 @@ public class MaterialManage {
             changed = true;
         }
         if (changed) {
-            DBUpdate.updateValue(DBConnection.getConn(), "materiaal", m);
+            //DBUpdate.updateValue(DBConnection.getConn(), "materiaal", m);
             renewMaterials();
         }
     }

@@ -22,7 +22,6 @@ public class main extends javafx.application.Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
@@ -34,13 +33,5 @@ public class main extends javafx.application.Application {
 
 
         DBConnection dbConnection = new DBConnection();
-
-//        catch (SQLException ex) {
-//            System.out.println("Connectie is niet gemaakt");
-//        }
-
-        Staff staff = new Staff("s","s","s","s","s", new Point2D.Double(12.456,42.632), "s", 2, true);
-        DBInsert.insertStaff(TableType.STAFF, staff);
-
     }
 }
