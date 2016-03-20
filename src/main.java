@@ -21,6 +21,7 @@ public class main extends javafx.application.Application {
     public static Connection conn;
 
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new ShutdownHook());
         launch(args);
     }
 
