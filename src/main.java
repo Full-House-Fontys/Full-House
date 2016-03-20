@@ -3,16 +3,11 @@
 //import static javafx.application.Application.*;
 
 import DA.DBConnection;
-import DBElements.Material;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import DA.DBInsert;
-import DA.TableType;
-import DBElements.Staff;
 import javafx.stage.Stage;
 
-import java.awt.geom.Point2D;
 import java.sql.*;
 
 /**

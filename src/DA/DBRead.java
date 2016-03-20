@@ -1,14 +1,12 @@
 package DA;
 
-import DBElements.Material;
+import CentralPoint.Material;
 
 import java.awt.geom.Point2D;
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

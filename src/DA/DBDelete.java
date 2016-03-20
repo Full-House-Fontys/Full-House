@@ -1,6 +1,6 @@
 package DA;
 
-import DBElements.Material;
+import CentralPoint.Material;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

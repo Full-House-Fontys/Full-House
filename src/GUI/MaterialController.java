@@ -1,12 +1,11 @@
 package GUI;
 
-import DBElements.Material;
+import CentralPoint.Material;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.awt.geom.Point2D;
 

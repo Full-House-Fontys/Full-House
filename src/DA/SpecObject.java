@@ -1,11 +1,9 @@
 package DA;
 
-import DBElements.Staff;
+import CentralPoint.Staff;
 
-import javax.naming.Binding;
 import java.awt.geom.Point2D;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by kaj75 on 15-3-2016.

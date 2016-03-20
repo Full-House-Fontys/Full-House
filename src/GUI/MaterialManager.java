@@ -1,13 +1,11 @@
 package GUI;
 
 import DA.*;
-import DBElements.Material;
+import CentralPoint.Material;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.awt.geom.Point2D;
 
 /**
@@ -60,7 +58,7 @@ public class MaterialManager {
     public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, IllegalStateException {
         Material m = getMaterialById(matId);
         boolean changed = false;
-        if (!m.getName().equals(name)) {
+        if (!(m.getName().equals(name))) {
             if (name != null && name.trim().length() > 0) {
                 m.setName(name);
                 changed = true;
@@ -69,7 +67,10 @@ public class MaterialManager {
                 throw new IllegalArgumentException();
             }
         }
-        if (!m.getSort().equals(sort)) {
+        else{
+            throw new IllegalStateException();
+        }
+        if (!(m.getSort().equals(sort))) {
             if (sort != null && sort.trim().length() > 0) {
                 m.setSort(sort);
                 changed = true;
@@ -78,20 +79,28 @@ public class MaterialManager {
                 throw new IllegalArgumentException();
             }
         }
-        if (!m.getLocation().equals(location) && location != null) {
+        else{
+            throw new IllegalStateException();
+        }
+        if ((!(m.getLocation().equals(location))) && location != null) {
             m.setLocation(location);
             changed = true;
+        } else if (location == null){
+            throw new IllegalArgumentException();
+        }
+        else{
+            throw new IllegalStateException();
         }
         if (m.isOnLocation() != onLoc) {
             m.setOnLocation(onLoc);
             changed = true;
         }
+        else{
+            throw new IllegalStateException();
+        }
         if (changed) {
             DBUpdate.updateMaterial(TableType.MATERIAL, m);
             renewMaterials();
-        }
-        else{
-            throw new IllegalStateException();
         }
     }
 

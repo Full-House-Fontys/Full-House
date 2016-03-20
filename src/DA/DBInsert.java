@@ -1,7 +1,7 @@
 package DA;
 
-import DBElements.Material;
-import DBElements.Staff;
+import CentralPoint.Material;
+import CentralPoint.Staff;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
