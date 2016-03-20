@@ -54,9 +54,29 @@ public class MaterialManagerTest {
         assertTrue("Er zijn geen materialen", mm.getMaterials().size() > 0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testInsertMaterialNameNullFail(){
+        mm.insertMaterial(null, "Ambulance", 12.43, 12.66, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInsertMaterialNameEmptyFail(){
+        mm.insertMaterial(" ", "Ambulance", 12.43, 12.66, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInsertMaterialSortNullFail(){
+        mm.insertMaterial("AmbuZiekenwagen", null, 12.43, 12.66, true);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInsertMaterialSortEmptyFail(){
+        mm.insertMaterial("AmbuZiekenwagen", "   ", 12.43, 12.66, true);
+    }
+
     @Test
     public void testInsertMaterial() throws Exception {
-
+        mm.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
     }
 
     @Test

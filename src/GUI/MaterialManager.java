@@ -44,10 +44,11 @@ public class MaterialManager {
     }
 
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
-        if (!(name != null || name.trim().length() > 0)) {
+        if (name == null || name.trim().length() <= 0) {
             throw new IllegalArgumentException();
-        } else if (!(sort != null | sort.trim().length() > 0)) {
+        } else if (sort == null || sort.trim().length() <= 0) {
             throw new IllegalArgumentException();
+
         } else {
             Material m = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
             DBInsert.insertMaterial(TableType.MATERIAL, m);
@@ -56,7 +57,7 @@ public class MaterialManager {
 
     }
 
-    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, Exception {
+    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, IllegalStateException {
         Material m = getMaterialById(matId);
         boolean changed = false;
         if (!m.getName().equals(name)) {
@@ -77,7 +78,7 @@ public class MaterialManager {
                 throw new IllegalArgumentException();
             }
         }
-        if (!m.getLocation().equals(location)) {
+        if (!m.getLocation().equals(location) && location != null) {
             m.setLocation(location);
             changed = true;
         }
@@ -90,7 +91,7 @@ public class MaterialManager {
             renewMaterials();
         }
         else{
-            throw new Exception();
+            throw new IllegalStateException();
         }
     }
 
