@@ -5,6 +5,7 @@ import Database.DbTables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,17 @@ public class CentralPoint {
     }
 
     /**
+     * @param team list of staff in team
+     */
+    public void setStaffOnLocation(List<String> team){
+        for(String staffname : team){
+            Staff toUpdate = new Staff();
+            toUpdate.setOnLocation(true);
+            daoManager.getDao(DbTables.PERSONEEL).update(toUpdate, staffname);
+        }
+    }
+
+    /**
      * returns the materialLists as observableList
      * @return unmodifiableObservableList of materials
      */
@@ -67,14 +79,26 @@ public class CentralPoint {
     }
 
     /**
-     * @param team list of staff in team
+     * inserts a new material in the database
+     * @param name
+     * @param sort
+     * @param locX
+     * @param locY
+     * @param onLoc
+     * @throws IllegalArgumentException
      */
-    public void setStaffOnLocation(List<String> team){
-        for(String staffname : team){
-            Staff toUpdate = new Staff();
-            toUpdate.setOnLocation(true);
-            daoManager.getDao(DbTables.PERSONEEL).update(toUpdate, staffname);
+    public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
+        if (name == null || name.trim().length() <= 0) {
+            throw new IllegalArgumentException();
+        } else if (sort == null || sort.trim().length() <= 0) {
+            throw new IllegalArgumentException();
+
+        } else {
+            Material m = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
+            daoManager.getDao(DbTables.MATERIAAL).insert(m);
+            renewLists(DbTables.MATERIAAL);
         }
+
     }
 
 }

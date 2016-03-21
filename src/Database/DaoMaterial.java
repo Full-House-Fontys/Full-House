@@ -5,10 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +88,21 @@ public class DaoMaterial extends DaoGeneric<Material>{
      */
     @Override
     public boolean insert(Material value) {
-        return false;
+        boolean result = false;
+        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}) VALUES (?, ?, ?, ?, ?)", TABLENAME, Naam, Soort, LocatieX, LocatieY, OpLocatie);
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, value.getName());
+            ps.setString(2, value.getSort());
+            ps.setDouble(3, value.getLocation().getX());
+            ps.setDouble(4, value.getLocation().getY());
+            ps.setBoolean(5, value.isOnLocation());
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     /**
