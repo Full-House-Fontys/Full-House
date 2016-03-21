@@ -5,5 +5,6 @@ package Database;
  * Names of all database tables
  */
 public enum DbTables {
-    PERSONEEL;
+    PERSONEEL,
+    MATERIAAL;
 }
