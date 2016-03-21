@@ -79,7 +79,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
         String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, key);
+            ps.setString(1, key);
             ps.executeUpdate();
             result = true;
         } catch (SQLException e) {
