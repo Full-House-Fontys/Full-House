@@ -4,7 +4,6 @@ import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
 import CentralPoint.Team;
 import DA.DBRead;
-import DBElements.Staff;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

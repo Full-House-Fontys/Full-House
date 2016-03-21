@@ -1,6 +1,5 @@
 package CentralPoint;
 
-import DBElements.Staff;
 import Database.DaoManager;
 import Database.DbTables;
 

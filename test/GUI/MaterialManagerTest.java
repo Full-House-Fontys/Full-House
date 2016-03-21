@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  * Created by jvdwi on 20-3-2016.
  */
 public class MaterialManagerTest {
+    /*
     private MaterialManager mm;
     ObservableList<Material> initialList;
     Material m1;
@@ -152,4 +153,5 @@ public class MaterialManagerTest {
     public void testDeleteMaterial() throws Exception {
         mm.deleteMaterial(mm.getMaterialById(getHighestMatId()));
     }
+    */
 }

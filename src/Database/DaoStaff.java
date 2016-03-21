@@ -1,6 +1,6 @@
 package Database;
 
-import DBElements.Staff;
+import CentralPoint.Staff;
 
 import java.awt.geom.Point2D;
 import java.sql.*;

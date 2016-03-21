@@ -26,6 +26,7 @@ public class DBDelete {
         }
     }
 
+    /*
     public static void deleteMaterial(TableType tableType, Material material) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -42,4 +43,5 @@ public class DBDelete {
             closeAll(ps, rs);
         }
     }
+    */
 }

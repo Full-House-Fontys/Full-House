@@ -40,7 +40,7 @@ public class MaterialManager {
     public ObservableList<Material> getMaterials(){
         return FXCollections.unmodifiableObservableList(materials);
     }
-
+/*
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
         if (name == null || name.trim().length() <= 0) {
             throw new IllegalArgumentException();
@@ -108,4 +108,5 @@ public class MaterialManager {
         DBDelete.deleteMaterial(TableType.MATERIAL, m);
         renewMaterials();
     }
+    */
 }

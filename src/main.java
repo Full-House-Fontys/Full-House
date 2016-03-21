@@ -23,13 +23,13 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/frmMaterialManagement.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Task.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 896, 716));
         primaryStage.show();
 
 
-        DBConnection dbConnection = new DBConnection();
+        //DBConnection dbConnection = new DBConnection();
 
 //        catch (SQLException ex) {
 //            System.out.println("Connectie is niet gemaakt");

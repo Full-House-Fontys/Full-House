@@ -62,6 +62,7 @@ public class DBSpecifics {
         return query.toString();
     }
 
+    /*
     static String updateStringFromGivenID(TableType tableType) {
         StringBuilder query = new StringBuilder("UPDATE " + tableType.getTableName() + " SET ");
         for (String column : tableType.getColumns()) {
@@ -78,4 +79,5 @@ public class DBSpecifics {
         StringBuilder query = new StringBuilder("DELETE FROM " + tableType.getTableName() + " WHERE ID = ? ");
         return query.toString();
     }
+    */
 }
