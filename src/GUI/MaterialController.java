@@ -1,5 +1,6 @@
 package GUI;
 
+import CentralPoint.CentralPoint;
 import CentralPoint.Material;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import java.awt.geom.Point2D;
  */
 public class MaterialController {
     private ObservableList<Material> obsMat;
-    private MaterialManager mm;
+    private CentralPoint cp;
 
     @FXML
     private TableView<Material> tvMaterials;
@@ -29,12 +30,13 @@ public class MaterialController {
     @FXML
     private TableColumn<Material, Boolean> tcOnLoc;
 
-
+    /**
+     * constructs the materialController
+     */
     public MaterialController() {
-        mm = new MaterialManager();
-        mm.renewMaterials();
+        cp = new CentralPoint();
 
-        Platform.runLater(() -> tvMaterials.setItems(mm.getMaterials()));
+        Platform.runLater(() -> tvMaterials.setItems(cp.getMaterials()));
     }
 
 

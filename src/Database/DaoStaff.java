@@ -1,6 +1,8 @@
 package Database;
 
 import CentralPoint.Staff;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
 import java.sql.*;
@@ -39,8 +41,9 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * @see DaoGeneric#getAllRecord()
      */
     @Override
-    public List<Staff> getAllRecord() {
+    public ObservableList<Staff> getAllRecord() {
         List<Staff> allStaff = new ArrayList<>();
+        ObservableList<Staff> obsStaff = FXCollections.observableArrayList(allStaff);
         ResultSet res = null;
 
         String query = "SELECT * FROM " + TABLENAME;
@@ -49,7 +52,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
             Statement statement = connection.createStatement();
             res = statement.executeQuery(query);
             while (res.next()) {
-                allStaff.add(new Staff(res.getString(Voornaam),
+                obsStaff.add(new Staff(res.getString(Voornaam),
                         res.getString(Tussenvoegesel), res.getString(Achternaam), res.getString(Gebruikersnaam),
                         res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
                         res.getDouble(LocatieY)), res.getString(Soort), res.getInt(TeamID),
@@ -58,7 +61,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return allStaff;
+        return obsStaff;
     }
 
     /**

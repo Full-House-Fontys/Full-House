@@ -80,6 +80,9 @@ public enum DaoManager {
                 case PERSONEEL:
                     dao = new DaoStaff(connection);
                     break;
+                case MATERIAAL:
+                    dao = new DaoMaterial(connection);
+                    break;
                 default:
                     dao = null;
                     break;

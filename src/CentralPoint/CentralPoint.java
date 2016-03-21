@@ -2,6 +2,8 @@ package CentralPoint;
 
 import Database.DaoManager;
 import Database.DbTables;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +16,29 @@ public class CentralPoint {
     List<Staff> staffList;
     List<Material> materialList;
 
+    ObservableList<Staff> staffObservableList;
+    ObservableList<Material> materialObservableList;
+
     public CentralPoint(){
         daoManager = DaoManager.INSTANCE;
         staffList = new ArrayList<>();
+        materialList = new ArrayList();
+        staffObservableList = FXCollections.observableArrayList(staffList);
+        materialObservableList = FXCollections.observableArrayList(materialList);
     }
 
     /**
-     * @param table object of table to update
+     * @param table object of table to renewLists
      */
-    private void update(DbTables table){
+    private void renewLists(DbTables table){
         switch (table){
             case PERSONEEL:
-                staffList = daoManager.getDao(table).getAllRecord();
+                staffObservableList.clear();
+                staffObservableList = daoManager.getDao(table).getAllRecord();
                 break;
             case MATERIAAL:
-                materialList = daoManager.getDao(table).getAllRecord();
+                materialObservableList.clear();
+                materialObservableList = daoManager.getDao(table).getAllRecord();
             default:
                 break;
         }
@@ -39,12 +49,21 @@ public class CentralPoint {
      */
     public ArrayList<String> staffOnLocation(){
         ArrayList<String> staffArrayList = new ArrayList<>();
-        update(DbTables.PERSONEEL);
+        renewLists(DbTables.PERSONEEL);
         for (Staff staff : staffList){
             if(staff.isOnLocation())
                 staffArrayList.add("TeamId: "+staff.getTeamID()+"\nName: "+staff.getName()+" "+ staff.getPrefix() +" "+staff.getLastName()+"\nSort: "+staff.getSort());
         }
         return staffArrayList;
+    }
+
+    /**
+     * returns the materialLists as observableList
+     * @return unmodifiableObservableList of materials
+     */
+    public ObservableList<Material> getMaterials(){
+        renewLists(DbTables.MATERIAAL);
+        return FXCollections.unmodifiableObservableList(materialObservableList);
     }
 
     /**
