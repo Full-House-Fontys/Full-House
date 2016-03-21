@@ -45,7 +45,7 @@ public class DBSpecifics {
         }
     }
 
-    static <T> String insertString(TableType tableType){
+    static <T> String insertString(TableType tableType) {
         StringBuilder query = new StringBuilder("INSERT INTO " + tableType.getTableName() + " (");
         StringBuilder values = new StringBuilder();
         /*
@@ -59,6 +59,23 @@ public class DBSpecifics {
         query.setLength(query.length()-1);
         values.setLength(values.length()-1);
         query.append(") VALUES ("+values.toString()+ ")");
+        return query.toString();
+    }
+
+    static String updateStringFromGivenID(TableType tableType) {
+        StringBuilder query = new StringBuilder("UPDATE " + tableType.getTableName() + " SET ");
+        for (String column : tableType.getColumns()) {
+            if (!column.equals("ID")) {
+                query.append(column + " = ?,");
+            }
+        }
+        query.setLength(query.length() - 1);
+        query.append(" WHERE ID = ?");
+        return query.toString();
+    }
+
+    static String deleteString(TableType tableType){
+        StringBuilder query = new StringBuilder("DELETE FROM " + tableType.getTableName() + " WHERE ID = ? ");
         return query.toString();
     }
 }

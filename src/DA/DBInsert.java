@@ -1,6 +1,7 @@
 package DA;
 
-import DBElements.Staff;
+import CentralPoint.Material;
+import CentralPoint.Staff;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,7 @@ public class DBInsert {
         }
     }
 
-    public static <T> void insertStaff(TableType tableType, Staff staff)  {
+    public static void insertStaff(TableType tableType, Staff staff)  {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -49,6 +50,28 @@ public class DBInsert {
             connection.close();
 
         } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        } finally {
+            closeAll(ps, rs);
+        }
+    }
+
+    public static void insertMaterial(TableType tableType, Material material){
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String queryString = DBSpecifics.insertString(tableType);
+            Connection conn = DBConnection.getConn();
+            ps = conn.prepareStatement(queryString);
+            ps.setString(1, material.getName());
+            ps.setString(2, material.getSort());
+            ps.setDouble(3, material.getLocation().getX());
+            ps.setDouble(4, material.getLocation().getY());
+            ps.setBoolean(5, material.isOnLocation());
+
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception ex){
             System.out.println(ex.getMessage());
         } finally {
             closeAll(ps, rs);

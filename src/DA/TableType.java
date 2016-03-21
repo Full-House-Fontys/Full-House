@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public enum  TableType {
     STAFF("PERSONEEL", (Map<String,String>)DBRead.getColums("PERSONEEL"));
+    //MATERIAL("MATERIAAL", (ArrayList<String>)DBRead.getColums("MATERIAAL"));
 
     private final String tableName;
     private final Map<String, String> columns;

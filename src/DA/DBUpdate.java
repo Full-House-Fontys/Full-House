@@ -1,6 +1,10 @@
 package DA;
 
+import CentralPoint.Material;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +13,12 @@ import java.sql.SQLException;
  * Created by jvdwi on 16-3-2016.
  */
 public class DBUpdate {
-
-    static void closeAll(PreparedStatement ps) {
+    /*
+    private static void closeAll(PreparedStatement ps, ResultSet rs) {
+        try {
+            rs.close();
+        } catch (Exception e) {
+        }
         try {
             ps.close();
         } catch (Exception e) {
@@ -21,31 +29,26 @@ public class DBUpdate {
         }
     }
 
-    static void switchInput(String type, int pos, String value, PreparedStatement statement) throws SQLException {
-        switch (type){
-            case "varchar":
-                statement.setString(pos, value);
-        }
-    }
-
-    public boolean updateValue(TableType table,String columnSet, String valueSet, String columnWhere, String valuWhere) throws SQLException {
-        /*
+    public static void updateMaterial(TableType tableType, Material material) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
-
-            String query = "update" + table.getTableName() + " set "+ columnSet +" = ? where "+ columnWhere +" = ?";
-             stmt = DBConnection.getConn().prepareStatement(query);
-            switchInput(table.getColumns().get(columnSet), 1, valueSet, stmt);
-            switchInput(table.getColumns().get(columnSet), 2, valuWhere, stmt);
-            stmt.exec executeUpdate();
-            closeAll(stmt);
-            *
-            return true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            String queryString = DBSpecifics.updateStringFromGivenID(tableType);
+            Connection conn = DBConnection.getConn();
+            ps = conn.prepareStatement(queryString);
+            ps.setString(1, material.getName());
+            ps.setString(2, material.getSort());
+            ps.setDouble(3, material.getLocation().getX());
+            ps.setDouble(4, material.getLocation().getY());
+            ps.setBoolean(5, material.isOnLocation());
+            ps.setInt(6, material.getId());
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        } finally {
+            closeAll(ps, rs);
         }
-        */
-        return true;
     }
+    */
 }
