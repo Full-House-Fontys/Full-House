@@ -12,6 +12,7 @@ import java.util.List;
 public class CentralPoint {
     DaoManager daoManager;
     List<Staff> staffList;
+    List<Material> materialList;
 
     public CentralPoint(){
         daoManager = DaoManager.INSTANCE;
@@ -26,6 +27,8 @@ public class CentralPoint {
             case PERSONEEL:
                 staffList = daoManager.getDao(table).getAllRecord();
                 break;
+            case MATERIAAL:
+                materialList = daoManager.getDao(table).getAllRecord();
             default:
                 break;
         }

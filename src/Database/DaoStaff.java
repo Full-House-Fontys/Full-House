@@ -68,18 +68,33 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * @return
      */
     @Override
+    public boolean update(Staff value, int key) {
+        return false;
+    }
+
+    @Override
     public boolean update(Staff value, String key) {
         boolean result = false;
         String bit = value.isOnLocation() ? "1" : "0";
-        String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE Gebruikersnaam = ?";
+        String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, key);
+            ps.setInt(1, key);
             ps.executeUpdate();
             result = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public boolean insert(Staff value) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int key) {
+        return false;
     }
 }

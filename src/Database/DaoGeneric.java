@@ -32,5 +32,11 @@ public abstract class DaoGeneric<T> {
      * Update bool in a table row
      * @return bool is completed
      */
+    public abstract boolean update(T value, int key);
+
     public abstract boolean update(T value, String key);
+
+    public abstract boolean insert(T value);
+
+    public abstract boolean delete(int key);
 }
