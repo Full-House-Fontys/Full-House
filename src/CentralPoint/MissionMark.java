@@ -11,7 +11,6 @@ public class MissionMark {
 
     //all services that go towards mission.
     private int MissionId;
-    private List<String> services;
     private Date StartTime;
     private Date LastUpdate;
     private Date EndTime;
@@ -24,7 +23,6 @@ public class MissionMark {
         this.LastUpdate = StartTime;
         this.LocationX = LocationX;
         this.LocationY = LocationY;
-        services = new ArrayList<>();
     }
 
     public int getMissionId()
@@ -51,25 +49,14 @@ public class MissionMark {
     {
         return LocationY;
     }
-    public List<String> getServices()
-    {
-        return services;
-    }
     public void setLastUpdate(Date LastUpdate)
     {
         this.LastUpdate = LastUpdate;
     }
-
     public void setEndTime(Date EndTime)
     {
         this.EndTime = EndTime;
     }
-
-    public void addservices(String service)
-    {
-        services.add(service);
-    }
-
     public String toString()
     {
         return "id: " + MissionId +" start time: " + StartTime;

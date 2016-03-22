@@ -48,9 +48,7 @@ public class ControllerMark {
     @FXML
     private void newmission()
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        System.out.println(dateFormat.format(date));
         try
         {
             Double LocationX = Double.parseDouble(TFlocationXMission.getText());

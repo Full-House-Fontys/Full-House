@@ -53,7 +53,6 @@ public class missionscontroller {
         TFendTime.setText(String.valueOf(missionMark.getEndTime()));
         LocationX.setText(String.valueOf(missionMark.getLocationX()));
         LocationY.setText(String.valueOf(missionMark.getLocationY()));
-        Listservices.setItems(FXCollections.observableArrayList(missionMark.getServices()));
     }
 
     @FXML
