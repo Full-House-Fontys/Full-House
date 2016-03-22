@@ -98,7 +98,84 @@ public class CentralPoint {
             daoManager.getDao(DbTables.MATERIAAL).insert(m);
             renewLists(DbTables.MATERIAAL);
         }
+    }
 
+    /**
+     * returns the material for the given id
+     * @param id
+     * @return
+     */
+    public Material getMaterialById(int id) {
+        for (Material material : materialObservableList) {
+            if (material.getId() == id) {
+                return material;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * update the material for given id
+     * @param matId
+     * @param name
+     * @param sort
+     * @param location
+     * @param onLoc
+     * @throws IllegalArgumentException
+     * @throws IllegalStateException
+     */
+    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, IllegalStateException {
+        Material m = getMaterialById(matId);
+        boolean changed = false;
+        if (!(m.getName().equals(name))) {
+            if (name != null && name.trim().length() > 0) {
+                m.setName(name);
+                changed = true;
+            }
+            else {
+                throw new IllegalArgumentException();
+            }
+        }
+        else{
+            throw new IllegalStateException();
+        }
+        if (!(m.getSort().equals(sort))) {
+            if (sort != null && sort.trim().length() > 0) {
+                m.setSort(sort);
+                changed = true;
+            }
+            else{
+                throw new IllegalArgumentException();
+            }
+        }
+        else{
+            throw new IllegalStateException();
+        }
+        if ((!(m.getLocation().equals(location))) && location != null) {
+            m.setLocation(location);
+            changed = true;
+        } else if (location == null){
+            throw new IllegalArgumentException();
+        }
+        else{
+            throw new IllegalStateException();
+        }
+        if (m.isOnLocation() != onLoc) {
+            m.setOnLocation(onLoc);
+            changed = true;
+        }
+        else{
+            throw new IllegalStateException();
+        }
+        if (changed) {
+            daoManager.getDao(DbTables.MATERIAAL).update(m, matId);
+            renewLists(DbTables.MATERIAAL);
+        }
+    }
+
+    public void deleteMaterial(Material m) {
+        daoManager.getDao(DbTables.MATERIAAL).delete(m.getId());
+        renewLists(DbTables.MATERIAAL);
     }
 
 }
