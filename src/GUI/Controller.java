@@ -2,8 +2,6 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
-import CentralPoint.Team;
-import DA.DBRead;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,7 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import CentralPoint.Team;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
