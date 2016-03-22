@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import CentralPoint.Team;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
