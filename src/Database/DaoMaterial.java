@@ -67,6 +67,20 @@ public class DaoMaterial extends DaoGeneric<Material>{
     @Override
     public boolean update(Material value, int key) {
         boolean result = false;
+        String query = MessageFormat.format("UPDATE {0} SET {1} = ?, {2} = ?, {3} = ?, {4} = ?, {5} = ? WHERE ID = ?", TABLENAME, Naam, Soort, LocatieX, LocatieY, OpLocatie);
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, value.getName());
+            ps.setString(2, value.getSort());
+            ps.setDouble(3, value.getLocation().getX());
+            ps.setDouble(4, value.getLocation().getY());
+            ps.setBoolean(5, value.isOnLocation());
+            ps.setInt(6, key);
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
         return result;
     }
 
@@ -112,6 +126,17 @@ public class DaoMaterial extends DaoGeneric<Material>{
      */
     @Override
     public boolean delete(int key) {
-        return false;
+        boolean result = false;
+        String query = MessageFormat.format("DELETE FROM {0} WHERE ID = ?", TABLENAME);
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, key);
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return result;
     }
 }
