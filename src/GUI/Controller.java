@@ -2,6 +2,7 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
+import CentralPoint.Team;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
