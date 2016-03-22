@@ -89,6 +89,10 @@ public class Staff {
         this.teamID = teamID;
     }
 
+    public String getLocationString(){
+        return location.getX() + "; " + location.getY();
+    }
+
     public Staff(String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, int teamID, boolean onLocation) {
         this.name = name;
         this.prefix = prefix==null ? "":prefix;
