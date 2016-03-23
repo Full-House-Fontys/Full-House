@@ -13,46 +13,59 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class Controller {
-    @FXML
-    private TextField tbNameTask;
-    @FXML
-    private TextField tbPlaceTask;
-    @FXML
-    private DatePicker dtTimeTask;
-    @FXML
-    private TextArea taAnnouncements;
-    @FXML
-    private Button btnSendTasks;
-    @FXML
-    private ListView lvTasks;
+
     @FXML
     private TextField tfTeamName;
     @FXML
     private ListView lvTeams;
     @FXML
-    private ComboBox cbTeams= new ComboBox();
+    private ComboBox cbTeams = new ComboBox();
+    @FXML
+    private ListView lvAssignedTeams;
+    @FXML
+    private TextField tfFakeMission;
+    @FXML
+    private ListView lvTasks;
+    @FXML
+    private Label lbDescription;
+    @FXML
+    private TextArea taDescription;
 
     private Stage stage;
     private HashSet<Team> teams;
-    private Mission mission;
+    private ArrayList<Mission> missionList;
+    private ObservableList<Mission> missionListOberservable;
     private ObservableList<Team> teamObservableList;
+    private HashSet<Team> teamsAssigned;
+    private ObservableList<Team> teamsAssignedObservableList;
+    private int fakeMissionCounter =0;
 
 
     public Controller() {
         DBRead DBR = new DBRead();
         teams = new HashSet<>();
-        mission = new Mission(0, "null", null);
+        teamsAssigned = new HashSet<>();
+        missionList = new ArrayList<>();
+
         teamObservableList = FXCollections.observableArrayList(teams);
+        teamsAssignedObservableList = FXCollections.observableArrayList(teamsAssigned);
+        missionListOberservable = FXCollections.observableArrayList(missionList);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 lvTeams.setItems(teamObservableList);
             }
         });
+    }
+
+    public void showDescriptionOfSelectedMission(){
+        Mission mission = (Mission)lvTasks.getSelectionModel().getSelectedItem();
+        lbDescription.setText(mission.getDescription());
     }
 
     public void makeTeam() {
@@ -63,7 +76,6 @@ public class Controller {
                 @Override
                 public void run() {
                     lvTeams.setItems(teamObservableList);
-                    cbTeams.setItems(teamObservableList);
                 }
             });
 
@@ -71,13 +83,29 @@ public class Controller {
         saveToDatabase();
     }
 
-    private void assignTeamToJob() {
-        // Team toAssignTeam = (Team)cbTeams.getSelectionModel().getSelectedItem();
-        // Job toAssignJob = lvJob.getSelectionModel().getSelectedItem();
-        // toAssignJob.addTeamToJob(toAssignTeam);
+    public void assignTeamToMission() {
+        teamsAssignedObservableList.add((Team) lvTeams.getSelectionModel().getSelectedItem());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvAssignedTeams.setItems(teamsAssignedObservableList);
+            }
+        });
+
     }
 
+    public void createFakeMission(){
+        Mission fakeMission = new Mission(tfFakeMission.getText(),taDescription.getText(),null);
+        missionListOberservable.add(fakeMission);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvTasks.setItems(missionListOberservable);
+            }
+        });
+    }
     private void saveToDatabase() {
+
     }
 
 }

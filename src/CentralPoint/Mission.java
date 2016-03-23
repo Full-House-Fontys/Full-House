@@ -6,13 +6,13 @@ import java.util.HashSet;
  * Created by Kees on 16/03/2016.
  */
 public class Mission {
-    private int id;
+    private String name;
     private String description;
     private HashSet<Team> teamsAssigned;
 
-    public Mission(int id, String description, HashSet<Team> teamsAssigned) {
+    public Mission(String name, String description, HashSet<Team> teamsAssigned) {
 
-        this.id = id;
+        this.name = name;
         this.description = description;
         this.teamsAssigned = teamsAssigned;
     }
@@ -22,12 +22,13 @@ public class Mission {
             teamsAssigned.add(team);
         }
     }
-    public int getId() {
-        return id;
+
+    public String getName() {
+        return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -46,4 +47,8 @@ public class Mission {
         this.teamsAssigned = teamsAssigned;
     }
 
+    @Override
+    public String toString() {
+        return "Mission : " + this.name;
+    }
 }
