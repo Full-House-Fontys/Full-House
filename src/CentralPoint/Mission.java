@@ -1,45 +1,49 @@
 package CentralPoint;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
  */
 public class Mission {
-
-    private String name;
+    private int id;
     private String description;
-    private ArrayList<Team> teams = new ArrayList<>();
+    private HashSet<Team> teamsAssigned;
 
-    public String getMissieNaam() {
-        return name;
+    public Mission(int id, String description, HashSet<Team> teamsAssigned) {
+
+        this.id = id;
+        this.description = description;
+        this.teamsAssigned = teamsAssigned;
     }
 
-    public String getOmschrijving() {
+    public void addTeamToJob(Team team){
+        if(!teamsAssigned.contains(team)){
+            teamsAssigned.add(team);
+        }
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
         return description;
     }
 
-    public Mission(String name, String description, ArrayList<Team> teams){
-        this.name = name;
+    public void setDescription(String description) {
         this.description = description;
-        this.teams = teams;
     }
 
-    /**
-     * Adds a team to the mission
-     * @param t : Team that will be added to the mission.
-     * @return true if the team is correctly added, false if it failed.
-     */
-    public boolean addTeam(Team t){
-        return false;
+    public HashSet<Team> getTeamsAssigned() {
+        return teamsAssigned;
     }
 
-    /**
-     * Removes a team from the mission
-     * @param t : Team that will be removed from the mission.
-     * @return true if the team is correctly removed, false if it failed.
-     */
-    public boolean removeTeam(Team t){
-        return false;
+    public void setTeamsAssigned(HashSet<Team> teamsAssigned) {
+        this.teamsAssigned = teamsAssigned;
     }
+
 }
