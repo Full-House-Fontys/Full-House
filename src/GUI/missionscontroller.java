@@ -1,7 +1,6 @@
 package GUI;
 
 import CentralPoint.MissionMark;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -33,11 +32,11 @@ public class missionscontroller {
     @FXML
     private Button BTNsolve;
     private MissionMark missionMark;
-    private ControllerMark controllerMark;
+    private missiondetailController missiondetailController;
 
-    public void setControllerMark(ControllerMark controllerMark)
+    public void setMissiondetailController(missiondetailController missiondetailController)
     {
-        this.controllerMark = controllerMark;
+        this.missiondetailController = missiondetailController;
     }
     public void setMissionMark(MissionMark missionMark)
     {

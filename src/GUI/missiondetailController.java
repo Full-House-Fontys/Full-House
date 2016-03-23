@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class ControllerMark {
+public class missiondetailController {
 
     // zorg ervoor dat er constant gekeken wordt of er iets nieuws in de database staat.
     @FXML
@@ -39,7 +39,7 @@ public class ControllerMark {
     private List<MissionMark> missionMarks;
     private ObservableList<MissionMark> obMissionMarks;
     private int idcounter;
-    public ControllerMark()
+    public missiondetailController()
     {
         this.missionMarks = new ArrayList<>();
         idcounter = 1;
