@@ -12,6 +12,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import CentralPoint.Team;
 import CentralPoint.Staff;
 
+import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +30,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class taskController implements Initializable {
     @FXML
@@ -44,6 +43,8 @@ public class taskController implements Initializable {
     private TextArea taAnnouncements;
     @FXML
     private Button btnSendTasks;
+    @FXML
+    private ListView lvAssignedTeams;
     @FXML
     private ListView lvTasks;
     @FXML
@@ -77,19 +78,32 @@ public class taskController implements Initializable {
     private ObservableList<String> staffObservableList;
     private ObservableList<Mission> missionListOberservable;
     private ArrayList<Mission> missionList;
+    private ObservableList<Staff> assignedTeamsObservable;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadPersonel();
         loadMission();
+        lvTasks.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mission>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Mission> observable, Mission oldValue, Mission newValue) {
+                loadTeamsAssignedToMission(newValue);
+            }
+        });
+    }
+
+    private void loadTeamsAssignedToMission(Mission newValue) {
+        assignedTeamsObservable = newValue.getTeamsAssignedToMission(newValue.getID());
+        lvAssignedTeams.setItems(assignedTeamsObservable);
     }
 
     private void loadMission() {
         try {
             DaoManager.INSTANCE.open();
             DaoGeneric allMission = DaoManager.INSTANCE.getDao(DbTables.MISSIE);
-            ObservableList<Mission> inputMission = allMission.getAllRecord();
+            ObservableList inputMission = allMission.getAllRecord();
             lvTasks.setItems(inputMission);
 
         } catch (Exception e) {
@@ -152,8 +166,24 @@ public class taskController implements Initializable {
         Team toAssignTeam = new Team((String) lvTeams.getSelectionModel().getSelectedItem(), null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
 
-        //You need to check if the team isn't already assigned to the mission
-        toAssignJob.addTeamToJob(toAssignTeam);
+        ObservableList<Staff> staffAssigned = lvAssignedTeams.getItems();
+        ArrayList<Team> assignedTeams = new ArrayList<>();
+        for(Staff staff : staffAssigned){
+            assignedTeams.add(new Team(staff.getSort(),null));
+        }
+        toAssignJob.setTeamsAssigned(assignedTeams);
+        boolean succesfulAdd = toAssignJob.addTeamToJob(toAssignTeam);
+        if (succesfulAdd) {
+            assignedTeamsObservable.add(new Staff(null,null,null,null,null,null,toAssignTeam.getName(),0,false));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("This team zit al in de missie");
+            alert.setHeaderText("Mission toevoegen");
+            alert.setContentText("Dit team participeert al in de missie");
+
+            alert.showAndWait();
+
+        }
     }
 
     public void showDescriptionOfSelectedMission() {

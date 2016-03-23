@@ -37,6 +37,32 @@ public class DaoStaff extends DaoGeneric<Staff> {
     }
 
     /**
+     * Returns list of people who are involved in the mission
+     * @param id
+     * @return list of Staff
+     */
+    @Override
+    public ObservableList<Staff> getSpecificList(int id) {
+        ArrayList staffList = new ArrayList();
+        ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
+        ResultSet rs;
+
+        String query = "Select DISTINCT Soort From Personeel,Personeel_Missie WHERE Personeel.ID = Personeel_Missie.PersoneelID AND Personeel_Missie.MissieID ="+id + ";";
+
+        try{
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()){
+                staffListObservableList.add(new Staff(null, null, null, null, null, null, rs.getString(1),0, false));
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return staffListObservableList;
+    }
+
+    /**
      * @return list of staff
      * @see DaoGeneric#getAllRecord()
      */
@@ -44,7 +70,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
     public ObservableList<Staff> getAllRecord() {
         List<Staff> allStaff = new ArrayList<>();
         ObservableList<Staff> obsStaff = FXCollections.observableArrayList(allStaff);
-        ResultSet res = null;
+        ResultSet res;
 
         String query = "SELECT * FROM " + TABLENAME;
 
@@ -56,7 +82,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
                         res.getString(Tussenvoegesel), res.getString(Achternaam), res.getString(Gebruikersnaam),
                         res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
                         res.getDouble(LocatieY)), res.getString(Soort), res.getInt(TeamID),
-                        res.getInt(OpLocatie) == 0 ? false : true));
+                        res.getInt(OpLocatie) != 0));
             }
         } catch (SQLException e) {
             e.printStackTrace();

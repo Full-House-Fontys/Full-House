@@ -1,13 +1,21 @@
 package CentralPoint;
 
+import Database.DaoGeneric;
+import Database.DaoManager;
+import Database.DbTables;
+import javafx.beans.binding.ObjectExpression;
+import javafx.collections.ObservableList;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by Kees on 16/03/2016.
  */
-public class Mission implements Serializable{
+public class Mission implements Serializable {
     private int ID;
     private String name;
     private String description;
@@ -16,7 +24,7 @@ public class Mission implements Serializable{
     private Date endTime;
     private int locationX;
     private int locationY;
-    private HashSet<Team> teamsAssigned;
+    private ArrayList<Team> teamsAssigned;
 
     public int getID() {
         return ID;
@@ -82,11 +90,11 @@ public class Mission implements Serializable{
         this.locationY = locationY;
     }
 
-    public HashSet<Team> getTeamsAssigned() {
+    public ArrayList<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
 
-    public void setTeamsAssigned(HashSet<Team> teamsAssigned) {
+    public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
     }
 
@@ -102,14 +110,30 @@ public class Mission implements Serializable{
         this.teamsAssigned = null;
     }
 
-    public void addTeamToJob(Team team){
-        if(!teamsAssigned.contains(team)){
-            teamsAssigned.add(team);
+    public boolean addTeamToJob(Team teamToAdd) {
+        boolean addedToTeam = false;
+        int counter = 0;
+        for(Team team : teamsAssigned){
+            if(teamToAdd.getName().equals(team.getName())){
+                counter++;
+            }
         }
+        if(counter==0){
+            teamsAssigned.add(teamToAdd);
+            addedToTeam = true;
+        }
+        return addedToTeam;
     }
 
     @Override
     public String toString() {
         return "Mission : " + this.name;
+    }
+
+    public ObservableList<Staff> getTeamsAssignedToMission(int id) {
+        DaoManager.INSTANCE.open();
+        DaoGeneric getAssignedMembers = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+        ObservableList<Staff> assignedMembers = getAssignedMembers.getSpecificList(id);
+        return assignedMembers;
     }
 }

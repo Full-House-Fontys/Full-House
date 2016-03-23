@@ -96,16 +96,6 @@ public class Staff {
      */
     @Override
     public String toString() {
-        return "Staff{" +
-                "name='" + name + '\'' +
-                ", prefix='" + prefix + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", location=" + location +
-                ", sort='" + sort + '\'' +
-                ", teamID=" + teamID +
-                ", onLocation=" + onLocation +
-                '}';
+        return this.getSort();
     }
 }
