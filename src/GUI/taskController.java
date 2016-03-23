@@ -2,6 +2,7 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
+import CentralPoint.Team;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,12 +12,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import CentralPoint.Team;
+import CentralPoint.Staff;
+
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Controller {
+public class taskController {
     @FXML
     private TextField tbNameTask;
     @FXML
@@ -34,9 +38,16 @@ public class Controller {
     @FXML
     private ListView lvTeams;
     @FXML
-    private ListView lvStaffOnLocation;
-    @FXML
     private ComboBox cbTeams= new ComboBox();
+
+    @FXML
+    private TableView<Staff> tvStaffOnLocation;
+    @FXML
+    private TableColumn<Staff, String> tcName;
+    @FXML
+    private TableColumn<Staff, Integer> tcTeamID;
+    @FXML
+    private TableColumn<Staff, Point2D> tcLocation;
 
     private CentralPoint centralPoint;
 
@@ -48,40 +59,25 @@ public class Controller {
     private ObservableList<String> staffObservableList;
 
 
-    public Controller() {
+    public taskController() {
         //DBRead DBR = new DBRead();
         //teams = new HashSet<>();
         //mission = new Mission(0, "null", null);
         //teamObservableList = FXCollections.observableArrayList(teams);
         centralPoint = new CentralPoint();
-        staffOnLocation = centralPoint.staffOnLocation();
-        staffObservableList = FXCollections.observableArrayList(staffOnLocation);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                //lvTeams.setItems(teamObservableList);
-                lvStaffOnLocation.setItems(staffObservableList);
-            }
-        });
+        ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
+        Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
     }
 
     public void makeTeam() {
-        ArrayList<String> teamnames = new ArrayList<>();
-        teamnames.add("Lind");
-        centralPoint.setStaffOnLocation(teamnames);
-        staffOnLocation = centralPoint.staffOnLocation();
-        staffObservableList = FXCollections.observableArrayList(staffOnLocation);
 
         //Team toMakeTeam = new Team(tfTeamName.getText(), null);
         //if (!teamObservableList.contains(toMakeTeam)) {
             //teamObservableList.add(toMakeTeam);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    lvStaffOnLocation.setItems(staffObservableList);
-                    //lvTeams.setItems(teamObservableList);
-                    //cbTeams.setItems(teamObservableList);
-                }
+            Platform.runLater(() -> {
+                //lvStaffOnLocation.setItems(staffObservableList);
+                //lvTeams.setItems(teamObservableList);
+                //cbTeams.setItems(teamObservableList);
             });
 
         //}

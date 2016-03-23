@@ -20,6 +20,9 @@ public class CentralPoint {
     ObservableList<Staff> staffObservableList;
     ObservableList<Material> materialObservableList;
 
+    /**
+     * constructor for central point
+     */
     public CentralPoint(){
         daoManager = DaoManager.INSTANCE;
         staffList = new ArrayList<>();
@@ -48,14 +51,14 @@ public class CentralPoint {
     /**
      * @return is of staff on location
      */
-    public ArrayList<String> staffOnLocation(){
-        ArrayList<String> staffArrayList = new ArrayList<>();
+    public ObservableList<Staff> getStaffOnLocation(){
+        ObservableList<Staff> staffOnLocation = FXCollections.observableArrayList();
         renewLists(DbTables.PERSONEEL);
-        for (Staff staff : staffList){
+        for (Staff staff : staffObservableList){
             if(staff.isOnLocation())
-                staffArrayList.add("TeamId: "+staff.getTeamID()+"\nName: "+staff.getName()+" "+ staff.getPrefix() +" "+staff.getLastName()+"\nSort: "+staff.getSort());
+                staffOnLocation.add(staff);
         }
-        return staffArrayList;
+        return FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
     /**
@@ -173,6 +176,10 @@ public class CentralPoint {
         }
     }
 
+    /**
+     * delete given material
+     * @param m
+     */
     public void deleteMaterial(Material m) {
         daoManager.getDao(DbTables.MATERIAAL).delete(m.getId());
         renewLists(DbTables.MATERIAAL);

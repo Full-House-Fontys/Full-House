@@ -30,6 +30,7 @@ public enum DaoManager {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, userName, passWord);
+            System.out.println("Database connection opened");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
