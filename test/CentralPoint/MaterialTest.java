@@ -6,13 +6,13 @@ import org.junit.Test;
 
 import java.awt.geom.Point2D;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jvdwi on 22-3-2016.
  */
 public class MaterialTest {
-    Material m;
+    private Material material;
 
     /**
      * set up the unittest
@@ -20,8 +20,8 @@ public class MaterialTest {
      */
     @Before
     public void setUp() throws Exception {
-        m = new Material(1, "bla", "bla", new Point2D.Double(12.2, 12.3), false);
-        Material m2 = new Material("bla", "bla2", new Point2D.Double(12.2, 12.3), true);
+        material = new Material(1, "bla", "bla", new Point2D.Double(12.2222, 12.3), false);
+        new Material("bla", "bla2", new Point2D.Double(12.2, 12.3), true);
     }
 
     /**
@@ -39,7 +39,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetId() throws Exception {
-        assertEquals("id niet gelijk", 1, m.getId());
+        assertEquals("ids aren't equal", 1, material.getId());
     }
 
     /**
@@ -48,7 +48,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetName() throws Exception {
-        assertEquals("namen niet gelijk", "bla", m.getName());
+        assertEquals("names aren't equal", "bla", material.getName());
     }
 
     /**
@@ -57,8 +57,8 @@ public class MaterialTest {
      */
     @Test
     public void testSetName() throws Exception {
-        m.setName("bla2");
-        assertEquals("naam is niet aangepast", "bla2", m.getName());
+        material.setName("bla2");
+        assertEquals("name not changed", "bla2", material.getName());
     }
 
     /**
@@ -67,7 +67,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetSort() throws Exception {
-        assertEquals("soorten niet gelijk", "bla", m.getSort());
+        assertEquals("sorts aren't equal", "bla", material.getSort());
     }
 
     /**
@@ -76,8 +76,8 @@ public class MaterialTest {
      */
     @Test
     public void testSetSort() throws Exception {
-        m.setSort("bla2");
-        assertEquals("soort is niet aangepast", "bla2", m.getSort());
+        material.setSort("bla2");
+        assertEquals("sort not changed", "bla2", material.getSort());
     }
 
     /**
@@ -86,7 +86,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetLocation() throws Exception {
-        assertEquals("locatie is niet gelijk", new Point2D.Double(12.2, 12.3), m.getLocation());
+        assertEquals("locations aren't equal", new Point2D.Double(12.2222, 12.3), material.getLocation());
     }
 
     /**
@@ -95,7 +95,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetLocationString() throws Exception {
-        assertEquals("string klopt niet", "12.2; 12.3", m.getLocationString());
+        assertEquals("String is incorrect", "12.22; 12.3", material.getLocationString());
     }
 
     /**
@@ -104,8 +104,8 @@ public class MaterialTest {
      */
     @Test
     public void testSetLocation() throws Exception {
-        m.setLocation(new Point2D.Double(0.0, 0.0));
-        assertEquals("location is niet aangepast", new Point2D.Double(0.0, 0.0), m.getLocation());
+        material.setLocation(new Point2D.Double(0.0, 0.0));
+        assertEquals("location not changed", new Point2D.Double(0.0, 0.0), material.getLocation());
     }
 
     /**
@@ -114,7 +114,7 @@ public class MaterialTest {
      */
     @Test
     public void testIsOnLocation() throws Exception {
-        assertEquals("onLocation klopt niet", false, m.isOnLocation());
+        assertEquals("onLocation isn't correct", false, material.isOnLocation());
     }
 
     /**
@@ -123,7 +123,7 @@ public class MaterialTest {
      */
     @Test
     public void testSetOnLocation() throws Exception {
-        m.setOnLocation(true);
-        assertEquals("onLocation is niet aangepast", true, m.isOnLocation());
+        material.setOnLocation(true);
+        assertEquals("onLocation not changed", true, material.isOnLocation());
     }
 }

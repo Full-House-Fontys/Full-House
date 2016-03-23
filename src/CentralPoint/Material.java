@@ -1,6 +1,8 @@
 package CentralPoint;
 
 import java.awt.geom.Point2D;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Created by jvdwi on 16-3-2016.
@@ -13,11 +15,11 @@ public class Material {
 
     /**
      * constructor material with id
-     * @param id
-     * @param name
-     * @param sort
-     * @param location
-     * @param onLocation
+     * @param id id
+     * @param name name
+     * @param sort sort
+     * @param location location
+     * @param onLocation onLocation
      */
     public Material(int id, String name, String sort, Point2D location, boolean onLocation) {
         this.id = id;
@@ -29,10 +31,10 @@ public class Material {
 
     /**
      * constructor material without id
-     * @param name
-     * @param sort
-     * @param location
-     * @param onLocation
+     * @param name name
+     * @param sort sort
+     * @param location location
+     * @param onLocation onLocation
      */
     public Material(String name, String sort, Point2D location, boolean onLocation) {
         this.name = name;
@@ -59,7 +61,7 @@ public class Material {
 
     /**
      * sets the name
-     * @param name
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
@@ -75,7 +77,7 @@ public class Material {
 
     /**
      * sets the sort
-     * @param sort
+     * @param sort sort
      */
     public void setSort(String sort) {
         this.sort = sort;
@@ -93,13 +95,11 @@ public class Material {
      *
      * @return location as string
      */
-    public String getLocationString(){
-        return location.getX() + "; " + location.getY();
-    }
+    public String getLocationString(){return new BigDecimal(location.getX()).setScale(2, RoundingMode.HALF_UP).doubleValue() + "; " +new BigDecimal(location.getY()).setScale(2, RoundingMode.HALF_UP).doubleValue(); }
 
     /**
      * sets the location
-     * @param location
+     * @param location location
      */
     public void setLocation(Point2D location) {
         this.location = location;
@@ -115,7 +115,7 @@ public class Material {
 
     /**
      * sets the onLocation
-     * @param onLocation
+     * @param onLocation onLocation
      */
     public void setOnLocation(boolean onLocation) {
         this.onLocation = onLocation;

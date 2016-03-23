@@ -1,32 +1,37 @@
 package CentralPoint;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
  */
-public class Mission {
-    private int id;
+public class Mission implements Serializable{
+    private int ID;
     private String name;
     private String description;
+    private Date startTime;
+    private Date lastUpdate;
+    private Date endTime;
+    private double locationX;
+    private double locationY;
     private HashSet<Team> teamsAssigned;
 
-    public Mission(int id, String name, String description, HashSet<Team> teamsAssigned) {
-        this.id = id;
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.description = description;
-        this.teamsAssigned = teamsAssigned;
-    }
-
-    public void addTeamToJob(Team team){
-        if(!teamsAssigned.contains(team)){
-            teamsAssigned.add(team);
-        }
-    }
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -43,6 +48,46 @@ public class Mission {
         this.description = description;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public double getLocationX() {
+        return locationX;
+    }
+
+    public void setLocationX(int locationX) {
+        this.locationX = locationX;
+    }
+
+    public double getLocationY() {
+        return locationY;
+    }
+
+    public void setLocationY(int locationY) {
+        this.locationY = locationY;
+    }
+
     public HashSet<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
@@ -51,4 +96,26 @@ public class Mission {
         this.teamsAssigned = teamsAssigned;
     }
 
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.lastUpdate = lastUpdate;
+        this.endTime = endTime;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.teamsAssigned = null;
+    }
+
+    public void addTeamToJob(Team team){
+        if(!teamsAssigned.contains(team)){
+            teamsAssigned.add(team);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

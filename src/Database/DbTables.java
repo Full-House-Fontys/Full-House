@@ -6,5 +6,6 @@ package Database;
  */
 public enum DbTables {
     PERSONEEL,
-    MATERIAAL;
+    MATERIAAL,
+    MISSIE;
 }

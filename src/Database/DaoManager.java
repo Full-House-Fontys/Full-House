@@ -22,6 +22,7 @@ public enum DaoManager {
 
     }
 
+
     /**
      * Gets the connection to the database
      * @return connection to database
@@ -83,6 +84,9 @@ public enum DaoManager {
                     break;
                 case MATERIAAL:
                     dao = new DaoMaterial(connection);
+                    break;
+                case MISSIE:
+                    dao = new DaoMission(connection);
                     break;
                 default:
                     dao = null;
