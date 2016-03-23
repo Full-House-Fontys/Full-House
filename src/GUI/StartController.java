@@ -28,6 +28,9 @@ public class StartController implements Initializable {
     private Button btnMissionSelection;
 
     @FXML
+    private Button btnMessage;
+    @FXML
+
     public void startMaterialScene(ActionEvent event) throws IOException{
         Parent parent = FXMLLoader.load(getClass().getResource("frmMaterialManagement.fxml"));
         Scene scene = new Scene(parent);
