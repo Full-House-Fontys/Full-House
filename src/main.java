@@ -7,8 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.*;
-
 /**
  * Created by jvdwi on 9-3-2016.
  */
@@ -21,7 +19,7 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Start.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Start.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();
