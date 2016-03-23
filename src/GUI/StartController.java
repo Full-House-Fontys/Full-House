@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,7 +31,7 @@ public class StartController implements Initializable {
     @FXML
 
     public void startMaterialScene(ActionEvent event) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("frmMaterialManagement.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../Resources/frmMaterialManagement.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMaterial.getScene().getWindow();
         stage.setScene(scene);
@@ -40,7 +39,7 @@ public class StartController implements Initializable {
 
     @FXML
     public void startMissionControlScene(ActionEvent event) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("Task.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../Resources/Task.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMissionControl.getScene().getWindow();
         stage.setScene(scene);
@@ -48,7 +47,7 @@ public class StartController implements Initializable {
 
     @FXML
     public void startTeamAssignMissionScene(ActionEvent event) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("TaskV1.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../Resources/TaskV1.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMissionControl.getScene().getWindow();
         stage.setScene(scene);
@@ -56,7 +55,15 @@ public class StartController implements Initializable {
 
     @FXML
     public void StartMissionSelection() throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("screenmission.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../Resources/screenmission.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage)btnMissionControl.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    public void startMessageControlScene() throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("bericht.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMissionControl.getScene().getWindow();
         stage.setScene(scene);
