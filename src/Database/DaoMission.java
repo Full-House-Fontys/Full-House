@@ -38,7 +38,7 @@ public class DaoMission extends DaoGeneric<Mission>{
     public ObservableList getAllRecord() {
         List<Mission> missionList = new ArrayList();
         ObservableList<Mission> missionListObservableList = FXCollections.observableArrayList(missionList);
-        ResultSet rs = null;
+        ResultSet rs;
 
         String query = "SELECT * FROM " + TABLENAME;
 
