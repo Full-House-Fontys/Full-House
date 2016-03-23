@@ -43,7 +43,7 @@ public class StartController implements Initializable {
 
     @FXML
     public void startTeamAssignMissionScene(ActionEvent event) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("Task.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("TaskV1.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMissionControl.getScene().getWindow();
         stage.setScene(scene);
