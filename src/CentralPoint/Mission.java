@@ -22,33 +22,24 @@ public class Mission implements Serializable{
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+
 
     public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+
 
     public Date getLastUpdate() {
         return lastUpdate;
@@ -70,17 +61,13 @@ public class Mission implements Serializable{
         return locationX;
     }
 
-    public void setLocationX(int locationX) {
-        this.locationX = locationX;
-    }
+
 
     public double getLocationY() {
         return locationY;
     }
 
-    public void setLocationY(int locationY) {
-        this.locationY = locationY;
-    }
+
 
     public HashSet<Team> getTeamsAssigned() {
         return teamsAssigned;

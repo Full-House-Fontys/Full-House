@@ -19,28 +19,19 @@ public class MissionTest {
     Mission mission2;
     Mission mission3;
     Date date1;
+
     @Before
     public void setUp() throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date1 = new Date();
-        mission1 = new Mission(1, "hey", "", date1, date1, date1, 10.0, 10.0);
-        mission2 = new Mission(2, "key", "", date1, date1, date1, 12.5, 16.3);
-        mission3 = new Mission(3, "wey", "", date1, date1, date1, 80.1, 60.9);
+        mission1 = new Mission(1, "FIRE", "fire", date1, date1, null, 10.0, 10.0);
+        mission2 = new Mission(2, "BURGLER", "burgler", date1, date1, null, 12.5, 16.3);
+        mission3 = new Mission(3, "INJURED", "injured", date1, date1, null, 80.1, 60.9);
     }
 
     @After
     public void tearDown() throws Exception {
 
-    }
-
-    @Test
-    public void testGetMissionId() throws Exception {
-        assertEquals("wrong missionID", 1, mission1.getID());
-        assertEquals("wrong missionID", 2, mission2.getID());
-        assertEquals("wrong missionID", 3, mission3.getID());
-        assertNotEquals("error in missionID", 2, mission1.getID());
-        assertNotEquals("error in missionID", 3, mission2.getID());
-        assertNotEquals("error in missionID", 1, mission3.getID());
     }
 
     @Test
@@ -143,5 +134,50 @@ public class MissionTest {
         assertNotEquals("wrong tekst", mission3.getName(), mission1.toString());
         assertNotEquals("wrong tekst", mission1.getName(), mission2.toString());
         assertNotEquals("wrong tekst", mission2.getName(), mission3.toString());
+    }
+
+    @Test
+    public void testGetID() throws Exception {
+        assertEquals("wrong missionID", 1, mission1.getID());
+        assertEquals("wrong missionID", 2, mission2.getID());
+        assertEquals("wrong missionID", 3, mission3.getID());
+        assertNotEquals("error in missionID", 2, mission1.getID());
+        assertNotEquals("error in missionID", 3, mission2.getID());
+        assertNotEquals("error in missionID", 1, mission3.getID());
+    }
+
+    @Test
+    public void testGetName() throws Exception {
+        assertEquals("wrong missionID", "FIRE", mission1.getName());
+        assertEquals("wrong missionID", "BURGLER", mission2.getName());
+        assertEquals("wrong missionID", "INJURED", mission3.getName());
+        assertNotEquals("error in missionID", "BURGLER", mission1.getName());
+        assertNotEquals("error in missionID", "INJURED", mission2.getName());
+        assertNotEquals("error in missionID", "FIRE", mission3.getName());
+    }
+
+    @Test
+    public void testGetDescription() throws Exception {
+        assertEquals("wrong missionID", "fire", mission1.getDescription());
+        assertEquals("wrong missionID", "burgler", mission2.getDescription());
+        assertEquals("wrong missionID", "injured", mission3.getDescription());
+        assertNotEquals("error in missionID", "wrong description", mission1.getDescription());
+        assertNotEquals("error in missionID", "wrong description", mission2.getDescription());
+        assertNotEquals("error in missionID", "wrong description", mission3.getDescription());
+    }
+
+    @Test
+    public void testGetTeamsAssigned() throws Exception {
+
+    }
+
+    @Test
+    public void testSetTeamsAssigned() throws Exception {
+
+    }
+
+    @Test
+    public void testAddTeamToJob() throws Exception {
+
     }
 }
