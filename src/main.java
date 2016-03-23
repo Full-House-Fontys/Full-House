@@ -13,8 +13,6 @@ import java.sql.*;
  * Created by jvdwi on 9-3-2016.
  */
 public class main extends javafx.application.Application {
-    public static Connection conn;
-
     /**
      * main function; start point of app
      * @param args
@@ -31,7 +29,7 @@ public class main extends javafx.application.Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/frmMaterialManagement.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Start.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 896, 716));
         primaryStage.show();

@@ -51,14 +51,14 @@ public class CentralPoint {
     /**
      * @return is of staff on location
      */
-    public ArrayList<String> staffOnLocation(){
-        ArrayList<String> staffArrayList = new ArrayList<>();
+    public ObservableList<Staff> getStaffOnLocation(){
+        ObservableList<Staff> staffOnLocation = FXCollections.observableArrayList();
         renewLists(DbTables.PERSONEEL);
-        for (Staff staff : staffList){
+        for (Staff staff : staffObservableList){
             if(staff.isOnLocation())
-                staffArrayList.add("TeamId: "+staff.getTeamID()+"\nName: "+staff.getName()+" "+ staff.getPrefix() +" "+staff.getLastName()+"\nSort: "+staff.getSort());
+                staffOnLocation.add(staff);
         }
-        return staffArrayList;
+        return FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
     /**

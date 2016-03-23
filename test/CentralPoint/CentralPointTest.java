@@ -14,9 +14,10 @@ import static org.junit.Assert.*;
  */
 public class CentralPointTest {
     
-    private CentralPoint cp;
+    private CentralPoint centralPoint;
     ObservableList<Material> initialList;
-    Material m1;
+    ObservableList<Staff> staffObservableList;
+    Material material;
 
     /**
      * set up method for unittests before running each test
@@ -24,9 +25,10 @@ public class CentralPointTest {
      */
     @Before
     public void setUp() throws Exception {
-        cp = new CentralPoint();
-        initialList = cp.getMaterials();
-        m1 = new Material("Test", "MeerSoorten", new Point2D.Double(12.2, 12.4), true);
+        centralPoint = new CentralPoint();
+        initialList = centralPoint.getMaterials();
+        staffObservableList = centralPoint.getStaffOnLocation();
+        material = new Material("Test", "MeerSoorten", new Point2D.Double(12.2, 12.4), true);
         insTestMat();
     }
 
@@ -43,14 +45,14 @@ public class CentralPointTest {
      * inserts a test material, for the unittests
      */
     private void insTestMat(){
-        cp.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
+        centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
     }
 
     /**
      * deletes the material, for the unittests
      */
     private void delTestMat(){
-        cp.deleteMaterial(cp.getMaterialById(getHighestMatId()));
+        centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
     /**
@@ -59,7 +61,7 @@ public class CentralPointTest {
      */
     private int getHighestMatId() {
         int id = 0;
-        for (Material m : cp.getMaterials()) {
+        for (Material m : centralPoint.getMaterials()) {
             if (m.getId() > id) {
                 id = m.getId();
             }
@@ -68,14 +70,18 @@ public class CentralPointTest {
     }
 
 
+    /**
+     * returns list of all staff members that are on location
+     * @throws Exception
+     */
     @Test
     public void testStaffOnLocation() throws Exception {
-
+        assertNotNull("list is not filled from database", centralPoint.getStaffOnLocation());
     }
 
     @Test
     public void testSetStaffOnLocation() throws Exception {
-
+        //afhankelijk van Qun, insert tested en working
     }
 
     /**
@@ -84,14 +90,14 @@ public class CentralPointTest {
      */
     @Test
     public void testGetMaterialById() throws Exception {
-        Material m2 = cp.getMaterialById(1);
+        Material m2 = centralPoint.getMaterialById(1);
         assertEquals("ID's zijn niet gelijk", 1, m2.getId());
         assertEquals("Namen zijn niet gelijk", "Brandweerwagen Boxtel", m2.getName());
         assertEquals("Soorten zijn niet gelijk", "Brandweerwagen", m2.getSort());
         assertEquals("LocatieX is niet correct", 192.4599210000, m2.getLocation().getX(), 0);
         assertEquals("LocatieY is niet correct", 5.5542801000, m2.getLocation().getY(), 0);
         assertEquals("Op locatie is niet correct", false, m2.isOnLocation());
-        assertNull("Er is wel een materiaal met ID 0", cp.getMaterialById(0));
+        assertNull("Er is wel een materiaal met ID 0", centralPoint.getMaterialById(0));
         assertNotNull("Er komt geen string uit", m2.getLocationString());
     }
 
@@ -101,7 +107,7 @@ public class CentralPointTest {
      */
     @Test
     public void testGetMaterials() throws Exception {
-        assertTrue("Er zijn geen materialen", cp.getMaterials().size() > 0);
+        assertTrue("Er zijn geen materialen", centralPoint.getMaterials().size() > 0);
     }
 
     /**
@@ -109,7 +115,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testInsertMaterialNameNullFail() {
-        cp.insertMaterial(null, "Ambulance", 12.43, 12.66, true);
+        centralPoint.insertMaterial(null, "Ambulance", 12.43, 12.66, true);
     }
 
     /**
@@ -117,7 +123,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testInsertMaterialNameEmptyFail() {
-        cp.insertMaterial(" ", "Ambulance", 12.43, 12.66, true);
+        centralPoint.insertMaterial(" ", "Ambulance", 12.43, 12.66, true);
     }
 
     /**
@@ -125,7 +131,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testInsertMaterialSortNullFail() {
-        cp.insertMaterial("AmbuZiekenwagen", null, 12.43, 12.66, true);
+        centralPoint.insertMaterial("AmbuZiekenwagen", null, 12.43, 12.66, true);
     }
 
     /**
@@ -133,7 +139,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testInsertMaterialSortEmptyFail() {
-        cp.insertMaterial("AmbuZiekenwagen", "   ", 12.43, 12.66, true);
+        centralPoint.insertMaterial("AmbuZiekenwagen", "   ", 12.43, 12.66, true);
     }
 
     /**
@@ -142,7 +148,7 @@ public class CentralPointTest {
      */
     @Test
     public void testInsertMaterial() throws Exception {
-        cp.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
+        centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
     }
 
     /**
@@ -150,7 +156,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalStateException.class)
     public void testUpdateMaterialNameNotChanged() {
-        cp.updateMaterial(getHighestMatId(), cp.getMaterialById(getHighestMatId()).getName(), "soort", new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), centralPoint.getMaterialById(getHighestMatId()).getName(), "soort", new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -158,7 +164,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateMaterialNameNull() {
-        cp.updateMaterial(getHighestMatId(), null, "soort", new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), null, "soort", new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -166,7 +172,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateMaterialNameEmpty() {
-        cp.updateMaterial(getHighestMatId(), "    ", "soort", new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), "    ", "soort", new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -174,7 +180,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalStateException.class)
     public void testUpdateMaterialSortNotChanged() {
-        cp.updateMaterial(getHighestMatId(), "blabla", cp.getMaterialById(getHighestMatId()).getSort(), new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", centralPoint.getMaterialById(getHighestMatId()).getSort(), new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -182,7 +188,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateMaterialSortNull() {
-        cp.updateMaterial(getHighestMatId(), "blabla", null, new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", null, new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -190,7 +196,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateMaterialSortEmpty() {
-        cp.updateMaterial(getHighestMatId(), "blabla", "  ", new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", "  ", new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -198,7 +204,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalStateException.class)
     public void testUpdateMaterialLocationNotChanged() {
-        cp.updateMaterial(getHighestMatId(), "blabla", "soort", cp.getMaterialById(getHighestMatId()).getLocation(), true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", centralPoint.getMaterialById(getHighestMatId()).getLocation(), true);
     }
 
     /**
@@ -206,7 +212,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateMaterialLocationNull() {
-        cp.updateMaterial(getHighestMatId(), "blabla", "soort", null, true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", null, true);
     }
 
     /**
@@ -214,7 +220,7 @@ public class CentralPointTest {
      */
     @Test(expected = IllegalStateException.class)
     public void testUpdateMaterialOnLocNotChanged() {
-        cp.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), cp.getMaterialById(getHighestMatId()).isOnLocation());
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), centralPoint.getMaterialById(getHighestMatId()).isOnLocation());
     }
 
     /**
@@ -223,7 +229,7 @@ public class CentralPointTest {
      */
     @Test
     public void testUpdateMaterial() throws Exception {
-        cp.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), true);
+        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), true);
     }
 
     /**
@@ -232,6 +238,6 @@ public class CentralPointTest {
      */
     @Test
     public void testDeleteMaterial() throws Exception {
-        cp.deleteMaterial(cp.getMaterialById(getHighestMatId()));
+        centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 }
