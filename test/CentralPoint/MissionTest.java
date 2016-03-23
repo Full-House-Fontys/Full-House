@@ -13,19 +13,19 @@ import static org.junit.Assert.*;
 /**
  * Created by Mark on 22-3-2016.
  */
-public class MissionMarkTest {
+public class MissionTest {
 
-    MissionMark mission1;
-    MissionMark mission2;
-    MissionMark mission3;
+    Mission mission1;
+    Mission mission2;
+    Mission mission3;
     Date date1;
     @Before
     public void setUp() throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date1 = new Date();
-        mission1 = new MissionMark(1, date1, 10.0, 10.0);
-        mission2 = new MissionMark(2, date1, 12.5, 16.3);
-        mission3 = new MissionMark(3, date1, 80.1, 60.9);
+        mission1 = new Mission(1, "hey", "", date1, date1, date1, 10.0, 10.0);
+        mission2 = new Mission(2, "key", "", date1, date1, date1, 12.5, 16.3);
+        mission3 = new Mission(3, "wey", "", date1, date1, date1, 80.1, 60.9);
     }
 
     @After
@@ -35,12 +35,12 @@ public class MissionMarkTest {
 
     @Test
     public void testGetMissionId() throws Exception {
-        assertEquals("wrong missionID", 1, mission1.getMissionId());
-        assertEquals("wrong missionID", 2, mission2.getMissionId());
-        assertEquals("wrong missionID", 3, mission3.getMissionId());
-        assertNotEquals("error in missionID", 2, mission1.getMissionId());
-        assertNotEquals("error in missionID", 3, mission2.getMissionId());
-        assertNotEquals("error in missionID", 1, mission3.getMissionId());
+        assertEquals("wrong missionID", 1, mission1.getID());
+        assertEquals("wrong missionID", 2, mission2.getID());
+        assertEquals("wrong missionID", 3, mission3.getID());
+        assertNotEquals("error in missionID", 2, mission1.getID());
+        assertNotEquals("error in missionID", 3, mission2.getID());
+        assertNotEquals("error in missionID", 1, mission3.getID());
     }
 
     @Test
@@ -137,11 +137,11 @@ public class MissionMarkTest {
 
     @Test
     public void testToString() throws Exception {
-        assertEquals("wrong tekst", "id: 1 start time: " + date1, mission1.toString());
-        assertEquals("wrong tekst", "id: 2 start time: " + date1, mission2.toString());
-        assertEquals("wrong tekst", "id: 3 start time: " + date1, mission3.toString());
-        assertNotEquals("wrong tekst", "id: 2 start time: " + date1, mission1.toString());
-        assertNotEquals("wrong tekst", "id: 3 start time: " + date1, mission2.toString());
-        assertNotEquals("wrong tekst", "id: 1 start time: " + date1, mission3.toString());
+        assertEquals("wrong tekst", mission1.getName(), mission1.toString());
+        assertEquals("wrong tekst", mission2.getName(), mission2.toString());
+        assertEquals("wrong tekst", mission3.getName(), mission3.toString());
+        assertNotEquals("wrong tekst", mission3.getName(), mission1.toString());
+        assertNotEquals("wrong tekst", mission1.getName(), mission2.toString());
+        assertNotEquals("wrong tekst", mission2.getName(), mission3.toString());
     }
 }

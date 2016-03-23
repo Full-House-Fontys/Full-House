@@ -141,7 +141,7 @@ public class taskController implements Initializable {
     }
 
     public void createFakeMission() {
-        Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0,null);
+        Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0);
         missionListOberservable.add(fakeMission);
         Platform.runLater(new Runnable() {
             @Override

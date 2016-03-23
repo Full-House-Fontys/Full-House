@@ -5,6 +5,7 @@ import CentralPoint.MissionMark;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.text.DateFormat;
@@ -21,7 +22,7 @@ public class missionsdetailcontroller {
     @FXML
     private TextField TFname;
     @FXML
-    private TextField TFdescription;
+    private TextArea TAdescription;
     @FXML
     private TextField TFstartTime;
     @FXML
@@ -52,6 +53,8 @@ public class missionsdetailcontroller {
     private void setSettings()
     {
         TFmissionId.setText(String.valueOf(mission.getID()));
+        TFname.setText(mission.getName());
+        TAdescription.setText(mission.getDescription());
         TFstartTime.setText(String.valueOf(mission.getStartTime()));
         TFupdateTime.setText(String.valueOf(mission.getLastUpdate()));
         TFendTime.setText(String.valueOf(mission.getEndTime()));

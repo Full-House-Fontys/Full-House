@@ -1,10 +1,8 @@
 package GUI;
 
 import CentralPoint.Mission;
-import CentralPoint.MissionMark;
 import Database.DaoGeneric;
 import Database.DaoManager;
-import Database.DaoMission;
 import Database.DbTables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +37,6 @@ public class missionController {
     private List<Mission> missions;
     private ObservableList<Mission> obMission;
     private int idcounter;
-    private DaoManager DBmanager;
 
     public missionController()
     {
@@ -92,7 +89,7 @@ public class missionController {
     private void selectmission()
     {
         Mission selectedMission = null;
-        for(Mission mission : missions)
+        for(Mission mission : obMission)
         {
             if (missionlist.getSelectionModel().getSelectedItem().equals(mission))
             {
@@ -138,11 +135,12 @@ public class missionController {
             @Override
             public void run() {
                 DaoManager.INSTANCE.open();
-                DaoGeneric<Mission> DBmissions = DaoManager.INSTANCE.getDao(DbTables.MISSION);
+                DaoGeneric<Mission> DBmissions = DaoManager.INSTANCE.getDao(DbTables.MISSIE);
                 obMission = DBmissions.getAllRecord();
                 missionlist.setItems(obMission);
+                DaoManager.INSTANCE.close();
             }
-        },2000);
+        },1000);
 
     }
 }

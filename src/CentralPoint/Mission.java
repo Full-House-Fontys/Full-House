@@ -110,6 +110,6 @@ public class Mission implements Serializable{
 
     @Override
     public String toString() {
-        return "Mission : " + this.name;
+        return this.name;
     }
 }
