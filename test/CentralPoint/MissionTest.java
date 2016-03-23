@@ -19,10 +19,11 @@ public class MissionTest {
     Mission mission2;
     Mission mission3;
     Date date1;
+
     @Before
     public void setUp() throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        date1 = new Date();
+        date1 = null;
         mission1 = new Mission(1, "hey", "", date1, date1, date1, 10.0, 10.0);
         mission2 = new Mission(2, "key", "", date1, date1, date1, 12.5, 16.3);
         mission3 = new Mission(3, "wey", "", date1, date1, date1, 80.1, 60.9);

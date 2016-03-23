@@ -74,9 +74,9 @@ public class BerichtController implements Initializable {
         Mission missie;
         try{
             String titel = lvActieveMissies.getSelectionModel().getSelectedItem().toString();
-            missie = new Mission(0, titel, "Hulp nodig!", null);
+            missie = new Mission(0, titel, "Hulp nodig!", null, null, null, 1.000001, 1.000001);
         }
-        catch(Exception e){ missie = new Mission(0, "Error", "Er is geen missie geselecteerd", null);}
+        catch(Exception e){ missie = new Mission(0, "Error", "Er is geen missie geselecteerd", null, null, null, 1.000001, 1.000001);}
 
         showPopup("Naam: " + missie.getName() + "\n" + "Omschrijving: " + missie.getDescription());
     }
