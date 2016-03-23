@@ -7,12 +7,13 @@ import java.util.HashSet;
  */
 public class Mission {
     private int id;
+    private String name;
     private String description;
     private HashSet<Team> teamsAssigned;
 
-    public Mission(int id, String description, HashSet<Team> teamsAssigned) {
-
+    public Mission(int id, String name, String description, HashSet<Team> teamsAssigned) {
         this.id = id;
+        this.name = name;
         this.description = description;
         this.teamsAssigned = teamsAssigned;
     }
@@ -28,6 +29,10 @@ public class Mission {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
