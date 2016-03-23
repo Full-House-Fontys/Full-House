@@ -4,11 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartController">
    <children>
       <Button fx:id="btnMaterial" layoutX="389.0" layoutY="42.0" mnemonicParsing="false" onAction="#startMaterialScene" prefHeight="83.0" prefWidth="161.0" text="Material Manager" />
       <Button fx:id="btnMissionControl" layoutX="62.0" layoutY="42.0" mnemonicParsing="false" onAction="#startMissionControlScene" prefHeight="83.0" prefWidth="161.0" text="Mission Control" />
-      <Button fx:id="btnAssignMissionControl" layoutX="62.0" layoutY="193.0" mnemonicParsing="false" onAction="#startTeamAssignMissionScene" prefHeight="98.0" prefWidth="205.0" text="Assign team to mission" />
+      <Button fx:id="btnAssignMissionControl" layoutX="62.0" layoutY="354.0" mnemonicParsing="false" onAction="#startTeamAssignMissionScene" prefHeight="98.0" prefWidth="187.0" text="Assign team to mission" />
       <Button layoutX="395.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#StartMissionSelection" prefHeight="98.0" prefWidth="150.0" text="mission selection" />
       <Button fx:id="btnMessage" layoutX="62.0" layoutY="200.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="161.0" text="Message Manager" />
    </children>

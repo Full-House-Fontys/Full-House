@@ -111,7 +111,7 @@ public class missionController {
         }
         if(selectedMission != null)
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("missionscreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/missionscreen.fxml"));
             Stage stage = new Stage();
             Parent root = null;
             try {
