@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
 public class CentralPointTest {
     
     private CentralPoint centralPoint;
-    ObservableList<Material> initialList;
-    ObservableList<Staff> staffObservableList;
-    Material material;
+    private ObservableList<Material> initialList;
+    private ObservableList<Staff> staffObservableList;
+    private Material material;
 
     /**
      * set up method for unittests before running each test
@@ -91,14 +91,14 @@ public class CentralPointTest {
     @Test
     public void testGetMaterialById() throws Exception {
         Material m2 = centralPoint.getMaterialById(1);
-        assertEquals("ID's zijn niet gelijk", 1, m2.getId());
-        assertEquals("Namen zijn niet gelijk", "Brandweerwagen Boxtel", m2.getName());
-        assertEquals("Soorten zijn niet gelijk", "Brandweerwagen", m2.getSort());
-        assertEquals("LocatieX is niet correct", 192.4599210000, m2.getLocation().getX(), 0);
-        assertEquals("LocatieY is niet correct", 5.5542801000, m2.getLocation().getY(), 0);
-        assertEquals("Op locatie is niet correct", false, m2.isOnLocation());
-        assertNull("Er is wel een materiaal met ID 0", centralPoint.getMaterialById(0));
-        assertNotNull("Er komt geen string uit", m2.getLocationString());
+        assertEquals("IDs aren't equal", 1, m2.getId());
+        assertEquals("Names aren't equal", "Brandweerwagen Boxtel", m2.getName());
+        assertEquals("Sorts aren't equal", "Brandweerwagen", m2.getSort());
+        assertEquals("LocationX isn't correct", 192.4599210000, m2.getLocation().getX(), 0);
+        assertEquals("LocationY isn't correct", 5.5542801000, m2.getLocation().getY(), 0);
+        assertEquals("OnLocation isn't correct", false, m2.isOnLocation());
+        assertNull("Somehow there is material with id = 0", centralPoint.getMaterialById(0));
+        assertNotNull("There isn't a string", m2.getLocationString());
     }
 
     /**
@@ -107,7 +107,7 @@ public class CentralPointTest {
      */
     @Test
     public void testGetMaterials() throws Exception {
-        assertTrue("Er zijn geen materialen", centralPoint.getMaterials().size() > 0);
+        assertTrue("No materials found", centralPoint.getMaterials().size() > 0);
     }
 
     /**
