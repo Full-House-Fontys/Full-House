@@ -5,10 +5,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.fireController">
    <children>
-      <Label layoutX="58.0" layoutY="68.0" text="Message not received">
+      <Label fx:id="lbReceived" layoutX="58.0" layoutY="68.0" text="Message not received">
          <font>
             <Font size="44.0" />
          </font>
