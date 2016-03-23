@@ -22,6 +22,7 @@ public enum DaoManager {
 
     }
 
+
     /**
      * Gets the connection to the database
      * @return connection to database

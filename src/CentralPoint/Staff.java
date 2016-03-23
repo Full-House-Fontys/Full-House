@@ -19,6 +19,14 @@ public class Staff {
     private int teamID;
     private boolean onLocation;
 
+
+    /**
+     * @return sort
+     */
+    public String getSort() {
+        return sort;
+    }
+
     /**
      * @return name
      */
