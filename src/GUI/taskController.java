@@ -3,12 +3,17 @@ package GUI;
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
 import CentralPoint.Team;
+import Database.DaoGeneric;
+import Database.DaoManager;
+import Database.DaoStaff;
+import Database.DbTables;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import CentralPoint.Team;
@@ -16,11 +21,19 @@ import CentralPoint.Staff;
 
 import java.awt.geom.Point2D;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class taskController {
+public class taskController implements Initializable {
     @FXML
     private TextField tbNameTask;
     @FXML
@@ -38,8 +51,13 @@ public class taskController {
     @FXML
     private ListView lvTeams;
     @FXML
-    private ComboBox cbTeams= new ComboBox();
-
+    private ComboBox cbTeams;
+    @FXML
+    private Label lbDescription;
+    @FXML
+    private TextField tfFakeMission;
+    @FXML
+    private TextArea taDescription;
     @FXML
     private TableView<Staff> tvStaffOnLocation;
     @FXML
@@ -57,41 +75,99 @@ public class taskController {
     private Mission mission;
     private ObservableList<Team> teamObservableList;
     private ObservableList<String> staffObservableList;
+    private ObservableList<Mission> missionListOberservable;
+    private ArrayList<Mission> missionList;
 
 
-    public taskController() {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadPersonel();
+    }
+    public taskController()  {
         //DBRead DBR = new DBRead();
-        //teams = new HashSet<>();
-        //mission = new Mission(0, "null", null);
-        //teamObservableList = FXCollections.observableArrayList(teams);
+        teams = new HashSet<>();
+        teamObservableList = FXCollections.observableArrayList(teams);
         centralPoint = new CentralPoint();
-        ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
-        Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
+        // ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
+        // Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
+
+        missionList = new ArrayList<>();
+        missionListOberservable = FXCollections.observableArrayList(missionList);
+    }
+
+    private void loadPersonel() {
+        DaoManager.INSTANCE.open();
+        DaoGeneric<Staff> allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+        ObservableList<Staff> inputStaff = allStaff.getAllRecord();
+        ArrayList<String> rescueTypes = new ArrayList<>();
+        for(Staff staff : inputStaff){
+            if(!rescueTypes.contains(staff.getSort())){
+                rescueTypes.add(staff.getSort());
+            }
+        }
+        ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
+        lvTeams.setItems(rescueTypesOberservable);
+        DaoManager.INSTANCE.close();
     }
 
     public void makeTeam() {
 
-        //Team toMakeTeam = new Team(tfTeamName.getText(), null);
-        //if (!teamObservableList.contains(toMakeTeam)) {
-            //teamObservableList.add(toMakeTeam);
+        Team toMakeTeam = new Team(tfTeamName.getText(), null);
+        if (!teamObservableList.contains(toMakeTeam)) {
+            teamObservableList.add(toMakeTeam);
             Platform.runLater(() -> {
                 //lvStaffOnLocation.setItems(staffObservableList);
-                //lvTeams.setItems(teamObservableList);
-                //cbTeams.setItems(teamObservableList);
+                lvTeams.setItems(teamObservableList);
+                cbTeams.setItems(teamObservableList);
             });
 
-        //}
+        }
         //saveToDatabase();
 
     }
 
-    private void assignTeamToJob() {
-        // Team toAssignTeam = (Team)cbTeams.getSelectionModel().getSelectedItem();
-        // Job toAssignJob = lvJob.getSelectionModel().getSelectedItem();
-        // toAssignJob.addTeamToJob(toAssignTeam);
+    public void assignTeamToMission() {
+        Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
+        Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
+
+        //You need to check if the team isn't already assigned to the mission
+        toAssignJob.addTeamToJob(toAssignTeam);
     }
 
-    private void saveToDatabase() {
+    public void showDescriptionOfSelectedMission() {
+        Mission mission = (Mission) lvTasks.getSelectionModel().getSelectedItem();
+        lbDescription.setText(mission.getDescription());
     }
 
+    public void createFakeMission() {
+        Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0,null);
+        missionListOberservable.add(fakeMission);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvTasks.setItems(missionListOberservable);
+            }
+        });
+    }
+
+    public void sendMissionToTeam() throws IOException {
+        String hostName = "";
+        int portNumber = 0;
+        OutputStream os = null;
+        ObjectOutputStream oos = null;
+        try{
+            Socket sendSocket = new Socket("localhost",2002);
+            os = sendSocket.getOutputStream();
+            oos = new ObjectOutputStream(os);
+            oos.writeObject(missionList);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            oos.close();
+            os.close();
+        }
+    }
 }

@@ -1,18 +1,17 @@
+package GUI;
 
-
-//import static javafx.application.Application.*;
-
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.*;
+import java.io.IOException;
 
 /**
- * Created by jvdwi on 9-3-2016.
+ * Created by Qunfo on 21-3-2016.
  */
-public class main extends javafx.application.Application {
+public class fire extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -21,7 +20,7 @@ public class main extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Start.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Fire.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();
