@@ -19,7 +19,7 @@ public class fireController implements Runnable {
         Stage primaryStage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/GUI/Task.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/GUI/TaskV1.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
