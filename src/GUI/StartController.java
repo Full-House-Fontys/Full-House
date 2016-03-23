@@ -62,6 +62,14 @@ public class StartController implements Initializable {
         stage.setScene(scene);
     }
 
+    @FXML
+    public void startMessageControlScene() throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("bericht.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage)btnMissionControl.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
