@@ -1,6 +1,11 @@
 package GUI;
 
+import CentralPoint.Mission;
 import CentralPoint.MissionMark;
+import Database.DaoGeneric;
+import Database.DaoManager;
+import Database.DaoMission;
+import Database.DbTables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,14 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class missiondetailController {
+public class missionController {
 
     // zorg ervoor dat er constant gekeken wordt of er iets nieuws in de database staat.
     @FXML
@@ -36,13 +36,16 @@ public class missiondetailController {
     @FXML
     private TextField TFlocationYMission;
 
-    private List<MissionMark> missionMarks;
-    private ObservableList<MissionMark> obMissionMarks;
+    private List<Mission> missions;
+    private ObservableList<Mission> obMission;
     private int idcounter;
-    public missiondetailController()
+    private DaoManager DBmanager;
+
+    public missionController()
     {
-        this.missionMarks = new ArrayList<>();
+        this.missions = new ArrayList<>();
         idcounter = 1;
+        startTimer();
     }
 
     @FXML
@@ -53,13 +56,13 @@ public class missiondetailController {
         {
             Double LocationX = Double.parseDouble(TFlocationXMission.getText());
             Double LocationY = Double.parseDouble(TFlocationYMission.getText());
-            MissionMark missionMark = new MissionMark(idcounter,date, LocationX, LocationY);
+            Mission mission = new Mission(idcounter, "", "", date, date, date, LocationX, LocationY);
             idcounter++;
-            missionMarks.add(missionMark);
-            Collections.reverse(missionMarks);
-            obMissionMarks = FXCollections.observableArrayList(missionMarks);
-            Collections.reverse(missionMarks);
-            missionlist.setItems(obMissionMarks);
+            missions.add(mission);
+            Collections.reverse(missions);
+            obMission = FXCollections.observableArrayList(missions);
+            Collections.reverse(missions);
+            missionlist.setItems(obMission);
         }
         catch (Exception e)
         {
@@ -70,42 +73,42 @@ public class missiondetailController {
     @FXML
     private void SearchMission()
     {
-        List<MissionMark> searchlist = new ArrayList<>();
+        List<Mission> searchlist = new ArrayList<>();
         String searcher = TFsearchMission.getText();
-        for(MissionMark missionMark : missionMarks)
+        for(Mission mission : missions)
         {
-            int missionID = missionMark.getMissionId();
+            int missionID = mission.getID();
            if(missionID == Integer.parseInt(searcher))
            {
-               searchlist.add(missionMark);
+               searchlist.add(mission);
            }
         }
         Collections.reverse(searchlist);
-        obMissionMarks = FXCollections.observableArrayList(searchlist);
-        missionlist.setItems(obMissionMarks);
+        obMission = FXCollections.observableArrayList(searchlist);
+        missionlist.setItems(obMission);
     }
 
     @FXML
     private void selectmission()
     {
-        MissionMark selectedMissionMark = null;
-        for(MissionMark missionMark : missionMarks)
+        Mission selectedMission = null;
+        for(Mission mission : missions)
         {
-            if (missionlist.getSelectionModel().getSelectedItem().equals(missionMark))
+            if (missionlist.getSelectionModel().getSelectedItem().equals(mission))
             {
-                selectedMissionMark = missionMark;
+                selectedMission = mission;
             }
         }
-        if(selectedMissionMark != null)
+        if(selectedMission != null)
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("missionscreen.fxml"));
             Stage stage = new Stage();
             Parent root = null;
             try {
                 root = loader.load();
-                missionscontroller MC = loader.getController();
-                MC.setMissionMark(selectedMissionMark);
-                stage.setTitle("MissionMark: " + selectedMissionMark.getMissionId());
+                missionsdetailcontroller MC = loader.getController();
+                MC.setMissionMark(selectedMission);
+                stage.setTitle("Mission: " + selectedMission.getID());
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {
@@ -118,14 +121,28 @@ public class missiondetailController {
         }
     }
 
-    public void changeMission(MissionMark missionMark)
+    public void changeMission(Mission mission)
     {
-        for(MissionMark msn : missionMarks)
+        for(Mission msn : missions)
         {
-            if(missionMark.getMissionId() == msn.getMissionId())
+            if(mission.getID() == msn.getID())
             {
-                msn = missionMark;
+                msn = mission;
             }
         }
+    }
+    private void startTimer()
+    {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                DaoManager.INSTANCE.open();
+                DaoGeneric<Mission> DBmissions = DaoManager.INSTANCE.getDao(DbTables.MISSION);
+                obMission = DBmissions.getAllRecord();
+                missionlist.setItems(obMission);
+            }
+        },2000);
+
     }
 }

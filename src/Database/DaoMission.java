@@ -46,7 +46,7 @@ public class DaoMission extends DaoGeneric<Mission>{
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()){
-                missionListObservableList.add(new Mission(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getDate(4),rs.getDate(5),rs.getDate(6),rs.getInt(7),rs.getInt(8), null));
+                missionListObservableList.add(new Mission(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getDate(4),rs.getDate(5),rs.getDate(6),rs.getInt(7),rs.getInt(8)));
             }
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -66,8 +66,8 @@ public class DaoMission extends DaoGeneric<Mission>{
             ps.setDate(3, (java.sql.Date) value.getStartTime());
             ps.setDate(4, (java.sql.Date) value.getLastUpdate());
             ps.setDate(5, (java.sql.Date) value.getEndTime());
-            ps.setInt(6, value.getLocationX());
-            ps.setInt(7, value.getLocationY());
+            ps.setDouble(6, value.getLocationX());
+            ps.setDouble(7, value.getLocationY());
             ps.setInt(8, key);
             ps.executeUpdate();
             result = true;
@@ -93,8 +93,8 @@ public class DaoMission extends DaoGeneric<Mission>{
             ps.setDate(3, (java.sql.Date) value.getStartTime());
             ps.setDate(4, (java.sql.Date) value.getLastUpdate());
             ps.setDate(5, (java.sql.Date) value.getEndTime());
-            ps.setInt(6, value.getLocationX());
-            ps.setInt(7, value.getLocationY());
+            ps.setDouble(6, value.getLocationX());
+            ps.setDouble(7, value.getLocationY());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex){

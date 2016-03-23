@@ -14,8 +14,8 @@ public class Mission implements Serializable{
     private Date startTime;
     private Date lastUpdate;
     private Date endTime;
-    private int locationX;
-    private int locationY;
+    private double locationX;
+    private double locationY;
     private HashSet<Team> teamsAssigned;
 
     public int getID() {
@@ -66,7 +66,7 @@ public class Mission implements Serializable{
         this.endTime = endTime;
     }
 
-    public int getLocationX() {
+    public double getLocationX() {
         return locationX;
     }
 
@@ -74,7 +74,7 @@ public class Mission implements Serializable{
         this.locationX = locationX;
     }
 
-    public int getLocationY() {
+    public double getLocationY() {
         return locationY;
     }
 
@@ -90,7 +90,7 @@ public class Mission implements Serializable{
         this.teamsAssigned = teamsAssigned;
     }
 
-    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, int locationX, int locationY, HashSet<Team> teamsAssigned) {
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
         this.ID = ID;
         this.name = name;
         this.description = description;

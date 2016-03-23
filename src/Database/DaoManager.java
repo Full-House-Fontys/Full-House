@@ -85,6 +85,9 @@ public enum DaoManager {
                 case MATERIAAL:
                     dao = new DaoMaterial(connection);
                     break;
+                case MISSION:
+                    dao = new DaoMission(connection);
+                    break;
                 default:
                     dao = null;
                     break;

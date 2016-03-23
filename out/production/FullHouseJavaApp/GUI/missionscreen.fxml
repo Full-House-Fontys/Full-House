@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionscontroller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -16,23 +16,27 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="500.0">
+      <AnchorPane prefHeight="512.0" prefWidth="500.0">
          <children>
-            <Label layoutX="34.0" layoutY="34.0" text="MissionID:" />
-            <Label layoutX="34.0" layoutY="66.0" text="Start Time:" />
-            <Label layoutX="35.0" layoutY="99.0" text="last updated:" />
-            <Label layoutX="35.0" layoutY="132.0" text="End Time:" />
-            <Label layoutX="33.0" layoutY="165.0" text="Location X:" />
-            <Label layoutX="34.0" layoutY="199.0" text="Location Y:" />
-            <ListView fx:id="Listservices" layoutX="131.0" layoutY="233.0" prefHeight="141.0" prefWidth="355.0" />
-            <Label layoutX="33.0" layoutY="295.0" text="Services:" />
+            <Label layoutX="35.0" layoutY="34.0" text="MissionID:" />
+            <Label layoutX="36.0" layoutY="141.0" text="Start Time:" />
+            <Label layoutX="36.0" layoutY="174.0" text="last updated:" />
+            <Label layoutX="38.0" layoutY="208.0" text="End Time:" />
+            <Label layoutX="35.0" layoutY="241.0" text="Location X:" />
+            <Label layoutX="34.0" layoutY="277.0" text="Location Y:" />
+            <ListView fx:id="Listservices" layoutX="134.0" layoutY="304.0" prefHeight="141.0" prefWidth="355.0" />
+            <Label layoutX="41.0" layoutY="366.0" text="Services:" />
             <TextField fx:id="TFmissionId" editable="false" layoutX="131.0" layoutY="30.0" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="TFstartTime" editable="false" layoutX="131.0" layoutY="62.0" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="TFupdateTime" editable="false" layoutX="131.0" layoutY="95.0" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="TFendTime" editable="false" layoutX="131.0" layoutY="128.0" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="LocationX" editable="false" layoutX="131.0" layoutY="161.0" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="LocationY" editable="false" layoutX="131.0" layoutY="195.0" prefHeight="25.0" prefWidth="180.0" />
-            <Button fx:id="BTNsolve" layoutX="340.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#Solved" text="solved" />
+            <TextField fx:id="TFname" editable="false" layoutX="131.0" layoutY="62.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="TFupdateTime" editable="false" layoutX="131.0" layoutY="170.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="TFendTime" editable="false" layoutX="131.0" layoutY="204.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="LocationX" editable="false" layoutX="131.0" layoutY="237.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="LocationY" editable="false" layoutX="131.0" layoutY="273.0" prefHeight="25.0" prefWidth="180.0" />
+            <Button fx:id="BTNsolve" layoutX="338.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#Solved" text="solved" />
+            <TextField fx:id="TFstartTime" layoutX="131.0" layoutY="137.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="TFdescription" layoutX="131.0" layoutY="95.0" prefHeight="25.0" prefWidth="180.0" />
+            <Label layoutX="34.0" layoutY="99.0" text="description" />
+            <Label layoutX="38.0" layoutY="66.0" text="naam" />
          </children>
       </AnchorPane>
    </children>
