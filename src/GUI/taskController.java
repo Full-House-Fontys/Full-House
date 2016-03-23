@@ -163,7 +163,7 @@ public class taskController implements Initializable {
     }
 
     public void assignTeamToMission() {
-        Team toAssignTeam = new Team((String) lvTeams.getSelectionModel().getSelectedItem(), null);
+        Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
 
         ObservableList<Staff> staffAssigned = lvAssignedTeams.getItems();
@@ -192,19 +192,33 @@ public class taskController implements Initializable {
     }
 
     public void createFakeMission() {
-        Mission fakeMission = new Mission(0, tfFakeMission.getText(), taDescription.getText(), null, null, null, 0, 0, null);
+        Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0);
         missionListOberservable.add(fakeMission);
-        Platform.runLater(() -> lvTasks.setItems(missionListOberservable));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvTasks.setItems(missionListOberservable);
+            }
+        });
     }
 
     public void sendMissionToTeam() throws IOException {
         String hostName = "";
         int portNumber = 0;
-        Socket sendSocket = new Socket("localhost", 2002);
-        try (OutputStream os = sendSocket.getOutputStream(); ObjectOutputStream oos = new ObjectOutputStream(os)) {
+        OutputStream os = null;
+        ObjectOutputStream oos = null;
+        try{
+            Socket sendSocket = new Socket("localhost",2002);
+            os = sendSocket.getOutputStream();
+            oos = new ObjectOutputStream(os);
             oos.writeObject(missionList);
         } catch (UnknownHostException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            oos.close();
+            os.close();
         }
     }
 }

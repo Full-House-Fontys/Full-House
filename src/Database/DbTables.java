@@ -7,6 +7,5 @@ package Database;
 public enum DbTables {
     PERSONEEL,
     MATERIAAL,
-    MISSIE,
-    Personeel_Missie
+    MISSIE;
 }

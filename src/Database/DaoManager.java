@@ -18,7 +18,7 @@ public enum DaoManager {
     /**
      * Database access manager
      */
-    DaoManager(){
+    private DaoManager(){
 
     }
 
@@ -87,9 +87,6 @@ public enum DaoManager {
                     break;
                 case MISSIE:
                     dao = new DaoMission(connection);
-                    break;
-                case Personeel_Missie:
-                    dao = new DaoMissionPersonal(connection);
                     break;
                 default:
                     dao = null;

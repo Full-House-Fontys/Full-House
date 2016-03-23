@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Kees on 16/03/2016.
  */
-public class Mission implements Serializable {
+public class Mission implements Serializable{
     private int ID;
     private String name;
     private String description;
@@ -74,7 +74,7 @@ public class Mission implements Serializable {
         this.endTime = endTime;
     }
 
-    public int getLocationX() {
+    public double getLocationX() {
         return locationX;
     }
 
@@ -82,7 +82,7 @@ public class Mission implements Serializable {
         this.locationX = locationX;
     }
 
-    public int getLocationY() {
+    public double getLocationY() {
         return locationY;
     }
 
@@ -98,7 +98,7 @@ public class Mission implements Serializable {
         this.teamsAssigned = teamsAssigned;
     }
 
-    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, int locationX, int locationY, HashSet<Team> teamsAssigned) {
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
         this.ID = ID;
         this.name = name;
         this.description = description;
@@ -127,7 +127,7 @@ public class Mission implements Serializable {
 
     @Override
     public String toString() {
-        return "Mission : " + this.name;
+        return this.name;
     }
 
     public ObservableList<Staff> getTeamsAssignedToMission(int id) {
