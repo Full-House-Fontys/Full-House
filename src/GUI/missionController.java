@@ -4,6 +4,7 @@ import CentralPoint.Mission;
 import Database.DaoGeneric;
 import Database.DaoManager;
 import Database.DbTables;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,15 +13,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class missionController {
 
     // zorg ervoor dat er constant gekeken wordt of er iets nieuws in de database staat.
+    @FXML
+    private TextField TFnameMission;
+    @FXML
+    private TextArea TAdescriptionMission;
     @FXML
     private TextField TFsearchMission;
     @FXML
@@ -37,6 +45,7 @@ public class missionController {
     private List<Mission> missions;
     private ObservableList<Mission> obMission;
     private int idcounter;
+    private Timer timer;
 
     public missionController()
     {
@@ -48,18 +57,24 @@ public class missionController {
     @FXML
     private void newmission()
     {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         try
         {
+
             Double LocationX = Double.parseDouble(TFlocationXMission.getText());
             Double LocationY = Double.parseDouble(TFlocationYMission.getText());
-            Mission mission = new Mission(idcounter, "", "", date, date, date, LocationX, LocationY);
-            idcounter++;
-            missions.add(mission);
-            Collections.reverse(missions);
-            obMission = FXCollections.observableArrayList(missions);
-            Collections.reverse(missions);
-            missionlist.setItems(obMission);
+            Mission mission = new Mission(1, TFnameMission.getText(), TAdescriptionMission.getText(), date, null, null, LocationX, LocationY);
+            DaoManager.INSTANCE.open();
+            DaoGeneric<Mission> DBmissions = DaoManager.INSTANCE.getDao(DbTables.MISSIE);
+            if(DBmissions.insert(mission))
+            {
+                System.out.println("success");
+            }
+            else
+            {
+                System.out.println("failed");
+            }
         }
         catch (Exception e)
         {
@@ -71,18 +86,16 @@ public class missionController {
     private void SearchMission()
     {
         List<Mission> searchlist = new ArrayList<>();
-        String searcher = TFsearchMission.getText();
-        for(Mission mission : missions)
+        for(Mission mission : obMission)
         {
-            int missionID = mission.getID();
-           if(missionID == Integer.parseInt(searcher))
+           if(mission.getName().indexOf(TFsearchMission.getText()) != -1)
            {
                searchlist.add(mission);
            }
         }
-        Collections.reverse(searchlist);
-        obMission = FXCollections.observableArrayList(searchlist);
-        missionlist.setItems(obMission);
+        timer.cancel();
+        ObservableList<Mission> tempMission = FXCollections.observableArrayList(searchlist);
+        missionlist.setItems(tempMission);
     }
 
     @FXML
@@ -130,17 +143,23 @@ public class missionController {
     }
     private void startTimer()
     {
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 DaoManager.INSTANCE.open();
                 DaoGeneric<Mission> DBmissions = DaoManager.INSTANCE.getDao(DbTables.MISSIE);
                 obMission = DBmissions.getAllRecord();
-                missionlist.setItems(obMission);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        missionlist.setItems(obMission);
+                    }
+                });
+
                 DaoManager.INSTANCE.close();
             }
-        },1000);
+        },0, 1000);
 
     }
 }

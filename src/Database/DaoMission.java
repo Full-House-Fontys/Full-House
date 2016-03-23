@@ -85,14 +85,28 @@ public class DaoMission extends DaoGeneric<Mission>{
     @Override
     public boolean insert(Mission value) {
         boolean result = false;
-        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6), {7} VALUES (?, ?, ?, ?, ?)", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY);
+        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}, {7}) VALUES (?, ?, ?, ?, ?, ?, ?)", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY);
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, value.getName());
             ps.setString(2, value.getDescription());
-            ps.setDate(3, (java.sql.Date) value.getStartTime());
-            ps.setDate(4, (java.sql.Date) value.getLastUpdate());
-            ps.setDate(5, (java.sql.Date) value.getEndTime());
+            ps.setDate(3, new java.sql.Date(value.getStartTime().getTime()));
+            if(value.getLastUpdate() == null)
+            {
+                ps.setDate(4, null);
+            }
+            else
+            {
+                ps.setDate(4, new java.sql.Date(value.getLastUpdate().getTime()));
+            }
+            if(value.getEndTime() == null)
+            {
+                ps.setDate(5, null);
+            }
+            else
+            {
+                ps.setDate(5, new java.sql.Date(value.getEndTime().getTime()));
+            }
             ps.setDouble(6, value.getLocationX());
             ps.setDouble(7, value.getLocationY());
             ps.executeUpdate();
