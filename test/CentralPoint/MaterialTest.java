@@ -20,8 +20,8 @@ public class MaterialTest {
      */
     @Before
     public void setUp() throws Exception {
-        material = new Material(1, "bla", "bla", new Point2D.Double(12.2, 12.3), false);
-        Material material2 = new Material("bla", "bla2", new Point2D.Double(12.2, 12.3), true);
+        material = new Material(1, "bla", "bla", new Point2D.Double(12.2222, 12.3), false);
+        new Material("bla", "bla2", new Point2D.Double(12.2, 12.3), true);
     }
 
     /**
@@ -86,7 +86,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetLocation() throws Exception {
-        assertEquals("locations aren't equal", new Point2D.Double(12.2, 12.3), material.getLocation());
+        assertEquals("locations aren't equal", new Point2D.Double(12.2222, 12.3), material.getLocation());
     }
 
     /**
@@ -95,7 +95,7 @@ public class MaterialTest {
      */
     @Test
     public void testGetLocationString() throws Exception {
-        assertEquals("String is incorrect", "12.2; 12.3", material.getLocationString());
+        assertEquals("String is incorrect", "12.22; 12.3", material.getLocationString());
     }
 
     /**
