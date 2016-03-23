@@ -22,6 +22,8 @@ public class StartController implements Initializable {
     private Button btnMaterial;
     @FXML
     private Button btnMissionControl;
+    @FXML
+    private Button btnAssignMissionControl;
 
     @FXML
     public void startMaterialScene(ActionEvent event) throws IOException{
@@ -33,6 +35,14 @@ public class StartController implements Initializable {
 
     @FXML
     public void startMissionControlScene(ActionEvent event) throws IOException{
+        Parent parent = FXMLLoader.load(getClass().getResource("Task.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage)btnMissionControl.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    public void startTeamAssignMissionScene(ActionEvent event) throws IOException{
         Parent parent = FXMLLoader.load(getClass().getResource("Task.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage)btnMissionControl.getScene().getWindow();
