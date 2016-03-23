@@ -79,12 +79,27 @@ public class taskController implements Initializable {
     private ArrayList<Mission> missionList;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadPersonel();
+        loadMission();
     }
-    public taskController()  {
+
+    private void loadMission() {
+        try {
+            DaoManager.INSTANCE.open();
+            DaoGeneric allMission = DaoManager.INSTANCE.getDao(DbTables.MISSIE);
+            ObservableList<Mission> inputMission = allMission.getAllRecord();
+            lvTasks.setItems(inputMission);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DaoManager.INSTANCE.close();
+        }
+    }
+
+    public taskController() {
         //DBRead DBR = new DBRead();
         teams = new HashSet<>();
         teamObservableList = FXCollections.observableArrayList(teams);
@@ -97,18 +112,24 @@ public class taskController implements Initializable {
     }
 
     private void loadPersonel() {
-        DaoManager.INSTANCE.open();
-        DaoGeneric<Staff> allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
-        ObservableList<Staff> inputStaff = allStaff.getAllRecord();
-        ArrayList<String> rescueTypes = new ArrayList<>();
-        for(Staff staff : inputStaff){
-            if(!rescueTypes.contains(staff.getSort())){
-                rescueTypes.add(staff.getSort());
+        try {
+            DaoManager.INSTANCE.open();
+            DaoGeneric allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+            ObservableList<Staff> inputStaff = allStaff.getAllRecord();
+            ArrayList<String> rescueTypes = new ArrayList<>();
+            for (Staff staff : inputStaff) {
+                if (!rescueTypes.contains(staff.getSort())) {
+                    rescueTypes.add(staff.getSort());
+                }
             }
+            ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
+            lvTeams.setItems(rescueTypesOberservable);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DaoManager.INSTANCE.close();
         }
-        ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
-        lvTeams.setItems(rescueTypesOberservable);
-        DaoManager.INSTANCE.close();
     }
 
     public void makeTeam() {
@@ -128,7 +149,7 @@ public class taskController implements Initializable {
     }
 
     public void assignTeamToMission() {
-        Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
+        Team toAssignTeam = new Team((String) lvTeams.getSelectionModel().getSelectedItem(), null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
 
         //You need to check if the team isn't already assigned to the mission
@@ -141,33 +162,19 @@ public class taskController implements Initializable {
     }
 
     public void createFakeMission() {
-        Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0,null);
+        Mission fakeMission = new Mission(0, tfFakeMission.getText(), taDescription.getText(), null, null, null, 0, 0, null);
         missionListOberservable.add(fakeMission);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                lvTasks.setItems(missionListOberservable);
-            }
-        });
+        Platform.runLater(() -> lvTasks.setItems(missionListOberservable));
     }
 
     public void sendMissionToTeam() throws IOException {
         String hostName = "";
         int portNumber = 0;
-        OutputStream os = null;
-        ObjectOutputStream oos = null;
-        try{
-            Socket sendSocket = new Socket("localhost",2002);
-            os = sendSocket.getOutputStream();
-            oos = new ObjectOutputStream(os);
+        Socket sendSocket = new Socket("localhost", 2002);
+        try (OutputStream os = sendSocket.getOutputStream(); ObjectOutputStream oos = new ObjectOutputStream(os)) {
             oos.writeObject(missionList);
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            oos.close();
-            os.close();
         }
     }
 }

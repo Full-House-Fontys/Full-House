@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class DaoMission extends DaoGeneric<Mission>{
 
-    private final static String TABLENAME = DbTables.MISSION.toString();
+    private final static String TABLENAME = DbTables.MISSIE.toString();
     private final String ID = "ID";
     private final String Naam = "Naam";
     private final String Beschrijving = "Beschrijving";
@@ -38,7 +38,7 @@ public class DaoMission extends DaoGeneric<Mission>{
     public ObservableList getAllRecord() {
         List<Mission> missionList = new ArrayList();
         ObservableList<Mission> missionListObservableList = FXCollections.observableArrayList(missionList);
-        ResultSet rs = null;
+        ResultSet rs;
 
         String query = "SELECT * FROM " + TABLENAME;
 
