@@ -22,6 +22,12 @@ public abstract class DaoGeneric<T> {
     }
 
     /**
+     * Gives specific data when needed
+     * @param id
+     * @return list of objects
+     */
+    public abstract ObservableList<T> getSpecificList(int id);
+    /**
      * Gives list of objects
      * @return list of objects
      */

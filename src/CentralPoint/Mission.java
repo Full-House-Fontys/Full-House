@@ -1,8 +1,13 @@
 package CentralPoint;
 
+import Database.DaoGeneric;
+import Database.DaoManager;
+import Database.DbTables;
+import javafx.collections.ObservableList;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
@@ -16,7 +21,19 @@ public class Mission implements Serializable{
     private Date endTime;
     private double locationX;
     private double locationY;
-    private HashSet<Team> teamsAssigned;
+    private ArrayList<Team> teamsAssigned;
+
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.lastUpdate = lastUpdate;
+        this.endTime = endTime;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.teamsAssigned = null;
+    }
 
     public int getID() {
         return ID;
@@ -61,42 +78,49 @@ public class Mission implements Serializable{
         return locationX;
     }
 
-
+    public void setLocationX(double locationX) {
+        this.locationX = locationX;
+    }
 
     public double getLocationY() {
         return locationY;
     }
 
+    public void setLocationY(double locationY) {
+        this.locationY = locationY;
+    }
 
-
-    public HashSet<Team> getTeamsAssigned() {
+    public ArrayList<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
 
-    public void setTeamsAssigned(HashSet<Team> teamsAssigned) {
+    public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
     }
 
-    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
-        this.ID = ID;
-        this.name = name;
-        this.description = description;
-        this.startTime = startTime;
-        this.lastUpdate = lastUpdate;
-        this.endTime = endTime;
-        this.locationX = locationX;
-        this.locationY = locationY;
-        this.teamsAssigned = null;
-    }
-
-    public void addTeamToJob(Team team){
-        if(!teamsAssigned.contains(team)){
-            teamsAssigned.add(team);
+    public boolean addTeamToJob(Team teamToAdd) {
+        boolean addedToTeam = false;
+        int counter = 0;
+        for(Team team : teamsAssigned){
+            if(teamToAdd.getName().equals(team.getName())){
+                counter++;
+            }
         }
+        if(counter==0){
+            teamsAssigned.add(teamToAdd);
+            addedToTeam = true;
+        }
+        return addedToTeam;
     }
 
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public ObservableList getTeamsAssignedToMission(int id) {
+        DaoManager.INSTANCE.open();
+        DaoGeneric getAssignedMembers = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+        return getAssignedMembers.getSpecificList(id);
     }
 }

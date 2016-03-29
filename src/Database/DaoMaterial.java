@@ -32,6 +32,11 @@ public class DaoMaterial extends DaoGeneric<Material>{
         super(connection, TABLENAME);
     }
 
+    @Override
+    public ObservableList<Material> getSpecificList(int id) {
+        return null;
+    }
+
     /**
      * @return list of staff
      * @see DaoGeneric#getAllRecord()

@@ -1,14 +1,8 @@
 package Database;
 
-import CentralPoint.Mission;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.sql.Connection;
 
 /**
  * Created by Qunfo on 23-3-2016.
@@ -24,9 +18,16 @@ public class DaoMissionPersonal extends DaoGeneric<int[]>{
     private final String LocatieX = "LocatieX";
     private final String LocatieY = "LocatieY";
     private final String teamsAssigned = "";
+    private final String personeelID = "PersoneelID";
+    private final String missionID = "missionID";
 
     public DaoMissionPersonal(Connection connection) {
         super(connection, TABLENAME);
+    }
+
+    @Override
+    public ObservableList<int[]> getSpecificList(int id) {
+        return null;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class DaoMissionPersonal extends DaoGeneric<int[]>{
     }
 
     @Override
-    public boolean insert(int[] value) { 
+    public boolean insert(int[] value) {
         return false;
     }
 

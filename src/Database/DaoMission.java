@@ -1,9 +1,11 @@
 package Database;
 
 import CentralPoint.Mission;
+import CentralPoint.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.awt.geom.Point2D;
 import java.sql.*;
 import java.text.MessageFormat;
 import java.util.*;
@@ -32,6 +34,11 @@ public class DaoMission extends DaoGeneric<Mission>{
      */
     public DaoMission(Connection connection) {
         super(connection, TABLENAME);
+    }
+
+    @Override
+    public ObservableList<Mission> getSpecificList(int id) {
+        return null;
     }
 
     @Override

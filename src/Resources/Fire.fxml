@@ -12,5 +12,6 @@
             <Font size="44.0" />
          </font>
       </Label>
+      <ListView fx:id="lvNewMissions" layoutX="58.0" layoutY="133.0" prefHeight="231.0" prefWidth="213.0" />
    </children>
 </Pane>
