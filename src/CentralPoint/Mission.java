@@ -3,14 +3,11 @@ package CentralPoint;
 import Database.DaoGeneric;
 import Database.DaoManager;
 import Database.DbTables;
-import javafx.beans.binding.ObjectExpression;
 import javafx.collections.ObservableList;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by Kees on 16/03/2016.
@@ -25,6 +22,18 @@ public class Mission implements Serializable{
     private double locationX;
     private double locationY;
     private ArrayList<Team> teamsAssigned;
+
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.lastUpdate = lastUpdate;
+        this.endTime = endTime;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.teamsAssigned = null;
+    }
 
     public int getID() {
         return ID;
@@ -78,7 +87,7 @@ public class Mission implements Serializable{
         return locationX;
     }
 
-    public void setLocationX(int locationX) {
+    public void setLocationX(double locationX) {
         this.locationX = locationX;
     }
 
@@ -86,28 +95,16 @@ public class Mission implements Serializable{
         return locationY;
     }
 
-    public void setLocationY(int locationY) {
+    public void setLocationY(double locationY) {
         this.locationY = locationY;
     }
 
-    public ArrayList<Team> getTeamsAssigned() {
+    public HashSet<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
 
-    public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
+    public void setTeamsAssigned(HashSet<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
-    }
-
-    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
-        this.ID = ID;
-        this.name = name;
-        this.description = description;
-        this.startTime = startTime;
-        this.lastUpdate = lastUpdate;
-        this.endTime = endTime;
-        this.locationX = locationX;
-        this.locationY = locationY;
-        this.teamsAssigned = null;
     }
 
     public boolean addTeamToJob(Team teamToAdd) {

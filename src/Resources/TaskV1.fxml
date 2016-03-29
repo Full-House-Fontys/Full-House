@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.taskController">
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="578.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8"
+      fx:controller="GUI.taskController">
     <children>
-        <ListView fx:id="lvTasks" layoutX="154.0" layoutY="211.0" onMouseClicked="#showDescriptionOfSelectedMission" prefHeight="200.0" prefWidth="200.0" />
-        <Label layoutX="154.0" layoutY="169.0" text="Current Missions" />
-        <Label layoutX="154.0" layoutY="418.0" text="Description" />
-      <Button layoutX="732.0" layoutY="250.0" mnemonicParsing="false" onAction="#makeTeam" text="Make team" />
-      <TextField fx:id="tfTeamName" layoutX="695.0" layoutY="203.0" />
-      <ListView fx:id="lvTeams" layoutX="514.0" layoutY="203.0" prefHeight="296.0" prefWidth="169.0" />
-      <Button layoutX="379.0" layoutY="211.0" mnemonicParsing="false" onAction="#assignTeamToMission" prefHeight="25.0" prefWidth="108.0" text="Assign team" />
-      <Label layoutX="378.0" layoutY="254.0" text="All assigned teams : " />
-      <ListView fx:id="lvAssignedTeams" layoutX="378.0" layoutY="275.0" prefHeight="160.0" prefWidth="108.0" />
-      <Button layoutX="344.0" layoutY="27.0" mnemonicParsing="false" onAction="#createFakeMission" text="Add Test Mission" />
-      <TextField fx:id="tfFakeMission" layoutX="168.0" layoutY="27.0" text="Mission 1" />
-      <Label layoutX="36.0" layoutY="31.0" text="Name" />
-      <Label layoutX="38.0" layoutY="76.0" text="Description" />
-      <TextArea fx:id="taDescription" layoutX="168.0" layoutY="78.0" prefHeight="67.0" prefWidth="149.0" text="Testing Mission  1" />
-      <Label fx:id="lbDescription" layoutX="154.0" layoutY="447.0" prefHeight="83.0" prefWidth="200.0" wrapText="true" />
-      <Button layoutX="654.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendMissionToTeam" prefHeight="73.0" prefWidth="156.0" text="Send Mission To Teams" />
+        <ListView fx:id="lvTasks" layoutX="154.0" layoutY="211.0" onMouseClicked="#showDescriptionOfSelectedMission"
+                  prefHeight="200.0" prefWidth="200.0"/>
+        <Label layoutX="154.0" layoutY="169.0" text="Current Missions"/>
+        <Label layoutX="154.0" layoutY="418.0" text="Description"/>
+        <Button layoutX="732.0" layoutY="250.0" mnemonicParsing="false" onAction="#makeTeam" text="Make team"/>
+        <TextField fx:id="tfTeamName" layoutX="695.0" layoutY="203.0"/>
+        <ListView fx:id="lvTeams" layoutX="514.0" layoutY="203.0" prefHeight="296.0" prefWidth="169.0"/>
+        <Button layoutX="379.0" layoutY="211.0" mnemonicParsing="false" onAction="#assignTeamToMission"
+                prefHeight="25.0" prefWidth="108.0" text="Assign team"/>
+        <Label layoutX="378.0" layoutY="254.0" text="All assigned teams : "/>
+        <ListView fx:id="lvAssignedTeams" layoutX="378.0" layoutY="275.0" prefHeight="160.0" prefWidth="108.0"/>
+        <Button layoutX="344.0" layoutY="27.0" mnemonicParsing="false" onAction="#createFakeMission"
+                text="Add Test Mission"/>
+        <TextField fx:id="tfFakeMission" layoutX="168.0" layoutY="27.0" text="Mission 1"/>
+        <Label layoutX="36.0" layoutY="31.0" text="Name"/>
+        <Label layoutX="38.0" layoutY="76.0" text="Description"/>
+        <TextArea fx:id="taDescription" layoutX="168.0" layoutY="78.0" prefHeight="67.0" prefWidth="149.0"
+                  text="Testing Mission  1"/>
+        <Label fx:id="lbDescription" layoutX="154.0" layoutY="455.0"/>
+        <Button layoutX="654.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendMissionToTeam" prefHeight="73.0"
+                prefWidth="156.0" text="Send Mission To Teams"/>
     </children>
 </Pane>

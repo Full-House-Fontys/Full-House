@@ -2,35 +2,31 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
+import CentralPoint.Staff;
 import CentralPoint.Team;
 import Database.DaoGeneric;
 import Database.DaoManager;
-import Database.DaoStaff;
 import Database.DbTables;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import CentralPoint.Team;
-import CentralPoint.Staff;
 
-import javax.swing.*;
 import java.awt.geom.Point2D;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class taskController implements Initializable {
     @FXML
@@ -78,6 +74,18 @@ public class taskController implements Initializable {
     private HashMap<Mission,String> sendableMissions;
 
 
+    public taskController() {
+        //DBRead DBR = new DBRead();
+        teams = new HashSet<>();
+        teamObservableList = FXCollections.observableArrayList(teams);
+        centralPoint = new CentralPoint();
+        // ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
+        // Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
+
+        missionList = new ArrayList<>();
+        missionListOberservable = FXCollections.observableArrayList(missionList);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadPersonel();
@@ -123,27 +131,42 @@ public class taskController implements Initializable {
         }
     }
 
+//    private void loadPersonel() {
+//        try {
+//            DaoManager.INSTANCE.open();
+//            DaoGeneric allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+//            ObservableList<Staff> inputStaff = allStaff.getAllRecord();
+//            ArrayList<String> rescueTypes = new ArrayList<>();
+//            for (Staff staff : inputStaff) {
+//                if (!rescueTypes.contains(staff.getSort())) {
+//                    rescueTypes.add(staff.getSort());
+//                }
+//            }
+//            ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
+//            lvTeams.setItems(rescueTypesOberservable);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            DaoManager.INSTANCE.close();
+//        }
+//    }
+
     /**
      * Loads all possible rescueservices for a mission
      */
     private void loadPersonel() {
-        try {
-            DaoManager.INSTANCE.open();
-            DaoGeneric allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
-            ObservableList<Staff> inputStaff = allStaff.getAllRecord();
-            ArrayList<String> rescueTypes = new ArrayList<>();
-            for (Staff staff : inputStaff) {
-                if (!rescueTypes.contains(staff.getSort())) {
-                    rescueTypes.add(staff.getSort());
-                }
+        DaoManager.INSTANCE.open();
+        DaoGeneric<Staff> allStaff = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
+        ObservableList<Staff> inputStaff = allStaff.getAllRecord();
+        ArrayList<String> rescueTypes = new ArrayList<>();
+        for (Staff staff : inputStaff) {
+            if (!rescueTypes.contains(staff.getSort())) {
+                rescueTypes.add(staff.getSort());
+                ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
+                lvTeams.setItems(rescueTypesOberservable);
+                DaoManager.INSTANCE.close();
             }
-            ObservableList<String> rescueTypesOberservable = FXCollections.observableArrayList(rescueTypes);
-            lvTeams.setItems(rescueTypesOberservable);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            DaoManager.INSTANCE.close();
         }
     }
 
@@ -169,7 +192,7 @@ public class taskController implements Initializable {
     public void assignTeamToMission() {
         Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
-
+        toAssignJob.addTeamToJob(toAssignTeam);
         ObservableList<Staff> staffAssigned = lvAssignedTeams.getItems();
         ArrayList<Team> assignedTeams = new ArrayList<>();
         for(Staff staff : staffAssigned){

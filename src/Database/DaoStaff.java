@@ -82,7 +82,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
                         res.getString(Tussenvoegesel), res.getString(Achternaam), res.getString(Gebruikersnaam),
                         res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
                         res.getDouble(LocatieY)), res.getString(Soort), res.getInt(TeamID),
-                        res.getInt(OpLocatie) != 0));
+                        res.getInt(OpLocatie) == 0));
             }
         } catch (SQLException e) {
             e.printStackTrace();

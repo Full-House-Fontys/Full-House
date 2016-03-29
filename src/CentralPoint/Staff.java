@@ -1,6 +1,5 @@
 package CentralPoint;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,6 +18,35 @@ public class Staff {
     private int teamID;
     private boolean onLocation;
 
+
+    /**
+     * @param name name
+     * @param prefix prefix
+     * @param lastName lastname
+     * @param userName username
+     * @param password password
+     * @param location location Point2D
+     * @param sort sort of work he does
+     * @param teamID team he is currently in
+     * @param onLocation boolean, true if on location
+     */
+    public Staff(String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, int teamID, boolean onLocation) {
+        this.name = name;
+        this.prefix = prefix == null ? "" : prefix;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.location = location;
+        this.sort = sort;
+        this.teamID = teamID;
+        this.onLocation = onLocation;
+    }
+
+    /**
+     * Empty staff object
+     */
+    public Staff() {
+    }
 
     /**
      * @return sort
@@ -64,38 +92,20 @@ public class Staff {
     }
 
     /**
-     * @param name name
-     * @param prefix prefix
-     * @param lastName lastname
-     * @param userName username
-     * @param password password
-     * @param location location Point2D
-     * @param sort sort of work he does
-     * @param teamID team he is currently in
-     * @param onLocation boolean, true if on location
-     */
-    public Staff(String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, int teamID, boolean onLocation) {
-        this.name = name;
-        this.prefix = prefix==null ? "":prefix;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
-        this.location = location;
-        this.sort = sort;
-        this.teamID = teamID;
-        this.onLocation = onLocation;
-    }
-
-    /**
-     * Empty staff object
-     */
-    public Staff(){}
-
-    /**
      * @return String of staff variables
      */
     @Override
     public String toString() {
-        return this.getSort();
+        return "Staff{" +
+                "name='" + name + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", location=" + location +
+                ", sort='" + sort + '\'' +
+                ", teamID=" + teamID +
+                ", onLocation=" + onLocation +
+                '}';
     }
 }
