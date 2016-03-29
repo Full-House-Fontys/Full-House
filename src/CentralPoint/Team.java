@@ -1,11 +1,12 @@
 package CentralPoint;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
  */
-public class Team {
+public class Team implements Serializable {
     private String name;
     private HashSet<Staff> teamMembers;
 

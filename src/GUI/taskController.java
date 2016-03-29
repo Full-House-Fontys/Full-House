@@ -70,15 +70,12 @@ public class taskController implements Initializable {
 
     private CentralPoint centralPoint;
 
-    private Stage stage;
     private HashSet<Team> teams;
-    private ArrayList<String> staffOnLocation;
-    private Mission mission;
     private ObservableList<Team> teamObservableList;
-    private ObservableList<String> staffObservableList;
     private ObservableList<Mission> missionListOberservable;
     private ArrayList<Mission> missionList;
     private ObservableList<Staff> assignedTeamsObservable;
+    private HashMap<Mission,String> sendableMissions;
 
 
     @Override
@@ -86,7 +83,6 @@ public class taskController implements Initializable {
         loadPersonel();
         loadMission();
         lvTasks.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mission>() {
-
             @Override
             public void changed(ObservableValue<? extends Mission> observable, Mission oldValue, Mission newValue) {
                 loadTeamsAssignedToMission(newValue);
@@ -99,6 +95,20 @@ public class taskController implements Initializable {
         lvAssignedTeams.setItems(assignedTeamsObservable);
     }
 
+    public taskController() {
+        //DBRead DBR = new DBRead();
+        teams = new HashSet<>();
+        teamObservableList = FXCollections.observableArrayList(teams);
+        centralPoint = new CentralPoint();
+        // ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
+        // Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
+        sendableMissions = new HashMap<>();
+        missionList = new ArrayList<>();
+        missionListOberservable = FXCollections.observableArrayList(missionList);
+    }
+    /**
+     * Loads all the missions from the database
+     */
     private void loadMission() {
         try {
             DaoManager.INSTANCE.open();
@@ -113,18 +123,9 @@ public class taskController implements Initializable {
         }
     }
 
-    public taskController() {
-        //DBRead DBR = new DBRead();
-        teams = new HashSet<>();
-        teamObservableList = FXCollections.observableArrayList(teams);
-        centralPoint = new CentralPoint();
-        // ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
-        // Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
-
-        missionList = new ArrayList<>();
-        missionListOberservable = FXCollections.observableArrayList(missionList);
-    }
-
+    /**
+     * Loads all possible rescueservices for a mission
+     */
     private void loadPersonel() {
         try {
             DaoManager.INSTANCE.open();
@@ -146,8 +147,10 @@ public class taskController implements Initializable {
         }
     }
 
+    /**
+     * This is to test making a team
+     */
     public void makeTeam() {
-
         Team toMakeTeam = new Team(tfTeamName.getText(), null);
         if (!teamObservableList.contains(toMakeTeam)) {
             teamObservableList.add(toMakeTeam);
@@ -158,10 +161,11 @@ public class taskController implements Initializable {
             });
 
         }
-        //saveToDatabase();
-
     }
 
+    /**
+     * Tries to assign a new rescueservice to a mission
+     */
     public void assignTeamToMission() {
         Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
@@ -175,6 +179,7 @@ public class taskController implements Initializable {
         boolean succesfulAdd = toAssignJob.addTeamToJob(toAssignTeam);
         if (succesfulAdd) {
             assignedTeamsObservable.add(new Staff(null,null,null,null,null,null,toAssignTeam.getName(),0,false));
+            sendableMissions.put(toAssignJob,toAssignTeam.getName());
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("This team zit al in de missie");
@@ -186,11 +191,17 @@ public class taskController implements Initializable {
         }
     }
 
+    /**
+     * This shows the description of the selected mission
+     */
     public void showDescriptionOfSelectedMission() {
         Mission mission = (Mission) lvTasks.getSelectionModel().getSelectedItem();
         lbDescription.setText(mission.getDescription());
     }
 
+    /**
+     * This is so you can replicate creating missions
+     */
     public void createFakeMission() {
         Mission fakeMission = new Mission(0,tfFakeMission.getText(), taDescription.getText(), null, null,null,0,0);
         missionListOberservable.add(fakeMission);
@@ -202,7 +213,12 @@ public class taskController implements Initializable {
         });
     }
 
+    /**
+     * Creates connection with rescueservice and sends the mission
+     * @throws IOException
+     */
     public void sendMissionToTeam() throws IOException {
+
         String hostName = "";
         int portNumber = 0;
         OutputStream os = null;
@@ -211,7 +227,7 @@ public class taskController implements Initializable {
             Socket sendSocket = new Socket("localhost",2002);
             os = sendSocket.getOutputStream();
             oos = new ObjectOutputStream(os);
-            oos.writeObject(missionList);
+            oos.writeObject(sendableMissions);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {

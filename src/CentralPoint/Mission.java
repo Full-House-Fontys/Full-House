@@ -22,8 +22,8 @@ public class Mission implements Serializable{
     private Date startTime;
     private Date lastUpdate;
     private Date endTime;
-    private int locationX;
-    private int locationY;
+    private double locationX;
+    private double locationY;
     private ArrayList<Team> teamsAssigned;
 
     public int getID() {
