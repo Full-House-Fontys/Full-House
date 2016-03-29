@@ -44,6 +44,7 @@ public class missionController {
 
     private List<Mission> missions;
     private ObservableList<Mission> obMission;
+    private ObservableList<Mission> tempMission;
     private int idcounter;
     private Timer timer;
 
@@ -94,7 +95,7 @@ public class missionController {
            }
         }
         timer.cancel();
-        ObservableList<Mission> tempMission = FXCollections.observableArrayList(searchlist);
+        tempMission = FXCollections.observableArrayList(searchlist);
         missionlist.setItems(tempMission);
     }
 
@@ -103,6 +104,13 @@ public class missionController {
     {
         Mission selectedMission = null;
         for(Mission mission : obMission)
+        {
+            if (missionlist.getSelectionModel().getSelectedItem().equals(mission))
+            {
+                selectedMission = mission;
+            }
+        }
+        for(Mission mission : tempMission)
         {
             if (missionlist.getSelectionModel().getSelectedItem().equals(mission))
             {
