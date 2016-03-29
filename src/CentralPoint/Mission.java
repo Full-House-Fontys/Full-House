@@ -6,8 +6,8 @@ import Database.DbTables;
 import javafx.collections.ObservableList;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
@@ -99,11 +99,11 @@ public class Mission implements Serializable{
         this.locationY = locationY;
     }
 
-    public HashSet<Team> getTeamsAssigned() {
+    public ArrayList<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
 
-    public void setTeamsAssigned(HashSet<Team> teamsAssigned) {
+    public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
     }
 
@@ -127,10 +127,9 @@ public class Mission implements Serializable{
         return this.name;
     }
 
-    public ObservableList<Staff> getTeamsAssignedToMission(int id) {
+    public ObservableList getTeamsAssignedToMission(int id) {
         DaoManager.INSTANCE.open();
         DaoGeneric getAssignedMembers = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
-        ObservableList<Staff> assignedMembers = getAssignedMembers.getSpecificList(id);
-        return assignedMembers;
+        return getAssignedMembers.getSpecificList(id);
     }
 }
