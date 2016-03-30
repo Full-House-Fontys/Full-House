@@ -78,16 +78,8 @@ public class Mission implements Serializable{
         return locationX;
     }
 
-    public void setLocationX(double locationX) {
-        this.locationX = locationX;
-    }
-
     public double getLocationY() {
         return locationY;
-    }
-
-    public void setLocationY(double locationY) {
-        this.locationY = locationY;
     }
 
     public ArrayList<Team> getTeamsAssigned() {
