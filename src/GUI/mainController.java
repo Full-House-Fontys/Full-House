@@ -3,9 +3,8 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
-import CentralPoint.Team;
 import CentralPoint.Staff;
-import javafx.application.Platform;
+import CentralPoint.Team;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -40,7 +39,6 @@ public class mainController implements Initializable {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
-
     }
 
     private void createMissionView(Mission selectedMission) {
@@ -85,7 +83,6 @@ public class mainController implements Initializable {
             public void changed(ObservableValue observable, Mission oldValue, Mission newValue) {
                 createMissionView((Mission) lvMissions.getSelectionModel().getSelectedItem());
             }
-
         });
 
     }
