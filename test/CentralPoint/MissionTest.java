@@ -1,12 +1,16 @@
 package CentralPoint;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -20,6 +24,13 @@ public class MissionTest {
     Mission mission2;
     Mission mission3;
     Date date1;
+    Team team1;
+    Team team2;
+    Team team3;
+    ArrayList<Team> teamList1;
+    ArrayList<Team> teamList2;
+    ArrayList<Team> teamList3;
+    ArrayList<Team> teamList4;
 
     @Before
     public void setUp() throws Exception {
@@ -28,6 +39,21 @@ public class MissionTest {
         mission1 = new Mission(1, "FIRE", "fire", date1, date1, null, 10.0, 10.0);
         mission2 = new Mission(2, "BURGLER", "burgler", date1, date1, null, 12.5, 16.3);
         mission3 = new Mission(3, "INJURED", "injured", date1, date1, null, 80.1, 60.9);
+        team1 = new Team(1, "brandweer", null, null);
+        team2 = new Team(2, "EHBO", null, null);
+        team3 = new Team(3, "politie", null, null);
+        teamList1 = new ArrayList<>();
+        teamList2 = new ArrayList<>();
+        teamList3 = new ArrayList<>();
+        teamList1.add(team1);
+        teamList1.add(team2);
+        teamList2.add(team2);
+        teamList2.add(team3);
+        teamList3.add(team1);
+        teamList3.add(team3);
+        teamList4.add(team1);
+        teamList4.add(team2);
+        teamList4.add(team3);
     }
 
     @After
@@ -168,17 +194,47 @@ public class MissionTest {
     }
 
     @Test
-    public void testGetTeamsAssigned() throws Exception {
-
+    public void testSetandGetTeamsAssigned() throws Exception {
+        assertEquals("No NULL", null, mission1.getTeamsAssigned());
+        assertEquals("No NULL", null, mission2.getTeamsAssigned());
+        assertEquals("No NULL", null, mission3.getTeamsAssigned());
+        assertNotEquals("No NULL", teamList1, mission1.getTeamsAssigned());
+        assertNotEquals("No NULL", teamList2, mission1.getTeamsAssigned());
+        assertNotEquals("No NULL", teamList3, mission1.getTeamsAssigned());
+        mission1.setTeamsAssigned(teamList1);
+        mission2.setTeamsAssigned(teamList2);
+        mission3.setTeamsAssigned(teamList3);
+        assertEquals("NULL", teamList1, mission1.getTeamsAssigned());
+        assertEquals("NULL", teamList2, mission2.getTeamsAssigned());
+        assertEquals("NULL", teamList3, mission3.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList2, mission1.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList3, mission1.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList1, mission2.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList3, mission2.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList1, mission3.getTeamsAssigned());
+        assertNotEquals("Wrong list", teamList2, mission3.getTeamsAssigned());
     }
 
-    @Test
-    public void testSetTeamsAssigned() throws Exception {
-
-    }
 
     @Test
     public void testAddTeamToJob() throws Exception {
-
+        mission1.addTeamToJob(team1);
+        mission1.addTeamToJob(team2);
+        mission2.addTeamToJob(team2);
+        mission2.addTeamToJob(team3);
+        mission3.addTeamToJob(team1);
+        mission3.addTeamToJob(team3);
+        assertEquals("Shouldn't add team", teamList1, mission1.getTeamsAssigned());
+        assertEquals("Shouldn't add team", teamList2, mission2.getTeamsAssigned());
+        assertEquals("Shouldn't add team", teamList3, mission3.getTeamsAssigned());
+        mission1.addTeamToJob(team3);
+        mission2.addTeamToJob(team1);
+        mission3.addTeamToJob(team2);
+        assertEquals("Shouldn't add team", teamList4, mission1.getTeamsAssigned());
+        assertEquals("Shouldn't add team", teamList4, mission2.getTeamsAssigned());
+        assertEquals("Shouldn't add team", teamList4, mission3.getTeamsAssigned());
+        assertNotEquals("Shouldn't add team", teamList1, mission1.getTeamsAssigned());
+        assertNotEquals("Shouldn't add team", teamList2, mission2.getTeamsAssigned());
+        assertNotEquals("Shouldn't add team", teamList3, mission3.getTeamsAssigned());
     }
 }
