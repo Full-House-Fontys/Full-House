@@ -20,7 +20,7 @@ public class StaffTest {
     public void setUp() throws Exception {
         staff = new Staff();
         assertNotNull("object created", staff);
-        staff = new Staff(0, "Kaj", "", "Adams", "p_adams", "jkl(USDj2", point2D, "Brandweer", true);
+        staff = new Staff(0, "Kaj", "", "Adams", "p_adams", "jkl(USDj2", point2D, "Brandweer", true, 3, 5);
     }
 
     @After
@@ -39,11 +39,6 @@ public class StaffTest {
     }
 
     @Test
-    public void testGetTeamID() throws Exception {
-
-    }
-
-    @Test
     public void testGetLocationString() throws Exception {
         assertEquals("Incorrect Location","12.33; 22.56",staff.getLocationString());
     }
@@ -57,6 +52,26 @@ public class StaffTest {
     public void testSetOnLocation() throws Exception {
         staff.setOnLocation(false);
         assertEquals("Incorrect location boolean set",false,staff.isOnLocation());
+    }
+
+    @Test
+    public void testGetSort() {
+        assertEquals("Incorrect sort","Brandweer",staff.getSort());
+    }
+
+    @Test
+    public void testGetLastName() {
+        assertEquals("Incorrect lastname","Adams",staff.getLastName());
+    }
+
+    @Test
+    public void testGetTeamID() {
+        assertEquals("Incorrect TeamId",3,staff.getTeamID());
+    }
+
+    @Test
+    public void testGetMissionID() {
+        assertEquals("Incorrect MissionId",5,staff.getMissionID());
     }
 
     @Test

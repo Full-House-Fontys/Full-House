@@ -11,44 +11,13 @@ import java.math.RoundingMode;
 public class Staff implements Serializable {
     private String name;
     private String prefix;
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     private String lastName;
     private String userName;
     private String password;
-
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     private String sort;
     private Point2D location;
     private boolean onLocation;
     private int id;
-
-    public int getTeamID() {
-        return teamID;
-    }
-
-    public void setTeamID(int teamID) {
-        this.teamID = teamID;
-    }
-
-    public int getMissionID() {
-        return missionID;
-    }
-
-    public void setMissionID(int missionID) {
-        this.missionID = missionID;
-    }
-
     private int teamID;
     private int missionID;
 
@@ -102,6 +71,18 @@ public class Staff implements Serializable {
     public Staff() {
     }
 
+    public int getTeamID() {
+        return teamID;
+    }
+
+    public int getMissionID() {
+        return missionID;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     /**
      * @return sort
      */
@@ -140,8 +121,6 @@ public class Staff implements Serializable {
     public void setOnLocation(boolean onLocation) {
         this.onLocation = onLocation;
     }
-
-
 
     /**
      * @return String of staff variables
