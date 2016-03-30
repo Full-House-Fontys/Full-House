@@ -128,12 +128,12 @@ public class MissionTest {
 
     @Test
     public void testToString() throws Exception {
-        assertEquals("wrong tekst", mission1.getName(), mission1.toString());
-        assertEquals("wrong tekst", mission2.getName(), mission2.toString());
-        assertEquals("wrong tekst", mission3.getName(), mission3.toString());
-        assertNotEquals("wrong tekst", mission3.getName(), mission1.toString());
-        assertNotEquals("wrong tekst", mission1.getName(), mission2.toString());
-        assertNotEquals("wrong tekst", mission2.getName(), mission3.toString());
+        assertEquals("wrong tekst", mission1.getID() + ": " + mission1.getName(), mission1.toString());
+        assertEquals("wrong tekst", mission2.getID() + ": " + mission2.getName(), mission2.toString());
+        assertEquals("wrong tekst", mission3.getID() + ": " + mission3.getName(), mission3.toString());
+        assertNotEquals("wrong tekst", mission3.getID() + ": " + mission3.getName(), mission1.toString());
+        assertNotEquals("wrong tekst", mission1.getID() + ": " + mission1.getName(), mission2.toString());
+        assertNotEquals("wrong tekst", mission2.getID() + ": " + mission2.getName(), mission3.toString());
     }
 
     @Test
