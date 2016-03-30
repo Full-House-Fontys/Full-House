@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
@@ -18,12 +20,10 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="635.0" prefWidth="953.0">
                                  <children>
-                                     <ListView fx:id="LvTeams" layoutX="1013.0" layoutY="82.0" prefHeight="200.0"
-                                               prefWidth="200.0"/>
-                                     <Label layoutX="1013.0" layoutY="30.0" text="Teams"/>
-                                     <Label layoutX="1013.0" layoutY="298.0" text="Beschrijving"/>
-                                     <TextArea fx:id="TaBeschrijving" layoutX="1013.0" layoutY="365.0"
-                                               prefHeight="240.0" prefWidth="255.0" wrapText="true"/>
+                                     <ListView fx:id="LvTeams" layoutX="1013.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <Label layoutX="1013.0" layoutY="30.0" text="Teams" />
+                                     <Label layoutX="1013.0" layoutY="298.0" text="Beschrijving" />
+                                     <TextArea fx:id="TaBeschrijving" layoutX="1013.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
                                  </children>
                              </AnchorPane>
                          </content>
@@ -32,35 +32,31 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <ListView fx:id="lvTeamsInMission" layoutX="51.0" layoutY="75.0" prefHeight="200.0"
-                                               prefWidth="200.0"/>
-                                     <Button layoutX="775.0" layoutY="105.0" mnemonicParsing="false"
-                                             onAction="#addAvailableTeamToCurrentTeams" text="Voeg team toe"/>
-                                     <Label layoutX="51.0" layoutY="37.0" text="Teams in missie"/>
-                                     <ListView fx:id="lvTeamsAvailable" layoutX="490.0" layoutY="75.0"
-                                               prefHeight="200.0" prefWidth="200.0"/>
-                                     <Label layoutX="490.0" layoutY="37.0" text="Teams beschikbaar"/>
-                                     <Button layoutX="951.0" layoutY="321.0" mnemonicParsing="false"
-                                             onAction="#sendMissionToTeam" prefHeight="91.0" prefWidth="180.0"
-                                             text="Stuur team notificatie"/>
-                                     <ListView fx:id="lvToAddTeams" layoutX="949.0" layoutY="82.0" prefHeight="200.0"
-                                               prefWidth="200.0"/>
-                                     <Label layoutX="962.0" layoutY="29.0" text="Teams die je wilt toevoegen : "/>
-                                     <Button layoutX="775.0" layoutY="175.0" mnemonicParsing="false"
-                                             onAction="#removeFromCurrentTeam" prefHeight="25.0" prefWidth="97.0"
-                                             text="Verwijder team"/>
+                                     <ListView fx:id="lvTeamsInMission" layoutX="51.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <Button layoutX="775.0" layoutY="105.0" mnemonicParsing="false" onAction="#addAvailableTeamToCurrentTeams" text="Voeg team toe" />
+                                     <Label layoutX="51.0" layoutY="37.0" text="Teams in missie" />
+                                     <ListView fx:id="lvTeamsAvailable" layoutX="490.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <Label layoutX="490.0" layoutY="37.0" text="Teams beschikbaar" />
+                                     <Button layoutX="951.0" layoutY="321.0" mnemonicParsing="false" onAction="#sendMissionToTeam" prefHeight="91.0" prefWidth="180.0" text="Stuur team notificatie" />
+                                     <ListView fx:id="lvToAddTeams" layoutX="949.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <Label layoutX="962.0" layoutY="29.0" text="Teams die je wilt toevoegen : " />
+                                     <Button layoutX="775.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeFromCurrentTeam" prefHeight="25.0" prefWidth="97.0" text="Verwijder team" />
                                  </children>
                              </AnchorPane>
                          </content>
                      </Tab>
                      <Tab text="Materialen">
                          <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                          </content>
                      </Tab>
                      <Tab text="Berichten">
                          <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="39.0" text="Actieve missies" />
+                              <ListView fx:id="lvActieveMissies" layoutX="24.0" layoutY="67.0" prefHeight="526.0" prefWidth="434.0" />
+                           </children></AnchorPane>
                          </content>
                      </Tab>
                  </tabs>

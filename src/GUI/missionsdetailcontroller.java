@@ -6,9 +6,14 @@ import CentralPoint.Team;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -32,6 +37,8 @@ public class missionsdetailcontroller {
     private ListView lvTeamsAvailable;
     @FXML
     private ListView lvToAddTeams;
+    @FXML
+    private ListView lvActieveMissies;
 
     private Mission mission;
     private CentralPoint centralPoint;
@@ -104,5 +111,17 @@ public class missionsdetailcontroller {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showPopup(String bericht){
+        Stage primaryStage = new Stage();
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text(bericht));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 }
