@@ -18,7 +18,7 @@ public enum DaoManager {
     /**
      * Database access manager
      */
-    private DaoManager(){
+    DaoManager() {
 
     }
 
@@ -31,7 +31,7 @@ public enum DaoManager {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, userName, passWord);
-            System.out.println("Database connection opened");
+            //System.out.println("Database connection opened");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -87,6 +87,9 @@ public enum DaoManager {
                     break;
                 case MISSIE:
                     dao = new DaoMission(connection);
+                    break;
+                case TEAM:
+                    dao = new DaoTeam(connection);
                     break;
                 default:
                     dao = null;

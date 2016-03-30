@@ -2,7 +2,6 @@ package CentralPoint;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Created by Kees on 16/03/2016.
@@ -10,10 +9,31 @@ import java.util.HashSet;
 public class Team implements Serializable {
     private String name;
     private ArrayList<Staff> teamMembers;
+    private int id;
+    private ArrayList<Integer> missionID;
 
-    public Team(String name, ArrayList<Staff> teamMembers) {
+    public Team(int iD, String name, ArrayList<Staff> teamMembers, ArrayList<Integer> missionID) {
         this.name = name;
         this.teamMembers = teamMembers;
+        this.id = iD;
+        this.missionID = missionID;
+
+    }
+
+    public ArrayList<Integer> getMissionID() {
+        return missionID;
+    }
+
+    public void setMissionID(ArrayList<Integer> missionID) {
+        this.missionID = missionID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,10 +52,17 @@ public class Team implements Serializable {
         this.teamMembers = teamMembers;
     }
 
-
+    public void addMember(Staff member) {
+        teamMembers.add(member);
+    }
     @Override
     public String toString() {
         return "Team : " + this.name;
     }
 
+    public void addMissie(int toAddMissionID) {
+        if (!missionID.contains(toAddMissionID)) {
+            missionID.add(toAddMissionID);
+        }
+    }
 }

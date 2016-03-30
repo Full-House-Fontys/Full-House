@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="GUI.createMissionController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -13,20 +16,17 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="558.0">
          <children>
-            <Label layoutX="14.0" layoutY="32.0" text="Mission list:" />
-            <TextField fx:id="TFsearchMission" layoutX="329.0" layoutY="307.0" />
-            <Button fx:id="BTNsearchMission" layoutX="323.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#SearchMission" text="Search" />
-            <Label layoutX="325.0" layoutY="281.0" text="Search mission:" />
-            <Button fx:id="BTNreateMission" layoutX="324.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#newmission" text="Create" />
-            <TextField fx:id="TFlocationXMission" layoutX="322.0" layoutY="175.0" />
-            <TextField fx:id="TFlocationYMission" layoutX="322.0" layoutY="216.0" />
-            <Label layoutX="320.0" layoutY="158.0" text="Location X:" />
-            <Label layoutX="322.0" layoutY="200.0" text="location Y:" />
-            <ListView fx:id="missionlist" layoutX="14.0" layoutY="53.0" onMouseClicked="#selectmission" prefHeight="326.0" prefWidth="274.0" />
-            <TextField fx:id="TFnameMission" layoutX="320.0" layoutY="49.0" />
-            <Label layoutX="322.0" layoutY="32.0" text="Name:" />
-            <TextArea fx:id="TAdescriptionMission" layoutX="320.0" layoutY="96.0" prefHeight="62.0" prefWidth="200.0" wrapText="true" />
-            <Label layoutX="319.0" layoutY="74.0" prefHeight="17.0" prefWidth="62.0" text="description" />
+            <Button fx:id="BTNreateMission" layoutX="41.0" layoutY="286.0" mnemonicParsing="false"
+                    onMouseClicked="#createMission" prefHeight="85.0" prefWidth="140.0" text="Create"/>
+            <TextField fx:id="TFlocationXMission" layoutX="35.0" layoutY="196.0"/>
+            <TextField fx:id="TFlocationYMission" layoutX="35.0" layoutY="237.0"/>
+            <Label layoutX="37.0" layoutY="179.0" text="Location X:"/>
+            <Label layoutX="39.0" layoutY="221.0" text="location Y:"/>
+            <TextField fx:id="TFnameMission" layoutX="35.0" layoutY="49.0"/>
+            <Label layoutX="35.0" layoutY="32.0" text="Name:"/>
+            <TextArea fx:id="TAdescriptionMission" layoutX="35.0" layoutY="105.0" prefHeight="66.0" prefWidth="292.0"
+                      wrapText="true"/>
+            <Label layoutX="35.0" layoutY="88.0" prefHeight="17.0" prefWidth="62.0" text="description"/>
          </children>
       </AnchorPane>
    </children>

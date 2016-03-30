@@ -2,35 +2,31 @@ package GUI;
 
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
+import CentralPoint.Staff;
 import CentralPoint.Team;
 import Database.DaoGeneric;
 import Database.DaoManager;
-import Database.DaoStaff;
 import Database.DbTables;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import CentralPoint.Team;
-import CentralPoint.Staff;
 
-import javax.swing.*;
 import java.awt.geom.Point2D;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class taskController implements Initializable {
     @FXML
@@ -151,7 +147,7 @@ public class taskController implements Initializable {
      * This is to test making a team
      */
     public void makeTeam() {
-        Team toMakeTeam = new Team(tfTeamName.getText(), null);
+        Team toMakeTeam = new Team(0, tfTeamName.getText(), null, null);
         if (!teamObservableList.contains(toMakeTeam)) {
             teamObservableList.add(toMakeTeam);
             Platform.runLater(() -> {
@@ -169,18 +165,18 @@ public class taskController implements Initializable {
      * Tries to assign a new rescueservice to a mission
      */
     public void assignTeamToMission() {
-        Team toAssignTeam = new Team((String)lvTeams.getSelectionModel().getSelectedItem(), null);
+        Team toAssignTeam = new Team(0, (String) lvTeams.getSelectionModel().getSelectedItem(), null, null);
         Mission toAssignJob = (Mission) lvTasks.getSelectionModel().getSelectedItem();
 
         ObservableList<Staff> staffAssigned = lvAssignedTeams.getItems();
         ArrayList<Team> assignedTeams = new ArrayList<>();
         for(Staff staff : staffAssigned){
-            assignedTeams.add(new Team(staff.getSort(),null));
+            assignedTeams.add(new Team(0, staff.getSort(), null, null));
         }
         toAssignJob.setTeamsAssigned(assignedTeams);
         boolean succesfulAdd = toAssignJob.addTeamToJob(toAssignTeam);
         if (succesfulAdd) {
-            assignedTeamsObservable.add(new Staff(null,null,null,null,null,null,toAssignTeam.getName(),0,false));
+            assignedTeamsObservable.add(new Staff(0, null, null, null, null, null, null, toAssignTeam.getName(), false));
             sendableMissions.put(toAssignJob,toAssignTeam.getName());
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -225,7 +221,7 @@ public class taskController implements Initializable {
         int portNumber = 0;
         Socket sendSocket = new Socket("localhost",2002);
         try (OutputStream os = sendSocket.getOutputStream(); ObjectOutputStream oos = new ObjectOutputStream(os)) {
-            oos.writeObject(missionList);
+            oos.writeObject(sendableMissions);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

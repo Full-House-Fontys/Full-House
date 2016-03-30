@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,19 +17,28 @@ public class CentralPoint {
     DaoManager daoManager;
     List<Staff> staffList;
     List<Material> materialList;
+    List<Mission> missionsList;
+    List<Team> teamList;
 
     ObservableList<Staff> staffObservableList;
     ObservableList<Material> materialObservableList;
-
+    ObservableList<Mission> missionObservableList;
+    ObservableList<Team> teamObservableList;
+    ObservableList<Team> availableTeamObservableList;
     /**
      * constructor for central point
      */
     public CentralPoint(){
         daoManager = DaoManager.INSTANCE;
+        missionsList = new ArrayList<>();
         staffList = new ArrayList<>();
         materialList = new ArrayList();
+        teamList = new ArrayList<>();
         staffObservableList = FXCollections.observableArrayList(staffList);
         materialObservableList = FXCollections.observableArrayList(materialList);
+        missionObservableList = FXCollections.observableArrayList(missionsList);
+        teamObservableList = FXCollections.observableArrayList(teamList);
+        availableTeamObservableList = FXCollections.observableArrayList();
     }
 
     /**
@@ -43,6 +53,18 @@ public class CentralPoint {
             case MATERIAAL:
                 materialObservableList.clear();
                 materialObservableList = daoManager.getDao(table).getAllRecord();
+                break;
+            case MISSIE:
+                missionObservableList.clear();
+                missionObservableList = daoManager.getDao(table).getAllRecord();
+                availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
+                addTeamsToMission();
+                break;
+            case TEAM:
+                teamObservableList.clear();
+                teamObservableList = daoManager.getDao(table).getAllRecord();
+                addTeamsToMission();
+                break;
             default:
                 break;
         }
@@ -185,4 +207,42 @@ public class CentralPoint {
         renewLists(DbTables.MATERIAAL);
     }
 
+    /**
+     * get all the missions from the database
+     *
+     * @return unmodifiableObservableList of all missions
+     */
+    public ObservableList<Mission> getAllMissions() {
+        renewLists(DbTables.MISSIE);
+        return FXCollections.unmodifiableObservableList(missionObservableList);
+    }
+
+    public void createMission(String name, String description, Date startTime, double locationX, double locationY) {
+        Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
+        daoManager.getDao(DbTables.MISSIE).insert(mission);
+        renewLists(DbTables.MISSIE);
+    }
+
+    public ObservableList<Team> getAllTeams() {
+        renewLists(DbTables.TEAM);
+        return FXCollections.unmodifiableObservableList(teamObservableList);
+    }
+
+    public void addTeamsToMission() {
+        ArrayList<Team> allTeamsAssignedToMission = new ArrayList<>();
+        for (Mission mission : missionObservableList) {
+            for (Team team : teamObservableList) {
+                if (team.getMissionID().contains(mission.getID())) {
+                    allTeamsAssignedToMission.add(team);
+                }
+            }
+            ArrayList<Team> copyAllTeamsAssignedToMission = new ArrayList<>(allTeamsAssignedToMission);
+            mission.setTeamsAssigned(copyAllTeamsAssignedToMission);
+            allTeamsAssignedToMission.clear();
+        }
+    }
+
+    public ObservableList<Team> getSpecificTeam() {
+        return availableTeamObservableList;
+    }
 }

@@ -1,13 +1,14 @@
 package CentralPoint;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
  * Created by kaj75 on 15-3-2016.
  */
-public class Staff {
+public class Staff implements Serializable {
     private String name;
     private String prefix;
     private String lastName;
@@ -15,9 +16,8 @@ public class Staff {
     private String password;
     private String sort;
     private Point2D location;
-    private int teamID;
     private boolean onLocation;
-
+    private int id;
 
     /**
      * @param name name
@@ -27,10 +27,9 @@ public class Staff {
      * @param password password
      * @param location location Point2D
      * @param sort sort of work he does
-     * @param teamID team he is currently in
      * @param onLocation boolean, true if on location
      */
-    public Staff(String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, int teamID, boolean onLocation) {
+    public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation) {
         this.name = name;
         this.prefix = prefix == null ? "" : prefix;
         this.lastName = lastName;
@@ -38,8 +37,16 @@ public class Staff {
         this.password = password;
         this.location = location;
         this.sort = sort;
-        this.teamID = teamID;
         this.onLocation = onLocation;
+        this.id = iD;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -67,10 +74,6 @@ public class Staff {
      */
     public Point2D getLocation() {return location; }
 
-    /**
-     * @return teamID
-     */
-    public int getTeamID() {return teamID; }
 
     /**
      * @return String op location, rounded to 2 decimals

@@ -17,7 +17,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
     private final static String TABLENAME = DbTables.PERSONEEL.toString();
     private final String ID = "ID";
     private final String Achternaam = "Achternaam";
-    private final String Tussenvoegesel = "Tussenvoegsel";
+    private final String Tussenvoegsel = "Tussenvoegsel";
     private final String Voornaam = "Voornaam";
     private final String Gebruikersnaam = "Gebruikersnaam";
     private final String Wachtwoord = "Wachtwoord";
@@ -47,13 +47,17 @@ public class DaoStaff extends DaoGeneric<Staff> {
         ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
         ResultSet rs;
 
-        String query = "Select DISTINCT Soort From Personeel,Personeel_Missie WHERE Personeel.ID = Personeel_Missie.PersoneelID AND Personeel_Missie.MissieID ="+id + ";";
+        String query = "Select Soort From Personeel,Team WHERE Personeel.ID = Personeel_Missie.PersoneelID AND Personeel_Missie.MissieID =" + id + ";";
 
         try{
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()){
-                staffListObservableList.add(new Staff(null, null, null, null, null, null, rs.getString(1),0, false));
+                staffListObservableList.add(new Staff(rs.getInt(ID), rs.getString(Voornaam),
+                        rs.getString(Tussenvoegsel), rs.getString(Achternaam), rs.getString(Gebruikersnaam),
+                        rs.getString(Wachtwoord), new Point2D.Double(rs.getDouble(LocatieX),
+                        rs.getDouble(LocatieY)), rs.getString(Soort),
+                        rs.getInt(OpLocatie) == 0));
             }
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -78,10 +82,10 @@ public class DaoStaff extends DaoGeneric<Staff> {
             Statement statement = connection.createStatement();
             res = statement.executeQuery(query);
             while (res.next()) {
-                obsStaff.add(new Staff(res.getString(Voornaam),
-                        res.getString(Tussenvoegesel), res.getString(Achternaam), res.getString(Gebruikersnaam),
+                obsStaff.add(new Staff(res.getInt(ID), res.getString(Voornaam),
+                        res.getString(Tussenvoegsel), res.getString(Achternaam), res.getString(Gebruikersnaam),
                         res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
-                        res.getDouble(LocatieY)), res.getString(Soort), res.getInt(TeamID),
+                        res.getDouble(LocatieY)), res.getString(Soort),
                         res.getInt(OpLocatie) == 0));
             }
         } catch (SQLException e) {

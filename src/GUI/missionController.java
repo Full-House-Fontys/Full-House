@@ -110,13 +110,6 @@ public class missionController {
                 selectedMission = mission;
             }
         }
-        for(Mission mission : tempMission)
-        {
-            if (missionlist.getSelectionModel().getSelectedItem().equals(mission))
-            {
-                selectedMission = mission;
-            }
-        }
         if(selectedMission != null)
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/missionscreen.fxml"));
@@ -124,8 +117,8 @@ public class missionController {
             Parent root = null;
             try {
                 root = loader.load();
-                missionsdetailcontroller MC = loader.getController();
-                MC.setMissionMark(selectedMission);
+                missionsdetailcontroller missionsdetailcontroller = loader.getController();
+                missionsdetailcontroller.setMissionController(selectedMission, null);
                 stage.setTitle("Mission: " + selectedMission.getID());
                 stage.setScene(new Scene(root));
                 stage.show();

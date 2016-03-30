@@ -1,13 +1,13 @@
 package CentralPoint;
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Kaj Suiker on 22-3-2016.
@@ -20,7 +20,7 @@ public class StaffTest {
     public void setUp() throws Exception {
         staff = new Staff();
         assertNotNull("object created", staff);
-        staff = new Staff("Kaj", "", "Adams","p_adams","jkl(USDj2", point2D, "Brandweer", 4,true );
+        staff = new Staff(0, "Kaj", "", "Adams", "p_adams", "jkl(USDj2", point2D, "Brandweer", true);
     }
 
     @After
@@ -40,7 +40,7 @@ public class StaffTest {
 
     @Test
     public void testGetTeamID() throws Exception {
-        assertEquals("Incorrect teamID",4,staff.getTeamID());
+
     }
 
     @Test
