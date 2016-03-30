@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -239,5 +240,23 @@ public class CentralPointTest {
     @Test
     public void testDeleteMaterial() throws Exception {
         centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
+    }
+
+    @Test
+    public void testGetAllMissions() {
+        ObservableList<Mission> allMissions = centralPoint.getAllMissions();
+        assertEquals("There are not 10 missions", 10, allMissions.size());
+    }
+
+    @Test
+    public void testCreateMission() {
+        Date date = new Date();
+        centralPoint.createMission("Testing mission", "Try out", date, 12.1, 21.2);
+        assertEquals("There are not 11 missions", 11, centralPoint.getAllMissions().size());
+    }
+
+    @Test
+    public void testGetAllTeams() {
+        assertEquals("There are not 5 teams", 5, centralPoint.getAllTeams().size());
     }
 }
