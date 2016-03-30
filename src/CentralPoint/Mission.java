@@ -115,7 +115,7 @@ public class Mission implements Serializable{
 
     @Override
     public String toString() {
-        return this.name;
+        return this.ID + ": " + this.name;
     }
 
     public ObservableList getTeamsAssignedToMission(int id) {
