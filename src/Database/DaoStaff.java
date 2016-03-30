@@ -24,8 +24,10 @@ public class DaoStaff extends DaoGeneric<Staff> {
     private final String LocatieX = "LocatieX";
     private final String LocatieY = "LocatieY";
     private final String Soort = "Soort";
-    private final String TeamID = "TeamID";
+    //private final String TeamID = "TeamID";
     private final String OpLocatie = "OpLocatie";
+    private final String TeamID = "TeamID";
+    private final String MissionID = "MissieID";
 
     /**
      * @param connection database connection
@@ -47,6 +49,28 @@ public class DaoStaff extends DaoGeneric<Staff> {
         ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
         ResultSet rs;
 
+        String query = "Select * FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Team.MissieID IS NOT NULL AND Personeel.OpLocatie = 1";
+
+        try{
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()){
+                staffListObservableList.add(new Staff(rs.getInt(ID), rs.getString(Voornaam),
+                        rs.getString(Tussenvoegsel), rs.getString(Achternaam), rs.getString(Gebruikersnaam),
+                        rs.getString(Wachtwoord), new Point2D.Double(rs.getDouble(LocatieX),
+                        rs.getDouble(LocatieY)), rs.getString(Soort),
+                        rs.getInt(OpLocatie) == 0, rs.getInt(TeamID), rs.getInt(MissionID)));
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return staffListObservableList;
+        /*
+        ArrayList staffList = new ArrayList();
+        ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
+        ResultSet rs;
+
         String query = "Select Soort From Personeel,Team WHERE Personeel.ID = Personeel_Missie.PersoneelID AND Personeel_Missie.MissieID =" + id + ";";
 
         try{
@@ -64,6 +88,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
         }
 
         return staffListObservableList;
+        */
     }
 
     /**

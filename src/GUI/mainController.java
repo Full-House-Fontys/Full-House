@@ -4,6 +4,8 @@ package GUI;
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
 import CentralPoint.Team;
+import CentralPoint.Staff;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -55,6 +57,24 @@ public class mainController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void ShowStaffInField(){
+
+        ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/Task.fxml"));
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+            taskController taskControllers = loader.getController();
+            taskControllers.setList(staffOnLocation);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
     }
 
     @Override

@@ -57,8 +57,6 @@ public class CentralPoint {
             case MISSIE:
                 missionObservableList.clear();
                 missionObservableList = daoManager.getDao(table).getAllRecord();
-                availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
-                addTeamsToMission();
                 break;
             case TEAM:
                 teamObservableList.clear();
@@ -74,13 +72,13 @@ public class CentralPoint {
      * @return is of staff on location
      */
     public ObservableList<Staff> getStaffOnLocation(){
-        ObservableList<Staff> staffOnLocation = FXCollections.observableArrayList();
-        renewLists(DbTables.PERSONEEL);
-        for (Staff staff : staffObservableList){
-            if(staff.isOnLocation())
-                staffOnLocation.add(staff);
-        }
-        return FXCollections.unmodifiableObservableList(staffOnLocation);
+        //ObservableList<Staff> staffOnLocation = FXCollections.observableArrayList();
+
+        //for (Staff staff : staffObservableList){
+            //if(staff.isOnLocation())
+                //staffOnLocation.add(staff);
+
+        return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
     /**
@@ -221,6 +219,8 @@ public class CentralPoint {
         Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
         daoManager.getDao(DbTables.MISSIE).insert(mission);
         renewLists(DbTables.MISSIE);
+        //availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
+        //addTeamsToMission();
     }
 
     public ObservableList<Team> getAllTeams() {
@@ -243,6 +243,7 @@ public class CentralPoint {
     }
 
     public ObservableList<Team> getSpecificTeam() {
+        availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
         return availableTeamObservableList;
     }
 }

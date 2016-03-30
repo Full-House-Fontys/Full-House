@@ -43,7 +43,7 @@ public class DaoTeam extends DaoGeneric<Team> {
         ObservableList<Team> teamListObservableList = FXCollections.observableArrayList(missionList);
         ResultSet rs;
 
-        String query = "Select * FROM Personeel INNER JOIN " + TABLENAME + " ON Personeel.ID = Team.PersoneelID WHERE MissieID IS NULL;";
+        String query = "Select * FROM Personeel INNER JOIN " + TABLENAME + " ON Personeel.ID = Team.PersoneelID WHERE MissieID IS NULL";
 
         try {
             Statement statement = connection.createStatement();

@@ -11,13 +11,46 @@ import java.math.RoundingMode;
 public class Staff implements Serializable {
     private String name;
     private String prefix;
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     private String lastName;
     private String userName;
     private String password;
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
     private String sort;
     private Point2D location;
     private boolean onLocation;
     private int id;
+
+    public int getTeamID() {
+        return teamID;
+    }
+
+    public void setTeamID(int teamID) {
+        this.teamID = teamID;
+    }
+
+    public int getMissionID() {
+        return missionID;
+    }
+
+    public void setMissionID(int missionID) {
+        this.missionID = missionID;
+    }
+
+    private int teamID;
+    private int missionID;
 
     /**
      * @param name name
@@ -29,7 +62,21 @@ public class Staff implements Serializable {
      * @param sort sort of work he does
      * @param onLocation boolean, true if on location
      */
-    public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation) {
+    public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation, int teamID, int missionID) {
+        this.name = name;
+        this.prefix = prefix == null ? "" : prefix;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.location = location;
+        this.sort = sort;
+        this.onLocation = onLocation;
+        this.id = iD;
+        this.teamID = teamID;
+        this.missionID = missionID;
+    }
+
+    public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation){
         this.name = name;
         this.prefix = prefix == null ? "" : prefix;
         this.lastName = lastName;
@@ -93,6 +140,8 @@ public class Staff implements Serializable {
     public void setOnLocation(boolean onLocation) {
         this.onLocation = onLocation;
     }
+
+
 
     /**
      * @return String of staff variables
