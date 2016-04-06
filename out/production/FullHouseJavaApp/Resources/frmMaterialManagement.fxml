@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MaterialController">
+    <children>
+        <TableView fx:id="tvMaterials" layoutX="14.0" layoutY="54.0" prefHeight="606.0" prefWidth="649.0">
+            <columns>
+                <TableColumn fx:id="tcID" prefWidth="32.0" text="ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="tcName" prefWidth="200.0" text="Naam">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="tcSort" prefWidth="117.0" text="Soort">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="sort" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="tcLocation" prefWidth="211.0" text="Locatie">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="locationString" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="tcOnLoc" prefWidth="75.0" text="Op locatie?">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="onLocation" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Label fx:id="lblMatTxt" layoutX="14.0" layoutY="14.0" text="Alle materialen:" />
+      <Button fx:id="btnNewMaterial" layoutX="695.0" layoutY="54.0" mnemonicParsing="false" text="Voeg nieuw materiaal toe" textAlignment="CENTER" />
+      <Button fx:id="btnEditMaterial" disable="true" layoutX="678.0" layoutY="99.0" mnemonicParsing="false" text="Bewerk geselecteerd materiaal" textAlignment="CENTER" />
+      <Button fx:id="btnDeleteMaterial" disable="true" layoutX="672.0" layoutY="144.0" mnemonicParsing="false" text="Verwijder geselecteerd materiaal" textAlignment="CENTER" />
+    </children>
+</Pane>

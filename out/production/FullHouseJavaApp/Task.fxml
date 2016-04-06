@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.taskController">
+    <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Staff on location:" />
+      <TableView fx:id="tvStaffOnLocation" layoutX="14.0" layoutY="31.0" prefHeight="427.0" prefWidth="489.0">
+        <columns>
+          <TableColumn fx:id="tcName" prefWidth="82.0" text="Name">
+            <cellValueFactory>
+                <PropertyValueFactory property="name" />
+            </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="tcLastname" prefWidth="131.0" text="Lastname">
+                <cellValueFactory>
+                    <PropertyValueFactory property="lastName" />
+                </cellValueFactory>
+            </TableColumn>
+          <TableColumn fx:id="tcTeamID" prefWidth="53.0" text="TeamID">
+              <cellValueFactory>
+                  <PropertyValueFactory property="teamID" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn fx:id="tcSort" prefWidth="76.0" text="Sort">
+                <cellValueFactory>
+                    <PropertyValueFactory property="sort" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="tcLocation" prefWidth="81.0" text="Location">
+                <cellValueFactory>
+                    <PropertyValueFactory property="locationString" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="65.0" text="MissionID" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="missionID" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+    </children>
+</Pane>

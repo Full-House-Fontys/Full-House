@@ -1,5 +1,3 @@
-
-
 //import static javafx.application.Application.*;
 
 import javafx.fxml.FXMLLoader;
