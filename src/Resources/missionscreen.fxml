@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionsdetailcontroller">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
+          fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -47,7 +47,64 @@
                      </Tab>
                      <Tab text="Materialen">
                          <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                     <TableView fx:id="tvAvailableMat" layoutX="109.0" layoutY="114.0"
+                                                prefHeight="400.0" prefWidth="480.0">
+                                         <columns>
+                                             <TableColumn fx:id="tcAvaiName" prefWidth="140.0" text="Naam">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="name"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcAvaiSort" prefWidth="68.0" text="Soort">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="sort"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcAvaiLocation" prefWidth="110.0" text="Locatie">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="locationString"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcAvaiDistance" prefWidth="129.0" text="Afstand">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="distance"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                         </columns>
+                                     </TableView>
+                                     <Label layoutX="109.0" layoutY="87.0" text="Beschikbare materialen"/>
+                                     <TableView fx:id="tvNotAvailableMat" layoutX="793.0" layoutY="114.0"
+                                                prefHeight="400.0" prefWidth="480.0">
+                                         <columns>
+                                             <TableColumn fx:id="tcNotAvaiName" prefWidth="140.0" text="Naam">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="name"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcNotAvaiSort" prefWidth="68.0" text="Soort">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="sort"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcNotAvaiLocation" prefWidth="110.0" text="Locatie">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="locationString"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                             <TableColumn fx:id="tcNotAvaiDistance" prefWidth="129.0" text="Afstand">
+                                                 <cellValueFactory>
+                                                     <PropertyValueFactory property="distance"/>
+                                                 </cellValueFactory>
+                                             </TableColumn>
+                                         </columns>
+                                     </TableView>
+                                     <Label layoutX="793.0" layoutY="87.0" text="Materialen in missie"/>
+                                     <Button layoutX="625.0" layoutY="184.0" mnemonicParsing="false"
+                                             text="Voeg toe aan Missie"/>
+                                 </children>
+                             </AnchorPane>
                          </content>
                      </Tab>
                      <Tab text="Berichten">

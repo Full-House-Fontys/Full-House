@@ -22,6 +22,7 @@ public class Mission implements Serializable{
     private double locationX;
     private double locationY;
     private ArrayList<Team> teamsAssigned;
+    private ArrayList<Material> materialsAssigned;
 
     public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
         this.ID = ID;
@@ -33,6 +34,7 @@ public class Mission implements Serializable{
         this.locationX = locationX;
         this.locationY = locationY;
         this.teamsAssigned = null;
+        this.materialsAssigned = null;
     }
 
     public int getID() {
@@ -88,6 +90,14 @@ public class Mission implements Serializable{
 
     public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
+    }
+
+    public ArrayList<Material> getMaterialsAssigned() {
+        return materialsAssigned;
+    }
+
+    public void setMaterialsAssigned(ArrayList<Material> materialsAssigned) {
+        this.materialsAssigned = materialsAssigned;
     }
 
     public boolean addTeamToJob(Team teamToAdd) {

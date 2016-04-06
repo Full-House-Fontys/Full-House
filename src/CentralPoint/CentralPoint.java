@@ -17,6 +17,7 @@ public class CentralPoint {
     DaoManager daoManager;
     List<Staff> staffList;
     List<Material> materialList;
+    List<Material> availableMatList;
     List<Mission> missionsList;
     List<Team> teamList;
 
@@ -25,6 +26,7 @@ public class CentralPoint {
     ObservableList<Mission> missionObservableList;
     ObservableList<Team> teamObservableList;
     ObservableList<Team> availableTeamObservableList;
+    ObservableList<Material> availableMaterialObservableList;
     /**
      * constructor for central point
      */
@@ -33,9 +35,11 @@ public class CentralPoint {
         missionsList = new ArrayList<>();
         staffList = new ArrayList<>();
         materialList = new ArrayList();
+        availableMatList = new ArrayList();
         teamList = new ArrayList<>();
         staffObservableList = FXCollections.observableArrayList(staffList);
         materialObservableList = FXCollections.observableArrayList(materialList);
+        availableMaterialObservableList = FXCollections.observableArrayList(availableMatList);
         missionObservableList = FXCollections.observableArrayList(missionsList);
         teamObservableList = FXCollections.observableArrayList(teamList);
         availableTeamObservableList = FXCollections.observableArrayList();
@@ -53,6 +57,7 @@ public class CentralPoint {
             case MATERIAAL:
                 materialObservableList.clear();
                 materialObservableList = daoManager.getDao(table).getAllRecord();
+                availableMaterialObservableList = daoManager.getDao(table).getSpecificList(0);
                 break;
             case MISSIE:
                 missionObservableList.clear();
@@ -62,6 +67,7 @@ public class CentralPoint {
                 teamObservableList.clear();
                 teamObservableList = daoManager.getDao(table).getAllRecord();
                 addTeamsToMission();
+                addMaterialsToMission();
                 break;
             default:
                 break;
@@ -99,6 +105,11 @@ public class CentralPoint {
     public ObservableList<Material> getMaterials(){
         renewLists(DbTables.MATERIAAL);
         return FXCollections.unmodifiableObservableList(materialObservableList);
+    }
+
+    public ObservableList<Material> getAvailableMaterials() {
+        renewLists(DbTables.MATERIAAL);
+        return FXCollections.unmodifiableObservableList(availableMaterialObservableList);
     }
 
     /**
@@ -239,6 +250,23 @@ public class CentralPoint {
             ArrayList<Team> copyAllTeamsAssignedToMission = new ArrayList<>(allTeamsAssignedToMission);
             mission.setTeamsAssigned(copyAllTeamsAssignedToMission);
             allTeamsAssignedToMission.clear();
+        }
+    }
+
+    public void addMaterialsToMission() {
+        renewLists(DbTables.MATERIAAL);
+        ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
+        for (Mission mission : missionObservableList) {
+            for (Material material : materialObservableList) {
+                for (int i : material.getMissionIds()) {
+                    if (mission.getID() == i) {
+                        allMaterialsAssignedToMission.add(material);
+                    }
+                }
+            }
+            ArrayList<Material> copyAllMaterialsAssignedToMission = new ArrayList(allMaterialsAssignedToMission);
+            mission.setMaterialsAssigned(copyAllMaterialsAssignedToMission);
+            allMaterialsAssignedToMission.clear();
         }
     }
 

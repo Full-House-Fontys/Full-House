@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by jvdwi on 21-3-2016.
  */
-public class DaoMaterial extends DaoGeneric<Material>{
+public class DaoMaterial extends DaoGeneric<Material> {
 
     private final static String TABLENAME = DbTables.MATERIAAL.toString();
     private final String ID = "ID";
@@ -25,16 +25,42 @@ public class DaoMaterial extends DaoGeneric<Material>{
 
     /**
      * @param connection database connection
-     * uses daoGenerics
-     * database class of Material table
+     *                   uses daoGenerics
+     *                   database class of Material table
      */
     public DaoMaterial(Connection connection) {
         super(connection, TABLENAME);
     }
 
+    /**
+     * get specified materials
+     * if id=0 -> only available materials
+     *
+     * @param id
+     * @return
+     */
     @Override
     public ObservableList<Material> getSpecificList(int id) {
-        return null;
+        List<Material> materialList = new ArrayList();
+        ObservableList<Material> materialObservableList = FXCollections.observableArrayList(materialList);
+        switch (id) {
+            case 0:
+                ResultSet rs = null;
+
+                String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'true'";
+                try {
+                    Statement statement = connection.createStatement();
+                    rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        materialObservableList.add(new Material(rs.getInt(1), rs.getString(2), rs.getString(3), new Point2D.Double(rs.getDouble(4), rs.getDouble(5)), rs.getBoolean(6)));
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                break;
+        }
+        return materialObservableList;
     }
 
     /**
@@ -49,24 +75,50 @@ public class DaoMaterial extends DaoGeneric<Material>{
 
         String query = "SELECT * FROM " + TABLENAME;
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 materialObservableList.add(new Material(rs.getInt(1), rs.getString(2), rs.getString(3), new Point2D.Double(rs.getDouble(4), rs.getDouble(5)), rs.getBoolean(6)));
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return materialObservableList;
+        return addMissionIds(materialObservableList);
+    }
+
+    private ObservableList<Material> addMissionIds(ObservableList<Material> materials) {
+        ResultSet rs = null;
+        String query = "SELECT * FROM MATERIAAL_MISSIE";
+
+        try {
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                getMaterialById(materials, rs.getInt(1)).addMissionId(rs.getInt(2));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return materials;
+    }
+
+    private Material getMaterialById(ObservableList<Material> materials, int id) {
+        for (Material material : materials) {
+            if (material.getId() == id) {
+                return material;
+            }
+        }
+        return null;
     }
 
     /**
      * update with int as key
+     *
      * @param value list of to update
-     * @param key key of row
-     * Update bool in a table row
+     * @param key   key of row
+     *              Update bool in a table row
      * @return
      */
     @Override
@@ -83,7 +135,7 @@ public class DaoMaterial extends DaoGeneric<Material>{
             ps.setInt(6, key);
             ps.executeUpdate();
             result = true;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return result;
@@ -91,6 +143,7 @@ public class DaoMaterial extends DaoGeneric<Material>{
 
     /**
      * update with String as key
+     *
      * @param value
      * @param key
      * @return
@@ -102,6 +155,7 @@ public class DaoMaterial extends DaoGeneric<Material>{
 
     /**
      * insert material in database
+     *
      * @param value
      * @return
      */
@@ -118,7 +172,7 @@ public class DaoMaterial extends DaoGeneric<Material>{
             ps.setBoolean(5, value.isOnLocation());
             ps.executeUpdate();
             result = true;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return result;
@@ -126,6 +180,7 @@ public class DaoMaterial extends DaoGeneric<Material>{
 
     /**
      * delete material from database
+     *
      * @param key
      * @return
      */
@@ -133,12 +188,12 @@ public class DaoMaterial extends DaoGeneric<Material>{
     public boolean delete(int key) {
         boolean result = false;
         String query = MessageFormat.format("DELETE FROM {0} WHERE ID = ?", TABLENAME);
-        try{
+        try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, key);
             ps.executeUpdate();
             result = true;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 

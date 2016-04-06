@@ -51,7 +51,7 @@ public class DaoMission extends DaoGeneric<Mission>{
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()){
-                missionListObservableList.add(new Mission(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getDate(4),rs.getDate(5),rs.getDate(6),rs.getInt(7),rs.getInt(8)));
+                missionListObservableList.add(new Mission(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getDate(6), rs.getDouble(7), rs.getDouble(8)));
 
             }
         } catch (SQLException ex){

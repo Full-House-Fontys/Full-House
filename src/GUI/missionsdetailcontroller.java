@@ -1,20 +1,20 @@
 package GUI;
 
 import CentralPoint.CentralPoint;
+import CentralPoint.Material;
 import CentralPoint.Mission;
 import CentralPoint.Team;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -40,35 +40,64 @@ public class missionsdetailcontroller {
     @FXML
     private ListView lvActieveMissies;
 
+    @FXML
+    private TableView<Material> tvAvailableMat;
+    @FXML
+    private TableColumn<Material, String> tcAvaiName;
+    @FXML
+    private TableColumn<Material, String> tcAvaiSort;
+    @FXML
+    private TableColumn<Material, String> tcAvaiLocation;
+    @FXML
+    private TableColumn<Material, String> tcAvaiDistance;
+
+    @FXML
+    private TableView<Material> tvNotAvailableMat;
+    @FXML
+    private TableColumn<Material, String> tcNotAvaiName;
+    @FXML
+    private TableColumn<Material, String> tcNotAvaiSort;
+    @FXML
+    private TableColumn<Material, String> tcNotAvaiLocation;
+    @FXML
+    private TableColumn<Material, String> tcNotAvaiDistance;
+
     private Mission mission;
     private CentralPoint centralPoint;
     private ObservableList<Team> teamAvailable;
     private ObservableList<Team> teamToAdd;
     private ObservableList<Team> teamsInTheMission;
+    private ObservableList<Material> materialAvailable;
+    private ObservableList<Material> materialInMission;
     private Alert alert;
 
-    public void setMissionController(Mission mission, CentralPoint centralPoint)
-    {
+    public void setMissionController(Mission mission, CentralPoint centralPoint) {
         this.mission = mission;
         this.centralPoint = centralPoint;
         this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
         this.teamToAdd = FXCollections.observableArrayList();
         this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
+        this.materialAvailable = FXCollections.observableArrayList(centralPoint.getAvailableMaterials());
+        this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
         setSettings();
     }
 
-    private void setSettings()
-    {
+    private void setSettings() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Beschrijving : " + mission.getDescription() + "\n");
         stringBuilder.append("Start tijd : " + mission.getStartTime() + "\n");
         stringBuilder.append("Laatst geupdate : " + mission.getLastUpdate() + "\n");
         stringBuilder.append("Eind tijd : " + mission.getEndTime() + "\n");
         stringBuilder.append("Locatie : " + mission.getLocationX() + ";" + mission.getLocationY() + "\n");
+        for (Material m : materialAvailable) {
+            m.setDistance(new Point2D.Double(mission.getLocationX(), mission.getLocationY()));
+        }
         TaBeschrijving.insertText(0, stringBuilder.toString());
         LvTeams.setItems(FXCollections.observableArrayList(mission.getTeamsAssigned()));
         lvTeamsInMission.setItems(teamsInTheMission);
         lvTeamsAvailable.setItems(teamAvailable);
+        tvAvailableMat.setItems(materialAvailable);
+        tvNotAvailableMat.setItems(materialInMission);
     }
 
     public void addAvailableTeamToCurrentTeams() {
@@ -113,7 +142,7 @@ public class missionsdetailcontroller {
         }
     }
 
-    private void showPopup(String bericht){
+    private void showPopup(String bericht) {
         Stage primaryStage = new Stage();
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
