@@ -138,4 +138,21 @@ public class DaoMission extends DaoGeneric<Mission>{
 
         return result;
     }
+
+    @Override
+    public void insertTwoInts(int id, int id1) {
+        String query = "INSERT INTO MATERIAAL_MISSIE (MateriaalID, MissieID) VALUES (?, ?)";
+        String query2 = "UPDATE MATERIAAL SET OPLOCATIE = 0 WHERE ID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            PreparedStatement ps2 = connection.prepareStatement(query2);
+            ps.setInt(1, id);
+            ps.setInt(2, id1);
+            ps.executeUpdate();
+            ps2.setInt(1, id);
+            ps2.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

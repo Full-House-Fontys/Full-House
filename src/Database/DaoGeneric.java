@@ -62,4 +62,6 @@ public abstract class DaoGeneric<T> {
      * @return
      */
     public abstract boolean delete(int key);
+
+    public abstract void insertTwoInts(int id, int id1);
 }

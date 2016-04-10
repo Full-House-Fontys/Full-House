@@ -135,4 +135,9 @@ public class DaoTeam extends DaoGeneric<Team> {
     public boolean delete(int key) {
         return false;
     }
+
+    @Override
+    public void insertTwoInts(int id, int id1) {
+
+    }
 }

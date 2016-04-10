@@ -199,4 +199,9 @@ public class DaoMaterial extends DaoGeneric<Material> {
 
         return result;
     }
+
+    @Override
+    public void insertTwoInts(int id, int id1) {
+
+    }
 }

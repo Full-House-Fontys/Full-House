@@ -270,6 +270,13 @@ public class CentralPoint {
         }
     }
 
+    public void addMaterialToMission(Material selectedMaterial, Mission activeMission) {
+        daoManager.getDao(DbTables.MISSIE).insertTwoInts(selectedMaterial.getId(), activeMission.getID());
+        addMaterialsToMission();
+        renewLists(DbTables.MISSIE);
+        renewLists(DbTables.MATERIAAL);
+    }
+
     public ObservableList<Team> getSpecificTeam() {
         availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
         return availableTeamObservableList;

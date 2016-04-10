@@ -155,4 +155,9 @@ public class DaoStaff extends DaoGeneric<Staff> {
     public boolean delete(int key) {
         return false;
     }
+
+    @Override
+    public void insertTwoInts(int id, int id1) {
+
+    }
 }

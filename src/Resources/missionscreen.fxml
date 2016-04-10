@@ -102,7 +102,7 @@
                                      </TableView>
                                      <Label layoutX="793.0" layoutY="87.0" text="Materialen in missie"/>
                                      <Button layoutX="625.0" layoutY="184.0" mnemonicParsing="false"
-                                             text="Voeg toe aan Missie"/>
+                                             text="Voeg toe aan Missie" onAction="#addMaterialToMission"/>
                                  </children>
                              </AnchorPane>
                          </content>

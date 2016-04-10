@@ -100,6 +100,21 @@ public class missionsdetailcontroller {
         tvNotAvailableMat.setItems(materialInMission);
     }
 
+    @FXML
+    private void addMaterialToMission() {
+        if (tvAvailableMat.getSelectionModel().getSelectedItem() != null) {
+            centralPoint.addMaterialToMission(tvAvailableMat.getSelectionModel().getSelectedItem(), mission);
+            setMissionController(mission, centralPoint);
+            setSettings();
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Materiaal koppelen aan missie");
+            alert.setHeaderText("Koppelen");
+            alert.setContentText("Selecteer een materiaal om te koppelen");
+            alert.showAndWait();
+        }
+    }
+
     public void addAvailableTeamToCurrentTeams() {
         if (lvTeamsAvailable.getSelectionModel().getSelectedItem() != null) {
             teamToAdd.add((Team) lvTeamsAvailable.getSelectionModel().getSelectedItem());
