@@ -74,6 +74,7 @@ public class missionsdetailcontroller {
     public void setMissionController(Mission mission, CentralPoint centralPoint) {
         this.mission = mission;
         this.centralPoint = centralPoint;
+        mission = centralPoint.addMaterialsToMission(mission.getID());
         this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
         this.teamToAdd = FXCollections.observableArrayList();
         if(mission.getTeamsAssigned() != null) {
