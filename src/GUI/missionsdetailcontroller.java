@@ -76,9 +76,13 @@ public class missionsdetailcontroller {
         this.centralPoint = centralPoint;
         this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
         this.teamToAdd = FXCollections.observableArrayList();
-        this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
+        if(mission.getTeamsAssigned() != null) {
+            this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
+        }
         this.materialAvailable = FXCollections.observableArrayList(centralPoint.getAvailableMaterials());
-        this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
+        if(mission.getMaterialsAssigned() != null) {
+            this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
+        }
         setSettings();
     }
 
@@ -93,7 +97,9 @@ public class missionsdetailcontroller {
             m.setDistance(new Point2D.Double(mission.getLocationX(), mission.getLocationY()));
         }
         TaBeschrijving.insertText(0, stringBuilder.toString());
-        LvTeams.setItems(FXCollections.observableArrayList(mission.getTeamsAssigned()));
+        if(mission.getTeamsAssigned() != null) {
+            LvTeams.setItems(FXCollections.observableArrayList(mission.getTeamsAssigned()));
+        }
         lvTeamsInMission.setItems(teamsInTheMission);
         lvTeamsAvailable.setItems(teamAvailable);
         tvAvailableMat.setItems(materialAvailable);
@@ -103,8 +109,8 @@ public class missionsdetailcontroller {
     @FXML
     private void addMaterialToMission() {
         if (tvAvailableMat.getSelectionModel().getSelectedItem() != null) {
-            Mission m = centralPoint.addMaterialToMission(tvAvailableMat.getSelectionModel().getSelectedItem(), mission);
-            setMissionController(m, centralPoint);
+            Mission mis = centralPoint.addMaterialToMission(tvAvailableMat.getSelectionModel().getSelectedItem(), mission);
+            setMissionController(mis, centralPoint);
             setSettings();
         } else {
             alert = new Alert(Alert.AlertType.ERROR);

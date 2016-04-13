@@ -67,7 +67,7 @@ public class CentralPoint {
                 teamObservableList.clear();
                 teamObservableList = daoManager.getDao(table).getAllRecord();
                 addTeamsToMission();
-                addMaterialsToMission();
+                addMaterialsToMission(0);
                 break;
             default:
                 break;
@@ -253,34 +253,34 @@ public class CentralPoint {
         }
     }
 
-    public void addMaterialsToMission() {
+    public Mission addMaterialsToMission(int id) {
         renewLists(DbTables.MATERIAAL);
         ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
         for (Mission mission : missionObservableList) {
-            for (Material material : materialObservableList) {
-                for (int i : material.getMissionIds()) {
-                    if (mission.getID() == i) {
-                        allMaterialsAssignedToMission.add(material);
+            if(mission.getID() == id) {
+                for (Material material : materialObservableList) {
+                    for (int i : material.getMissionIds()) {
+                        if (mission.getID() == i) {
+                            allMaterialsAssignedToMission.add(material);
+                        }
                     }
                 }
+                //ArrayList<Material> copyAllMaterialsAssignedToMission = new ArrayList(allMaterialsAssignedToMission);
+                mission.setMaterialsAssigned(allMaterialsAssignedToMission);//copyAllMaterialsAssignedToMission);
+                //allMaterialsAssignedToMission.clear();
+                return mission;
             }
-            ArrayList<Material> copyAllMaterialsAssignedToMission = new ArrayList(allMaterialsAssignedToMission);
-            mission.setMaterialsAssigned(copyAllMaterialsAssignedToMission);
-            allMaterialsAssignedToMission.clear();
         }
+        //ArrayList<Material> temp = new ArrayList();
+        return null;
     }
 
     public Mission addMaterialToMission(Material selectedMaterial, Mission activeMission) {
         daoManager.getDao(DbTables.MISSIE).insertTwoInts(selectedMaterial.getId(), activeMission.getID());
-        addMaterialsToMission();
+        Mission updateMission = addMaterialsToMission(activeMission.getID());
         renewLists(DbTables.MISSIE);
         renewLists(DbTables.MATERIAAL);
-        for (Mission m : missionObservableList) {
-            if (m.getID() == activeMission.getID()) {
-                return m;
-            }
-        }
-        return null;
+        return updateMission;
     }
 
     public ObservableList<Team> getSpecificTeam() {
