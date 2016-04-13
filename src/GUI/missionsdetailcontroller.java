@@ -103,8 +103,8 @@ public class missionsdetailcontroller {
     @FXML
     private void addMaterialToMission() {
         if (tvAvailableMat.getSelectionModel().getSelectedItem() != null) {
-            centralPoint.addMaterialToMission(tvAvailableMat.getSelectionModel().getSelectedItem(), mission);
-            setMissionController(mission, centralPoint);
+            Mission m = centralPoint.addMaterialToMission(tvAvailableMat.getSelectionModel().getSelectedItem(), mission);
+            setMissionController(m, centralPoint);
             setSettings();
         } else {
             alert = new Alert(Alert.AlertType.ERROR);
