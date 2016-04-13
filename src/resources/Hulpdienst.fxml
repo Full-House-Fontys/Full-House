@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0"
+      prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="GUI.HulpdienstController">
+    <children>
+        <ListView fx:id="LVmissies" layoutX="79.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0"/>
+        <ListView fx:id="LVpersoneel" layoutX="580.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0"/>
+        <TextArea fx:id="TAmissiedetail" layoutX="79.0" layoutY="244.0" prefHeight="200.0" prefWidth="200.0"/>
+        <ComboBox fx:id="CBfilterpersonen" layoutX="435.0" layoutY="21.0" prefHeight="25.0" prefWidth="127.0"
+                  promptText="alle"/>
+    </children>
+</Pane>
