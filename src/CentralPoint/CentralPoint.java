@@ -27,6 +27,7 @@ public class CentralPoint {
     ObservableList<Team> teamObservableList;
     ObservableList<Team> availableTeamObservableList;
     ObservableList<Material> availableMaterialObservableList;
+
     /**
      * constructor for central point
      */
@@ -78,12 +79,6 @@ public class CentralPoint {
      * @return is of staff on location
      */
     public ObservableList<Staff> getStaffOnLocation(){
-        //ObservableList<Staff> staffOnLocation = FXCollections.observableArrayList();
-
-        //for (Staff staff : staffObservableList){
-            //if(staff.isOnLocation())
-                //staffOnLocation.add(staff);
-
         return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
@@ -107,6 +102,11 @@ public class CentralPoint {
         return FXCollections.unmodifiableObservableList(materialObservableList);
     }
 
+    /**
+     * returns the available materiallist as observableList
+     *
+     * @return unmodifiableObservableList of available materials
+     */
     public ObservableList<Material> getAvailableMaterials() {
         renewLists(DbTables.MATERIAAL);
         return FXCollections.unmodifiableObservableList(availableMaterialObservableList);
@@ -150,11 +150,11 @@ public class CentralPoint {
 
     /**
      * update the material for given id
-     * @param matId
-     * @param name
-     * @param sort
-     * @param location
-     * @param onLoc
+     * @param matId as int
+     * @param name as String
+     * @param sort as String
+     * @param location as Point2D
+     * @param onLoc as boolean
      * @throws IllegalArgumentException
      * @throws IllegalStateException
      */
@@ -209,7 +209,7 @@ public class CentralPoint {
 
     /**
      * delete given material
-     * @param m
+     * @param m as material
      */
     public void deleteMaterial(Material m) {
         daoManager.getDao(DbTables.MATERIAAL).delete(m.getId());
@@ -226,6 +226,14 @@ public class CentralPoint {
         return FXCollections.unmodifiableObservableList(missionObservableList);
     }
 
+    /**
+     * creates a mission from given parameters
+     * @param name as String
+     * @param description as Stirng
+     * @param startTime as Date
+     * @param locationX as double
+     * @param locationY as double
+     */
     public void createMission(String name, String description, Date startTime, double locationX, double locationY) {
         Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
         daoManager.getDao(DbTables.MISSIE).insert(mission);
@@ -234,11 +242,18 @@ public class CentralPoint {
         //addTeamsToMission();
     }
 
+    /**
+     * Returns all the teams
+     * @return teams as unmodifiableObservableList
+     */
     public ObservableList<Team> getAllTeams() {
         renewLists(DbTables.TEAM);
         return FXCollections.unmodifiableObservableList(teamObservableList);
     }
 
+    /**
+     * Add teams to a mission
+     */
     public void addTeamsToMission() {
         ArrayList<Team> allTeamsAssignedToMission = new ArrayList<>();
         for (Mission mission : missionObservableList) {
@@ -253,6 +268,11 @@ public class CentralPoint {
         }
     }
 
+    /**
+     * Adds materials to a mission
+     * @param id as int, the id of a mission
+     * @return the Mission which is opened
+     */
     public Mission addMaterialsToMission(int id) {
         renewLists(DbTables.MATERIAAL);
         ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
@@ -275,6 +295,12 @@ public class CentralPoint {
         return null;
     }
 
+    /**
+     * Adds one material to a mission
+     * @param selectedMaterial as Material, the material that should be added to the mission
+     * @param activeMission as Mission, the mission where the material belongs to
+     * @return the Mission which is opened
+     */
     public Mission addMaterialToMission(Material selectedMaterial, Mission activeMission) {
         daoManager.getDao(DbTables.MISSIE).insertTwoInts(selectedMaterial.getId(), activeMission.getID());
         Mission updateMission = addMaterialsToMission(activeMission.getID());
@@ -283,6 +309,10 @@ public class CentralPoint {
         return updateMission;
     }
 
+    /**
+     * gets a specific team
+     * @return a list of the specific teams
+     */
     public ObservableList<Team> getSpecificTeam() {
         availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
         return availableTeamObservableList;

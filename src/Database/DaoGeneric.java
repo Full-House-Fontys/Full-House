@@ -63,5 +63,11 @@ public abstract class DaoGeneric<T> {
      */
     public abstract boolean delete(int key);
 
+    /**
+     * Inserts two ints in a database, useful for multiple to multiple relationships with pairing tables
+     *
+     * @param id
+     * @param id1
+     */
     public abstract void insertTwoInts(int id, int id1);
 }

@@ -88,6 +88,12 @@ public class DaoMaterial extends DaoGeneric<Material> {
         return addMissionIds(materialObservableList);
     }
 
+    /**
+     * Adds missionids to the materials
+     *
+     * @param materials the list of materials where the missionids should be assigned to
+     * @return a list of materials
+     */
     private ObservableList<Material> addMissionIds(ObservableList<Material> materials) {
         ResultSet rs = null;
         String query = "SELECT * FROM MATERIAAL_MISSIE";
@@ -104,6 +110,12 @@ public class DaoMaterial extends DaoGeneric<Material> {
         return materials;
     }
 
+    /**
+     * Get a material by an id
+     * @param materials the list of the materials where the id should be in
+     * @param id the id of a material
+     * @return the material from the given list with the given id
+     */
     private Material getMaterialById(ObservableList<Material> materials, int id) {
         for (Material material : materials) {
             if (material.getId() == id) {
@@ -200,6 +212,11 @@ public class DaoMaterial extends DaoGeneric<Material> {
         return result;
     }
 
+    /**
+     * Inserts two ints in one table
+     * @param id
+     * @param id1
+     */
     @Override
     public void insertTwoInts(int id, int id1) {
 

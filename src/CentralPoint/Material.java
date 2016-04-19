@@ -111,22 +111,43 @@ public class Material {
         return new BigDecimal(location.getX()).setScale(2, RoundingMode.HALF_UP).doubleValue() + "; " + new BigDecimal(location.getY()).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
+    /**
+     * Returns the distance between two points
+     *
+     * @return
+     */
     public String getDistance() {
         return new BigDecimal(distance).setScale(2, RoundingMode.HALF_UP).doubleValue() + " km";
     }
 
+    /**
+     * Sets the distance between the material location and another location
+     * @param otherLocation
+     */
     public void setDistance(Point2D otherLocation) {
-        distance = distance(location, otherLocation, "K");
+        distance = distance(location, otherLocation);
     }
 
+    /**
+     * return the ids of the missions the material is connected to
+     * @return list of missionids
+     */
     public ArrayList<Integer> getMissionIds() {
         return missionIds;
     }
 
+    /**
+     * sets the missionids where the material is connected to
+     * @param missionIds as int
+     */
     public void setMissionIds(ArrayList<Integer> missionIds) {
         this.missionIds = missionIds;
     }
 
+    /**
+     * adds one mission id
+     * @param id as int
+     */
     public void addMissionId(int id) {
         this.missionIds.add(id);
     }
@@ -147,25 +168,39 @@ public class Material {
         this.onLocation = onLocation;
     }
 
-    private double distance(Point2D loc1, Point2D loc2, String unit) {
+    /**
+     * Calculates the distance
+     *
+     * @param loc1 the loc from this material
+     * @param loc2 the other location
+     * @param unit the unit; K = KM
+     * @return the distance in the given unit
+     */
+    private double distance(Point2D loc1, Point2D loc2) {
         double theta = loc1.getY() - loc2.getY();
         double dist = Math.sin(deg2rad(loc1.getX())) * Math.sin(deg2rad(loc2.getX())) + Math.cos(deg2rad(loc1.getX())) * Math.cos(deg2rad(loc2.getX())) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;
-        if (unit == "K") {
-            dist = dist * 1.609344;
-        } else if (unit == "N") {
-            dist = dist * 0.8684;
-        }
+        dist = dist * 1.609344;
 
         return (dist);
     }
 
+    /**
+     * Degrees to radians
+     * @param deg as double
+     * @return the radians
+     */
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
     }
 
+    /**
+     * Radians to degrees
+     * @param rad as double
+     * @return the degrees
+     */
     private double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
     }

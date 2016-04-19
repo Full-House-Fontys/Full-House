@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +17,7 @@ public class MaterialTest {
 
     /**
      * set up the unittest
+     *
      * @throws Exception
      */
     @Before
@@ -26,6 +28,7 @@ public class MaterialTest {
 
     /**
      * teardown the unittest
+     *
      * @throws Exception
      */
     @After
@@ -35,6 +38,7 @@ public class MaterialTest {
 
     /**
      * test getting id
+     *
      * @throws Exception
      */
     @Test
@@ -44,6 +48,7 @@ public class MaterialTest {
 
     /**
      * test getting name
+     *
      * @throws Exception
      */
     @Test
@@ -53,6 +58,7 @@ public class MaterialTest {
 
     /**
      * test setting name
+     *
      * @throws Exception
      */
     @Test
@@ -63,6 +69,7 @@ public class MaterialTest {
 
     /**
      * test getting sort
+     *
      * @throws Exception
      */
     @Test
@@ -72,6 +79,7 @@ public class MaterialTest {
 
     /**
      * test setting sort
+     *
      * @throws Exception
      */
     @Test
@@ -82,6 +90,7 @@ public class MaterialTest {
 
     /**
      * test getting location
+     *
      * @throws Exception
      */
     @Test
@@ -91,6 +100,7 @@ public class MaterialTest {
 
     /**
      * test getting locationString
+     *
      * @throws Exception
      */
     @Test
@@ -100,6 +110,7 @@ public class MaterialTest {
 
     /**
      * test setting location
+     *
      * @throws Exception
      */
     @Test
@@ -109,7 +120,42 @@ public class MaterialTest {
     }
 
     /**
+     * Test getting distance
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetDistance() throws Exception {
+        assertEquals("Distance is mistakenly already setup", "0.0 km", material.getDistance());
+    }
+
+    /**
+     * Test setting distance
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSetDistance() throws Exception {
+        material.setDistance(new Point2D.Double(52.1, 5.4));
+        assertEquals("Distance is incorrectly calculated", "4477.03 km", material.getDistance());
+    }
+
+    /**
+     * Test setting missionIds
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSetMissionIds() throws Exception {
+        ArrayList<Integer> missionIds = new ArrayList();
+        missionIds.add(1);
+        missionIds.add(2);
+        material.setMissionIds(missionIds);
+    }
+
+    /**
      * test getting onLocation
+     *
      * @throws Exception
      */
     @Test
@@ -119,6 +165,7 @@ public class MaterialTest {
 
     /**
      * test setting onLocation
+     *
      * @throws Exception
      */
     @Test

@@ -92,10 +92,19 @@ public class Mission implements Serializable{
         this.teamsAssigned = teamsAssigned;
     }
 
+    /**
+     * Gets the material what is assigned to this mission
+     *
+     * @return list of assigned materials
+     */
     public ArrayList<Material> getMaterialsAssigned() {
         return materialsAssigned;
     }
 
+    /**
+     * sets the materials assigned to this mission
+     * @param materialsAssigned as list of materials
+     */
     public void setMaterialsAssigned(ArrayList<Material> materialsAssigned) {
         this.materialsAssigned = materialsAssigned;
     }

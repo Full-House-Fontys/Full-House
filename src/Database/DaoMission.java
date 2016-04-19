@@ -139,6 +139,12 @@ public class DaoMission extends DaoGeneric<Mission>{
         return result;
     }
 
+    /**
+     * Inserts two ints in one table, this time for adding a material to a mission
+     *
+     * @param id  as the materialId
+     * @param id1 as the missionId
+     */
     @Override
     public void insertTwoInts(int id, int id1) {
         String query = "INSERT INTO MATERIAAL_MISSIE (MateriaalID, MissieID) VALUES (?, ?)";

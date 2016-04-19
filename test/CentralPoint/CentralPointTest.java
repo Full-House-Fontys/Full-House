@@ -95,8 +95,8 @@ public class CentralPointTest {
         assertEquals("IDs aren't equal", 1, m2.getId());
         assertEquals("Names aren't equal", "Brandweerwagen Boxtel", m2.getName());
         assertEquals("Sorts aren't equal", "Brandweerwagen", m2.getSort());
-        assertEquals("LocationX isn't correct", 192.4599210000, m2.getLocation().getX(), 0);
-        assertEquals("LocationY isn't correct", 5.5542801000, m2.getLocation().getY(), 0);
+        assertEquals("LocationX isn't correct", 51.598757, m2.getLocation().getX(), 0);
+        assertEquals("LocationY isn't correct", 5.317385, m2.getLocation().getY(), 0);
         assertEquals("OnLocation isn't correct", false, m2.isOnLocation());
         assertNull("Somehow there is material with id = 0", centralPoint.getMaterialById(0));
         assertNotNull("There isn't a string", m2.getLocationString());
@@ -109,6 +109,16 @@ public class CentralPointTest {
     @Test
     public void testGetMaterials() throws Exception {
         assertTrue("No materials found", centralPoint.getMaterials().size() > 0);
+    }
+
+    /**
+     * tests the get availableMaterials function
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetAvailableMaterials() throws Exception {
+        assertTrue("No available materials found", centralPoint.getAvailableMaterials().size() > 0);
     }
 
     /**
@@ -150,6 +160,16 @@ public class CentralPointTest {
     @Test
     public void testInsertMaterial() throws Exception {
         centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
+    }
+
+    /**
+     * test add material to mission
+     */
+    @Test
+    public void testAddMaterialToMission() throws Exception {
+        Mission mission1 = centralPoint.getAllMissions().get(0);
+        Material availableMat1 = centralPoint.getAvailableMaterials().get(0);
+        assertEquals("Failed adding material to mission", mission1, centralPoint.addMaterialToMission(availableMat1, mission1));
     }
 
     /**
@@ -242,21 +262,23 @@ public class CentralPointTest {
         centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
+    //TODO: the missions are not cleared when finishing a unittest
     @Test
     public void testGetAllMissions() {
         ObservableList<Mission> allMissions = centralPoint.getAllMissions();
-        assertEquals("There are not 10 missions", 10, allMissions.size());
+        assertEquals("There are not enough missions", 11, allMissions.size());
     }
 
+    //TODO: the missions are not cleared when finishing a unittest
     @Test
     public void testCreateMission() {
         Date date = new Date();
         centralPoint.createMission("Testing mission", "Try out", date, 12.1, 21.2);
-        assertEquals("There are not 11 missions", 11, centralPoint.getAllMissions().size());
+        assertEquals("There are not 12 missions", 12, centralPoint.getAllMissions().size());
     }
 
     @Test
     public void testGetAllTeams() {
-        assertEquals("There are not 5 teams", 5, centralPoint.getAllTeams().size());
+        assertEquals("There are not 10 teams", 10, centralPoint.getAllTeams().size());
     }
 }
