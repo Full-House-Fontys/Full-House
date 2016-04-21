@@ -1,32 +1,55 @@
 package AppCommunication;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import com.sun.istack.internal.NotNull;
+
+import java.io.*;
 import java.net.*;
 import java.util.Enumeration;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Kaj Suiker on 13-4-2016.
  */
 public class AppCommunication {
+
     ServerSocket serverSocket;
     String message = "";
     static final int socketServerPORT = 8080;
 
+    private Queue<CommunicationMessage> messageQueue;
+    private ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private ServerSocket socket;
+    int count = 0;
+
     public static void main(String[] args) {
         new AppCommunication();
 
+        Thread comCom = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new CommunicationMediator();
+            }
+        });
+
+       comCom.start();
     }
 
     public AppCommunication() {
-        Thread socketServerThread = new Thread(new SocketServerThread());
-        socketServerThread.start();
+        try {
+            startListeners();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    /*
     private class SocketServerThread extends Thread {
-        int count = 0;
+    */
 
+/*
         @Override
         public void run() {
             try {
@@ -45,70 +68,112 @@ public class AppCommunication {
                             socket, count);
                     socketServerReplyThread.run();
 
+                    Thread reciever = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            constantCheck();
+                        }
+                    });
+
+                    reciever.start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+*/
 
-        private class SocketServerReplyThread extends Thread {
+    /**
+     * Starts the thread listeners
+     */
+    public void startListeners() throws IOException {
+        final int THREADPOOLSIZE = 4;
 
-            private Socket hostThreadSocket;
-            int cnt;
+        //stopListeners();
 
-            SocketServerReplyThread(Socket socket, int c) {
-                hostThreadSocket = socket;
-                cnt = c;
-            }
+        // Initialize all variables
+        executorService = Executors.newFixedThreadPool(THREADPOOLSIZE);
+        messageQueue = new ConcurrentLinkedQueue<>();
+        socket = new ServerSocket(socketServerPORT);
 
-            @Override
-            public void run() {
-                OutputStream outputStream;
-                String msgReply = "Hello from Server, you are #" + cnt;
+        // Create runnable
+        Runnable worker = () -> constantCheck();
 
-                try {
-                    outputStream = hostThreadSocket.getOutputStream();
-                    PrintStream printStream = new PrintStream(outputStream);
-                    printStream.print(msgReply);
-                    printStream.close();
+        // Execute
+        executorService.execute(worker);
 
-                    message += "replayed: " + msgReply + "\n";
+    }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    message += "Something wrong! " + e.toString() + "\n";
-                }
-
-            }
-
+    /**
+     * Clears all local variables and stops listening
+     */
+    public void stopListeners() {
+        try {
+            if (socket != null) socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        executorService.shutdown();
+        messageQueue.clear();
+    }
 
-        public String getIpAddress() {
-            String ip = "";
-            try {
-                Enumeration<NetworkInterface> enumNetworkInterfaces = NetworkInterface
-                        .getNetworkInterfaces();
-                while (enumNetworkInterfaces.hasMoreElements()) {
-                    NetworkInterface networkInterface = enumNetworkInterfaces
-                            .nextElement();
-                    Enumeration<InetAddress> enumInetAddress = networkInterface
-                            .getInetAddresses();
-                    while (enumInetAddress.hasMoreElements()) {
-                        InetAddress inetAddress = enumInetAddress
-                                .nextElement();
+    private void constantCheck() {
+        try {
+            while (true) {
+                Socket clientSocket = this.socket.accept();
 
-                        if (inetAddress.isSiteLocalAddress()) {
-                            ip += "Server running at : "
-                                    + inetAddress.getHostAddress();
-                        }
-                    }
+                String full = recv(clientSocket);
+
+                // Read it into an object
+                CommunicationMessage communicationMessage = new CommunicationMessage(full);// clientSocket.getInetAddress().toString(), clientSocket.getLocalSocketAddress().toString());
+
+                System.out.println(full);
+                synchronized (this) {
+                    messageQueue.add(communicationMessage);
                 }
-
-            } catch (SocketException e) {
-                e.printStackTrace();
-                ip += "Something Wrong! " + e.toString() + "\n";
             }
-            return ip;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    @NotNull
+    private String recv(Socket clientSocket) throws IOException {
+        InputStream inputStream = clientSocket.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        String line;
+        String full = "";
+
+        // Read the data into a string
+        while ((line = bufferedReader.readLine()) != null) {
+            full += line.trim();
+        }
+        return full;
+    }
+
+    /**
+     * Gets the latest network message as a request type
+     * @return The latest network request if there is one
+     */
+    public CommunicationRequest consumeRequest() {
+        CommunicationMessage networkMessage = consumeMessage();
+        if (networkMessage != null)
+            return new CommunicationRequest(networkMessage);
+        else
+            return null;
+    }
+
+    /**
+     * Returns a message item
+     * @return NetworkMessage that was first in the queue. Null if there was none
+     */
+    public CommunicationMessage consumeMessage() {
+        synchronized (this) {
+            return messageQueue.poll();
+        }
+    }
+
 }
+
