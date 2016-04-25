@@ -8,5 +8,6 @@ public enum DbTables {
     PERSONEEL,
     MATERIAAL,
     MISSIE,
-    TEAM
+    TEAM,
+    BERICHT
 }

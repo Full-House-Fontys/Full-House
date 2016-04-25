@@ -317,4 +317,27 @@ public class CentralPoint {
         availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
         return availableTeamObservableList;
     }
+
+
+    /**
+     * Check if user is in database
+     * @param userName username of user
+     * @param password password of user
+     * @return true if in database
+     */
+    public boolean checkExistingUser(String userName, String password){
+        Staff incomingLogin = new Staff();
+        incomingLogin.setUserName(userName);
+        incomingLogin.setPassword(password);
+        return daoManager.getDao(DbTables.PERSONEEL).update(incomingLogin, 0);
+    }
+
+    public String getLastMessages(){
+        StringBuilder lastMessages = new StringBuilder();
+        for(Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()){
+            Message mes = (Message)message;
+            lastMessages.append(mes.getTitel()+"\n"+mes.getMessage()+"///");
+        }
+        return lastMessages.toString();
+    }
 }

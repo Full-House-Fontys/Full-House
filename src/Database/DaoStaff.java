@@ -120,6 +120,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
     }
 
     /**
+     * Used for getting login data (true/false)
      * @param value object to update
      * @param key   key of row
      *              Update bool in a table row
@@ -127,7 +128,21 @@ public class DaoStaff extends DaoGeneric<Staff> {
      */
     @Override
     public boolean update(Staff value, int key) {
-        return false;
+        boolean result = false;
+        ResultSet res;
+        String query = "SELECT * FROM Personeel WHERE Gebruikersnaam = ? AND Wachtwoord = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, value.getUserName());
+            ps.setString(2, value.getPassword());
+            res = ps.executeQuery();
+            while (res.next()) {
+                result = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package GUI;
 
 
+import AppCommunication.CommunicationMediator;
 import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
 import CentralPoint.Staff;
@@ -39,6 +40,14 @@ public class mainController implements Initializable {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
+        Thread comCom = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new CommunicationMediator(centralPoint);
+            }
+        });
+
+        comCom.start();
     }
 
     private void createMissionView(Mission selectedMission) {

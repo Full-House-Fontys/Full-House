@@ -20,22 +20,9 @@ public class AppCommunication {
     static final int socketServerPORT = 8080;
 
     private Queue<CommunicationMessage> messageQueue;
-    private ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private ExecutorService executorService = Executors.newFixedThreadPool(1);
     private ServerSocket socket;
     int count = 0;
-
-    public static void main(String[] args) {
-        new AppCommunication();
-
-        Thread comCom = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new CommunicationMediator();
-            }
-        });
-
-       comCom.start();
-    }
 
     public AppCommunication() {
         try {
@@ -88,7 +75,7 @@ public class AppCommunication {
      * Starts the thread listeners
      */
     public void startListeners() throws IOException {
-        final int THREADPOOLSIZE = 4;
+        final int THREADPOOLSIZE = 1;
 
         //stopListeners();
 
@@ -126,7 +113,7 @@ public class AppCommunication {
                 String full = recv(clientSocket);
 
                 // Read it into an object
-                CommunicationMessage communicationMessage = new CommunicationMessage(full);// clientSocket.getInetAddress().toString(), clientSocket.getLocalSocketAddress().toString());
+                CommunicationMessage communicationMessage = new CommunicationMessage(full, clientSocket.getInetAddress().toString().substring(1), clientSocket.getLocalSocketAddress().toString().substring(1).substring(0,clientSocket.getLocalSocketAddress().toString().indexOf(":")-1));
 
                 System.out.println(full);
                 synchronized (this) {

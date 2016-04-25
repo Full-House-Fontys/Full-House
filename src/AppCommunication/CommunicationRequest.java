@@ -24,21 +24,18 @@ public class CommunicationRequest {
         return url;
     }
 
+    public CommunicationMessage getNetworkMessage() {
+        return networkMessage;
+    }
+
     public void setUrl(String url) {
         this.url = url;
     }
 
     public CommunicationRequest(CommunicationMessage networkMessage) throws UnknownFormatConversionException {
         this.networkMessage = networkMessage;
-        // Parse the message
-        Pattern p = Pattern.compile("([\\w/]+) (.+)");
 
-        Matcher matcher = p.matcher(networkMessage.getText());
-
-        if (matcher.matches() == false)
-            throw new UnknownFormatConversionException("Network request could not be parsed!");
-
-        url = matcher.group(0);
-        payload = matcher.group(1);
+        url = networkMessage.getText().substring(0, networkMessage.getText().indexOf("/"));
+        payload = networkMessage.getText().substring(networkMessage.getText().indexOf("/")+1);
     }
 }

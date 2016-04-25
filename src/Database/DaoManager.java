@@ -91,6 +91,9 @@ public enum DaoManager {
                 case TEAM:
                     dao = new DaoTeam(connection);
                     break;
+                case BERICHT:
+                    dao = new DaoMessage(connection);
+                    break;
                 default:
                     dao = null;
                     break;
