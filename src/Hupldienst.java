@@ -19,7 +19,7 @@ public class Hupldienst extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/Hulpdienst.fxml"));
         primaryStage.setTitle("Hulpdienst");
-        primaryStage.setScene(new Scene(root, 900, 650));
+        primaryStage.setScene(new Scene(root, 619, 466));
         primaryStage.show();
     }
 }

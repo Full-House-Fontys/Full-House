@@ -1,9 +1,8 @@
 package HulpDienst;
 
-import CentralPoint.Staff;
+import CentralPoint.Mission;
 
 import java.rmi.Remote;
-import java.util.List;
 
 /**
  * Created by Mark on 6-4-2016.
@@ -34,9 +33,9 @@ public interface ITeamRequest extends Remote {
 
     void setMarachause(int marachause);
 
-    List<Staff> getPersoneel();
+    Mission getmissie();
 
-    void setPersoneel(List<Staff> personeel);
+    void setmissie(Mission missie);
 
-
+    String toString();
 }
