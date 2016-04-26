@@ -52,8 +52,10 @@ public class CommunicationMediator {
     private void comLogin(CommunicationRequest communicationRequestRequest){
         if(centralPoint.checkExistingUser(communicationRequestRequest.getPayload().substring(0,communicationRequestRequest.getPayload().indexOf(":")), communicationRequestRequest.getPayload().substring(communicationRequestRequest.getPayload().indexOf(":")+1))){
             send("true",communicationRequestRequest.getNetworkMessage().getSender());
+            System.out.println("true");
         }else {
             send("false",communicationRequestRequest.getNetworkMessage().getSender());
+            System.out.println("false");
         }
     }
 
