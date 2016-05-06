@@ -94,6 +94,9 @@ public enum DaoManager {
                 case BERICHT:
                     dao = new DaoMessage(connection);
                     break;
+                case MELDING:
+                    dao = new DaoNotification(connection);
+                    break;
                 default:
                     dao = null;
                     break;

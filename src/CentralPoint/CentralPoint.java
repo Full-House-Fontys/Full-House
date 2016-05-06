@@ -6,9 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Kaj Suiker on 20-3-2016.
@@ -20,6 +18,7 @@ public class CentralPoint {
     List<Material> availableMatList;
     List<Mission> missionsList;
     List<Team> teamList;
+    List<Notification> notificationList;
 
     ObservableList<Staff> staffObservableList;
     ObservableList<Material> materialObservableList;
@@ -27,30 +26,33 @@ public class CentralPoint {
     ObservableList<Team> teamObservableList;
     ObservableList<Team> availableTeamObservableList;
     ObservableList<Material> availableMaterialObservableList;
+    ObservableList<Notification> notificationObservableList;
 
     /**
      * constructor for central point
      */
-    public CentralPoint(){
+    public CentralPoint() {
         daoManager = DaoManager.INSTANCE;
         missionsList = new ArrayList<>();
         staffList = new ArrayList<>();
         materialList = new ArrayList();
         availableMatList = new ArrayList();
         teamList = new ArrayList<>();
+        notificationList = new ArrayList<>();
         staffObservableList = FXCollections.observableArrayList(staffList);
         materialObservableList = FXCollections.observableArrayList(materialList);
         availableMaterialObservableList = FXCollections.observableArrayList(availableMatList);
         missionObservableList = FXCollections.observableArrayList(missionsList);
         teamObservableList = FXCollections.observableArrayList(teamList);
         availableTeamObservableList = FXCollections.observableArrayList();
+        notificationObservableList = FXCollections.observableArrayList(notificationList);
     }
 
     /**
      * @param table object of table to renewLists
      */
-    private void renewLists(DbTables table){
-        switch (table){
+    private void renewLists(DbTables table) {
+        switch (table) {
             case PERSONEEL:
                 staffObservableList.clear();
                 staffObservableList = daoManager.getDao(table).getAllRecord();
@@ -70,6 +72,10 @@ public class CentralPoint {
                 addTeamsToMission();
                 addMaterialsToMission(0);
                 break;
+            case MELDING:
+                notificationObservableList.clear();
+                notificationObservableList = daoManager.getDao(table).getAllRecord();
+                break;
             default:
                 break;
         }
@@ -78,15 +84,15 @@ public class CentralPoint {
     /**
      * @return is of staff on location
      */
-    public ObservableList<Staff> getStaffOnLocation(){
+    public ObservableList<Staff> getStaffOnLocation() {
         return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
     /**
      * @param team list of staff in team
      */
-    public void setStaffOnLocation(List<String> team){
-        for(String staffname : team){
+    public void setStaffOnLocation(List<String> team) {
+        for (String staffname : team) {
             Staff toUpdate = new Staff();
             toUpdate.setOnLocation(true);
             daoManager.getDao(DbTables.PERSONEEL).update(toUpdate, staffname);
@@ -95,9 +101,10 @@ public class CentralPoint {
 
     /**
      * returns the materialLists as observableList
+     *
      * @return unmodifiableObservableList of materials
      */
-    public ObservableList<Material> getMaterials(){
+    public ObservableList<Material> getMaterials() {
         renewLists(DbTables.MATERIAAL);
         return FXCollections.unmodifiableObservableList(materialObservableList);
     }
@@ -114,6 +121,7 @@ public class CentralPoint {
 
     /**
      * inserts a new material in the database
+     *
      * @param name
      * @param sort
      * @param locX
@@ -136,6 +144,7 @@ public class CentralPoint {
 
     /**
      * returns the material for the given id
+     *
      * @param id
      * @return
      */
@@ -150,11 +159,12 @@ public class CentralPoint {
 
     /**
      * update the material for given id
-     * @param matId as int
-     * @param name as String
-     * @param sort as String
+     *
+     * @param matId    as int
+     * @param name     as String
+     * @param sort     as String
      * @param location as Point2D
-     * @param onLoc as boolean
+     * @param onLoc    as boolean
      * @throws IllegalArgumentException
      * @throws IllegalStateException
      */
@@ -165,40 +175,34 @@ public class CentralPoint {
             if (name != null && name.trim().length() > 0) {
                 m.setName(name);
                 changed = true;
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException();
             }
-        }
-        else{
+        } else {
             throw new IllegalStateException();
         }
         if (!(m.getSort().equals(sort))) {
             if (sort != null && sort.trim().length() > 0) {
                 m.setSort(sort);
                 changed = true;
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException();
             }
-        }
-        else{
+        } else {
             throw new IllegalStateException();
         }
         if ((!(m.getLocation().equals(location))) && location != null) {
             m.setLocation(location);
             changed = true;
-        } else if (location == null){
+        } else if (location == null) {
             throw new IllegalArgumentException();
-        }
-        else{
+        } else {
             throw new IllegalStateException();
         }
         if (m.isOnLocation() != onLoc) {
             m.setOnLocation(onLoc);
             changed = true;
-        }
-        else{
+        } else {
             throw new IllegalStateException();
         }
         if (changed) {
@@ -209,6 +213,7 @@ public class CentralPoint {
 
     /**
      * delete given material
+     *
      * @param m as material
      */
     public void deleteMaterial(Material m) {
@@ -228,11 +233,12 @@ public class CentralPoint {
 
     /**
      * creates a mission from given parameters
-     * @param name as String
+     *
+     * @param name        as String
      * @param description as Stirng
-     * @param startTime as Date
-     * @param locationX as double
-     * @param locationY as double
+     * @param startTime   as Date
+     * @param locationX   as double
+     * @param locationY   as double
      */
     public void createMission(String name, String description, Date startTime, double locationX, double locationY) {
         Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
@@ -244,6 +250,7 @@ public class CentralPoint {
 
     /**
      * Returns all the teams
+     *
      * @return teams as unmodifiableObservableList
      */
     public ObservableList<Team> getAllTeams() {
@@ -270,6 +277,7 @@ public class CentralPoint {
 
     /**
      * Adds materials to a mission
+     *
      * @param id as int, the id of a mission
      * @return the Mission which is opened
      */
@@ -277,7 +285,7 @@ public class CentralPoint {
         renewLists(DbTables.MATERIAAL);
         ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
         for (Mission mission : missionObservableList) {
-            if(mission.getID() == id) {
+            if (mission.getID() == id) {
                 for (Material material : materialObservableList) {
                     for (int i : material.getMissionIds()) {
                         if (mission.getID() == i) {
@@ -297,8 +305,9 @@ public class CentralPoint {
 
     /**
      * Adds one material to a mission
+     *
      * @param selectedMaterial as Material, the material that should be added to the mission
-     * @param activeMission as Mission, the mission where the material belongs to
+     * @param activeMission    as Mission, the mission where the material belongs to
      * @return the Mission which is opened
      */
     public Mission addMaterialToMission(Material selectedMaterial, Mission activeMission) {
@@ -311,6 +320,7 @@ public class CentralPoint {
 
     /**
      * gets a specific team
+     *
      * @return a list of the specific teams
      */
     public ObservableList<Team> getSpecificTeam() {
@@ -321,23 +331,29 @@ public class CentralPoint {
 
     /**
      * Check if user is in database
+     *
      * @param userName username of user
      * @param password password of user
      * @return true if in database
      */
-    public boolean checkExistingUser(String userName, String password){
+    public boolean checkExistingUser(String userName, String password) {
         Staff incomingLogin = new Staff();
         incomingLogin.setUserName(userName);
         incomingLogin.setPassword(password);
         return daoManager.getDao(DbTables.PERSONEEL).update(incomingLogin, 0);
     }
 
-    public String getLastMessages(){
+    public String getLastMessages() {
         StringBuilder lastMessages = new StringBuilder();
-        for(Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()){
-            Message mes = (Message)message;
-            lastMessages.append(mes.getTitel()+"\n"+mes.getMessage()+"///");
+        for (Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()) {
+            Message mes = (Message) message;
+            lastMessages.append(mes.getTitel() + "\n" + mes.getMessage() + "///");
         }
         return lastMessages.toString();
+    }
+
+    public ObservableList<Notification> getAllNotifications() {
+        renewLists(DbTables.MELDING);
+        return FXCollections.unmodifiableObservableList(notificationObservableList);
     }
 }

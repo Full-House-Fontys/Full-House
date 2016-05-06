@@ -6,6 +6,7 @@ import CentralPoint.CentralPoint;
 import CentralPoint.Mission;
 import CentralPoint.Staff;
 import CentralPoint.Team;
+import CentralPoint.Notification;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -31,15 +32,20 @@ public class mainController implements Initializable {
     private ListView lvMissions;
     @FXML
     private ListView lvTeams;
+    @FXML
+    private ListView lvNotifications;
 
     private CentralPoint centralPoint;
     private ObservableList<Mission> missionListObservable;
     private ObservableList<Team> teamListObservable;
+    private ObservableList<Notification> notificationObservableList;
 
     public mainController() {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
+        notificationObservableList = FXCollections.observableList(centralPoint.getAllNotifications());
+
         Thread comCom = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,6 +105,7 @@ public class mainController implements Initializable {
     private void loadAllElements() {
         loadTeams();
         loadMission();
+        loadNotifications();
     }
 
     private void loadTeams() {
@@ -107,6 +114,10 @@ public class mainController implements Initializable {
 
     private void loadMission() {
         lvMissions.setItems(missionListObservable);
+    }
+
+    private void loadNotifications() {
+        lvNotifications.setItems(notificationObservableList);
     }
 
     public void makeNewMission() {
