@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0"
-      prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      prefWidth="619.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="GUI.HulpdienstController">
     <children>
-        <ListView fx:id="LVmissies" layoutX="79.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0"/>
-        <ListView fx:id="LVpersoneel" layoutX="580.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0"/>
-        <TextArea fx:id="TAmissiedetail" layoutX="79.0" layoutY="244.0" prefHeight="200.0" prefWidth="200.0"/>
-        <ComboBox fx:id="CBfilterpersonen" layoutX="435.0" layoutY="21.0" prefHeight="25.0" prefWidth="127.0"
-                  promptText="alle"/>
+        <TabPane fx:id="TPhupldienst" layoutX="14.0" layoutY="14.0" prefHeight="448.0" prefWidth="601.0"
+                 tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="berichten">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="TAmissiedetail" layoutX="14.0" layoutY="210.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <ListView fx:id="LVmissies" layoutX="14.0" layoutY="14.0" onMouseClicked="#getdetails"
+                                          prefHeight="180.0" prefWidth="202.0"/>
+                                <ListView fx:id="LVTeams" layoutX="386.0" layoutY="14.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <Button fx:id="BTNassignTeam" layoutX="386.0" layoutY="214.0" mnemonicParsing="false"
+                                        onAction="#assignteam" prefHeight="48.0" prefWidth="111.0" text="assign"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="maak team">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="738.0">
+                            <children>
+                                <ComboBox fx:id="CBfilterpersonen" layoutX="28.0" layoutY="25.0" prefHeight="25.0"
+                                          prefWidth="127.0" promptText="alle"/>
+                                <ListView fx:id="LVaddedStaff" layoutX="293.0" layoutY="69.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <Button fx:id="BTNaddStaff" layoutX="228.0" layoutY="169.0" mnemonicParsing="false"
+                                        onAction="#addStaff" prefHeight="100.0" prefWidth="66.0" text="&gt;"/>
+                                <ListView fx:id="LVpersoneel" layoutX="28.0" layoutY="69.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <Button fx:id="BTNcreateTeam" layoutX="293.0" layoutY="269.0" mnemonicParsing="false"
+                                        onAction="#maakTeam" prefHeight="73.0" prefWidth="199.0" text="maak team"/>
+                                <Button fx:id="ButtonBTNremoveStaff" layoutX="228.0" layoutY="69.0"
+                                        mnemonicParsing="false" onAction="#removeStaff" prefHeight="100.0"
+                                        prefWidth="66.0" text="&lt;"/>
+                                <TextField fx:id="TFteamNaam" layoutX="128.0" layoutY="293.0"/>
+                                <Label layoutX="62.0" layoutY="297.0" text="teamnaam:"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
     </children>
 </Pane>

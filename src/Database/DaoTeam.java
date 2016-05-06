@@ -7,10 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +17,8 @@ import java.util.List;
  */
 public class DaoTeam extends DaoGeneric<Team> {
     private final static String TABLENAME = DbTables.TEAM.toString();
-    private final String ID = "ID";
-    private final String Naam = "Naam";
+    private final String ID = "TeamID";
+    private final String Naam = "TeamNaam";
     private final String Beschrijving = "Beschrijving";
     private final String BeginTijd = "BeginTijd";
     private final String LaatsteUpdate = "LaatsteUpdate";
@@ -29,7 +27,7 @@ public class DaoTeam extends DaoGeneric<Team> {
     private final String LocatieY = "LocatieY";
     private final String teamsAssigned = "";
     private final String personeelID = "PersoneelID";
-    private final String missionID = "missionID";
+    private final String missionID = "missieID";
     private CentralPoint centralPoint;
 
 
@@ -118,7 +116,18 @@ public class DaoTeam extends DaoGeneric<Team> {
 
     @Override
     public boolean update(Team team, int key) {
-        return false;
+        boolean result = false;
+        String query = MessageFormat.format("UPDATE {0} SET {1} = ? WHERE TeamID = ?", TABLENAME, missionID);
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, key);
+            ps.setInt(2, team.getId());
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     @Override
@@ -128,7 +137,20 @@ public class DaoTeam extends DaoGeneric<Team> {
 
     @Override
     public boolean insert(Team team) {
-        return false;
+        for (Staff staff : team.getTeamMembers()) {
+            String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}) VALUES (?, ?, ?)", TABLENAME, ID, Naam, personeelID);
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setInt(1, team.getId());
+                ps.setString(2, team.getName());
+                ps.setInt(3, staff.getId());
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

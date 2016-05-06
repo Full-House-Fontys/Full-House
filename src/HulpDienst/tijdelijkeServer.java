@@ -2,6 +2,7 @@ package HulpDienst;/**
  * Created by Mark on 6-4-2016.
  */
 
+import CentralPoint.Mission;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -26,7 +27,8 @@ public class tijdelijkeServer extends Application {
     @Override
     public void start(Stage primaryStage) {
         TRS = new requests();
-        TeamRequest TR = new TeamRequest("Brand", "daym fire", 1, 1, 3, 0);
+        Mission missie = new Mission(1, null, null, null, null, null, 1, 1);
+        TeamRequest TR = new TeamRequest("Brand", "daym fire", 1, 1, 3, 0, missie);
         TRS.addRequests(TR);
 
         try {

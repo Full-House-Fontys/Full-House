@@ -14,10 +14,19 @@ public class requests implements IRequests, Serializable {
         Requests = new ArrayList<>();
     }
 
+    /**
+     * gets all requests send to the servicedesk
+     *
+     * @return
+     */
     public List<TeamRequest> GetRequests() {
         return Requests;
     }
 
+    /**
+     * adds a request to the list of requests
+     * @param teamRequest
+     */
     public void addRequests(TeamRequest teamRequest) {
         Requests.add(teamRequest);
     }
