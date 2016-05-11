@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Qunfo on 29-3-2016.
@@ -40,11 +42,12 @@ public class mainController implements Initializable {
     private ObservableList<Team> teamListObservable;
     private ObservableList<Notification> notificationObservableList;
 
+    private Timer keepNotificationsUpToDate;
+
     public mainController() {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
-        notificationObservableList = FXCollections.observableList(centralPoint.getAllNotifications());
 
         Thread comCom = new Thread(new Runnable() {
             @Override
@@ -54,6 +57,8 @@ public class mainController implements Initializable {
         });
 
         comCom.start();
+
+        keepNotificationsUpToDate = new Timer();
     }
 
     private void createMissionView(Mission selectedMission) {
@@ -72,7 +77,7 @@ public class mainController implements Initializable {
         }
     }
 
-    public void ShowStaffInField(){
+    public void ShowStaffInField() {
 
         ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/Task.fxml"));
@@ -100,6 +105,14 @@ public class mainController implements Initializable {
             }
         });
 
+        keepNotificationsUpToDate.scheduleAtFixedRate(
+                new TimerTask() {
+                    public void run() {
+                        notificationObservableList = FXCollections.observableList(centralPoint.getAllNotifications());
+                        loadNotifications();
+                    }
+                }, 0, 1000
+        );
     }
 
     private void loadAllElements() {

@@ -12,21 +12,22 @@ import java.util.*;
  * Created by Kaj Suiker on 20-3-2016.
  */
 public class CentralPoint {
-    DaoManager daoManager;
-    List<Staff> staffList;
-    List<Material> materialList;
-    List<Material> availableMatList;
-    List<Mission> missionsList;
-    List<Team> teamList;
-    List<Notification> notificationList;
+    private DaoManager daoManager;
+    private List<Staff> staffList;
+    private List<Material> materialList;
+    private List<Material> availableMatList;
+    private List<Mission> missionsList;
+    private List<Team> teamList;
+    private List<Notification> notificationList;
 
-    ObservableList<Staff> staffObservableList;
-    ObservableList<Material> materialObservableList;
-    ObservableList<Mission> missionObservableList;
-    ObservableList<Team> teamObservableList;
-    ObservableList<Team> availableTeamObservableList;
-    ObservableList<Material> availableMaterialObservableList;
-    ObservableList<Notification> notificationObservableList;
+    private ObservableList<Staff> staffObservableList;
+    private ObservableList<Material> materialObservableList;
+    private ObservableList<Mission> missionObservableList;
+    private ObservableList<Team> teamObservableList;
+    private ObservableList<Team> availableTeamObservableList;
+    private ObservableList<Material> availableMaterialObservableList;
+    private ObservableList<Notification> notificationObservableList;
+
 
     /**
      * constructor for central point
@@ -46,6 +47,7 @@ public class CentralPoint {
         teamObservableList = FXCollections.observableArrayList(teamList);
         availableTeamObservableList = FXCollections.observableArrayList();
         notificationObservableList = FXCollections.observableArrayList(notificationList);
+
     }
 
     /**

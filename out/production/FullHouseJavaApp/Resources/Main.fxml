@@ -17,7 +17,7 @@
         <Button layoutX="641.0" layoutY="464.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Zet om in missie" />
         <TextArea layoutX="191.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" />
         <Label layoutX="191.0" layoutY="26.0" text="Info" />
-        <ListView layoutX="14.0" layoutY="50.0" prefHeight="400.0" prefWidth="163.0" />
+        <ListView fx:id="lvNotifications" layoutX="14.0" layoutY="50.0" prefHeight="400.0" prefWidth="163.0" />
         <Label layoutX="14.0" layoutY="27.0" text="Notificaties" />
       <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#ShowStaffInField" text="List of staff in field" />
     </children>
