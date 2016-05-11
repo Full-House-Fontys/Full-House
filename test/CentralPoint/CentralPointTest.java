@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * Created by jvdwi on 22-3-2016.
  */
 public class CentralPointTest {
-    
+
     private CentralPoint centralPoint;
     private ObservableList<Material> initialList;
     private ObservableList<Staff> staffObservableList;
@@ -280,5 +280,10 @@ public class CentralPointTest {
     @Test
     public void testGetAllTeams() {
         assertEquals("There are not 10 teams", 10, centralPoint.getAllTeams().size());
+    }
+
+    @Test
+    public void getAllNotifications() throws Exception {
+        assertTrue("There aren't notifications", centralPoint.getAllNotifications().size() > 0);
     }
 }
