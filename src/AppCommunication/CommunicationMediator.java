@@ -40,9 +40,14 @@ public class CommunicationMediator {
             case "getMessages":
                 comMessage(communicationRequestRequest);
                 break;
+            case "sendMessage":
+                comSend(communicationRequestRequest);
             default:
                 System.out.println("error");
         }
+    }
+
+    private void comSend(CommunicationRequest communicationRequestRequest) {
     }
 
     private void comMessage(CommunicationRequest communicationRequestRequest) {
