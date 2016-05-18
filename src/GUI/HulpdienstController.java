@@ -2,7 +2,7 @@ package GUI;
 
 import CentralPoint.Staff;
 import CentralPoint.Team;
-import HulpDienst.HulpDienst;
+import HulpDienst.HelpService;
 import HulpDienst.TeamRequest;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,13 +45,13 @@ public class HulpdienstController implements Initializable {
     private TabPane TPhupldienst;
     @FXML
     private Button BTNassignTeam;
-    private HulpDienst hulpdienst;
+    private HelpService hulpdienst;
     private ObservableList<Staff> OBStaff;
     private int teamnummer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hulpdienst = new HulpDienst();
+        hulpdienst = new HelpService();
         OBStaff = FXCollections.observableArrayList();
         LVaddedStaff.setItems(OBStaff);
         LVpersoneel.setItems(hulpdienst.renewStaffList());
@@ -75,7 +75,7 @@ public class HulpdienstController implements Initializable {
     @FXML
     public void getdetails() {
         TeamRequest request = (TeamRequest) LVmissies.getSelectionModel().getSelectedItem();
-        String tekst = request.toString() + "\n" + "brandweer: " + request.getBrandweer() + "\n" + "EHBO: " + request.getEHBO() + "\n" + "Politie: " + request.getPolitie() + "\n" + "getMarachause: " + request.getMarachause() + "\n";
+        String tekst = request.toString() + "\n" + "brandweer: " + request.getFireman() + "\n" + "EHBO: " + request.getMedic() + "\n" + "Politie: " + request.getPolice() + "\n" + "Marachause: " + request.getMilitarypolice() + "\n";
         TAmissiedetail.setText(tekst);
     }
 
@@ -99,7 +99,7 @@ public class HulpdienstController implements Initializable {
         if (!TFteamNaam.getText().isEmpty()) {
             ArrayList<Staff> personeel = new ArrayList<>();
             personeel.addAll(OBStaff);
-            hulpdienst.maakTeam(new Team(teamnummer, TFteamNaam.getText(), personeel, null));
+            hulpdienst.createTeam(new Team(teamnummer, TFteamNaam.getText(), personeel, null));
             OBStaff.clear();
             TPhupldienst.getSelectionModel().select(0);
             TFteamNaam.clear();
@@ -117,7 +117,7 @@ public class HulpdienstController implements Initializable {
     public void assignteam() {
         Team team = (Team) LVTeams.getSelectionModel().getSelectedItem();
         TeamRequest request = (TeamRequest) LVmissies.getSelectionModel().getSelectedItem();
-        int missionid = request.getmissie().getID();
+        int missionid = request.getMission().getID();
         hulpdienst.addMissionToTeam(team, missionid);
         renew();
         LVmissies.getItems().remove(request);

@@ -17,25 +17,25 @@ public interface ITeamRequest extends Remote {
 
     void setDescription(String description);
 
-    int getEHBO();
+    int getMedic();
 
-    void setEHBO(int EHBO);
+    void setMedic(int medic);
 
-    int getPolitie();
+    int getPolice();
 
-    void setPolitie(int politie);
+    void setPolice(int police);
 
-    int getBrandweer();
+    int getFireman();
 
-    void setBrandweer(int brandweer);
+    void setFireman(int fireman);
 
-    int getMarachause();
+    int getMilitarypolice();
 
-    void setMarachause(int marachause);
+    void setMilitarypolice(int militarypolice);
 
-    Mission getmissie();
+    Mission getMission();
 
-    void setmissie(Mission missie);
+    void setMission(Mission mission);
 
     String toString();
 }

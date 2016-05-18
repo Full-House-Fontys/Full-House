@@ -19,7 +19,7 @@ import java.util.TimerTask;
 /**
  * Created by Mark on 6-4-2016.
  */
-public class HulpDienst {
+public class HelpService {
 
     private Socket requestSocket;
     private ObjectInputStream in;
@@ -29,17 +29,27 @@ public class HulpDienst {
     private ObservableList<Staff> staffObservableList;
     private ObservableList<Team> OBavailableteams;
     private ObservableList<Team> OBallteams;
-    private List<TeamRequest> requests;
+    private List<TeamRequest> listrequests;
     private ObservableList<TeamRequest> RequestObservableList;
+    private IRequests RQ;
 
-    public HulpDienst() {
+    public HelpService() {
         daoManager = DaoManager.INSTANCE;
         staffList = new ArrayList<>();
-        requests = new ArrayList<>();
+        listrequests = new ArrayList<>();
         OBavailableteams = FXCollections.observableArrayList();
         OBallteams = FXCollections.observableArrayList();
         staffObservableList = FXCollections.observableArrayList(staffList);
-        RequestObservableList = FXCollections.observableArrayList(requests);
+        RequestObservableList = FXCollections.observableArrayList(listrequests);
+        RQ = new requests();
+        try {
+            requestSocket = new Socket("localhost", 2004);
+            out = new ObjectOutputStream(requestSocket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(requestSocket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -113,17 +123,15 @@ public class HulpDienst {
      */
     private void receiveSocket() {
         try {
-            requestSocket = new Socket("localhost", 2004);
-            out = new ObjectOutputStream(requestSocket.getOutputStream());
-            out.flush();
-            in = new ObjectInputStream(requestSocket.getInputStream());
-            IRequests TR = null;
+            ITeamRequest TR;
             do {
-                TR = (IRequests) in.readObject();
+                TR = null;
+                TR = (ITeamRequest) in.readObject();
             }
             while (TR == null);
+            RQ.addRequests((TeamRequest) TR);
             RequestObservableList.clear();
-            RequestObservableList.addAll(TR.GetRequests());
+            RequestObservableList.addAll(RQ.GetRequests());
 
             System.out.println("done");
         } catch (IOException e) {
@@ -138,7 +146,7 @@ public class HulpDienst {
      *
      * @param team
      */
-    public void maakTeam(Team team) {
+    public void createTeam(Team team) {
         daoManager.getDao(DbTables.TEAM).insert(team);
     }
 
@@ -149,5 +157,9 @@ public class HulpDienst {
      * @param missionnr
      */
     public void addMissionToTeam(Team team, int missionnr) {
-        daoManager.getDao(DbTables.TEAM).update(team, missionnr);}
+        daoManager.getDao(DbTables.TEAM).update(team, missionnr);
+        for (Staff staff : team.getTeamMembers()) {
+            daoManager.getDao(DbTables.PERSONEEL).update(staff, 1);
+        }
+    }
 }

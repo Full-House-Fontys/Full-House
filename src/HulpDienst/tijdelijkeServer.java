@@ -26,10 +26,8 @@ public class tijdelijkeServer extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        TRS = new requests();
         Mission missie = new Mission(1, null, null, null, null, null, 1, 1);
         TeamRequest TR = new TeamRequest("Brand", "daym fire", 1, 1, 3, 0, missie);
-        TRS.addRequests(TR);
 
         try {
             SS = new ServerSocket(2004);
@@ -37,7 +35,7 @@ public class tijdelijkeServer extends Application {
             out = new ObjectOutputStream(connection.getOutputStream());
             out.flush();
             in = new ObjectInputStream(connection.getInputStream());
-            out.writeObject(TRS);
+            out.writeObject(TR);
         } catch (IOException e) {
 
         }

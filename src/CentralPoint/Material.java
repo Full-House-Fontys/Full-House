@@ -1,6 +1,7 @@
 package CentralPoint;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by jvdwi on 16-3-2016.
  */
-public class Material {
+public class Material implements Serializable {
     private int id;
     private String name, sort;
     private Point2D location;

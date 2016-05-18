@@ -6,7 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.awt.geom.Point2D;
-import java.util.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Kaj Suiker on 20-3-2016.
@@ -29,6 +36,10 @@ public class CentralPoint {
     private ObservableList<Notification> notificationObservableList;
 
 
+    ServerSocket SS;
+    Socket connection = null;
+    ObjectOutputStream out;
+    ObjectInputStream in;
     /**
      * constructor for central point
      */
@@ -46,6 +57,7 @@ public class CentralPoint {
         missionObservableList = FXCollections.observableArrayList(missionsList);
         teamObservableList = FXCollections.observableArrayList(teamList);
         availableTeamObservableList = FXCollections.observableArrayList();
+        createserver();
         notificationObservableList = FXCollections.observableArrayList(notificationList);
 
     }
@@ -88,6 +100,10 @@ public class CentralPoint {
      */
     public ObservableList<Staff> getStaffOnLocation() {
         return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
+    }
+
+    public ObjectOutputStream getOutput() {
+        return out;
     }
 
     /**
@@ -358,4 +374,17 @@ public class CentralPoint {
         renewLists(DbTables.MELDING);
         return FXCollections.unmodifiableObservableList(notificationObservableList);
     }
+
+    public void createserver() {
+        try {
+            SS = new ServerSocket(2004);
+            connection = SS.accept();
+            out = new ObjectOutputStream(connection.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(connection.getInputStream());
+        } catch (IOException e) {
+
+        }
+    }
 }
+
