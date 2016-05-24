@@ -11,20 +11,20 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     private String name;
     private String description;
-    private int EHBO;
-    private int Politie;
-    private int Brandweer;
-    private int marachause;
-    private Mission missie;
+    private int Medic;
+    private int Police;
+    private int fireman;
+    private int militarypolice;
+    private Mission mission;
 
-    public TeamRequest(String name, String description, int EHBO, int politie, int brandweer, int marachause, Mission mission) {
+    public TeamRequest(String name, String description, int medic, int Police, int fireman, int militarypolice, Mission mission) {
         this.name = name;
         this.description = description;
-        this.EHBO = EHBO;
-        this.Politie = politie;
-        this.Brandweer = brandweer;
-        this.marachause = marachause;
-        this.missie = mission;
+        this.Medic = medic;
+        this.Police = Police;
+        this.fireman = fireman;
+        this.militarypolice = militarypolice;
+        this.mission = mission;
     }
 
     /**
@@ -64,64 +64,64 @@ public class TeamRequest implements ITeamRequest, Serializable {
      * gets the amount of EHBO needed
      * @return
      */
-    public int getEHBO() {
-        return EHBO;
+    public int getMedic() {
+        return Medic;
     }
 
     /**
      * sets the amount of needed EHBO
-     * @param EHBO
+     * @param Medic
      */
-    public void setEHBO(int EHBO) {
-        this.EHBO = EHBO;
+    public void setMedic(int Medic) {
+        this.Medic = Medic;
     }
 
     /**
      * gets the amount of police needed
      * @return
      */
-    public int getPolitie() {
-        return Politie;
+    public int getPolice() {
+        return Police;
     }
 
     /**
      * sets the amount of needed police
-     * @param politie
+     * @param police
      */
-    public void setPolitie(int politie) {
-        Politie = politie;
+    public void setPolice(int police) {
+        Police = Police;
     }
 
     /**
      * gets the amount of fireman needed
      * @return
      */
-    public int getBrandweer() {
-        return Brandweer;
+    public int getFireman() {
+        return fireman;
     }
 
     /**
      * sets the amount of needed fireman
-     * @param brandweer
+     * @param fireman
      */
-    public void setBrandweer(int brandweer) {
-        Brandweer = brandweer;
+    public void setFireman(int fireman) {
+        fireman = fireman;
     }
 
     /**
      * gets the amount of marachause needed
      * @return
      */
-    public int getMarachause() {
-        return marachause;
+    public int getMilitarypolice() {
+        return militarypolice;
     }
 
     /**
      * sets the amount of needed marachause
-     * @param marachause
+     * @param militarypolice
      */
-    public void setMarachause(int marachause) {
-        this.marachause = marachause;
+    public void setMilitarypolice(int militarypolice) {
+        this.militarypolice = militarypolice;
     }
 
     /**
@@ -129,17 +129,17 @@ public class TeamRequest implements ITeamRequest, Serializable {
      *
      * @return
      */
-    public Mission getmissie() {
-        return missie;
+    public Mission getMission() {
+        return mission;
     }
 
     /**
      * sets to which mission the request is assigned to
      *
-     * @param missie
+     * @param mission
      */
-    public void setmissie(Mission missie) {
-        this.missie = missie;
+    public void setMission(Mission mission) {
+        this.mission = mission;
     }
 
     /**

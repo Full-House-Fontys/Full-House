@@ -42,6 +42,7 @@ public class missionController {
     @FXML
     private TextField TFlocationYMission;
 
+
     private List<Mission> missions;
     private ObservableList<Mission> obMission;
     private ObservableList<Mission> tempMission;

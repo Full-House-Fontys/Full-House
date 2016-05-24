@@ -44,58 +44,58 @@ public class TeamRequestTest {
 
     @Test
     public void testGetEHBO() throws Exception {
-        assertEquals("foute aantal EHBO", 2, TR.getEHBO());
+        assertEquals("foute aantal EHBO", 2, TR.getMedic());
     }
 
     @Test
     public void testSetEHBO() throws Exception {
-        TR.setEHBO(3);
-        assertEquals("foute aantal EHBO", 3, TR.getEHBO());
+        TR.setMedic(3);
+        assertEquals("foute aantal EHBO", 3, TR.getMedic());
     }
 
     @Test
     public void testGetPolitie() throws Exception {
-        assertEquals("foute aantal Politie", 2, TR.getPolitie());
+        assertEquals("foute aantal Politie", 2, TR.getPolice());
     }
 
     @Test
     public void testSetPolitie() throws Exception {
-        TR.setPolitie(6);
-        assertEquals("foute aantal Politie", 6, TR.getPolitie());
+        TR.setPolice(6);
+        assertEquals("foute aantal Politie", 6, TR.getPolice());
     }
 
     @Test
     public void testGetBrandweer() throws Exception {
-        assertEquals("foute aantal brandweer", 6, TR.getBrandweer());
+        assertEquals("foute aantal brandweer", 6, TR.getFireman());
     }
 
     @Test
     public void testSetBrandweer() throws Exception {
-        TR.setBrandweer(3);
-        assertEquals("foute aantal brandweer", 3, TR.getBrandweer());
+        TR.setFireman(3);
+        assertEquals("foute aantal brandweer", 3, TR.getFireman());
     }
 
     @Test
     public void testGetMarachause() throws Exception {
-        assertEquals("foute aantal Marachause", 1, TR.getMarachause());
+        assertEquals("foute aantal Marachause", 1, TR.getMilitarypolice());
     }
 
     @Test
     public void testSetMarachause() throws Exception {
-        TR.setMarachause(2);
-        assertEquals("foute aantal Marachause", 2, TR.getMarachause());
+        TR.setMilitarypolice(2);
+        assertEquals("foute aantal Marachause", 2, TR.getMilitarypolice());
     }
 
     @Test
     public void testGetmissie() throws Exception {
-        assertEquals("foute missie", mission, TR.getmissie());
+        assertEquals("foute missie", mission, TR.getMission());
     }
 
     @Test
     public void testSetmissie() throws Exception {
         Mission missie2 = new Mission(2, null, null, null, null, null, 0.0, 0.0);
-        TR.setmissie(missie2);
-        assertEquals("foute missie", missie2, TR.getmissie());
+        TR.setMission(missie2);
+        assertEquals("foute missie", missie2, TR.getMission());
     }
 
     @Test

@@ -48,8 +48,13 @@ public class DaoStaff extends DaoGeneric<Staff> {
         ArrayList staffList = new ArrayList();
         ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
         ResultSet rs;
+        String query;
+        if (id == 0) {
+            query = "Select * FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Team.MissieID IS NOT NULL AND Personeel.OpLocatie = 1";
+        } else {
+            query = "Select DISTINCT Personeel.* FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Personeel.OpLocatie = 0";
+        }
 
-        String query = "Select * FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Team.MissieID IS NOT NULL AND Personeel.OpLocatie = 1";
 
         try{
             Statement statement = connection.createStatement();
@@ -59,7 +64,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
                         rs.getString(Tussenvoegsel), rs.getString(Achternaam), rs.getString(Gebruikersnaam),
                         rs.getString(Wachtwoord), new Point2D.Double(rs.getDouble(LocatieX),
                         rs.getDouble(LocatieY)), rs.getString(Soort),
-                        rs.getInt(OpLocatie) == 0, rs.getInt(TeamID), rs.getInt(MissionID)));
+                        rs.getInt(OpLocatie) == 0));
             }
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -130,35 +135,38 @@ public class DaoStaff extends DaoGeneric<Staff> {
     public boolean update(Staff value, int key) {
         boolean result = false;
         ResultSet res;
-        String query = "SELECT * FROM Personeel WHERE Gebruikersnaam = ? AND Wachtwoord = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, value.getUserName());
-            ps.setString(2, value.getPassword());
-            res = ps.executeQuery();
-            while (res.next()) {
-                result = true;
+        if (key == 0) {
+            String query = "SELECT * FROM Personeel WHERE Gebruikersnaam = ? AND Wachtwoord = ?";
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, value.getUserName());
+                ps.setString(2, value.getPassword());
+                res = ps.executeQuery();
+                while (res.next()) {
+                    result = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return result;
+        } else {
+            String bit = value.isOnLocation() ? "1" : "0";
+            String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE id = ?";
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, (String.valueOf(value.getId())));
+                ps.executeUpdate();
+                result = true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return result;
         }
-        return result;
     }
 
     @Override
     public boolean update(Staff value, String key) {
-        boolean result = false;
-        String bit = value.isOnLocation() ? "1" : "0";
-        String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE id = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, key);
-            ps.executeUpdate();
-            result = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return false;
     }
 
     @Override

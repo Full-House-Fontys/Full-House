@@ -4,6 +4,8 @@ import CentralPoint.CentralPoint;
 import CentralPoint.Material;
 import CentralPoint.Mission;
 import CentralPoint.Team;
+import HulpDienst.ITeamRequest;
+import HulpDienst.TeamRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -61,6 +63,21 @@ public class missionsdetailcontroller {
     private TableColumn<Material, String> tcNotAvaiLocation;
     @FXML
     private TableColumn<Material, String> tcNotAvaiDistance;
+
+    @FXML
+    private TextField TFrequestName;
+    @FXML
+    private TextField TFrequestDescription;
+    @FXML
+    private TextField TFrequestPolice;
+    @FXML
+    private TextField TFrequestMedic;
+    @FXML
+    private TextField TFrequestFireman;
+    @FXML
+    private TextField TFrequestMilitaryPolice;
+    @FXML
+    private Button BTrequest;
 
     private Mission mission;
     private CentralPoint centralPoint;
@@ -174,5 +191,16 @@ public class missionsdetailcontroller {
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    @FXML
+    public void createRequest() {
+        ITeamRequest TR = null;
+        TR = new TeamRequest(TFrequestName.getText(), TFrequestDescription.getText(), Integer.parseInt(TFrequestPolice.getText()), Integer.parseInt(TFrequestMedic.getText()), Integer.parseInt(TFrequestFireman.getText()), Integer.parseInt(TFrequestMilitaryPolice.getText()), mission);
+        try {
+            centralPoint.getOutput().writeObject(TR);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
