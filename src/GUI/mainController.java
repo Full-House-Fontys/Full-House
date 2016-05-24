@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -59,6 +60,21 @@ public class mainController implements Initializable {
         comCom.start();
 
         keepNotificationsUpToDate = new Timer();
+    }
+
+    @FXML
+    private void publishOnWebpage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/publishOnWebScreen.fxml"));
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+            missionsdetailcontroller MC = loader.getController();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createMissionView(Mission selectedMission) {
