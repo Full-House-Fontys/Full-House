@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Mark on 6-4-2016.
  */
-public class HulpdienstController implements Initializable {
+public class HelpServiceController implements Initializable {
 
     @FXML
     private ComboBox CBfilterpersonen;
@@ -49,7 +49,7 @@ public class HulpdienstController implements Initializable {
     private Button BTNassignTeam;
     private HelpService hulpdienst;
     private ObservableList<Staff> OBStaff;
-    private int teamnummer;
+    private int teamNR;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +58,7 @@ public class HulpdienstController implements Initializable {
         LVaddedStaff.setItems(OBStaff);
         LVpersoneel.setItems(hulpdienst.renewStaffList());
         LVTeams.setItems(hulpdienst.renewteams());
-        teamnummer = hulpdienst.getAllTeams().size() + 1;
+        teamNR = hulpdienst.getAllTeams().size() + 1;
         LVmissies.setItems(hulpdienst.getTeamRequests());
         CBfilterpersonen.getItems().clear();
         CBfilterpersonen.getItems().addAll("Alle", "Politie", "EHBO", "Brandweer");
@@ -102,7 +102,7 @@ public class HulpdienstController implements Initializable {
         if (!TFteamNaam.getText().isEmpty()) {
             ArrayList<Staff> personeel = new ArrayList<>();
             personeel.addAll(OBStaff);
-            hulpdienst.createTeam(new Team(teamnummer, TFteamNaam.getText(), personeel, null));
+            hulpdienst.createTeam(new Team(teamNR, TFteamNaam.getText(), personeel, null));
             OBStaff.clear();
             TPhupldienst.getSelectionModel().select(0);
             TFteamNaam.clear();
@@ -113,7 +113,7 @@ public class HulpdienstController implements Initializable {
     private void renew() {
         LVpersoneel.setItems(hulpdienst.renewStaffList());
         LVTeams.setItems(hulpdienst.renewteams());
-        teamnummer = hulpdienst.getAllTeams().size() + 1;
+        teamNR = hulpdienst.getAllTeams().size() + 1;
         LVmissies.setItems(hulpdienst.getTeamRequests());
     }
 
