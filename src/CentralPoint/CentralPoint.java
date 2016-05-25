@@ -380,14 +380,41 @@ public class CentralPoint {
         ObservableList<Staff> staff = daoManager.getDao(DbTables.PERSONEEL).getSpecificList(mission.getID());
         ObservableList<Team> teams = daoManager.getDao(DbTables.TEAM).getSpecificList(mission.getID());
 
+        //Name of the file
+        String fileName = "Mission-" + mission.getID() + ".txt";
+
         //Textfile setup
         List<String> lines = Arrays.asList();
-        lines.add("Kikkersoep");
-        Path file = Paths.get("the-file-name.txt");
+        Path file = Paths.get(fileName);
+
+        //Adding lines
+        lines.add("Missie:\n\t" + mission.getName() + "\n");
+        lines.add("Beschrijving:\n\t" + mission.getDescription() + "\n");
+
+            lines.add("Personeel:\n");
+            for (Staff s : staff){
+                lines.add("\t" + s.toString());
+            }
+            lines.add("\nTeam:\n");
+            for (Team t : teams){
+                lines.add("\t" + t.toString());
+            }
+            lines.add("\nMateriaal:\n");
+            for (Material m : materials){
+                lines.add("\t" + m.toString());
+            }
+            lines.add("\nBerichten:\n");
+            for (Message m : messages){
+                lines.add("\t" + m.toString());
+            }
+            lines.add("\nNotificaties:\n");
+            for (Notification n : notifications){
+                lines.add("\t" + n.toString());
+            }
+
+        //Writes the rapport
         Files.write(file, lines, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-        //TODO Make rappor
     }
 
 
