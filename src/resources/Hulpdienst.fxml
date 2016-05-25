@@ -30,21 +30,23 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="738.0">
                             <children>
-                                <ComboBox fx:id="CBfilterpersonen" layoutX="28.0" layoutY="25.0" prefHeight="25.0"
+                                <ComboBox fx:id="CBfilterpersonen" layoutX="29.0" layoutY="47.0" prefHeight="25.0"
                                           prefWidth="127.0" promptText="alle"/>
-                                <ListView fx:id="LVaddedStaff" layoutX="293.0" layoutY="69.0" prefHeight="200.0"
+                                <ListView fx:id="LVaddedStaff" layoutX="294.0" layoutY="124.0" prefHeight="200.0"
                                           prefWidth="200.0"/>
-                                <Button fx:id="BTNaddStaff" layoutX="228.0" layoutY="169.0" mnemonicParsing="false"
+                                <Button fx:id="BTNaddStaff" layoutX="229.0" layoutY="224.0" mnemonicParsing="false"
                                         onAction="#addStaff" prefHeight="100.0" prefWidth="66.0" text="&gt;"/>
-                                <ListView fx:id="LVpersoneel" layoutX="28.0" layoutY="69.0" prefHeight="200.0"
+                                <ListView fx:id="LVpersoneel" layoutX="29.0" layoutY="124.0" prefHeight="200.0"
                                           prefWidth="200.0"/>
-                                <Button fx:id="BTNcreateTeam" layoutX="293.0" layoutY="269.0" mnemonicParsing="false"
+                                <Button fx:id="BTNcreateTeam" layoutX="294.0" layoutY="324.0" mnemonicParsing="false"
                                         onAction="#maakTeam" prefHeight="73.0" prefWidth="199.0" text="maak team"/>
-                                <Button fx:id="ButtonBTNremoveStaff" layoutX="228.0" layoutY="69.0"
+                                <Button fx:id="ButtonBTNremoveStaff" layoutX="229.0" layoutY="124.0"
                                         mnemonicParsing="false" onAction="#removeStaff" prefHeight="100.0"
                                         prefWidth="66.0" text="&lt;"/>
-                                <TextField fx:id="TFteamNaam" layoutX="128.0" layoutY="293.0"/>
-                                <Label layoutX="62.0" layoutY="297.0" text="teamnaam:"/>
+                                <TextField fx:id="TFteamNaam" layoutX="129.0" layoutY="348.0"/>
+                                <Label layoutX="63.0" layoutY="352.0" text="teamnaam:"/>
+                                <TextArea fx:id="TAmissiedetail2" layoutX="295.0" layoutY="14.0" prefHeight="102.0"
+                                          prefWidth="197.0"/>
                             </children>
                         </AnchorPane>
                     </content>
