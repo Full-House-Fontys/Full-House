@@ -203,4 +203,9 @@ public class missionsdetailcontroller {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void createRapport() throws IOException {
+        centralPoint.createRapport(mission);
+    }
 }

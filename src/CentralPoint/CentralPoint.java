@@ -384,33 +384,52 @@ public class CentralPoint {
         String fileName = "Mission-" + mission.getID() + ".txt";
 
         //Textfile setup
-        List<String> lines = Arrays.asList();
+        List<String> lines = new ArrayList<>();
         Path file = Paths.get(fileName);
 
         //Adding lines
         lines.add("Missie:\n\t" + mission.getName() + "\n");
         lines.add("Beschrijving:\n\t" + mission.getDescription() + "\n");
 
-            lines.add("Personeel:\n");
-            for (Staff s : staff){
-                lines.add("\t" + s.toString());
+            lines.add("Personeel:");
+            try {
+                for (Staff s : staff){
+                    lines.add("\t" + s.toString());
+                }
             }
-            lines.add("\nTeam:\n");
-            for (Team t : teams){
-                lines.add("\t" + t.toString());
+            catch (NullPointerException e) { lines.add(""); }
+
+            lines.add("\nTeam:");
+            try {
+                for (Team t : teams){
+                    lines.add("\t" + t.toString());
+                }
             }
-            lines.add("\nMateriaal:\n");
-            for (Material m : materials){
-                lines.add("\t" + m.toString());
+            catch (NullPointerException e) { lines.add(""); }
+
+            lines.add("\nMateriaal:");
+            try {
+                for (Material m : materials){
+                    lines.add("\t" + m.toString());
+                }
             }
-            lines.add("\nBerichten:\n");
-            for (Message m : messages){
-                lines.add("\t" + m.toString());
+            catch (NullPointerException e) { lines.add(""); }
+
+            lines.add("\nBerichten:");
+            try {
+                for (Message m : messages){
+                    lines.add("\t" + m.toString());
+                }
             }
-            lines.add("\nNotificaties:\n");
-            for (Notification n : notifications){
-                lines.add("\t" + n.toString());
+            catch (NullPointerException e) { lines.add(""); }
+
+            lines.add("\nNotificaties:");
+            try {
+                for (Notification n : notifications){
+                    lines.add("\t" + n.toString());
+                }
             }
+            catch (NullPointerException e) { lines.add(""); }
 
         //Writes the rapport
         Files.write(file, lines, Charset.forName("UTF-8"));
