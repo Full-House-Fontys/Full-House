@@ -27,8 +27,10 @@ public class CommunicationMediator {
         while (true) {
             CommunicationRequest networkRequest = appCommunication.consumeRequest();
 
-            if (networkRequest != null)
+            if (networkRequest != null) {
+                System.out.println(networkRequest.getPayload());
                 handle(networkRequest);
+            }
         }
     }
 
