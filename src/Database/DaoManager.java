@@ -27,7 +27,7 @@ public enum DaoManager {
      * Gets the connection to the database
      * @return connection to database
      */
-    private Connection getConnectrion(){
+    private Connection getConnection(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, userName, passWord);
@@ -46,7 +46,7 @@ public enum DaoManager {
     public void open(){
         try {
             if(connection == null || connection.isClosed()){
-                connection = getConnectrion();
+                connection = getConnection();
             }
         } catch (SQLException e) {
             e.printStackTrace();

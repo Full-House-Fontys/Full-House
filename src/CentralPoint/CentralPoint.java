@@ -11,7 +11,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -360,6 +365,31 @@ public class CentralPoint {
         incomingLogin.setPassword(password);
         return daoManager.getDao(DbTables.PERSONEEL).update(incomingLogin, 0);
     }
+
+    /**
+     * Makes a rapport for any mission.
+     * All related data in the database will be gathered converted in a format.
+     * An text file with all data will be created.
+     * @param mission : this mission will turn in to a rapport
+     */
+    public void createRapport(Mission mission) throws IOException {
+        //Getting all data related to the given mission
+        ObservableList<Material> materials = daoManager.getDao(DbTables.MATERIAAL).getSpecificList(mission.getID());
+        ObservableList<Message> messages = daoManager.getDao(DbTables.BERICHT).getSpecificList(mission.getID());
+        ObservableList<Notification> notifications = daoManager.getDao(DbTables.MELDING).getSpecificList(mission.getID());
+        ObservableList<Staff> staff = daoManager.getDao(DbTables.PERSONEEL).getSpecificList(mission.getID());
+        ObservableList<Team> teams = daoManager.getDao(DbTables.TEAM).getSpecificList(mission.getID());
+
+        //Textfile setup
+        List<String> lines = Arrays.asList();
+        lines.add("Kikkersoep");
+        Path file = Paths.get("the-file-name.txt");
+        Files.write(file, lines, Charset.forName("UTF-8"));
+        //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+        //TODO Make rappor
+    }
+
 
     public String getLastMessages() {
         StringBuilder lastMessages = new StringBuilder();
