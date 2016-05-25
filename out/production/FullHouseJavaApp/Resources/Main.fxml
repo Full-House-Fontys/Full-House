@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.mainController">
     <children>
-        <Button layoutX="264.0" layoutY="363.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="115.0" text="Nieuwe missie" />
+        <Button layoutX="191.0" layoutY="305.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="133.0" text="Nieuwe missie" />
         <ListView fx:id="lvTeams" layoutX="425.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" />
         <ListView fx:id="lvMissions" layoutX="425.0" layoutY="289.0" prefHeight="200.0" prefWidth="200.0" />
         <Label layoutX="425.0" layoutY="257.0" text="Missie" />
@@ -20,5 +20,6 @@
         <ListView fx:id="lvNotifications" layoutX="14.0" layoutY="50.0" prefHeight="400.0" prefWidth="163.0" />
         <Label layoutX="14.0" layoutY="27.0" text="Notificaties" />
       <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#ShowStaffInField" text="List of staff in field" />
+      <Button fx:id="btPubOnWebpage" layoutX="191.0" layoutY="376.0" mnemonicParsing="false" onAction="#publishOnWebpage" prefHeight="65.0" prefWidth="133.0" text="Publiceer de melding op de webpagina" textAlignment="CENTER" wrapText="true" />
     </children>
 </Pane>
