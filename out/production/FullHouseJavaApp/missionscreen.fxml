@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
@@ -41,6 +41,20 @@
                                      <ListView fx:id="lvToAddTeams" layoutX="949.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
                                      <Label layoutX="962.0" layoutY="29.0" text="Teams die je wilt toevoegen : " />
                                      <Button layoutX="775.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeFromCurrentTeam" prefHeight="25.0" prefWidth="97.0" text="Verwijder team" />
+                                     <TextField fx:id="TFrequestName" layoutX="251.0" layoutY="308.0"/>
+                                     <TextField fx:id="TFrequestDescription" layoutX="251.0" layoutY="345.0"/>
+                                     <TextField fx:id="TFrequestPolice" layoutX="251.0" layoutY="386.0"/>
+                                     <TextField fx:id="TFrequestMedic" layoutX="251.0" layoutY="422.0"/>
+                                     <TextField fx:id="TFrequestFireman" layoutX="251.0" layoutY="457.0"/>
+                                     <TextField fx:id="TFrequestMilitaryPolice" layoutX="251.0" layoutY="492.0"/>
+                                     <Label layoutX="175.0" layoutY="313.0" text="naam:"/>
+                                     <Label layoutX="174.0" layoutY="349.0" text="description:"/>
+                                     <Label layoutX="177.0" layoutY="390.0" text="politie:"/>
+                                     <Label layoutX="177.0" layoutY="426.0" text="EHBO:"/>
+                                     <Label layoutX="177.0" layoutY="461.0" text="brandweer:"/>
+                                     <Label layoutX="177.0" layoutY="496.0" text="militarypolice:"/>
+                                     <Button fx:id="BTrequest" layoutX="344.0" layoutY="529.0" mnemonicParsing="false"
+                                             onAction="#createRequest" text="request"/>
                                  </children>
                              </AnchorPane>
                          </content>
@@ -102,7 +116,7 @@
                                      </TableView>
                                      <Label layoutX="793.0" layoutY="87.0" text="Materialen in missie"/>
                                      <Button layoutX="625.0" layoutY="184.0" mnemonicParsing="false"
-                                             text="Voeg toe aan Missie" onAction="#addMaterialToMission"/>
+                                             onAction="#addMaterialToMission" text="Voeg toe aan Missie"/>
                                  </children>
                              </AnchorPane>
                          </content>

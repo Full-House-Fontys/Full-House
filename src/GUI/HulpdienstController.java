@@ -30,6 +30,8 @@ public class HulpdienstController implements Initializable {
     @FXML
     private TextArea TAmissiedetail;
     @FXML
+    private TextArea TAmissiedetail2;
+    @FXML
     private ListView LVaddedStaff;
     @FXML
     private ListView LVTeams;
@@ -77,6 +79,7 @@ public class HulpdienstController implements Initializable {
         TeamRequest request = (TeamRequest) LVmissies.getSelectionModel().getSelectedItem();
         String tekst = request.toString() + "\n" + "brandweer: " + request.getFireman() + "\n" + "EHBO: " + request.getMedic() + "\n" + "Politie: " + request.getPolice() + "\n" + "Marachause: " + request.getMilitarypolice() + "\n";
         TAmissiedetail.setText(tekst);
+        TAmissiedetail2.setText(tekst);
     }
 
     public void addStaff() {
