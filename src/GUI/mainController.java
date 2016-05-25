@@ -147,7 +147,12 @@ public class mainController implements Initializable {
     }
 
     private void loadNotifications() {
-        Platform.runLater(lvNotifications.setItems(notificationObservableList));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvNotifications.setItems(notificationObservableList);
+            }
+        });
     }
 
     public void makeNewMission() {
