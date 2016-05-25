@@ -7,6 +7,7 @@ import CentralPoint.Mission;
 import CentralPoint.Staff;
 import CentralPoint.Team;
 import CentralPoint.Notification;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -63,7 +64,7 @@ public class mainController implements Initializable {
     }
 
     @FXML
-    private void publishOnWebpage(){
+    private void publishOnWebpage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/publishOnWebScreen.fxml"));
         Stage stage = new Stage();
         Parent root = null;
@@ -146,7 +147,7 @@ public class mainController implements Initializable {
     }
 
     private void loadNotifications() {
-        lvNotifications.setItems(notificationObservableList);
+        Platform.runLater(lvNotifications.setItems(notificationObservableList));
     }
 
     public void makeNewMission() {
