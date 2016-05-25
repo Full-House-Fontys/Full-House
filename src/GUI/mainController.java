@@ -2,11 +2,7 @@ package GUI;
 
 
 import AppCommunication.CommunicationMediator;
-import CentralPoint.CentralPoint;
-import CentralPoint.Mission;
-import CentralPoint.Staff;
-import CentralPoint.Team;
-import CentralPoint.Notification;
+import CentralPoint.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -147,7 +142,12 @@ public class mainController implements Initializable {
     }
 
     private void loadNotifications() {
-        Platform.runLater(lvNotifications.setItems(notificationObservableList));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lvNotifications.setItems(notificationObservableList);
+            }
+        });
     }
 
     public void makeNewMission() {

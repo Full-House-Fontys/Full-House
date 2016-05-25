@@ -20,12 +20,14 @@ public class AppCommunication {
     static final int socketServerPORT = 8080;
 
     private Queue<CommunicationMessage> messageQueue;
-    private ExecutorService executorService = Executors.newFixedThreadPool(1);
+    private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
     int count = 0;
 
     public AppCommunication() {
         try {
+            InetAddress IP=InetAddress.getLocalHost();
+            System.out.println("IP of my system is := "+IP.getHostAddress());
             startListeners();
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,6 +110,7 @@ public class AppCommunication {
     private void constantCheck() {
         try {
             while (true) {
+                System.out.println(socket.getLocalSocketAddress());
                 Socket clientSocket = this.socket.accept();
 
                 String full = recv(clientSocket);
