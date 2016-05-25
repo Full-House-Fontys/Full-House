@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Hupldienst extends Application {
+public class Helpservice extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -17,7 +17,7 @@ public class Hupldienst extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Hulpdienst.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Helpservice.fxml"));
         primaryStage.setTitle("Hulpdienst");
         primaryStage.setScene(new Scene(root, 619, 466));
         primaryStage.show();
