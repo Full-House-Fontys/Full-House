@@ -2,6 +2,7 @@ package CentralPoint;
 
 import Database.DaoManager;
 import Database.DbTables;
+import HulpDienst.TeamRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -460,6 +461,32 @@ public class CentralPoint {
             in = new ObjectInputStream(connection.getInputStream());
         } catch (IOException e) {
 
+        }
+    }
+
+    /**
+     * gets mission with mission id
+     * @param id id of mission to get
+     * @return the mission
+     */
+    public Mission getMissionFromId(int id) {
+        for(Mission mission : missionObservableList){
+            if(mission.getID() == id){
+                return mission;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * send request for support service
+     * @param teamRequest object to send
+     */
+    public void sendSupportService(TeamRequest teamRequest) {
+        try {
+            getOutput().writeObject(teamRequest);
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
     }
 }
