@@ -17,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +24,10 @@ import java.util.List;
  * Created by Kaj Suiker on 20-3-2016.
  */
 public class CentralPoint {
+    ServerSocket SS;
+    Socket connection = null;
+    ObjectOutputStream out;
+    ObjectInputStream in;
     private DaoManager daoManager;
     private List<Staff> staffList;
     private List<Material> materialList;
@@ -32,7 +35,6 @@ public class CentralPoint {
     private List<Mission> missionsList;
     private List<Team> teamList;
     private List<Notification> notificationList;
-
     private ObservableList<Staff> staffObservableList;
     private ObservableList<Material> materialObservableList;
     private ObservableList<Mission> missionObservableList;
@@ -40,12 +42,6 @@ public class CentralPoint {
     private ObservableList<Team> availableTeamObservableList;
     private ObservableList<Material> availableMaterialObservableList;
     private ObservableList<Notification> notificationObservableList;
-
-
-    ServerSocket SS;
-    Socket connection = null;
-    ObjectOutputStream out;
-    ObjectInputStream in;
     /**
      * constructor for central point
      */
@@ -108,10 +104,6 @@ public class CentralPoint {
         return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
-    public ObjectOutputStream getOutput() {
-        return out;
-    }
-
     /**
      * @param team list of staff in team
      */
@@ -121,6 +113,10 @@ public class CentralPoint {
             toUpdate.setOnLocation(true);
             daoManager.getDao(DbTables.PERSONEEL).update(toUpdate, staffname);
         }
+    }
+
+    public ObjectOutputStream getOutput() {
+        return out;
     }
 
     /**
@@ -356,15 +352,16 @@ public class CentralPoint {
     /**
      * Check if user is in database
      *
+     *
      * @param userName username of user
      * @param password password of user
-     * @return true if in database
+     * @return returns mission id if in database and on mission else -1
      */
-    public boolean checkExistingUser(String userName, String password) {
+    public int checkExistingUser(String userName, String password) {
         Staff incomingLogin = new Staff();
         incomingLogin.setUserName(userName);
         incomingLogin.setPassword(password);
-        return daoManager.getDao(DbTables.PERSONEEL).update(incomingLogin, 0);
+        return ((Staff) daoManager.getDao(DbTables.PERSONEEL).getObject(incomingLogin, 0)).getId();
     }
 
     /**
@@ -442,7 +439,7 @@ public class CentralPoint {
         StringBuilder lastMessages = new StringBuilder();
         for (Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()) {
             Message mes = (Message) message;
-            lastMessages.append(mes.getTitel() + "\n" + mes.getMessage() + "///");
+            lastMessages.append(mes.getTitel() + " " + mes.getMessage() + (mes.getMissionId() != 0 ? 1 : 0) + "///");
         }
         return lastMessages.toString();
     }
@@ -460,7 +457,7 @@ public class CentralPoint {
             out.flush();
             in = new ObjectInputStream(connection.getInputStream());
         } catch (IOException e) {
-
+            //TODO
         }
     }
 
@@ -470,6 +467,7 @@ public class CentralPoint {
      * @return the mission
      */
     public Mission getMissionFromId(int id) {
+        renewLists(DbTables.MISSIE);
         for(Mission mission : missionObservableList){
             if(mission.getID() == id){
                 return mission;
@@ -488,6 +486,17 @@ public class CentralPoint {
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
+    }
+
+    /**
+     * inserts send messages into database
+     * creates message from payload and sends it to the daomanager
+     *
+     * @param payload the fulle messages
+     * @return true/false for succes
+     */
+    public boolean insertMessage(String payload) {
+        return daoManager.getDao(DbTables.BERICHT).insert(new Message("", payload.substring(0, payload.length() - 1), Integer.parseInt(payload.substring(payload.length() - 1))));
     }
 }
 

@@ -125,4 +125,9 @@ public class DaoNotification extends DaoGeneric<Notification> {
     public void insertTwoInts(int id, int id1) {
 
     }
+
+    @Override
+    public Notification getObject(Notification value, int key) {
+        return null;
+    }
 }

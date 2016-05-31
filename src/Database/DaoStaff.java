@@ -135,21 +135,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
     public boolean update(Staff value, int key) {
         boolean result = false;
         ResultSet res;
-        if (key == 0) {
-            String query = "SELECT * FROM Personeel WHERE Gebruikersnaam = ? AND Wachtwoord = ?";
-            try {
-                PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, value.getUserName());
-                ps.setString(2, value.getPassword());
-                res = ps.executeQuery();
-                while (res.next()) {
-                    result = true;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return result;
-        } else {
             String bit = value.isOnLocation() ? "1" : "0";
             String query = "UPDATE " + TABLENAME + " Set OpLocatie = " + bit + " WHERE id = ?";
             try {
@@ -161,7 +146,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
                 e.printStackTrace();
             }
             return result;
-        }
     }
 
     @Override
@@ -181,6 +165,33 @@ public class DaoStaff extends DaoGeneric<Staff> {
 
     @Override
     public void insertTwoInts(int id, int id1) {
+    }
 
+    /**
+     * returns missionID that Staff is part of
+     *
+     * @param value object value
+     * @param key   key
+     * @return
+     */
+    @Override
+    public Staff getObject(Staff value, int key) {
+        Staff result = new Staff();
+        result.setId(-1);
+        ResultSet res;
+        //String query = "SELECT * FROM Personeel WHERE Gebruikersnaam = ? AND Wachtwoord = ?";
+        String query = "SELECT Missieid From Team WHERE PersoneelID = (SELECT ID FROM Personeel WHERE Gebruikersnaam=? AND Wachtwoord=?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, value.getUserName());
+            ps.setString(2, value.getPassword());
+            res = ps.executeQuery();
+            while (res.next()) {
+                result.setId(res.getInt(MissionID));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

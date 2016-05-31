@@ -4,9 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.geom.Point2D;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Kaj Suiker on 22-3-2016.
@@ -17,7 +15,7 @@ public class MessageTest {
 
     @Before
     public void setUp() throws Exception {
-        message = new Message("Backup", "We hebben een extra brandweerwagen nodig!");
+        message = new Message("Backup", "We hebben een extra brandweerwagen nodig!", 0);
     }
 
     @After

@@ -1,8 +1,8 @@
 package AppCommunication;
 
 import CentralPoint.CentralPoint;
-import HulpDienst.TeamRequest;
 import CentralPoint.Mission;
+import HulpDienst.TeamRequest;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,13 +30,14 @@ public class CommunicationMediator {
             CommunicationRequest networkRequest = appCommunication.consumeRequest();
 
             if (networkRequest != null) {
-                System.out.println(networkRequest.getPayload());
+                //System.out.println(networkRequest.getPayload());
                 handle(networkRequest);
             }
         }
     }
 
     private void handle(CommunicationRequest communicationRequestRequest) {
+        System.out.println(communicationRequestRequest.getUrl() + communicationRequestRequest.getPayload());
         switch (communicationRequestRequest.getUrl()) {
             case "login":
                 comLogin(communicationRequestRequest);
@@ -87,18 +88,28 @@ public class CommunicationMediator {
     }
 
     private void comSend(CommunicationRequest communicationRequestRequest) {
+        if (centralPoint.insertMessage(communicationRequestRequest.getPayload())) {
+
+        }
     }
 
     private void comMessage(CommunicationRequest communicationRequestRequest) {
-        send(centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
+        send("getMessages/" + centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
+        System.out.println("getMessages/" + centralPoint.getLastMessages());
     }
 
-    private void comLogin(CommunicationRequest communicationRequestRequest){
-        if(centralPoint.checkExistingUser(communicationRequestRequest.getPayload().substring(0,communicationRequestRequest.getPayload().indexOf(":")), communicationRequestRequest.getPayload().substring(communicationRequestRequest.getPayload().indexOf(":")+1))){
-            send("true",communicationRequestRequest.getNetworkMessage().getSender());
+    /**
+     * send mission from login info
+     *
+     * @param communicationRequestRequest send request
+     */
+    private void comLogin(CommunicationRequest communicationRequestRequest) {
+        int missionId = centralPoint.checkExistingUser(communicationRequestRequest.getPayload().substring(0, communicationRequestRequest.getPayload().indexOf(":")), communicationRequestRequest.getPayload().substring(communicationRequestRequest.getPayload().indexOf(":") + 1));
+        if (missionId != -1) {
+            send("login/" + missionId, communicationRequestRequest.getNetworkMessage().getSender());
             System.out.println("true");
-        }else {
-            send("false",communicationRequestRequest.getNetworkMessage().getSender());
+        } else {
+            send("login/" + missionId, communicationRequestRequest.getNetworkMessage().getSender());
             System.out.println("false");
         }
     }

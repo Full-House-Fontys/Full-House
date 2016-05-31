@@ -7,6 +7,13 @@ public class Message {
 
     private String titel;
     private String message;
+    private int missionId;
+
+    public Message(String titel, String message, int missionId) {
+        this.titel = titel;
+        this.message = message;
+        this.missionId = missionId;
+    }
 
     public String getTitel() {
         return titel;
@@ -16,9 +23,8 @@ public class Message {
         return message;
     }
 
-    public Message(String titel, String message){
-        this.titel = titel;
-        this.message = message;
+    public int getMissionId() {
+        return missionId;
     }
 
 }

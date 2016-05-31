@@ -48,7 +48,7 @@ public class BerichtController implements Initializable {
 
     @FXML
     private void simuleerTestBericht(ActionEvent event) {
-        Message m = new Message("test","inhoud");
+        Message m = new Message("test", "inhoud", 0);
 
         ObservableList<String> items = lvIngekomenBerichten.getItems();
         items.add(m.getTitel());

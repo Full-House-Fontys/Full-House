@@ -162,4 +162,9 @@ public class DaoTeam extends DaoGeneric<Team> {
     public void insertTwoInts(int id, int id1) {
 
     }
+
+    @Override
+    public Team getObject(Team value, int key) {
+        return null;
+    }
 }

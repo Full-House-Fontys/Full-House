@@ -221,4 +221,9 @@ public class DaoMaterial extends DaoGeneric<Material> {
     public void insertTwoInts(int id, int id1) {
 
     }
+
+    @Override
+    public Material getObject(Material value, int key) {
+        return null;
+    }
 }

@@ -2,9 +2,12 @@ package AppCommunication;
 
 import com.sun.istack.internal.NotNull;
 
-import java.io.*;
-import java.net.*;
-import java.util.Enumeration;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
@@ -15,63 +18,21 @@ import java.util.concurrent.Executors;
  */
 public class AppCommunication {
 
+    static final int socketServerPORT = 8080;
     ServerSocket serverSocket;
     String message = "";
-    static final int socketServerPORT = 8080;
-
+    int count = 0;
     private Queue<CommunicationMessage> messageQueue;
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
-    int count = 0;
 
     public AppCommunication() {
         try {
-            InetAddress IP=InetAddress.getLocalHost();
-            System.out.println("IP of my system is := "+IP.getHostAddress());
             startListeners();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    /*
-    private class SocketServerThread extends Thread {
-    */
-
-/*
-        @Override
-        public void run() {
-            try {
-                serverSocket = new ServerSocket(socketServerPORT);
-
-                while (true) {
-                    Socket socket = serverSocket.accept();
-                    count++;
-                    message += "#" + count + " from "
-                            + socket.getInetAddress() + ":"
-                            + socket.getPort() + "\n";
-
-                    System.out.println(message);
-
-                    SocketServerReplyThread socketServerReplyThread = new SocketServerReplyThread(
-                            socket, count);
-                    socketServerReplyThread.run();
-
-                    Thread reciever = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            constantCheck();
-                        }
-                    });
-
-                    reciever.start();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-*/
 
     /**
      * Starts the thread listeners

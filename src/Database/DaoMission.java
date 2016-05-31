@@ -161,4 +161,9 @@ public class DaoMission extends DaoGeneric<Mission>{
             ex.printStackTrace();
         }
     }
+
+    @Override
+    public Mission getObject(Mission value, int key) {
+        return null;
+    }
 }

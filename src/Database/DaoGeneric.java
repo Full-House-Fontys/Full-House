@@ -70,4 +70,13 @@ public abstract class DaoGeneric<T> {
      * @param id1
      */
     public abstract void insertTwoInts(int id, int id1);
+
+    /**
+     * get object from database
+     *
+     * @param value object value
+     * @param key   key
+     * @return object
+     */
+    public abstract T getObject(T value, int key);
 }
