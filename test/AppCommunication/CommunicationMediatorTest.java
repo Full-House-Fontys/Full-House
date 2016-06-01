@@ -1,25 +1,32 @@
 package AppCommunication;
 
-import CentralPoint.CentralPoint;
-import org.junit.Assert;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+
 
 /**
- * Created by Kees on 26/04/2016.
+ * Kees on 26/04/2016.
  */
 public class CommunicationMediatorTest {
 
     //CommunicationMediator communicationMediator = new CommunicationMediator(new CentralPoint());
 
-    //TODO JAVADOC
+    /**
+     * test communicationmediator on listening
+     *
+     * @throws Exception
+     */
     @Test
     public void listen() throws Exception {
         //communicationMediator.listen();
     }
 
-    //TODO JAVADOC
+    /**
+     * test communicationmediator on sending
+     *
+     * @throws Exception
+     */
     @Test
     public void send() throws Exception {
         //Assert.assertTrue("Send did not work", communicationMediator.send("Hallo", ""));

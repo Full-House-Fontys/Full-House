@@ -10,13 +10,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by Kaj Suiker on 22-3-2016.
+ * Kaj Suiker on 22-3-2016.
  */
 public class StaffTest {
     private Staff staff;
     private Point2D point2D = new Point2D.Double(12.333,22.557);
 
-    //TODO JAVADOC
+    /**
+     * set up for unittest
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         staff = new Staff();
@@ -24,68 +28,98 @@ public class StaffTest {
         staff = new Staff(0, "Kaj", "", "Adams", "p_adams", "jkl(USDj2", point2D, "Brandweer", true, 3, 5);
     }
 
-    //TODO JAVADOC
+    /**
+     * tear down procedure of unittest
+     *
+     * @throws Exception
+     */
     @After
     public void tearDown() throws Exception {
 
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get staff name
+     * @throws Exception
+     */
     @Test
     public void testGetName() throws Exception {
         assertEquals("Incorrect name get","Kaj",staff.getName());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get staff location
+     * @throws Exception
+     */
     @Test
     public void testGetLocation() throws Exception {
         assertEquals("Incorrect get location point2d",point2D,staff.getLocation());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get the staff locationstring
+     * @throws Exception
+     */
     @Test
     public void testGetLocationString() throws Exception {
         assertEquals("Incorrect Location","12.33; 22.56",staff.getLocationString());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to check if staff is already on a location
+     * @throws Exception
+     */
     @Test
     public void testIsOnLocation() throws Exception {
         assertEquals("Incorrect location boolean get",true,staff.isOnLocation());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to set the onlocation boolean
+     * @throws Exception
+     */
     @Test
     public void testSetOnLocation() throws Exception {
         staff.setOnLocation(false);
         assertEquals("Incorrect location boolean set",false,staff.isOnLocation());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get staff job
+     */
     @Test
     public void testGetSort() {
         assertEquals("Incorrect sort","Brandweer",staff.getSort());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get staff lastname
+     */
     @Test
     public void testGetLastName() {
         assertEquals("Incorrect lastname","Adams",staff.getLastName());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get the team id
+     */
     @Test
     public void testGetTeamID() {
         assertEquals("Incorrect TeamId",3,staff.getTeamID());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get latest mission id of the staff member
+     */
     @Test
     public void testGetMissionID() {
         assertEquals("Incorrect MissionId",5,staff.getMissionID());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get the toString method of the staff
+     * @throws Exception
+     */
     @Test
     public void testToString() throws Exception{
         assertNotNull("string not returned", staff.toString());

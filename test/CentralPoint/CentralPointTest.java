@@ -11,14 +11,14 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
- * Created by jvdwi on 22-3-2016.
+ * jvdwi on 22-3-2016.
  */
 public class CentralPointTest {
 
     private CentralPoint centralPoint;
-    private ObservableList<Material> initialList;
-    private ObservableList<Staff> staffObservableList;
-    private Material material;
+    ObservableList<Material> initialList;
+    ObservableList<Staff> staffObservableList;
+    Material material;
 
     /**
      * Set up method for unittests before running each test
@@ -80,7 +80,12 @@ public class CentralPointTest {
         assertNotNull("list is not filled from database", centralPoint.getStaffOnLocation());
     }
 
-    //TODO JAVADOC
+    /**
+     * sets list of all staff members that are on location
+     *
+     * @throws Exception
+     */
+    // TODO maken test
     @Test
     public void testSetStaffOnLocation() throws Exception {
         //afhankelijk van Qun, insert tested en working
@@ -263,16 +268,18 @@ public class CentralPointTest {
         centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
-    //TODO: the missions are not cleared when finishing a unittest
-    //TODO JAVADOC
+    /**
+     * get all missions from database
+     */
     @Test
     public void testGetAllMissions() {
         ObservableList<Mission> allMissions = centralPoint.getAllMissions();
         assertEquals("There are not enough missions", 11, allMissions.size());
     }
 
-    //TODO: the missions are not cleared when finishing a unittest
-    //TODO JAVADOC
+    /**
+     * create a new mission
+     */
     @Test
     public void testCreateMission() {
         Date date = new Date();
@@ -280,13 +287,19 @@ public class CentralPointTest {
         assertEquals("There are not 12 missions", 12, centralPoint.getAllMissions().size());
     }
 
-    //TODO JAVADOC
+    /**
+     * get all teams from database
+     */
     @Test
     public void testGetAllTeams() {
         assertEquals("There are not 10 teams", 10, centralPoint.getAllTeams().size());
     }
 
-    //TODO JAVADOC
+    /**
+     * get all notifications from database
+     *
+     * @throws Exception
+     */
     @Test
     public void getAllNotifications() throws Exception {
         assertTrue("There aren't notifications", centralPoint.getAllNotifications().size() > 0);

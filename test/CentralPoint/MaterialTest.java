@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by jvdwi on 22-3-2016.
+ * jvdwi on 22-3-2016.
  */
 public class MaterialTest {
     private Material material;
@@ -147,7 +147,7 @@ public class MaterialTest {
      */
     @Test
     public void testSetMissionIds() throws Exception {
-        ArrayList<Integer> missionIds = new ArrayList();
+        ArrayList<Integer> missionIds = new ArrayList<>();
         missionIds.add(1);
         missionIds.add(2);
         material.setMissionIds(missionIds);

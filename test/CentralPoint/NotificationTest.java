@@ -1,6 +1,6 @@
 package CentralPoint;
 
-import org.junit.After;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +8,8 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 /**
- * Created by fhict on 11-05-16.
+ * fhict on 11-05-16.
  */
 public class NotificationTest {
     Notification n;

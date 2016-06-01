@@ -4,40 +4,58 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+
 
 /**
- * Created by Kees on 26/04/2016.
+ *  Kees on 26/04/2016.
  */
 public class AppCommunicationTest {
 
     private AppCommunication appCommunication = new AppCommunication();
 
-    //TODO JAVADOC
+    /**
+     * set up of unittest
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
 
     }
 
-    //TODO JAVADOC
+    /**
+     * test to start the listener
+     *
+     * @throws Exception
+     */
     @Test
     public void startListeners() throws Exception {
         appCommunication.startListeners();
     }
 
-    //TODO JAVADOC
+    /**
+     * test to stop listener
+     * @throws Exception
+     */
     @Test
     public void stopListeners() throws Exception {
         appCommunication.stopListeners();
     }
 
-    //TODO JAVADOC
+
+    /**
+     * test to consume a request
+     * @throws Exception
+     */
     @Test
     public void consumeRequest() throws Exception {
         appCommunication.startListeners();
     }
 
-    //TODO JAVADOC
+    /**
+     * test to consume a message
+     * @throws Exception
+     */
     @Test
     public void consumeMessage() throws Exception {
         Assert.assertNotNull("Message queue is null", appCommunication.consumeMessage());

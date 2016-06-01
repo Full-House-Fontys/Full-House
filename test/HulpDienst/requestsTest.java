@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Mark on 26-4-2016.
+ * Mark on 26-4-2016.
  */
 public class requestsTest {
 
@@ -15,7 +15,11 @@ public class requestsTest {
     Mission mission;
     requests RQ;
 
-    //TODO JAVADOC
+    /**
+     * the set up that needs to be done before every test
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         mission = new Mission(1, null, null, null, null, null, 0.0, 0.0);
@@ -23,13 +27,20 @@ public class requestsTest {
         RQ = new requests();
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get all requests from testrequest
+     *
+     * @throws Exception
+     */
     @Test
     public void testGetRequests() throws Exception {
         assertEquals("wrong list", 0, RQ.GetRequests().size());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to add request to list
+     * @throws Exception
+     */
     @Test
     public void testAddRequests() throws Exception {
         RQ.addRequests(TR);

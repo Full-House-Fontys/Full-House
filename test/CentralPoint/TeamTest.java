@@ -7,10 +7,11 @@ import org.junit.Test;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Kaj Suiker on 22-3-2016.
+ * Kaj Suiker on 22-3-2016.
  */
 public class TeamTest {
 
@@ -18,7 +19,11 @@ public class TeamTest {
     private ArrayList<Staff> teamMembers = new ArrayList<>();
     private ArrayList<Integer> missionID = new ArrayList<>();
 
-    //TODO JAVADOC
+    /**
+     * set up of unittest
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
 
@@ -30,33 +35,49 @@ public class TeamTest {
         team = new Team(100, "Team 1", teamMembers, missionID);
     }
 
-    //TODO JAVADOC
+    /**
+     * tear down of unittest
+     *
+     * @throws Exception
+     */
     @After
     public void tearDown() throws Exception {
 
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get team name
+     * @throws Exception
+     */
     @Test
     public void testGetName() throws Exception {
         team.setName("Team 1");
         assertEquals("Teamname not equals", "Team 1", team.getName());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to set team name
+     * @throws Exception
+     */
     @Test
     public void testSetName() throws Exception {
         team.setName("Team 2");
         assertEquals("Teamname not equals", "Team 2", team.getName());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to get all staffmembers
+     * @throws Exception
+     */
     @Test
     public void testGetTeamMembers() throws Exception {
         assertEquals("Does not contain right staff", teamMembers, team.getTeamMembers());
     }
 
-    //TODO JAVADOC
+    /**
+     * test to set all staffmembers
+     * @throws Exception
+     */
     @Test
     public void testSetTeamMembers() throws Exception {
         Staff steffert = new Staff(1, "Steffert", "van", "Huizen", "Sufferd", "ww2", new Point2D.Double(1.234561,1.652431), "EHBO", true);
@@ -64,7 +85,10 @@ public class TeamTest {
         assertTrue("Does not contain right team", team.getTeamMembers().contains(steffert));
     }
 
-    //TODO JAVADOC
+    /**
+     * test the tostring method of team
+     * @throws Exception
+     */
     @Test
     public void testToString() throws Exception {
         team.setName("Team 2");
