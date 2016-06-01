@@ -67,8 +67,8 @@ public enum DaoManager {
     }
 
     /**
-     * @param table name of table to use
      * Used to get database generic class of database table you want to use
+     * @param table name of table to use
      * @return generic to use on table
      */
     public DaoGeneric getDao(DbTables table){

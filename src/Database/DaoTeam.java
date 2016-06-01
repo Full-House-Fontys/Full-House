@@ -30,11 +30,13 @@ public class DaoTeam extends DaoGeneric<Team> {
     private final String missionID = "missieID";
     private CentralPoint centralPoint;
 
-
+    //TODO JAVADOC
     public DaoTeam(Connection connection) {
         super(connection, TABLENAME);
     }
 
+    //TODO JAVADOC
+    //TODO DUPLICATE CODE
     @Override
     public ObservableList<Team> getSpecificList(int missionid) {
         List<Team> missionList = new ArrayList();
@@ -74,6 +76,7 @@ public class DaoTeam extends DaoGeneric<Team> {
         return teamListObservableList;
     }
 
+    //TODO JAVADOC
     @Override
     public ObservableList<Team> getAllRecord() {
         List<Team> missionList = new ArrayList();
@@ -114,6 +117,7 @@ public class DaoTeam extends DaoGeneric<Team> {
 
     }
 
+    //TODO JAVADOC
     @Override
     public boolean update(Team team, int key) {
         boolean result = false;
@@ -130,11 +134,14 @@ public class DaoTeam extends DaoGeneric<Team> {
         return result;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public boolean update(Team team, String key) {
         return false;
     }
 
+    //TODO JAVADOC
     @Override
     public boolean insert(Team team) {
         for (Staff staff : team.getTeamMembers()) {
@@ -153,16 +160,22 @@ public class DaoTeam extends DaoGeneric<Team> {
         return true;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public boolean delete(int key) {
         return false;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public void insertTwoInts(int id, int id1) {
 
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public Team getObject(Team value, int key) {
         return null;

@@ -24,6 +24,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     private final String OpLocatie = "OpLocatie";
 
     /**
+     * TODO ADD DESCRIPTION
      * @param connection database connection
      *                   uses daoGenerics
      *                   database class of Material table
@@ -33,7 +34,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
-     * get specified materials
+     * Get specified materials
      * if id=0 -> only available materials
      *
      * @param id
@@ -48,6 +49,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
                 ResultSet rs = null;
 
                 String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'true'";
+                //TODO DUPLICATE CODE
                 try {
                     Statement statement = connection.createStatement();
                     rs = statement.executeQuery(query);
@@ -64,6 +66,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return list of staff
      * @see DaoGeneric#getAllRecord()
      */
@@ -74,7 +77,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
         ResultSet rs = null;
 
         String query = "SELECT * FROM " + TABLENAME;
-
+        //TODO DUPLICATE CODE
         try {
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
@@ -126,7 +129,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
-     * update with int as key
+     * Update with int as key
      *
      * @param value list of to update
      * @param key   key of row
@@ -154,21 +157,22 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
-     * update with String as key
+     * Update with String as key
      *
-     * @param value
-     * @param key
+     * @param value the material to update
+     * @param key the key of what should be updated
      * @return
      */
     @Override
+    //TODO NOT IMPLEMENTED
     public boolean update(Material value, String key) {
         return false;
     }
 
     /**
-     * insert material in database
+     * Insert material in database
      *
-     * @param value
+     * @param value the material to insert into the db
      * @return
      */
     @Override
@@ -191,9 +195,9 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
-     * delete material from database
+     * Delete material from database
      *
-     * @param key
+     * @param key the id of the material that should be deleted
      * @return
      */
     @Override
@@ -214,14 +218,17 @@ public class DaoMaterial extends DaoGeneric<Material> {
 
     /**
      * Inserts two ints in one table
-     * @param id
-     * @param id1
+     * @param id first id
+     * @param id1 second id
      */
     @Override
+    //TODO NOT IMPLEMENTED
     public void insertTwoInts(int id, int id1) {
 
     }
 
+    //TODO NOT IMPLEMENTED
+    //TODO JAVADOC
     @Override
     public Material getObject(Material value, int key) {
         return null;

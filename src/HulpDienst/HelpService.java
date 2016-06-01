@@ -60,9 +60,9 @@ public class HelpService {
     }
 
     /**
-     * refresh the staff that is currently available
+     * Refresh the staff that is currently available
      *
-     * @return
+     * @return the observable list of the staff
      */
     public ObservableList<Staff> renewStaffList() {
         staffObservableList.clear();
@@ -71,9 +71,9 @@ public class HelpService {
     }
 
     /**
-     * refresh the teams that are available
+     * Refresh the teams that are available
      *
-     * @return
+     * @return the new observable list of the teams
      */
     public ObservableList<Team> renewteams() {
         OBavailableteams.clear();
@@ -82,9 +82,9 @@ public class HelpService {
     }
 
     /**
-     * gets all teams
+     * Gets all teams
      *
-     * @return
+     * @return the observable list of the teams
      */
     public ObservableList<Team> getAllTeams() {
         OBallteams.clear();
@@ -93,17 +93,17 @@ public class HelpService {
     }
 
     /**
-     * gets all teamrequests
-     * @return
+     * Gets all teamrequests
+     * @return the teamrequests
      */
     public ObservableList<TeamRequest> getTeamRequests() {
         return RequestObservableList;
     }
 
     /**
-     * filters the stafflist based on the filter you selected
-     * @param filter
-     * @return
+     * Filters the stafflist based on the filter you selected
+     * @param filter the filter as String
+     * @return the observable list of the staff
      */
     public ObservableList<Staff> filterStaffList(String filter) {
         if (filter.equals("Alle")) {
@@ -119,7 +119,7 @@ public class HelpService {
     }
 
     /**
-     * socket which receives new requests from central point
+     * Socket which receives new request from central point
      */
     private void receiveSocket() {
         try {
@@ -142,19 +142,19 @@ public class HelpService {
     }
 
     /**
-     * create a team
+     * Creates a team
      *
-     * @param team
+     * @param team the team to create
      */
     public void createTeam(Team team) {
         daoManager.getDao(DbTables.TEAM).insert(team);
     }
 
     /**
-     * assigns a mission to a team
+     * Assigns a mission to a team
      *
-     * @param team
-     * @param missionnr
+     * @param team the team where the mission belongs to
+     * @param missionnr the missonid of the mission to add to the team
      */
     public void addMissionToTeam(Team team, int missionnr) {
         daoManager.getDao(DbTables.TEAM).update(team, missionnr);

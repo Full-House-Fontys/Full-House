@@ -18,7 +18,7 @@ public class Material implements Serializable {
     private ArrayList<Integer> missionIds;
 
     /**
-     * constructor material with id
+     * Constructor material with id
      * @param id id
      * @param name name
      * @param sort sort
@@ -35,7 +35,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * constructor material without id
+     * Constructor material without id
      * @param name name
      * @param sort sort
      * @param location location
@@ -50,7 +50,7 @@ public class Material implements Serializable {
     }
 
     /**
-     *
+     * Returns the id
      * @return id
      */
     public int getId() {
@@ -58,7 +58,7 @@ public class Material implements Serializable {
     }
 
     /**
-     *
+     * Returns the name
      * @return name
      */
     public String getName() {
@@ -66,7 +66,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * sets the name
+     * Sets the name
      * @param name name
      */
     public void setName(String name) {
@@ -74,7 +74,7 @@ public class Material implements Serializable {
     }
 
     /**
-     *
+     * Returns the sort
      * @return sort
      */
     public String getSort() {
@@ -82,7 +82,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * sets the sort
+     * Sets the sort
      * @param sort sort
      */
     public void setSort(String sort) {
@@ -90,7 +90,7 @@ public class Material implements Serializable {
     }
 
     /**
-     *
+     * Returns the location
      * @return location
      */
     public Point2D getLocation() {
@@ -98,7 +98,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * sets the location
+     * Sets the location
      * @param location location
      */
     public void setLocation(Point2D location) {
@@ -106,6 +106,7 @@ public class Material implements Serializable {
     }
 
     /**
+     * Returns the location as a string like "xx.xx; yy.yy"
      * @return location as string
      */
     public String getLocationString() {
@@ -130,7 +131,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * return the ids of the missions the material is connected to
+     * Returns the ids of the missions the material is connected to
      * @return list of missionids
      */
     public ArrayList<Integer> getMissionIds() {
@@ -138,7 +139,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * sets the missionids where the material is connected to
+     * Sets the missionids where the material is connected to
      * @param missionIds as int
      */
     public void setMissionIds(ArrayList<Integer> missionIds) {
@@ -146,7 +147,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * adds one mission id
+     * Adds one mission id
      * @param id as int
      */
     public void addMissionId(int id) {
@@ -154,7 +155,7 @@ public class Material implements Serializable {
     }
 
     /**
-     *
+     * Returns true if material is on the location
      * @return onLocation
      */
     public boolean isOnLocation() {
@@ -162,7 +163,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * sets the onLocation
+     * Sets the onLocation
      * @param onLocation onLocation
      */
     public void setOnLocation(boolean onLocation) {
@@ -170,7 +171,7 @@ public class Material implements Serializable {
     }
 
     /**
-     * Calculates the distance
+     * Calculates the distance between the material point and the given point
      *
      * @param loc1 the loc from this material
      * @param loc2 the other location

@@ -18,14 +18,19 @@ import java.util.concurrent.Executors;
  */
 public class AppCommunication {
 
-    static final int socketServerPORT = 8080;
-    ServerSocket serverSocket;
+    //TODO... delete unused variables
+    private static final int socketServerPORT = 8080;
+    /*ServerSocket serverSocket;
     String message = "";
-    int count = 0;
+    int count = 0;*/
     private Queue<CommunicationMessage> messageQueue;
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
 
+    /**
+     * Constructor, calling this will also start the listener
+     * for the socket communication with the field-app.
+     */
     public AppCommunication() {
         try {
             startListeners();
@@ -35,7 +40,8 @@ public class AppCommunication {
     }
 
     /**
-     * Starts the thread listeners
+     * Starts the thread listeners.
+     * @throws IOException
      */
     public void startListeners() throws IOException {
         final int THREADPOOLSIZE = 1;
@@ -56,7 +62,7 @@ public class AppCommunication {
     }
 
     /**
-     * Clears all local variables and stops listening
+     * Clears all local variables and stops listening.
      */
     public void stopListeners() {
         try {
@@ -68,6 +74,10 @@ public class AppCommunication {
         messageQueue.clear();
     }
 
+    /**
+     * The listener will constantly check this method.
+     * This will check non-stop for app communication.
+     */
     private void constantCheck() {
         try {
             while (true) {
@@ -89,6 +99,13 @@ public class AppCommunication {
         }
     }
 
+    /**
+     * Reads the inputStream from given socket.
+     * This will be returned as a String.
+     * @param clientSocket : The socket of the client.
+     * @return the inputStream from the given socket.
+     * @throws IOException
+     */
     @NotNull
     private String recv(Socket clientSocket) throws IOException {
         InputStream inputStream = clientSocket.getInputStream();

@@ -25,9 +25,9 @@ public class DaoNotification extends DaoGeneric<Notification> {
     private final String GebruikerID = "GebruikerID";
 
     /**
-     * @param connection database connection
      * uses daoGenerics
      * database class of Mission table
+     * @param connection database connection
      */
     public DaoNotification(Connection connection) {
         super(connection, TABLENAME);
@@ -36,9 +36,10 @@ public class DaoNotification extends DaoGeneric<Notification> {
     /**
      * Gives specific data when needed
      *
-     * @param id
+     * @param id for the specific item
      * @return list of objects
      */
+    //TODO NOT IMPL
     @Override
     public ObservableList<Notification> getSpecificList(int id) {
         return null;
@@ -72,44 +73,50 @@ public class DaoNotification extends DaoGeneric<Notification> {
     }
 
     /**
+     * Updates the notification with an int as id
      * @param value list of to update with int
      * @param key   key of row
      *              Update bool in a table row
      * @return bool is completed
      */
+    //TODO NOT IMPL
     @Override
     public boolean update(Notification value, int key) {
         return false;
     }
 
     /**
+     * Updates the notifiction with an String as id
      * @param value list of to update with int
      * @param key   key of row
      *              Update bool in a table row
      * @return bool is completed
      */
+    //TODO NOT IMPL
     @Override
     public boolean update(Notification value, String key) {
         return false;
     }
 
     /**
-     * insert data with given value
+     * Insert data with given value
      *
-     * @param value
-     * @return
+     * @param value the notification to insert
+     * @return true if done correctly
      */
+    //TODO NOT IMPL
     @Override
     public boolean insert(Notification value) {
         return false;
     }
 
     /**
-     * delete data in database of given key as int
+     * Delete data in database of given key as int
      *
-     * @param key
-     * @return
+     * @param key to identify the notification to delete
+     * @return true if done correctly
      */
+    //TODO NOT IMPL
     @Override
     public boolean delete(int key) {
         return false;
@@ -118,14 +125,17 @@ public class DaoNotification extends DaoGeneric<Notification> {
     /**
      * Inserts two ints in a database, useful for multiple to multiple relationships with pairing tables
      *
-     * @param id
-     * @param id1
+     * @param id first id
+     * @param id1 second id
      */
+    //TODO NOT IMPL
     @Override
     public void insertTwoInts(int id, int id1) {
 
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public Notification getObject(Notification value, int key) {
         return null;

@@ -30,19 +30,22 @@ public class DaoStaff extends DaoGeneric<Staff> {
     private final String MissionID = "MissieID";
 
     /**
-     * @param connection database connection
      * uses daoGenerics
      * database class of Staff table
+     * @param connection database connection
      */
+    //TODO NOT IMPL
     public DaoStaff(Connection connection) {
         super(connection, TABLENAME);
     }
 
     /**
      * Returns list of people who are involved in the mission
-     * @param id
+     * @param id for specific list
      * @return list of Staff
      */
+    //TODO DUPLICATE CODE
+    //TODO COMMENTED CODE
     @Override
     public ObservableList<Staff> getSpecificList(int id) {
         ArrayList staffList = new ArrayList();
@@ -54,7 +57,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
         } else {
             query = "Select DISTINCT Personeel.* FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Personeel.OpLocatie = 0";
         }
-
 
         try{
             Statement statement = connection.createStatement();
@@ -97,9 +99,11 @@ public class DaoStaff extends DaoGeneric<Staff> {
     }
 
     /**
+     * Get all members of staff
      * @return list of staff
      * @see DaoGeneric#getAllRecord()
      */
+    //TODO DUPLICATE CODE
     @Override
     public ObservableList<Staff> getAllRecord() {
         List<Staff> allStaff = new ArrayList<>();
@@ -148,21 +152,29 @@ public class DaoStaff extends DaoGeneric<Staff> {
             return result;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public boolean update(Staff value, String key) {
         return false;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public boolean insert(Staff value) {
         return false;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public boolean delete(int key) {
         return false;
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public void insertTwoInts(int id, int id1) {
     }
@@ -172,7 +184,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
      *
      * @param value object value
      * @param key   key
-     * @return
+     * @return the Staff
      */
     @Override
     public Staff getObject(Staff value, int key) {

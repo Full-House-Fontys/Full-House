@@ -9,11 +9,13 @@ import javafx.stage.Stage;
  */
 public class HulpdienstOpleiding extends Application{
 
+    //TODO JAVADOC
     public static void main(String[] args) {
         launch(args);
 
     }
 
+    //TODO JAVADOC
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/hulpdienst_opleiding.fxml"));

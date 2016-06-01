@@ -9,6 +9,7 @@ public class CommunicationServerSingleton {
 
     private static AppCommunication networkServer;
 
+    //TODO
     public static AppCommunication getNetworkServer() throws IOException {
         if (networkServer == null) {
             networkServer = new AppCommunication();

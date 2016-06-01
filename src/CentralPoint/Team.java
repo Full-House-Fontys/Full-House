@@ -12,6 +12,7 @@ public class Team implements Serializable {
     private int id;
     private ArrayList<Integer> missionID;
 
+    //TODO
     public Team(int iD, String name, ArrayList<Staff> teamMembers, ArrayList<Integer> missionID) {
         this.name = name;
         this.teamMembers = teamMembers;
@@ -20,49 +21,61 @@ public class Team implements Serializable {
 
     }
 
+    //TODO
     public ArrayList<Integer> getMissionID() {
         return missionID;
     }
 
+    //TODO
     public void setMissionID(ArrayList<Integer> missionID) {
         this.missionID = missionID;
     }
 
+    //TODO
     public int getId() {
         return id;
     }
 
+    //TODO
     public void setId(int id) {
         this.id = id;
     }
 
+    //TODO
     public String getName() {
         return name;
     }
 
+    //TODO
     public void setName(String name) {
         this.name = name;
     }
 
+    //TODO
     public ArrayList<Staff> getTeamMembers() {
         return teamMembers;
     }
 
+    //TODO
     public void setTeamMembers(ArrayList<Staff> teamMembers) {
         this.teamMembers = teamMembers;
     }
 
+    //TODO
     public void addMember(Staff member) {
         teamMembers.add(member);
     }
-    @Override
-    public String toString() {
-        return "Team : " + this.name;
-    }
 
+    //TODO
     public void addMissie(int toAddMissionID) {
         if (!missionID.contains(toAddMissionID)) {
             missionID.add(toAddMissionID);
         }
+    }
+
+    //TODO
+    @Override
+    public String toString() {
+        return "Team : " + this.name;
     }
 }

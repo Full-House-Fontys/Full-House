@@ -12,9 +12,9 @@ public abstract class DaoGeneric<T> {
     protected Connection connection;
 
     /**
+     * Generic abstract class for all database connection classes
      * @param connection database connection
      * @param tableName String of tablename
-     * generic abstract class for all database connection classes
      */
     protected DaoGeneric(Connection connection, String tableName){
         this.tableName = tableName;
@@ -34,30 +34,30 @@ public abstract class DaoGeneric<T> {
     public abstract ObservableList<T> getAllRecord();
 
     /**
+     * Update bool in a table row
      * @param value list of to update with int
      * @param key key of row
-     * Update bool in a table row
      * @return bool is completed
      */
     public abstract boolean update(T value, int key);
 
     /**
+     * Update bool in a table row
      * @param value list of to update with int
      * @param key key of row
-     * Update bool in a table row
      * @return bool is completed
      */
     public abstract boolean update(T value, String key);
 
     /**
-     * insert data with given value
+     * Insert data with given value
      * @param value
      * @return
      */
     public abstract boolean insert(T value);
 
     /**
-     * delete data in database of given key as int
+     * Delete data in database of given key as int
      * @param key
      * @return
      */
@@ -72,7 +72,7 @@ public abstract class DaoGeneric<T> {
     public abstract void insertTwoInts(int id, int id1);
 
     /**
-     * get object from database
+     * Get object from database
      *
      * @param value object value
      * @param key   key
