@@ -15,17 +15,17 @@ public class requests implements IRequests, Serializable {
     }
 
     /**
-     * gets all requests send to the servicedesk
+     * Gets all requests send to the servicedesk
      *
-     * @return
+     * @return the team requests
      */
     public List<TeamRequest> GetRequests() {
         return Requests;
     }
 
     /**
-     * adds a request to the list of requests
-     * @param teamRequest
+     * Adds a request to the list of requests
+     * @param teamRequest to add
      */
     public void addRequests(TeamRequest teamRequest) {
         Requests.add(teamRequest);
