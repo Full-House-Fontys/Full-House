@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * jvdwi on 9-3-2016.
  */
-public class main extends javafx.application.Application {
+public class CentralPoint extends javafx.application.Application {
 
     /**
      * to launch the program
@@ -19,7 +19,7 @@ public class main extends javafx.application.Application {
     }
 
     /**
-     * start the main program the central point program
+     * start the CentralPoint program the central point program
      *
      * @throws Exception
      */

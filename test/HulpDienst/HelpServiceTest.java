@@ -122,10 +122,11 @@ public class HelpServiceTest {
         HS.addMissionToTeam(team, 1);
         ObservableList<Team> teamObservableList;
         teamObservableList = HS.getAllTeams();
-        for (Team t : teamObservableList)
+        for (Team t : teamObservableList) {
             if (t.getName().equals("testteam1")) {
                 assertTrue("mission not added to team", t.getMissionID().size() > 0);
             }
+        }
     }
 
     /**

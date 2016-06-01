@@ -18,7 +18,7 @@ public class HulpdienstOpleiding extends Application{
     }
 
     /**
-     * start the main program the school program     *
+     * start the CentralPoint program the school program     *
      *
      * @throws Exception
      */

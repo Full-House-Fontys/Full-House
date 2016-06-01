@@ -19,7 +19,7 @@ public class Helpservice extends Application {
     }
 
     /**
-     * start the main program the helpservice program
+     * start the CentralPoint program the helpservice program
      *
      * @throws Exception
      */

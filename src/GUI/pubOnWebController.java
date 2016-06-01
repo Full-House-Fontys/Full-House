@@ -13,7 +13,7 @@ public class pubOnWebController {
 //        return result;
 //    }
 //
-//    public static void main(String[] argv) {
+//    public static void CentralPoint(String[] argv) {
 //        Object implementor = new pubOnWebController();
 //        String address = "http://localhost:9000/pubOnWebController?wsdl";
 //        Endpoint.publish(address, implementor);
