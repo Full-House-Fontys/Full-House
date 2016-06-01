@@ -15,6 +15,7 @@ public class CommunicationMediator {
     AppCommunication appCommunication;
     CentralPoint centralPoint;
 
+    //TODO
     public CommunicationMediator(CentralPoint centralPoint) {
         this.centralPoint = centralPoint;
         try {
@@ -25,6 +26,7 @@ public class CommunicationMediator {
         }
     }
 
+    //TODO
     public void listen() {
         while (true) {
             CommunicationRequest networkRequest = appCommunication.consumeRequest();
@@ -36,6 +38,7 @@ public class CommunicationMediator {
         }
     }
 
+    //TODO
     private void handle(CommunicationRequest communicationRequestRequest) {
         System.out.println(communicationRequestRequest.getUrl() + communicationRequestRequest.getPayload());
         switch (communicationRequestRequest.getUrl()) {
@@ -56,6 +59,7 @@ public class CommunicationMediator {
         }
     }
 
+    //TODO
     private void comRequest(CommunicationRequest communicationRequestRequest) {
         TeamRequest teamRequest = parseRequest(communicationRequestRequest.getPayload());
         if(teamRequest != null){
@@ -87,12 +91,14 @@ public class CommunicationMediator {
         return null;
     }
 
+    //TODO
     private void comSend(CommunicationRequest communicationRequestRequest) {
         if (centralPoint.insertMessage(communicationRequestRequest.getPayload())) {
 
         }
     }
 
+    //TODO
     private void comMessage(CommunicationRequest communicationRequestRequest) {
         send("getMessages/" + centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
         System.out.println("getMessages/" + centralPoint.getLastMessages());
@@ -114,6 +120,7 @@ public class CommunicationMediator {
         }
     }
 
+    //TODO
     public boolean send(String message, String receiver) {
         try {
             Socket socket = new Socket(receiver, 8080);//this.getPort());

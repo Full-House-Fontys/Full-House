@@ -25,9 +25,9 @@ public class DaoMessage extends DaoGeneric<Message> {
     private final String MissieID = "MissieID";
 
     /**
-     * @param connection database connection
      * uses daoGenerics
      * database class of Staff table
+     * @param connection database connection
      */
     public DaoMessage(Connection connection) {
         super(connection, DbTables.BERICHT.toString());
@@ -41,7 +41,7 @@ public class DaoMessage extends DaoGeneric<Message> {
 
     /**
      * get last 5
-     * @return
+     * @return an observable list of last 5 messages
      */
     @Override
     public ObservableList<Message> getAllRecord() {
@@ -62,17 +62,22 @@ public class DaoMessage extends DaoGeneric<Message> {
         return null;
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public boolean update(Message value, int key) {
 
         return false;
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public boolean update(Message value, String key) {
         return false;
     }
 
+    //TODO JAVADOC
     @Override
     public boolean insert(Message value) {
         boolean result = false;
@@ -92,16 +97,22 @@ public class DaoMessage extends DaoGeneric<Message> {
         return result;
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public boolean delete(int key) {
         return false;
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public void insertTwoInts(int id, int id1) {
 
     }
 
+    //TODO NOT IMPL
+    //TODO JAVADOC
     @Override
     public Message getObject(Message value, int key) {
         return null;

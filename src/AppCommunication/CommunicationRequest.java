@@ -12,26 +12,32 @@ public class CommunicationRequest {
     private String payload;
     private CommunicationMessage networkMessage;
 
+    //TODO
     public String getPayload() {
         return payload;
     }
 
+    //TODO
     public void setPayload(String payload) {
         this.payload = payload;
     }
 
+    //TODO
     public String getUrl() {
         return url;
     }
 
+    //TODO
     public CommunicationMessage getNetworkMessage() {
         return networkMessage;
     }
 
+    //TODO
     public void setUrl(String url) {
         this.url = url;
     }
 
+    //TODO
     public CommunicationRequest(CommunicationMessage networkMessage) throws UnknownFormatConversionException {
         this.networkMessage = networkMessage;
 

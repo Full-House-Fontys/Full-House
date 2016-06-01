@@ -22,6 +22,7 @@ public class Staff implements Serializable {
     private int missionID;
 
     /**
+     * TODO ADD DESCRIPTION
      * @param name name
      * @param prefix prefix
      * @param lastName lastname
@@ -45,6 +46,7 @@ public class Staff implements Serializable {
         this.missionID = missionID;
     }
 
+    //TODO
     public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation){
         this.name = name;
         this.prefix = prefix == null ? "" : prefix;
@@ -57,26 +59,32 @@ public class Staff implements Serializable {
         this.id = iD;
     }
 
+    //TODO
     public String getUserName() {
         return userName;
     }
 
+    //TODO
     public String getPassword() {
         return password;
     }
 
+    //TODO
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    //TODO
     public void setPassword(String password) {
         this.password = password;
     }
 
+    //TODO
     public int getId() {
         return id;
     }
 
+    //TODO
     public void setId(int id) {
         this.id = id;
     }
@@ -87,19 +95,23 @@ public class Staff implements Serializable {
     public Staff() {
     }
 
+    //TODO
     public int getTeamID() {
         return teamID;
     }
 
+    //TODO
     public int getMissionID() {
         return missionID;
     }
 
+    //TODO
     public String getLastName() {
         return lastName;
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return sort
      */
     public String getSort() {
@@ -107,6 +119,7 @@ public class Staff implements Serializable {
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return name
      */
     public String getName() {
@@ -114,17 +127,20 @@ public class Staff implements Serializable {
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return 2D location
      */
     public Point2D getLocation() {return location; }
 
 
     /**
+     * TODO ADD DESCRIPTION
      * @return String op location, rounded to 2 decimals
      */
     public String getLocationString(){return new BigDecimal(location.getX()).setScale(2, RoundingMode.HALF_UP).doubleValue() + "; " +new BigDecimal(location.getY()).setScale(2, RoundingMode.HALF_UP).doubleValue(); }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return boolean of is on location
      */
     public boolean isOnLocation() {
@@ -132,6 +148,7 @@ public class Staff implements Serializable {
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @param onLocation boolean, true if on location
      */
     public void setOnLocation(boolean onLocation) {
@@ -139,6 +156,7 @@ public class Staff implements Serializable {
     }
 
     /**
+     * TODO ADD DESCRIPTION
      * @return String of staff variables
      */
     @Override

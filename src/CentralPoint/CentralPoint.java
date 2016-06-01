@@ -24,6 +24,7 @@ import java.util.List;
  * Created by Kaj Suiker on 20-3-2016.
  */
 public class CentralPoint {
+    //TODO, maybe it's neccessairy to improve the below variables?
     ServerSocket SS;
     Socket connection = null;
     ObjectOutputStream out;
@@ -42,8 +43,9 @@ public class CentralPoint {
     private ObservableList<Team> availableTeamObservableList;
     private ObservableList<Material> availableMaterialObservableList;
     private ObservableList<Notification> notificationObservableList;
+
     /**
-     * constructor for central point
+     * Constructor for central point
      */
     public CentralPoint() {
         daoManager = DaoManager.INSTANCE;
@@ -65,6 +67,7 @@ public class CentralPoint {
     }
 
     /**
+     * TODO: DESCRIBE THIS PLEASE
      * @param table object of table to renewLists
      */
     private void renewLists(DbTables table) {
@@ -98,6 +101,7 @@ public class CentralPoint {
     }
 
     /**
+     * TODO: DESCRIBE THIS PLEASE
      * @return is of staff on location
      */
     public ObservableList<Staff> getStaffOnLocation() {
@@ -105,6 +109,7 @@ public class CentralPoint {
     }
 
     /**
+     * TODO: DESCRIBE THIS PLEASE
      * @param team list of staff in team
      */
     public void setStaffOnLocation(List<String> team) {
@@ -115,12 +120,13 @@ public class CentralPoint {
         }
     }
 
+    //TODO
     public ObjectOutputStream getOutput() {
         return out;
     }
 
     /**
-     * returns the materialLists as observableList
+     * Returns the materialLists as observableList
      *
      * @return unmodifiableObservableList of materials
      */
@@ -130,7 +136,7 @@ public class CentralPoint {
     }
 
     /**
-     * returns the available materiallist as observableList
+     * Returns the available materiallist as observableList
      *
      * @return unmodifiableObservableList of available materials
      */
@@ -140,13 +146,13 @@ public class CentralPoint {
     }
 
     /**
-     * inserts a new material in the database
+     * Inserts a new material in the database
      *
-     * @param name
-     * @param sort
-     * @param locX
-     * @param locY
-     * @param onLoc
+     * @param name; name of the material
+     * @param sort; sort of material; Police Car, Guns, Ambulances, etc.
+     * @param locX; Latitude of location
+     * @param locY; Longitude of location
+     * @param onLoc; is material on location
      * @throws IllegalArgumentException
      */
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
@@ -163,10 +169,10 @@ public class CentralPoint {
     }
 
     /**
-     * returns the material for the given id
+     * Returns the material for the given id
      *
-     * @param id
-     * @return
+     * @param id; the id where this method should search for in materials
+     * @return the material with the given id
      */
     public Material getMaterialById(int id) {
         for (Material material : materialObservableList) {
@@ -178,7 +184,7 @@ public class CentralPoint {
     }
 
     /**
-     * update the material for given id
+     * Update the material for given id
      *
      * @param matId    as int
      * @param name     as String
@@ -232,7 +238,7 @@ public class CentralPoint {
     }
 
     /**
-     * delete given material
+     * Delete given material
      *
      * @param m as material
      */
@@ -242,7 +248,7 @@ public class CentralPoint {
     }
 
     /**
-     * get all the missions from the database
+     * Get all the missions from the database
      *
      * @return unmodifiableObservableList of all missions
      */
@@ -339,7 +345,7 @@ public class CentralPoint {
     }
 
     /**
-     * gets a specific team
+     * Gets a specific team
      *
      * @return a list of the specific teams
      */
@@ -434,7 +440,7 @@ public class CentralPoint {
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 
-
+    //TODO
     public String getLastMessages() {
         StringBuilder lastMessages = new StringBuilder();
         for (Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()) {
@@ -444,11 +450,13 @@ public class CentralPoint {
         return lastMessages.toString();
     }
 
+    //TODO
     public ObservableList<Notification> getAllNotifications() {
         renewLists(DbTables.MELDING);
         return FXCollections.unmodifiableObservableList(notificationObservableList);
     }
 
+    //TODO
     public void createserver() {
         try {
             SS = new ServerSocket(2004);

@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
  */
 public class AppCommunication {
 
+    //TODO...
     static final int socketServerPORT = 8080;
     ServerSocket serverSocket;
     String message = "";
@@ -26,6 +27,7 @@ public class AppCommunication {
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
 
+    // TODO
     public AppCommunication() {
         try {
             startListeners();
@@ -36,6 +38,7 @@ public class AppCommunication {
 
     /**
      * Starts the thread listeners
+     * TODO ADD A THROW TAG
      */
     public void startListeners() throws IOException {
         final int THREADPOOLSIZE = 1;
@@ -68,6 +71,7 @@ public class AppCommunication {
         messageQueue.clear();
     }
 
+    //TODO
     private void constantCheck() {
         try {
             while (true) {
@@ -89,6 +93,7 @@ public class AppCommunication {
         }
     }
 
+    //TODO
     @NotNull
     private String recv(Socket clientSocket) throws IOException {
         InputStream inputStream = clientSocket.getInputStream();
