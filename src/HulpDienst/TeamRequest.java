@@ -89,7 +89,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
      * @param police
      */
     public void setPolice(int police) {
-        Police = Police;
+        Police = police;
     }
 
     /**
@@ -105,7 +105,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
      * @param fireman
      */
     public void setFireman(int fireman) {
-        fireman = fireman;
+        this.fireman = fireman;
     }
 
     /**

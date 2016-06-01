@@ -24,14 +24,14 @@ public class requestsTest {
 
     @Test
     public void testGetRequests() throws Exception {
-        assertEquals("foute grote lijst", 0, RQ.GetRequests().size());
+        assertEquals("wrong list", 0, RQ.GetRequests().size());
     }
 
     @Test
     public void testAddRequests() throws Exception {
         RQ.addRequests(TR);
-        assertEquals("foute grote lijst", 1, RQ.GetRequests().size());
-        assertEquals("foute grote lijst", true, RQ.GetRequests().contains(TR));
+        assertEquals("wrong list", 1, RQ.GetRequests().size());
+        assertEquals("wrong list", true, RQ.GetRequests().contains(TR));
 
     }
 }

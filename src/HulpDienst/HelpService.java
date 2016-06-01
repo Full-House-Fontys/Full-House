@@ -119,7 +119,7 @@ public class HelpService {
     }
 
     /**
-     * socket which receives new request from central point
+     * socket which receives new requests from central point
      */
     private void receiveSocket() {
         try {
