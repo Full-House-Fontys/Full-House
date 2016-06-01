@@ -107,4 +107,5 @@ public class HelpServiceTest {
         teamObservableList = HS.renewteams();
         assertTrue("no database items found", teamObservableList.size() > 0);
     }
+
 }
