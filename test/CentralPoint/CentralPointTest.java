@@ -81,17 +81,6 @@ public class CentralPointTest {
     }
 
     /**
-     * sets list of all staff members that are on location
-     *
-     * @throws Exception
-     */
-    // TODO maken test
-    @Test
-    public void testSetStaffOnLocation() throws Exception {
-        //afhankelijk van Qun, insert tested en working
-    }
-
-    /**
      * tests the get material function by id
      * @throws Exception
      */
