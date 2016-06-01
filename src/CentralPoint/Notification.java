@@ -13,7 +13,16 @@ public class Notification {
     private int missionID;
     private int userID;
 
-    //TODO
+    /**
+     * Constructor of the notication
+     *
+     * @param ID
+     * @param title
+     * @param content
+     * @param time
+     * @param missionID
+     * @param userID
+     */
     public Notification(int ID, String title, String content, Date time, int missionID, int userID) {
         this.ID = ID;
         this.title = title;
@@ -23,67 +32,109 @@ public class Notification {
         this.userID = userID;
     }
 
-    //TODO
+
+    /**
+     * The ID of the notification
+     *
+     * @return ID
+     */
     public int getID() {
         return ID;
     }
 
-    //TODO
+    /**
+     * Sets the ID of the notification
+     * @param ID
+     */
     public void setID(int ID) {
         this.ID = ID;
     }
 
-    //TODO
+    /**
+     * The title of the Notification
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
-    //TODO
+    /**
+     * Sets the title of the Notification
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    //TODO
+    /**
+     * The message of the Notification
+     * @return Content
+     */
     public String getContent() {
         return content;
     }
 
-    //TODO
+    /**
+     * Sets the content of the Notification
+     * @param content
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
-    //TODO
+    /**
+     * The moment the Notification is made
+     * @return Time of the Notification
+     */
     public Date getTime() {
         return time;
     }
 
-    //TODO
+    /**
+     * Sets the time the Notification is made
+     * @param time
+     */
     public void setTime(Date time) {
         this.time = time;
     }
 
-    //TODO
+    /**
+     * Returns the missionID which is binded by the Notification
+     * @return MissionID
+     */
     public int getMissionID() {
         return missionID;
     }
 
-    //TODO
+    /**
+     * Sets the missionID of the notification
+     * @param missionID
+     */
     public void setMissionID(int missionID) {
         this.missionID = missionID;
     }
 
-    //TODO
+    /**
+     * The userID of the person who made the notification
+     * @return UserID
+     */
     public int getUserID() {
         return userID;
     }
 
-    //TODO
+    /**
+     * Sets the userID of the person who made the notification
+     * @param userID
+     */
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
-    //TODO
+    /**
+     * Instead of returning all parameters
+     * it return the content
+     * @return this content
+     */
     @Override
     public String toString() {
         return this.content;

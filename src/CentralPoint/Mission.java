@@ -24,7 +24,18 @@ public class Mission implements Serializable{
     private ArrayList<Team> teamsAssigned;
     private ArrayList<Material> materialsAssigned;
 
-    //TODO
+    /**
+     * Constructor for the mission with all the details
+     *
+     * @param ID
+     * @param name
+     * @param description
+     * @param startTime
+     * @param lastUpdate
+     * @param endTime
+     * @param locationX
+     * @param locationY
+     */
     public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
         this.ID = ID;
         this.name = name;
@@ -38,62 +49,101 @@ public class Mission implements Serializable{
         this.materialsAssigned = new ArrayList<>();
     }
 
-    //TODO
+    /**
+     * returns the id of the mission
+     *
+     * @return ID
+     */
     public int getID() {
         return ID;
     }
 
-    //TODO
+    /**
+     * returns the name of the mission
+     * @return Name
+     */
     public String getName() {
         return name;
     }
 
-    //TODO
+    /**
+     * returns the description of the mission
+     * @return Description
+     */
     public String getDescription() {
         return description;
     }
 
-    //TODO
+    /**
+     * returns the startTime(when the mission is executed) of the mission
+     * @return StartTime
+     */
     public Date getStartTime() {
         return startTime;
     }
 
-    //TODO
+    /**
+     * return the last time the mission was updated
+     * @return LastUpdate
+     */
     public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    //TODO
+
+    /**
+     * Sets the time of the last update from the mission
+     * @param lastUpdate
+     */
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-    //TODO
+
+    /**
+     * The endtime of the mission
+     * @return Endtime
+     */
     public Date getEndTime() {
         return endTime;
     }
 
-    //TODO
+    /**
+     * Sets the end time of the mission
+     * @param endTime
+     */
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    //TODO
+    /**
+     * Return the X-Coördinates of the mission
+     * @return LocationX
+     */
     public double getLocationX() {
         return locationX;
     }
 
-    //TODO
+    /**
+     * Return the Y-Coördinates of the mission
+     * @return LocationY
+     */
     public double getLocationY() {
         return locationY;
     }
 
-    //TODO
+    /**
+     * The teams who are assigned to the mission
+     * @return list of all teams
+     */
     public ArrayList<Team> getTeamsAssigned() {
         return teamsAssigned;
     }
 
-    //TODO
+    /**
+     * Sets the teams who are assigned for the mission
+     * @param teamsAssigned
+     */
     public void setTeamsAssigned(ArrayList<Team> teamsAssigned) {
         this.teamsAssigned = teamsAssigned;
     }
@@ -116,7 +166,11 @@ public class Mission implements Serializable{
         this.materialsAssigned = materialsAssigned;
     }
 
-    //TODO
+    /**
+     * Adds team to a mission
+     * @param teamToAdd
+     * @return true when team is added to the mission
+     */
     public boolean addTeamToJob(Team teamToAdd) {
         boolean addedToTeam = false;
         int counter = 0;
@@ -132,13 +186,22 @@ public class Mission implements Serializable{
         return addedToTeam;
     }
 
-    //TODO
+    /**
+     * Overrides the toString such that it now return
+     * The id with the name of the mission
+     * @return Id and Name
+     */
     @Override
     public String toString() {
         return this.ID + ": " + this.name;
     }
 
-    //TODO
+
+    /**
+     * The teams who are assigned to the mission
+     * @param id
+     * @return teams
+     */
     public ObservableList getTeamsAssignedToMission(int id) {
         DaoManager.INSTANCE.open();
         DaoGeneric getAssignedMembers = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);

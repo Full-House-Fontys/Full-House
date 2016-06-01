@@ -5,28 +5,46 @@ package CentralPoint;
  */
 public class Message {
 
-    private String titel;
+    private String title;
     private String message;
     private int missionId;
 
-    //TODO
-    public Message(String titel, String message, int missionId) {
-        this.titel = titel;
+
+    /**
+     * The constructor for message
+     *
+     * @param title
+     * @param message
+     * @param missionId
+     */
+    public Message(String title, String message, int missionId) {
+        this.title = title;
         this.message = message;
         this.missionId = missionId;
     }
 
-    //TODO
+
+    /**
+     * Returns the title of the message
+     *
+     * @return title of the message
+     */
     public String getTitel() {
-        return titel;
+        return title;
     }
 
-    //TODO
+    /**
+     * Returns the description of the message
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
-    //TODO
+    /**
+     * Return the id of the mission
+     * @return missionId
+     */
     public int getMissionId() {
         return missionId;
     }

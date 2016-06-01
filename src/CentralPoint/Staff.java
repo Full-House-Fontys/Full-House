@@ -22,7 +22,7 @@ public class Staff implements Serializable {
     private int missionID;
 
     /**
-     * TODO ADD DESCRIPTION
+     * Constructor of staff with teamID and MissionID
      * @param name name
      * @param prefix prefix
      * @param lastName lastname
@@ -46,7 +46,19 @@ public class Staff implements Serializable {
         this.missionID = missionID;
     }
 
-    //TODO
+    /**
+     * Constructor without teamID and MissionID
+     *
+     * @param iD
+     * @param name
+     * @param prefix
+     * @param lastName
+     * @param userName
+     * @param password
+     * @param location
+     * @param sort
+     * @param onLocation
+     */
     public Staff(int iD, String name, String prefix, String lastName, String userName, String password, Point2D location, String sort, boolean onLocation){
         this.name = name;
         this.prefix = prefix == null ? "" : prefix;
@@ -59,32 +71,51 @@ public class Staff implements Serializable {
         this.id = iD;
     }
 
-    //TODO
+    /**
+     * The username of the Person
+     *
+     * @return username
+     */
     public String getUserName() {
         return userName;
     }
 
-    //TODO
+    /**
+     * The password of the staff
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
-    //TODO
+    /**
+     * Sets the username of the staff
+     * @param userName
+     */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    //TODO
+    /**
+     * Sets the password of the staff
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    //TODO
+    /**
+     * ID of the staff
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
-    //TODO
+    /**
+     * Sets the ID of the staff
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
@@ -95,23 +126,33 @@ public class Staff implements Serializable {
     public Staff() {
     }
 
-    //TODO
+
+    /**
+     * The id of the team the staffmember is registered in
+     * @return teamID
+     */
     public int getTeamID() {
         return teamID;
     }
 
-    //TODO
+    /**
+     * The id of the mission the staffmember
+     * @return missionID
+     */
     public int getMissionID() {
         return missionID;
     }
 
-    //TODO
+    /**
+     * The last name of the staffmember
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * The type of helpservice
      * @return sort
      */
     public String getSort() {
@@ -119,7 +160,7 @@ public class Staff implements Serializable {
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * The name of the staffmember
      * @return name
      */
     public String getName() {
@@ -127,20 +168,20 @@ public class Staff implements Serializable {
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * The X and Y locations of the staffmember
      * @return 2D location
      */
     public Point2D getLocation() {return location; }
 
 
     /**
-     * TODO ADD DESCRIPTION
+     * The location converted in a string
      * @return String op location, rounded to 2 decimals
      */
     public String getLocationString(){return new BigDecimal(location.getX()).setScale(2, RoundingMode.HALF_UP).doubleValue() + "; " +new BigDecimal(location.getY()).setScale(2, RoundingMode.HALF_UP).doubleValue(); }
 
     /**
-     * TODO ADD DESCRIPTION
+     * Shows if the staffmember is on location
      * @return boolean of is on location
      */
     public boolean isOnLocation() {
@@ -148,7 +189,7 @@ public class Staff implements Serializable {
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * Changes the location of the staffmember
      * @param onLocation boolean, true if on location
      */
     public void setOnLocation(boolean onLocation) {
@@ -156,7 +197,7 @@ public class Staff implements Serializable {
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * Returns the type of staff it is
      * @return String of staff variables
      */
     @Override

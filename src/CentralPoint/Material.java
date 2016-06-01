@@ -175,7 +175,6 @@ public class Material implements Serializable {
      *
      * @param loc1 the loc from this material
      * @param loc2 the other location
-     * @param unit the unit; K = KM
      * @return the distance in the given unit
      */
     private double distance(Point2D loc1, Point2D loc2) {

@@ -12,7 +12,15 @@ public class Team implements Serializable {
     private int id;
     private ArrayList<Integer> missionID;
 
-    //TODO
+
+    /**
+     * Constructor for team
+     *
+     * @param iD
+     * @param name
+     * @param teamMembers
+     * @param missionID
+     */
     public Team(int iD, String name, ArrayList<Staff> teamMembers, ArrayList<Integer> missionID) {
         this.name = name;
         this.teamMembers = teamMembers;
@@ -21,59 +29,94 @@ public class Team implements Serializable {
 
     }
 
-    //TODO
+    /**
+     * The mission which is bound to the team
+     *
+     * @return missionID
+     */
     public ArrayList<Integer> getMissionID() {
         return missionID;
     }
 
-    //TODO
+    /**
+     * Sets the mission for the team
+     * @param missionID
+     */
     public void setMissionID(ArrayList<Integer> missionID) {
         this.missionID = missionID;
     }
 
-    //TODO
+    /**
+     * The id of the team
+     * @return teamID
+     */
     public int getId() {
         return id;
     }
 
-    //TODO
+    /**
+     * Sets the id of the team
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    //TODO
+    /**
+     * The name of the team
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    //TODO
+    /**
+     * Sets the name of the team
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    //TODO
+    /**
+     * Returns all members of the team
+     * @return team
+     */
     public ArrayList<Staff> getTeamMembers() {
         return teamMembers;
     }
 
-    //TODO
+    /**
+     * Sets the members of the team
+     * @param teamMembers
+     */
     public void setTeamMembers(ArrayList<Staff> teamMembers) {
         this.teamMembers = teamMembers;
     }
 
-    //TODO
+    /**
+     * Add members to the team
+     * @param member
+     */
     public void addMember(Staff member) {
         teamMembers.add(member);
     }
 
-    //TODO
+    /**
+     * Add mission to the team
+     * @param toAddMissionID
+     */
     public void addMissie(int toAddMissionID) {
         if (!missionID.contains(toAddMissionID)) {
             missionID.add(toAddMissionID);
         }
     }
 
-    //TODO
+    /**
+     * override the toString so that now it returns
+     * the teamname
+     * @return the teamname
+     */
     @Override
     public String toString() {
         return "Team : " + this.name;
