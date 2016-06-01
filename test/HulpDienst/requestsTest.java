@@ -15,6 +15,7 @@ public class requestsTest {
     Mission mission;
     requests RQ;
 
+    //TODO JAVADOC
     @Before
     public void setUp() throws Exception {
         mission = new Mission(1, null, null, null, null, null, 0.0, 0.0);
@@ -22,11 +23,13 @@ public class requestsTest {
         RQ = new requests();
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetRequests() throws Exception {
         assertEquals("wrong list", 0, RQ.GetRequests().size());
     }
 
+    //TODO JAVADOC
     @Test
     public void testAddRequests() throws Exception {
         RQ.addRequests(TR);

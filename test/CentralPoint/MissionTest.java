@@ -32,6 +32,7 @@ public class MissionTest {
     ArrayList<Team> teamList3;
     ArrayList<Team> teamList4;
 
+    //TODO JAVADOC
     @Before
     public void setUp() throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -56,11 +57,14 @@ public class MissionTest {
         teamList4.add(team3);
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @After
     public void tearDown() throws Exception {
 
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetStartTime() throws Exception {
         assertEquals("wrong starttime", date1, mission1.getStartTime());
@@ -72,6 +76,7 @@ public class MissionTest {
         assertNotEquals("error in starttime", date2, mission3.getStartTime());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetLastUpdate() throws Exception {
         assertEquals("wrong LastUpdate", date1, mission1.getLastUpdate());
@@ -85,6 +90,7 @@ public class MissionTest {
         assertNotEquals("error in LastUpdate", date2, mission3.getLastUpdate());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetEndTime() throws Exception {
         assertEquals("wrong endtime", null, mission1.getEndTime());
@@ -99,6 +105,7 @@ public class MissionTest {
         assertNotEquals("error in endtime", date2, mission3.getEndTime());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetLocationX() throws Exception {
         assertEquals("wrong locationx", 10.0, mission1.getLocationX(), 0.0);
@@ -109,6 +116,7 @@ public class MissionTest {
         assertNotEquals("error in locationx", 10.0, mission3.getLocationX(), 0.0);
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetLocationY() throws Exception {
         assertEquals("wrong locationy", 10.0, mission1.getLocationY(), 0.0);
@@ -119,6 +127,7 @@ public class MissionTest {
         assertNotEquals("error in locationy", 10.0, mission3.getLocationY(), 0.0);
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetLastUpdate() throws Exception {
         assertEquals("wrong LastUpdate", date1, mission1.getLastUpdate());
@@ -136,6 +145,7 @@ public class MissionTest {
         assertNotEquals("wrong LastUpdate", date1, mission3.getLastUpdate());
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetEndTime() throws Exception {
         assertEquals("wrong EndTime", null, mission1.getEndTime());
@@ -153,6 +163,7 @@ public class MissionTest {
         assertNotEquals("wrong EndTime", null, mission3.getEndTime());
     }
 
+    //TODO JAVADOC
     @Test
     public void testToString() throws Exception {
         assertEquals("wrong tekst", mission1.getID() + ": " + mission1.getName(), mission1.toString());
@@ -163,6 +174,7 @@ public class MissionTest {
         assertNotEquals("wrong tekst", mission2.getName(), mission3.toString());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetID() throws Exception {
         assertEquals("wrong missionID", 1, mission1.getID());
@@ -173,6 +185,7 @@ public class MissionTest {
         assertNotEquals("error in missionID", 1, mission3.getID());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetName() throws Exception {
         assertEquals("wrong missionID", "FIRE", mission1.getName());
@@ -183,6 +196,7 @@ public class MissionTest {
         assertNotEquals("error in missionID", "FIRE", mission3.getName());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetDescription() throws Exception {
         assertEquals("wrong missionID", "fire", mission1.getDescription());
@@ -193,6 +207,7 @@ public class MissionTest {
         assertNotEquals("error in missionID", "wrong description", mission3.getDescription());
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetandGetTeamsAssigned() throws Exception {
         assertEquals("No NULL", null, mission1.getTeamsAssigned());
@@ -215,7 +230,7 @@ public class MissionTest {
         assertNotEquals("Wrong list", teamList2, mission3.getTeamsAssigned());
     }
 
-
+    //TODO JAVADOC
     @Test
     public void testAddTeamToJob() throws Exception {
         mission1.addTeamToJob(team1);

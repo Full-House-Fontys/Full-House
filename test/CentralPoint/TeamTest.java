@@ -18,6 +18,7 @@ public class TeamTest {
     private ArrayList<Staff> teamMembers = new ArrayList<>();
     private ArrayList<Integer> missionID = new ArrayList<>();
 
+    //TODO JAVADOC
     @Before
     public void setUp() throws Exception {
 
@@ -29,28 +30,33 @@ public class TeamTest {
         team = new Team(100, "Team 1", teamMembers, missionID);
     }
 
+    //TODO JAVADOC
     @After
     public void tearDown() throws Exception {
 
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetName() throws Exception {
         team.setName("Team 1");
         assertEquals("Teamname not equals", "Team 1", team.getName());
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetName() throws Exception {
         team.setName("Team 2");
         assertEquals("Teamname not equals", "Team 2", team.getName());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetTeamMembers() throws Exception {
         assertEquals("Does not contain right staff", teamMembers, team.getTeamMembers());
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetTeamMembers() throws Exception {
         Staff steffert = new Staff(1, "Steffert", "van", "Huizen", "Sufferd", "ww2", new Point2D.Double(1.234561,1.652431), "EHBO", true);
@@ -58,6 +64,7 @@ public class TeamTest {
         assertTrue("Does not contain right team", team.getTeamMembers().contains(steffert));
     }
 
+    //TODO JAVADOC
     @Test
     public void testToString() throws Exception {
         team.setName("Team 2");

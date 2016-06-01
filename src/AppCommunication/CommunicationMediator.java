@@ -12,10 +12,13 @@ import java.net.Socket;
  * Created by Kaj Suiker on 20-4-2016.
  */
 public class CommunicationMediator {
-    AppCommunication appCommunication;
-    CentralPoint centralPoint;
+    private AppCommunication appCommunication;
+    private CentralPoint centralPoint;
 
-    //TODO
+    /**
+     * Constructor, also makes a new instance of AppCommunication.
+     * @param centralPoint : The central point this communication is made for.
+     */
     public CommunicationMediator(CentralPoint centralPoint) {
         this.centralPoint = centralPoint;
         try {
@@ -26,21 +29,26 @@ public class CommunicationMediator {
         }
     }
 
-    //TODO
+    /**
+     * Will check the CommunicationRequest constantly for new requests.
+     * If a request is detected, the method 'handle' is executed.
+     */
     public void listen() {
         while (true) {
             CommunicationRequest networkRequest = appCommunication.consumeRequest();
 
             if (networkRequest != null) {
-                //System.out.println(networkRequest.getPayload());
                 handle(networkRequest);
             }
         }
     }
 
-    //TODO
+    /**
+     * Based on different type of communicationRequest, the right method will be called.
+     * Possible outcomes are: login, getMessages, sendMessage and requestBackup.
+     * @param communicationRequestRequest : The request that needs to be executed.
+     */
     private void handle(CommunicationRequest communicationRequestRequest) {
-        System.out.println(communicationRequestRequest.getUrl() + communicationRequestRequest.getPayload());
         switch (communicationRequestRequest.getUrl()) {
             case "login":
                 comLogin(communicationRequestRequest);
@@ -59,7 +67,11 @@ public class CommunicationMediator {
         }
     }
 
-    //TODO
+    //TODO complete javadoc
+    /**
+     *
+     * @param communicationRequestRequest
+     */
     private void comRequest(CommunicationRequest communicationRequestRequest) {
         TeamRequest teamRequest = parseRequest(communicationRequestRequest.getPayload());
         if(teamRequest != null){
@@ -68,9 +80,9 @@ public class CommunicationMediator {
     }
 
     /**
-     * parse request, recieved from mobile
-     * @param request the request in one long string
-     * @return  TeamRequest object for sending to hulpdienst
+     * parse request, received from mobile
+     * @param request : the request in one long String
+     * @return  TeamRequest object for sending to HelpService
      */
     private TeamRequest parseRequest(String request){
         TeamRequest teamRequest;
@@ -106,7 +118,6 @@ public class CommunicationMediator {
 
     /**
      * send mission from login info
-     *
      * @param communicationRequestRequest send request
      */
     private void comLogin(CommunicationRequest communicationRequestRequest) {
