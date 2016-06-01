@@ -37,8 +37,8 @@ public class TeamRequest implements ITeamRequest, Serializable {
     }
 
     /**
-     * sets name of Request
-     * @param name
+     * Sets name of Request
+     * @param name as String
      */
     public void setName(String name) {
         this.name = name;
@@ -46,7 +46,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * gets the discription of the request
-     * @return
+     * @return the description
      */
     public String getDescription() {
         return description;
@@ -54,7 +54,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * sets the discription of the request
-     * @param description
+     * @param description as String
      */
     public void setDescription(String description) {
         this.description = description;
@@ -62,7 +62,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * gets the amount of EHBO needed
-     * @return
+     * @return the amount
      */
     public int getMedic() {
         return Medic;
@@ -70,7 +70,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * sets the amount of needed EHBO
-     * @param Medic
+     * @param Medic as int
      */
     public void setMedic(int Medic) {
         this.Medic = Medic;
@@ -78,7 +78,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * gets the amount of police needed
-     * @return
+     * @return amount
      */
     public int getPolice() {
         return Police;
@@ -86,7 +86,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * sets the amount of needed police
-     * @param police
+     * @param police as int
      */
     public void setPolice(int police) {
         Police = Police;
@@ -94,7 +94,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * gets the amount of fireman needed
-     * @return
+     * @return amount
      */
     public int getFireman() {
         return fireman;
@@ -102,7 +102,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * sets the amount of needed fireman
-     * @param fireman
+     * @param fireman as int
      */
     public void setFireman(int fireman) {
         fireman = fireman;
@@ -110,7 +110,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * gets the amount of marachause needed
-     * @return
+     * @return amount
      */
     public int getMilitarypolice() {
         return militarypolice;
@@ -118,7 +118,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
 
     /**
      * sets the amount of needed marachause
-     * @param militarypolice
+     * @param militarypolice as int
      */
     public void setMilitarypolice(int militarypolice) {
         this.militarypolice = militarypolice;
@@ -127,7 +127,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
     /**
      * gets the assigned mission
      *
-     * @return
+     * @return the mission
      */
     public Mission getMission() {
         return mission;
@@ -136,7 +136,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
     /**
      * sets to which mission the request is assigned to
      *
-     * @param mission
+     * @param mission as Mission
      */
     public void setMission(Mission mission) {
         this.mission = mission;
@@ -145,7 +145,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
     /**
      * returns the name and discription of the request as text
      *
-     * @return
+     * @return the generated String
      */
     @Override
     public String toString() {

@@ -13,11 +13,13 @@ public class CommunicationMediatorTest {
 
     //CommunicationMediator communicationMediator = new CommunicationMediator(new CentralPoint());
 
+    //TODO JAVADOC
     @Test
     public void listen() throws Exception {
         //communicationMediator.listen();
     }
 
+    //TODO JAVADOC
     @Test
     public void send() throws Exception {
         //Assert.assertTrue("Send did not work", communicationMediator.send("Hallo", ""));
