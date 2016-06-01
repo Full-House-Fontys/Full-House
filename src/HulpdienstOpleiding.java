@@ -5,17 +5,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Created by Kees on 11/05/2016.
+ *  Kees on 11/05/2016.
  */
 public class HulpdienstOpleiding extends Application{
 
-    //TODO JAVADOC
+    /**
+     * to launch the program     *
+     */
     public static void main(String[] args) {
         launch(args);
 
     }
 
-    //TODO JAVADOC
+    /**
+     * start the main program the school program     *
+     *
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/hulpdienst_opleiding.fxml"));
