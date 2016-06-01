@@ -26,7 +26,7 @@ public class main extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Central Point Program");
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();
     }
