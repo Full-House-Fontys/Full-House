@@ -34,8 +34,8 @@ public class Mission implements Serializable{
         this.endTime = endTime;
         this.locationX = locationX;
         this.locationY = locationY;
-        this.teamsAssigned = null;
-        this.materialsAssigned = null;
+        this.teamsAssigned = new ArrayList<>();
+        this.materialsAssigned = new ArrayList<>();
     }
 
     //TODO
