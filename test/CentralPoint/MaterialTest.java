@@ -16,7 +16,7 @@ public class MaterialTest {
     private Material material;
 
     /**
-     * set up the unittest
+     * Set up the unittest
      *
      * @throws Exception
      */
@@ -27,7 +27,7 @@ public class MaterialTest {
     }
 
     /**
-     * teardown the unittest
+     * Teardown the unittest
      *
      * @throws Exception
      */
@@ -37,7 +37,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting id
+     * Test getting id
      *
      * @throws Exception
      */
@@ -47,7 +47,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting name
+     * Test getting name
      *
      * @throws Exception
      */
@@ -57,7 +57,7 @@ public class MaterialTest {
     }
 
     /**
-     * test setting name
+     * Test setting name
      *
      * @throws Exception
      */
@@ -68,7 +68,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting sort
+     * Test getting sort
      *
      * @throws Exception
      */
@@ -78,7 +78,7 @@ public class MaterialTest {
     }
 
     /**
-     * test setting sort
+     * Test setting sort
      *
      * @throws Exception
      */
@@ -89,7 +89,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting location
+     * Test getting location
      *
      * @throws Exception
      */
@@ -99,7 +99,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting locationString
+     * Test getting locationString
      *
      * @throws Exception
      */
@@ -109,7 +109,7 @@ public class MaterialTest {
     }
 
     /**
-     * test setting location
+     * Test setting location
      *
      * @throws Exception
      */
@@ -154,7 +154,7 @@ public class MaterialTest {
     }
 
     /**
-     * test getting onLocation
+     * Test getting onLocation
      *
      * @throws Exception
      */
@@ -164,7 +164,7 @@ public class MaterialTest {
     }
 
     /**
-     * test setting onLocation
+     * Test setting onLocation
      *
      * @throws Exception
      */

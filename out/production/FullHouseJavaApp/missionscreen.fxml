@@ -23,7 +23,9 @@
                                      <Label layoutX="1013.0" layoutY="30.0" text="Teams" />
                                      <Label layoutX="1013.0" layoutY="298.0" text="Beschrijving" />
                                      <TextArea fx:id="TaBeschrijving" layoutX="1013.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
-                              <Button fx:id="BTNcreaterapport" layoutX="195.0" layoutY="191.0" mnemonicParsing="false" onAction="#createRapport" prefHeight="224.0" prefWidth="336.0" text="Button" />
+                                     <Button fx:id="BTNcreaterapport" layoutX="23.0" layoutY="534.0"
+                                             mnemonicParsing="false" onAction="#createRapport" prefHeight="71.0"
+                                             prefWidth="124.0" text="maak rapport"/>
                                  </children>
                              </AnchorPane>
                          </content>

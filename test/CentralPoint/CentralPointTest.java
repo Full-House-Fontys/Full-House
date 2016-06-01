@@ -21,7 +21,7 @@ public class CentralPointTest {
     private Material material;
 
     /**
-     * set up method for unittests before running each test
+     * Set up method for unittests before running each test
      * @throws Exception
      */
     @Before
@@ -34,7 +34,7 @@ public class CentralPointTest {
     }
 
     /**
-     * tear down method for unittests after running each test
+     * Tear down method for unittests after running each test
      * @throws Exception
      */
     @After
@@ -43,22 +43,22 @@ public class CentralPointTest {
     }
 
     /**
-     * inserts a test material, for the unittests
+     * Inserts a test material, for the unittests
      */
     private void insTestMat(){
         centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
     }
 
     /**
-     * deletes the material, for the unittests
+     * Deletes the material, for the unittests
      */
     private void delTestMat(){
         centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
     /**
-     * get highest material id, necessary for some tests
-     * @return
+     * Get highest material id, necessary for some tests
+     * @return the highest material id
      */
     private int getHighestMatId() {
         int id = 0;
@@ -72,7 +72,7 @@ public class CentralPointTest {
 
 
     /**
-     * returns list of all staff members that are on location
+     * Returns list of all staff members that are on location
      * @throws Exception
      */
     @Test
@@ -80,6 +80,7 @@ public class CentralPointTest {
         assertNotNull("list is not filled from database", centralPoint.getStaffOnLocation());
     }
 
+    //TODO JAVADOC
     @Test
     public void testSetStaffOnLocation() throws Exception {
         //afhankelijk van Qun, insert tested en working
@@ -263,6 +264,7 @@ public class CentralPointTest {
     }
 
     //TODO: the missions are not cleared when finishing a unittest
+    //TODO JAVADOC
     @Test
     public void testGetAllMissions() {
         ObservableList<Mission> allMissions = centralPoint.getAllMissions();
@@ -270,6 +272,7 @@ public class CentralPointTest {
     }
 
     //TODO: the missions are not cleared when finishing a unittest
+    //TODO JAVADOC
     @Test
     public void testCreateMission() {
         Date date = new Date();
@@ -277,11 +280,13 @@ public class CentralPointTest {
         assertEquals("There are not 12 missions", 12, centralPoint.getAllMissions().size());
     }
 
+    //TODO JAVADOC
     @Test
     public void testGetAllTeams() {
         assertEquals("There are not 10 teams", 10, centralPoint.getAllTeams().size());
     }
 
+    //TODO JAVADOC
     @Test
     public void getAllNotifications() throws Exception {
         assertTrue("There aren't notifications", centralPoint.getAllNotifications().size() > 0);
