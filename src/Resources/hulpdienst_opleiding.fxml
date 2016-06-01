@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<!--TODO: KEES WEGGOOIEN ALS DIT NIET MEER NODIG IS, ECHT DOEN HÈ!!!!-->
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BerichtController">
    <children>
       <ListView fx:id="lvIngekomenBerichten" layoutX="14.0" layoutY="50.0" prefHeight="402.0" prefWidth="200.0" />

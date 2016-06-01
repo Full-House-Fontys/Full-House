@@ -51,6 +51,7 @@ public class HelpServiceController implements Initializable {
     private ObservableList<Staff> OBStaff;
     private int teamNR;
 
+    //TODO JAVADOC
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hulpdienst = new HelpService();
@@ -70,10 +71,9 @@ public class HelpServiceController implements Initializable {
 
             }
         });
-
-
     }
 
+    //TODO JAVADOC
     @FXML
     public void getdetails() {
         TeamRequest request = (TeamRequest) LVmissies.getSelectionModel().getSelectedItem();
@@ -82,6 +82,7 @@ public class HelpServiceController implements Initializable {
         TAmissiedetail2.setText(tekst);
     }
 
+    //TODO JAVADOC
     public void addStaff() {
         if (LVpersoneel.getSelectionModel().getSelectedItem() != null) {
             Staff staff = (Staff) LVpersoneel.getSelectionModel().getSelectedItem();
@@ -90,6 +91,7 @@ public class HelpServiceController implements Initializable {
         }
     }
 
+    //TODO JAVADOC
     public void removeStaff() {
         if (LVaddedStaff.getSelectionModel().getSelectedItem() != null) {
             Staff staff = (Staff) LVaddedStaff.getSelectionModel().getSelectedItem();
@@ -98,6 +100,7 @@ public class HelpServiceController implements Initializable {
         }
     }
 
+    //TODO JAVADOC
     public void maakTeam() {
         if (!TFteamNaam.getText().isEmpty()) {
             ArrayList<Staff> personeel = new ArrayList<>();
@@ -110,6 +113,7 @@ public class HelpServiceController implements Initializable {
         }
     }
 
+    //TODO JAVADOC
     private void renew() {
         LVpersoneel.setItems(hulpdienst.renewStaffList());
         LVTeams.setItems(hulpdienst.renewteams());
@@ -117,6 +121,7 @@ public class HelpServiceController implements Initializable {
         LVmissies.setItems(hulpdienst.getTeamRequests());
     }
 
+    //TODO JAVADOC
     public void assignteam() {
         Team team = (Team) LVTeams.getSelectionModel().getSelectedItem();
         TeamRequest request = (TeamRequest) LVmissies.getSelectionModel().getSelectedItem();

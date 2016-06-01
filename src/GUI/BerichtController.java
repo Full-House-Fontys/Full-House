@@ -33,6 +33,7 @@ public class BerichtController implements Initializable {
     @FXML
     private Button btnMissieSelect;
 
+    //TODO JAVADOC
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> items = FXCollections.observableArrayList(
@@ -46,6 +47,7 @@ public class BerichtController implements Initializable {
         lvTeamLog.setItems(items3);
     }
 
+    //TODO JAVADOC
     @FXML
     private void simuleerTestBericht(ActionEvent event) {
         Message m = new Message("test", "inhoud", 0);
@@ -57,6 +59,8 @@ public class BerichtController implements Initializable {
         showPopup("New message");
     }
 
+    //TODO JAVADOC
+    //TODO DUPLICATE CODE
     private void showPopup(String bericht){
         Stage primaryStage = new Stage();
         final Stage dialog = new Stage();
@@ -69,6 +73,7 @@ public class BerichtController implements Initializable {
         dialog.show();
     }
 
+    //TODO JAVADOC
     @FXML
     private void selecteerMissie(ActionEvent event) {
         Mission missie;
@@ -81,6 +86,8 @@ public class BerichtController implements Initializable {
         showPopup("Naam: " + missie.getName() + "\n" + "Omschrijving: " + missie.getDescription());
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @FXML
     private void zendBerichtNaarTeam(ActionEvent event) {
 

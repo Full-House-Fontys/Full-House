@@ -14,14 +14,19 @@ public class taskController implements Initializable {
     @FXML
     TableView tvStaffOnLocation;
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    //TODO JAVADOC
+    //TODO NOT IMPL
     public taskController() {
 
     }
 
+    //TODO JAVADOC
     public void setList(ObservableList<Staff> staffOnLocation) {
         tvStaffOnLocation.setItems(staffOnLocation);
     }

@@ -41,6 +41,7 @@ public class mainController implements Initializable {
 
     private Timer keepNotificationsUpToDate;
 
+    //TODO JAVADOC
     public mainController() {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
@@ -58,6 +59,7 @@ public class mainController implements Initializable {
         keepNotificationsUpToDate = new Timer();
     }
 
+    //TODO JAVADOC
     @FXML
     private void publishOnWebpage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/publishOnWebScreen.fxml"));
@@ -73,6 +75,7 @@ public class mainController implements Initializable {
         }
     }
 
+    //TODO JAVADOC
     private void createMissionView(Mission selectedMission) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/missionscreen.fxml"));
         Stage stage = new Stage();
@@ -89,6 +92,7 @@ public class mainController implements Initializable {
         }
     }
 
+    //TODO JAVADOC
     public void ShowStaffInField() {
 
         ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
@@ -107,6 +111,7 @@ public class mainController implements Initializable {
         //Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
     }
 
+    //TODO JAVADOC
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadAllElements();
@@ -127,20 +132,24 @@ public class mainController implements Initializable {
         );
     }
 
+    //TODO JAVADOC
     private void loadAllElements() {
         loadTeams();
         loadMission();
         loadNotifications();
     }
 
+    //TODO JAVADOC
     private void loadTeams() {
         lvTeams.setItems(teamListObservable);
     }
 
+    //TODO JAVADOC
     private void loadMission() {
         lvMissions.setItems(missionListObservable);
     }
 
+    //TODO JAVADOC
     private void loadNotifications() {
         Platform.runLater(new Runnable() {
             @Override
@@ -150,6 +159,7 @@ public class mainController implements Initializable {
         });
     }
 
+    //TODO JAVADOC
     public void makeNewMission() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/screenmission.fxml"));
         Stage stage = new Stage();

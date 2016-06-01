@@ -88,6 +88,7 @@ public class missionsdetailcontroller {
     private ObservableList<Material> materialInMission;
     private Alert alert;
 
+    //TODO JAVADOC
     public void setMissionController(Mission mission, CentralPoint centralPoint) {
         this.mission = mission;
         this.centralPoint = centralPoint;
@@ -104,6 +105,7 @@ public class missionsdetailcontroller {
         setSettings();
     }
 
+    //TODO JAVADOC
     private void setSettings() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Beschrijving : " + mission.getDescription() + "\n");
@@ -124,6 +126,7 @@ public class missionsdetailcontroller {
         tvNotAvailableMat.setItems(materialInMission);
     }
 
+    //TODO JAVADOC
     @FXML
     private void addMaterialToMission() {
         if (tvAvailableMat.getSelectionModel().getSelectedItem() != null) {
@@ -139,6 +142,7 @@ public class missionsdetailcontroller {
         }
     }
 
+    //TODO JAVADOC
     public void addAvailableTeamToCurrentTeams() {
         if (lvTeamsAvailable.getSelectionModel().getSelectedItem() != null) {
             teamToAdd.add((Team) lvTeamsAvailable.getSelectionModel().getSelectedItem());
@@ -155,6 +159,7 @@ public class missionsdetailcontroller {
         }
     }
 
+    //TODO JAVADOC
     public void removeFromCurrentTeam() {
         if (lvToAddTeams.getSelectionModel().getSelectedItem() != null) {
             teamAvailable.add((Team) lvToAddTeams.getSelectionModel().getSelectedItem());
@@ -170,6 +175,7 @@ public class missionsdetailcontroller {
         }
     }
 
+    //TODO JAVADOC
     public void sendMissionToTeam() throws IOException {
         String hostName = "";
         int portNumber = 0;
@@ -181,6 +187,8 @@ public class missionsdetailcontroller {
         }
     }
 
+    //TODO JAVADOC
+    //TODO DUPLICATE CODE
     private void showPopup(String bericht) {
         Stage primaryStage = new Stage();
         final Stage dialog = new Stage();
@@ -193,6 +201,7 @@ public class missionsdetailcontroller {
         dialog.show();
     }
 
+    //TODO JAVADOC
     @FXML
     public void createRequest() {
         ITeamRequest TR = null;
@@ -204,6 +213,7 @@ public class missionsdetailcontroller {
         }
     }
 
+    //TODO JAVADOC
     @FXML
     public void createRapport() throws IOException {
         centralPoint.createRapport(mission);
