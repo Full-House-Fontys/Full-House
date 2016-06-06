@@ -28,6 +28,8 @@ public class CentralPoint {
     Socket connection = null;
     ObjectOutputStream objectOutputStream;
     ObjectInputStream objectInputStream;
+
+    //todo Dit kan korter, door direct bij het maken van de observable de list erin te voegen
     private DaoManager daoManager;
     private List<Staff> staffList;
     private List<Material> materialList;
@@ -45,6 +47,9 @@ public class CentralPoint {
 
     /**
      * Constructor for central point
+     */
+    /*
+    todo De methode create server wordt niet vemeld in de javadoc
      */
     public CentralPoint() throws Exception {
         daoManager = DaoManager.INSTANCE;
@@ -69,6 +74,8 @@ public class CentralPoint {
      * Renews the list with the updated data from the database
      * @param table object of table to renewLists
      */
+
+    //todo default is niet ingevuld
     private void renewLists(DbTables table) {
         switch (table) {
             case PERSONEEL:
@@ -88,7 +95,7 @@ public class CentralPoint {
                 teamObservableList.clear();
                 teamObservableList = daoManager.getDao(table).getAllRecord();
                 addTeamsToMission();
-                addMaterialsToMission(0);
+                addMaterialsToMission(0);//todo waarom? mogelijk weghalen of uitleggen
                 break;
             case MELDING:
                 notificationObservableList.clear();
@@ -100,7 +107,7 @@ public class CentralPoint {
     }
 
     /**
-     * Returns the staff who are on the location
+     * Returns the staff who are on location
      * @return is of staff on location
      */
     public ObservableList<Staff> getStaffOnLocation() {
@@ -111,6 +118,8 @@ public class CentralPoint {
      * Updates the people who are on the location of the mission
      * @param team list of staff in team
      */
+
+    //todo;wordt niet gebruikt
     public void setStaffOnLocation(List<String> team) {
         for (String staffname : team) {
             Staff toUpdate = new Staff();
@@ -122,7 +131,6 @@ public class CentralPoint {
 
     /**
      * Returns the objectoutputstream of the helpservice
-     *
      * @return objectOutputstream
      */
     public ObjectOutputStream getOutput() {
@@ -151,13 +159,13 @@ public class CentralPoint {
 
     /**
      * Inserts a new material in the database
-     *
-     * @param name; name of the material
-     * @param sort; sort of material; Police Car, Guns, Ambulances, etc.
-     * @param locX; Latitude of location
-     * @param locY; Longitude of location
-     * @param onLoc; is material on location
-     * @throws IllegalArgumentException
+     * @param name name of the material
+     * @param sort sort of material; Police Car, Guns, Ambulances, etc.
+     * @param locX Latitude of location
+     * @param locY Longitude of location
+     * @param onLoc is material on location
+     * @throws IllegalArgumentException //todo leg out waarom deze exceptie
+     * //TODO wordt niet gebruikt in programma, alleen unittests
      */
     public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
         if (name == null || name.trim().length() <= 0) {
@@ -166,15 +174,14 @@ public class CentralPoint {
             throw new IllegalArgumentException();
 
         } else {
-            Material m = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
-            daoManager.getDao(DbTables.MATERIAAL).insert(m);
+            Material material = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
+            daoManager.getDao(DbTables.MATERIAAL).insert(material);
             renewLists(DbTables.MATERIAAL);
         }
     }
 
     /**
      * Returns the material for the given id
-     *
      * @param id; the id where this method should search for in materials
      * @return the material with the given id
      */
@@ -190,7 +197,7 @@ public class CentralPoint {
 
     /**
      * Update the material for given id
-     *
+     * //TODO verkeerde format, slechte beschrijving, excepties niet uitgelegd, dat is niet goed Joris
      * @param matId    as int
      * @param name     as String
      * @param sort     as String
@@ -199,6 +206,7 @@ public class CentralPoint {
      * @throws IllegalArgumentException
      * @throws IllegalStateException
      */
+    //TODO commentaar tussendoor zetten
     public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, IllegalStateException {
         Material m = getMaterialById(matId);
         boolean changed = false;
@@ -244,7 +252,6 @@ public class CentralPoint {
 
     /**
      * Delete given material
-     *
      * @param m as material
      */
     public void deleteMaterial(Material m) {
@@ -254,7 +261,6 @@ public class CentralPoint {
 
     /**
      * Get all the missions from the database
-     *
      * @return unmodifiableObservableList of all missions
      */
     public ObservableList<Mission> getAllMissions() {
