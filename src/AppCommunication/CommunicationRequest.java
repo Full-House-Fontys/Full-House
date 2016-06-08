@@ -12,36 +12,56 @@ public class CommunicationRequest {
     private String payload;
     private CommunicationMessage networkMessage;
 
-    //TODO
-    public String getPayload() {
-        return payload;
-    }
-
-    //TODO
-    public void setPayload(String payload) {
-        this.payload = payload;
-    }
-
-    //TODO
-    public String getUrl() {
-        return url;
-    }
-
-    //TODO
-    public CommunicationMessage getNetworkMessage() {
-        return networkMessage;
-    }
-
-    //TODO
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    //TODO
-    public CommunicationRequest(CommunicationMessage networkMessage) throws UnknownFormatConversionException {
+    //TODO explain
+    /**
+     * Constructor.
+     * @param networkMessage : [INSERT TEXT HERE]
+     */
+    public CommunicationRequest(CommunicationMessage networkMessage) {
         this.networkMessage = networkMessage;
 
         url = networkMessage.getText().substring(0, networkMessage.getText().indexOf("/"));
         payload = networkMessage.getText().substring(networkMessage.getText().indexOf("/")+1);
     }
+
+    /**
+     * Gets the url of this CommunicationRequest.
+     * @return the url.
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Sets a new url to this CommunicationRequest.
+     * @param url : the new url.
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * Gets the payload of this CommunicationRequest.
+     * @return the payload.
+     */
+    public String getPayload() {
+        return payload;
+    }
+
+    /**
+     * Sets a new payload to this CommunicationRequest.
+     * @param payload : the new payload.
+     */
+    public void setPayload(String payload) {
+        this.payload = payload;
+    }
+
+    /**
+     * Gets the networkMessage of this CommunicationRequest.
+     * @return the networkMessage.
+     */
+    public CommunicationMessage getNetworkMessage() {
+        return networkMessage;
+    }
+
 }
