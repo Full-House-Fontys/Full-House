@@ -24,10 +24,11 @@ import java.util.List;
  * Created by Kaj Suiker on 20-3-2016.
  */
 public class CentralPoint {
-    ServerSocket serverSocket;
+    //TODO, maybe it's neccessairy to improve the below variables?
+    ServerSocket SS;
     Socket connection = null;
-    ObjectOutputStream objectOutputStream;
-    ObjectInputStream objectInputStream;
+    ObjectOutputStream out;
+    ObjectInputStream in;
     private DaoManager daoManager;
     private List<Staff> staffList;
     private List<Material> materialList;
@@ -44,9 +45,10 @@ public class CentralPoint {
     private ObservableList<Notification> notificationObservableList;
 
     /**
-     * Constructor for central point
+     * Constructor for central point, also the server will be
+     * created after using this constructor.
      */
-    public CentralPoint() throws Exception {
+    public CentralPoint() {
         daoManager = DaoManager.INSTANCE;
         missionsList = new ArrayList<>();
         staffList = new ArrayList<>();
@@ -66,8 +68,9 @@ public class CentralPoint {
     }
 
     /**
-     * Renews the list with the updated data from the database
-     * @param table object of table to renewLists
+     * Based on the type of 'table', the right one will be cleared
+     * and replaced with all records in the DaoManager.
+     * @param table : Object of table to renewLists.
      */
     private void renewLists(DbTables table) {
         switch (table) {
@@ -100,15 +103,15 @@ public class CentralPoint {
     }
 
     /**
-     * Returns the staff who are on the location
-     * @return is of staff on location
+     * Get all staff on location.
+     * @return all staff on location.
      */
     public ObservableList<Staff> getStaffOnLocation() {
-        return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);
+        return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);  //FXCollections.unmodifiableObservableList(staffOnLocation);
     }
 
     /**
-     * Updates the people who are on the location of the mission
+     * TODO: DESCRIBE THIS PLEASE
      * @param team list of staff in team
      */
     public void setStaffOnLocation(List<String> team) {
@@ -119,14 +122,9 @@ public class CentralPoint {
         }
     }
 
-
-    /**
-     * Returns the objectoutputstream of the helpservice
-     *
-     * @return objectOutputstream
-     */
+    //TODO
     public ObjectOutputStream getOutput() {
-        return objectOutputStream;
+        return out;
     }
 
     /**
@@ -179,13 +177,12 @@ public class CentralPoint {
      * @return the material with the given id
      */
     public Material getMaterialById(int id) {
-        Material materialById = null;
         for (Material material : materialObservableList) {
             if (material.getId() == id) {
-                materialById = material;
+                return material;
             }
         }
-        return materialById;
+        return null;
     }
 
     /**
@@ -275,6 +272,8 @@ public class CentralPoint {
         Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
         daoManager.getDao(DbTables.MISSIE).insert(mission);
         renewLists(DbTables.MISSIE);
+        //availableTeamObservableList = daoManager.getDao(DbTables.TEAM).getSpecificList(0);
+        //addTeamsToMission();
     }
 
     /**
@@ -311,7 +310,6 @@ public class CentralPoint {
      * @return the Mission which is opened
      */
     public Mission addMaterialsToMission(int id) {
-        Mission mission1 = null;
         renewLists(DbTables.MATERIAAL);
         ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
         for (Mission mission : missionObservableList) {
@@ -323,11 +321,14 @@ public class CentralPoint {
                         }
                     }
                 }
+                //ArrayList<Material> copyAllMaterialsAssignedToMission = new ArrayList(allMaterialsAssignedToMission);
                 mission.setMaterialsAssigned(allMaterialsAssignedToMission);//copyAllMaterialsAssignedToMission);
-                mission1 = mission;
+                //allMaterialsAssignedToMission.clear();
+                return mission;
             }
         }
-        return mission1;
+        //ArrayList<Material> temp = new ArrayList();
+        return null;
     }
 
     /**
@@ -441,12 +442,7 @@ public class CentralPoint {
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 
-
-    /**
-     * Returns all messages from the database
-     *
-     * @return messages
-     */
+    //TODO
     public String getLastMessages() {
         StringBuilder lastMessages = new StringBuilder();
         for (Object message : daoManager.getDao(DbTables.BERICHT).getAllRecord()) {
@@ -456,29 +452,22 @@ public class CentralPoint {
         return lastMessages.toString();
     }
 
-
-    /**
-     * Returns all notification from the database
-     * @return observable notificationlist
-     */
+    //TODO
     public ObservableList<Notification> getAllNotifications() {
         renewLists(DbTables.MELDING);
         return FXCollections.unmodifiableObservableList(notificationObservableList);
     }
 
-    /**
-     * Creates a connection between Centralpoint and Helpservice
-     * This is done by connecting sockets
-     */
-    public void createserver() throws Exception {
+    //TODO
+    public void createserver() {
         try {
-            serverSocket = new ServerSocket(2004);
-            connection = serverSocket.accept();
-            objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
-            objectOutputStream.flush();
-            objectInputStream = new ObjectInputStream(connection.getInputStream());
+            SS = new ServerSocket(2004);
+            connection = SS.accept();
+            out = new ObjectOutputStream(connection.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(connection.getInputStream());
         } catch (IOException e) {
-            throw new Exception("Can't connect the socket");
+            //TODO
         }
     }
 
@@ -488,14 +477,13 @@ public class CentralPoint {
      * @return the mission
      */
     public Mission getMissionFromId(int id) {
-        Mission mission1 = null;
         renewLists(DbTables.MISSIE);
-        for(Mission mission : missionObservableList) {
-            if (mission.getID() == id) {
-                mission1 = mission;
+        for(Mission mission : missionObservableList){
+            if(mission.getID() == id){
+                return mission;
             }
         }
-        return mission1;
+        return null;
     }
 
     /**
@@ -505,8 +493,8 @@ public class CentralPoint {
     public void sendSupportService(TeamRequest teamRequest) {
         try {
             getOutput().writeObject(teamRequest);
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
     }
 
@@ -514,7 +502,7 @@ public class CentralPoint {
      * inserts send messages into database
      * creates message from payload and sends it to the daomanager
      *
-     * @param payload the full messages
+     * @param payload the fulle messages
      * @return true/false for succes
      */
     public boolean insertMessage(String payload) {
