@@ -43,7 +43,11 @@ public class mainController implements Initializable {
 
     //TODO JAVADOC
     public mainController() {
-        centralPoint = new CentralPoint();
+        try {
+            centralPoint = new CentralPoint();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
 
