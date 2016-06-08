@@ -271,8 +271,8 @@ public class CentralPoint {
      * @param locationX   as double
      * @param locationY   as double
      */
-    public void createMission(String name, String description, Date startTime, double locationX, double locationY) {
-        Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY);
+    public void createMission(String name, String description, Date startTime, double locationX, double locationY, int estimatedTime) {
+        Mission mission = new Mission(0, name, description, startTime, null, null, locationX, locationY, estimatedTime);
         daoManager.getDao(DbTables.MISSIE).insert(mission);
         renewLists(DbTables.MISSIE);
     }

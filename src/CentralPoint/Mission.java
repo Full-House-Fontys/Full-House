@@ -23,7 +23,7 @@ public class Mission implements Serializable{
     private double locationY;
     private ArrayList<Team> teamsAssigned;
     private ArrayList<Material> materialsAssigned;
-
+    private int estimatedTime;
     /**
      * Constructor for the mission with all the details
      *
@@ -35,8 +35,9 @@ public class Mission implements Serializable{
      * @param endTime
      * @param locationX
      * @param locationY
+     * @param estimatedTime
      */
-    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY) {
+    public Mission(int ID, String name, String description, Date startTime, Date lastUpdate, Date endTime, double locationX, double locationY, int estimatedTime) {
         this.ID = ID;
         this.name = name;
         this.description = description;
@@ -45,6 +46,7 @@ public class Mission implements Serializable{
         this.endTime = endTime;
         this.locationX = locationX;
         this.locationY = locationY;
+        this.estimatedTime = estimatedTime;
         this.teamsAssigned = new ArrayList<>();
         this.materialsAssigned = new ArrayList<>();
     }
@@ -164,6 +166,24 @@ public class Mission implements Serializable{
      */
     public void setMaterialsAssigned(ArrayList<Material> materialsAssigned) {
         this.materialsAssigned = materialsAssigned;
+    }
+
+    /**
+     * get the estimated time of this mission.
+     *
+     * @return
+     */
+    public int getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    /**
+     * set the estimated time of this mission
+     *
+     * @param estimatedTime
+     */
+    public void setEstimatedTime(int estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 
     /**

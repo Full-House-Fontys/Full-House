@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.mainController">
     <children>
         <Button layoutX="191.0" layoutY="305.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="133.0" text="Nieuwe missie" />
@@ -19,7 +16,8 @@
         <Label layoutX="191.0" layoutY="26.0" text="Info" />
         <ListView fx:id="lvNotifications" layoutX="14.0" layoutY="50.0" prefHeight="400.0" prefWidth="163.0" />
         <Label layoutX="14.0" layoutY="27.0" text="Notificaties" />
-      <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#ShowStaffInField" text="List of staff in field" />
+        <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#ShowStaffInField"
+                text="staf-in-veld lijst"/>
       <Button layoutX="191.0" layoutY="376.0" mnemonicParsing="false" onAction="#publishOnWebpage" prefHeight="65.0" prefWidth="133.0" text="Publiceer de melding op de webpagina" textAlignment="CENTER" wrapText="true" />
     </children>
 </Pane>

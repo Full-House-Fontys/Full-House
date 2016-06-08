@@ -50,7 +50,7 @@
                                      <TextField fx:id="TFrequestFireman" layoutX="251.0" layoutY="457.0" />
                                      <TextField fx:id="TFrequestMilitaryPolice" layoutX="251.0" layoutY="492.0" />
                                      <Label layoutX="175.0" layoutY="313.0" text="naam:" />
-                                     <Label layoutX="174.0" layoutY="349.0" text="description:" />
+                                     <Label layoutX="174.0" layoutY="349.0" text="beschrijving:"/>
                                      <Label layoutX="177.0" layoutY="390.0" text="politie:" />
                                      <Label layoutX="177.0" layoutY="426.0" text="EHBO:" />
                                      <Label layoutX="177.0" layoutY="461.0" text="brandweer:" />

@@ -21,8 +21,11 @@ public class createMissionController {
     private TextField TFlocationXMission;
     @FXML
     private TextField TFlocationYMission;
+    @FXML
+    private TextField TFestimatedTime;
 
     private CentralPoint centralPoint;
+    private int estimatedTime;
 
     //TODO JAVADOC
     public void createMission() {
@@ -32,8 +35,14 @@ public class createMissionController {
             Double LocationY = Double.parseDouble(TFlocationYMission.getText());
             String NameMission = TFnameMission.getText();
             String Description = TAdescriptionMission.getText();
+            try {
+                estimatedTime = Integer.parseInt(TFestimatedTime.getText());
+            } catch (Exception e) {
+
+            }
+
             if (!NameMission.isEmpty() && !Description.isEmpty()) {
-                centralPoint.createMission(NameMission, Description, date, LocationX, LocationY);
+                centralPoint.createMission(NameMission, Description, date, LocationX, LocationY, estimatedTime);
 
             }
         } catch (Exception exception) {
