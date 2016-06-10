@@ -24,7 +24,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
     private final String LocatieX = "LocatieX";
     private final String LocatieY = "LocatieY";
     private final String Soort = "Soort";
-    //private final String TeamID = "TeamID";
     private final String OpLocatie = "OpLocatie";
     private final String TeamID = "TeamID";
     private final String MissionID = "MissieID";
@@ -45,7 +44,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * @return list of Staff
      */
     //TODO DUPLICATE CODE
-    //TODO COMMENTED CODE
     @Override
     public ObservableList<Staff> getSpecificList(int id) {
         ArrayList staffList = new ArrayList();
@@ -73,29 +71,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
         }
 
         return staffListObservableList;
-        /*
-        ArrayList staffList = new ArrayList();
-        ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
-        ResultSet rs;
-
-        String query = "Select Soort From Personeel,Team WHERE Personeel.ID = Personeel_Missie.PersoneelID AND Personeel_Missie.MissieID =" + id + ";";
-
-        try{
-            Statement statement = connection.createStatement();
-            rs = statement.executeQuery(query);
-            while (rs.next()){
-                staffListObservableList.add(new Staff(rs.getInt(ID), rs.getString(Voornaam),
-                        rs.getString(Tussenvoegsel), rs.getString(Achternaam), rs.getString(Gebruikersnaam),
-                        rs.getString(Wachtwoord), new Point2D.Double(rs.getDouble(LocatieX),
-                        rs.getDouble(LocatieY)), rs.getString(Soort),
-                        rs.getInt(OpLocatie) == 0));
-            }
-        } catch (SQLException ex){
-            ex.printStackTrace();
-        }
-
-        return staffListObservableList;
-        */
     }
 
     /**

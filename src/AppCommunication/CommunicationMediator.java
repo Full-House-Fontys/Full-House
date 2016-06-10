@@ -22,7 +22,7 @@ public class CommunicationMediator {
     public CommunicationMediator(CentralPoint centralPoint) {
         this.centralPoint = centralPoint;
         try {
-            appCommunication = new AppCommunication();// CommunicationServerSingleton.getNetworkServer();
+            appCommunication = new AppCommunication();
             listen();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,10 +67,9 @@ public class CommunicationMediator {
         }
     }
 
-    //TODO complete javadoc
     /**
-     *
-     * @param communicationRequestRequest
+     * Creates a TeamRequest and send it to Helpservice
+     * @param communicationRequestRequest Used for payload, data to create TeamRequest.
      */
     private void comRequest(CommunicationRequest communicationRequestRequest) {
         TeamRequest teamRequest = parseRequest(communicationRequestRequest.getPayload());
@@ -103,17 +102,24 @@ public class CommunicationMediator {
         return null;
     }
 
-    //TODO
+    //TODO finish
+
+    /**
+     * @param communicationRequestRequest Used to get data from mobile app
+     */
     private void comSend(CommunicationRequest communicationRequestRequest) {
         if (centralPoint.insertMessage(communicationRequestRequest.getPayload())) {
 
         }
     }
 
-    //TODO
+    /**
+     * sends last 5 messages from database to mobile app
+     * @param communicationRequestRequest
+     */
     private void comMessage(CommunicationRequest communicationRequestRequest) {
         send("getMessages/" + centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
-        System.out.println("getMessages/" + centralPoint.getLastMessages());
+        System.out.println("getMessages/" + centralPoint.getLastMessages());//TODO delete sout
     }
 
     /**
@@ -131,7 +137,12 @@ public class CommunicationMediator {
         }
     }
 
-    //TODO
+    /**
+     * Socket connection to send answers back to the mobile apps
+     * @param message message to send back
+     * @param receiver client IP
+     * @return true/false for success
+     */
     public boolean send(String message, String receiver) {
         try {
             Socket socket = new Socket(receiver, 8080);//this.getPort());

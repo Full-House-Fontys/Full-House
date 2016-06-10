@@ -1,9 +1,5 @@
 package AppCommunication;
 
-import java.util.UnknownFormatConversionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Created by Kaj Suiker on 20-4-2016.
  */
@@ -12,9 +8,12 @@ public class CommunicationRequest {
     private String payload;
     private CommunicationMessage networkMessage;
 
-    //TODO explain
     /**
      * Constructor.
+     * Parses data received from sockets
+     * url is the first part of the message, information about what to come.
+     * payload is the data you want to recieve an use
+     * format URL/PAYLOAD/ see API doc
      * @param networkMessage : [INSERT TEXT HERE]
      */
     public CommunicationRequest(CommunicationMessage networkMessage) {

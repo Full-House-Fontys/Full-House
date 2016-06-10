@@ -8,12 +8,14 @@ public class CommunicationMessage {
     private String sender;
     private String receiver;
 
-    //TODO explain
     /**
      * Constructor.
-     * @param text : [INSERT TEXT HERE]
-     * @param sender : [INSERT TEXT HERE]
-     * @param receiver : [INSERT TEXT HERE]
+     * CommunicationMessage low level version of CommunicationRequest.
+     * Remembers the ip address of client and host
+     * Used to create CommunicationRequest
+     * @param text : Total data send using socket
+     * @param sender : ip of sender, App
+     * @param receiver : ip of receiver, Central point server
      */
     public CommunicationMessage(String text, String sender, String receiver){
         this.text = text;

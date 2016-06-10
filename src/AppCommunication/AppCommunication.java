@@ -17,12 +17,7 @@ import java.util.concurrent.Executors;
  * Created by Kaj Suiker on 13-4-2016.
  */
 public class AppCommunication {
-
-    //TODO... delete unused variables
     private static final int socketServerPORT = 8080;
-    /*ServerSocket serverSocket;
-    String message = "";
-    int count = 0;*/
     private Queue<CommunicationMessage> messageQueue;
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
@@ -99,13 +94,12 @@ public class AppCommunication {
         }
     }
 
-    //TODO describe exception.
     /**
      * Reads the inputStream from given socket.
      * This will be returned as a String.
      * @param clientSocket : The socket of the client.
      * @return the inputStream from the given socket.
-     * @throws IOException
+     * @throws IOException clientSocket can throw an IOException
      */
     @NotNull
     private String recv(Socket clientSocket) throws IOException {
