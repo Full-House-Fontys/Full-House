@@ -24,7 +24,7 @@ public class DaoMission extends DaoGeneric<Mission> {
     private final String LocatieX = "LocatieX";
     private final String LocatieY = "LocatieY";
     private final String teamsAssigned = "";
-
+    private final String verwachtetijd = "VerwachteTijdMin";
     /**
      * uses daoGenerics
      * database class of Mission table
@@ -54,7 +54,7 @@ public class DaoMission extends DaoGeneric<Mission> {
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()) {
-                missionListObservableList.add(new Mission(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getDate(6), rs.getDouble(7), rs.getDouble(8)));
+                missionListObservableList.add(new Mission(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getDate(6), rs.getDouble(7), rs.getDouble(8), rs.getInt(9)));
 
             }
         } catch (SQLException ex) {
@@ -68,7 +68,7 @@ public class DaoMission extends DaoGeneric<Mission> {
     @Override
     public boolean update(Mission value, int key) {
         boolean result = false;
-        String query = MessageFormat.format("UPDATE {0} SET {1} = ?, {2} = ?, {3} = ?, {4} = ?, {5} = ?, {6] = ?, {7} = ? WHERE ID = ?", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY);
+        String query = MessageFormat.format("UPDATE {0} SET {1} = ?, {2} = ?, {3} = ?, {4} = ?, {5} = ?, {6] = ?, {7} = ? {8} = ? WHERE ID = ?", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY, verwachtetijd);
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, value.getName());
@@ -78,7 +78,8 @@ public class DaoMission extends DaoGeneric<Mission> {
             ps.setDate(5, (java.sql.Date) value.getEndTime());
             ps.setDouble(6, value.getLocationX());
             ps.setDouble(7, value.getLocationY());
-            ps.setInt(8, key);
+            ps.setInt(8, value.getEstimatedTime());
+            ps.setInt(9, key);
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
@@ -98,7 +99,7 @@ public class DaoMission extends DaoGeneric<Mission> {
     @Override
     public boolean insert(Mission value) {
         boolean result = false;
-        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}, {7}) VALUES (?, ?, ?, ?, ?, ?, ?)", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY);
+        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", TABLENAME, Naam, Beschrijving, BeginTijd, LaatsteUpdate, EindTijd, LocatieX, LocatieY, verwachtetijd);
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, value.getName());
@@ -116,6 +117,7 @@ public class DaoMission extends DaoGeneric<Mission> {
             }
             ps.setDouble(6, value.getLocationX());
             ps.setDouble(7, value.getLocationY());
+            ps.setInt(8, value.getEstimatedTime());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {

@@ -21,7 +21,7 @@ public class TeamRequestTest {
      */
     @Before
     public void setUp() throws Exception {
-        mission = new Mission(1, null, null, null, null, null, 0.0, 0.0);
+        mission = new Mission(1, null, null, null, null, null, 0.0, 0.0, -1);
         TR = new TeamRequest("BRAND", "veel brand", 2, 2, 6, 1, mission);
     }
 
@@ -155,7 +155,7 @@ public class TeamRequestTest {
      */
     @Test
     public void testSetmissie() throws Exception {
-        Mission missie2 = new Mission(2, null, null, null, null, null, 0.0, 0.0);
+        Mission missie2 = new Mission(2, null, null, null, null, null, 0.0, 0.0, -1);
         TR.setMission(missie2);
         assertEquals("wrong mission", missie2, TR.getMission());
     }

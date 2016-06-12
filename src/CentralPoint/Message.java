@@ -9,13 +9,11 @@ public class Message {
     private String message;
     private int missionId;
 
-
     /**
-     * The constructor for message
-     *
-     * @param title
-     * @param message
-     * @param missionId
+     * The constructor for Message.
+     * @param title : The title of the message.
+     * @param message : The description of the message.
+     * @param missionId : The ID of the message.
      */
     public Message(String title, String message, int missionId) {
         this.title = title;
@@ -23,27 +21,25 @@ public class Message {
         this.missionId = missionId;
     }
 
-
     /**
-     * Returns the title of the message
-     *
-     * @return title of the message
+     * Gets the title of this Message.
+     * @return the title.
      */
     public String getTitel() {
         return title;
     }
 
     /**
-     * Returns the description of the message
-     * @return the message
+     * Gets the message of this Message.
+     * @return the message.
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * Return the id of the mission
-     * @return missionId
+     * Gets the missionID of this Message.
+     * @return the missionID.
      */
     public int getMissionId() {
         return missionId;

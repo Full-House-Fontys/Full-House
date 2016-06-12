@@ -34,9 +34,9 @@ public class MissionTest {
     @Before
     public void setUp() throws Exception {
         date1 = new Date();
-        mission1 = new Mission(1, "FIRE", "fire", date1, date1, null, 10.0, 10.0);
-        mission2 = new Mission(2, "BURGLER", "burgler", date1, date1, null, 12.5, 16.3);
-        mission3 = new Mission(3, "INJURED", "injured", date1, date1, null, 80.1, 60.9);
+        mission1 = new Mission(1, "FIRE", "fire", date1, date1, null, 10.0, 10.0, 3);
+        mission2 = new Mission(2, "BURGLER", "burgler", date1, date1, null, 12.5, 16.3, 4);
+        mission3 = new Mission(3, "INJURED", "injured", date1, date1, null, 80.1, 60.9, 5);
         team1 = new Team(1, "brandweer", null, null);
         team2 = new Team(2, "EHBO", null, null);
         team3 = new Team(3, "politie", null, null);
@@ -291,5 +291,27 @@ public class MissionTest {
         assertNotEquals("Shouldn't add team", teamList1, mission1.getTeamsAssigned());
         assertNotEquals("Shouldn't add team", teamList2, mission2.getTeamsAssigned());
         assertNotEquals("Shouldn't add team", teamList3, mission3.getTeamsAssigned());
+    }
+
+    @Test
+    public void testGetEstimatedTime() throws Exception {
+        assertEquals("should be the same", 3, mission1.getEstimatedTime());
+        assertEquals("should be the same", 4, mission2.getEstimatedTime());
+        assertEquals("should be the same", 5, mission3.getEstimatedTime());
+        assertNotEquals("shouldn't be the same", 3, mission3.getEstimatedTime());
+        assertNotEquals("shouldn't be the same", 5, mission2.getEstimatedTime());
+        assertNotEquals("shouldn't be the same", 4, mission1.getEstimatedTime());
+    }
+
+    @Test
+    public void testSetEstimatedTime() throws Exception {
+        assertEquals("should be the same", 3, mission1.getEstimatedTime());
+        assertEquals("should be the same", 4, mission2.getEstimatedTime());
+        mission1.setEstimatedTime(6);
+        mission2.setEstimatedTime(7);
+        assertEquals("should be the same", 6, mission1.getEstimatedTime());
+        assertEquals("should be the same", 7, mission2.getEstimatedTime());
+        assertNotEquals("shouldn't be the same", 3, mission1.getEstimatedTime());
+        assertNotEquals("shouldn't be the same", 4, mission2.getEstimatedTime());
     }
 }

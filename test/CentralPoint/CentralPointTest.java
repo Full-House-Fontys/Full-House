@@ -272,7 +272,7 @@ public class CentralPointTest {
     @Test
     public void testCreateMission() {
         Date date = new Date();
-        centralPoint.createMission("Testing mission", "Try out", date, 12.1, 21.2);
+        centralPoint.createMission("Testing mission", "Try out", date, 12.1, 21.2, -1);
         assertEquals("There are not 12 missions", 12, centralPoint.getAllMissions().size());
     }
 

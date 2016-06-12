@@ -17,18 +17,13 @@ import java.util.concurrent.Executors;
  * Created by Kaj Suiker on 13-4-2016.
  */
 public class AppCommunication {
-
-    //TODO... delete unused variables
     private static final int socketServerPORT = 8080;
-    /*ServerSocket serverSocket;
-    String message = "";
-    int count = 0;*/
     private Queue<CommunicationMessage> messageQueue;
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
     private ServerSocket socket;
 
     /**
-     * Constructor, calling this will also start the listener
+     * Constructor, calling this will also start the message listener.
      * for the socket communication with the field-app.
      */
     public AppCommunication() {
@@ -41,7 +36,7 @@ public class AppCommunication {
 
     /**
      * Starts the thread listeners.
-     * @throws IOException
+     * @throws IOException when the thread get interrupted.
      */
     public void startListeners() throws IOException {
         final int THREADPOOLSIZE = 1;
@@ -104,7 +99,7 @@ public class AppCommunication {
      * This will be returned as a String.
      * @param clientSocket : The socket of the client.
      * @return the inputStream from the given socket.
-     * @throws IOException
+     * @throws IOException clientSocket can throw an IOException
      */
     @NotNull
     private String recv(Socket clientSocket) throws IOException {
@@ -122,8 +117,8 @@ public class AppCommunication {
     }
 
     /**
-     * Gets the latest network message as a request type
-     * @return The latest network request if there is one
+     * Gets the latest network message as a request type.
+     * @return The latest network request if there is one, else null.
      */
     public CommunicationRequest consumeRequest() {
         CommunicationMessage networkMessage = consumeMessage();
@@ -134,8 +129,8 @@ public class AppCommunication {
     }
 
     /**
-     * Returns a message item
-     * @return NetworkMessage that was first in the queue. Null if there was none
+     * Returns a message item.
+     * @return NetworkMessage that was first in the queue. Null if there was none.
      */
     public CommunicationMessage consumeMessage() {
         synchronized (this) {

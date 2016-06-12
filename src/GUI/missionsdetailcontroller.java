@@ -113,6 +113,7 @@ public class missionsdetailcontroller {
         stringBuilder.append("Laatst geupdate : " + mission.getLastUpdate() + "\n");
         stringBuilder.append("Eind tijd : " + mission.getEndTime() + "\n");
         stringBuilder.append("Locatie : " + mission.getLocationX() + ";" + mission.getLocationY() + "\n");
+        stringBuilder.append("verwachte duur ongeval" + mission.getEstimatedTime() + "minuten");
         for (Material m : materialAvailable) {
             m.setDistance(new Point2D.Double(mission.getLocationX(), mission.getLocationY()));
         }
