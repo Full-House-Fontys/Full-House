@@ -48,7 +48,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
             case 0:
                 ResultSet rs = null;
 
-                String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'true'";
+                String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'false'";
                 //TODO DUPLICATE CODE
                 try {
                     Statement statement = connection.createStatement();

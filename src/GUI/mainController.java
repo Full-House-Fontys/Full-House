@@ -42,7 +42,7 @@ public class mainController implements Initializable {
     private Timer keepNotificationsUpToDate;
 
     //TODO JAVADOC
-    public mainController() {
+    public mainController() throws Exception {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
