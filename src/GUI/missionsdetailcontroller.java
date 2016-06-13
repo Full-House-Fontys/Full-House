@@ -15,12 +15,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.awt.geom.Point2D;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.net.URL;
 import java.net.UnknownHostException;
 
 /**
@@ -41,6 +42,8 @@ public class missionsdetailcontroller {
     private ListView lvToAddTeams;
     @FXML
     private ListView lvActieveMissies;
+    @FXML
+    private TextArea taWeatherInfo;
 
     @FXML
     private TableView<Material> tvAvailableMat;
@@ -103,6 +106,7 @@ public class missionsdetailcontroller {
             this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
         }
         setSettings();
+        receiveAndShowWeatherInfo();
     }
 
     //TODO JAVADOC
@@ -125,6 +129,80 @@ public class missionsdetailcontroller {
         lvTeamsAvailable.setItems(teamAvailable);
         tvAvailableMat.setItems(materialAvailable);
         tvNotAvailableMat.setItems(materialInMission);
+    }
+
+    /**
+     * Receives the weather information and shows it on the textarea taWeatherInfo
+     */
+    private void receiveAndShowWeatherInfo(){
+        try {
+            InputStream inputStream = new URL("http://api.openweathermap.org/data/2.5/forecast/weather?lat=" +
+                    mission.getLocationX() +
+                    "&lon=" +
+                    mission.getLocationY() +
+                    "&APPID=cbabe683e2349af1ea6e571bba89251f&units=metric&lang=nl").openStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String jsonText = readAll(bufferedReader);
+            JSONObject jsonObject = new JSONObject(jsonText);
+            taWeatherInfo.setText("Het weer in " + jsonObject.getJSONObject("city").getString("name") + ":\n\n");
+            taWeatherInfo.appendText("Huidig weer: \n" + getReadableWeather(jsonObject.getJSONArray("list").getJSONObject(0)) + "\n\n");
+            taWeatherInfo.appendText("Weer over 3 uur: \n" + getReadableWeather(jsonObject.getJSONArray("list").getJSONObject(1)) + "\n\n");
+            taWeatherInfo.appendText("Weer morgen: \n" + getReadableWeather(jsonObject.getJSONArray("list").getJSONObject(8)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reads out the json of a reader
+     * @param rd the reader which contains the json
+     * @return the json as a String
+     * @throws IOException
+     */
+    private String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Generates the weather in readable text from JSON
+     * @param jsonObject the JSON with the weather info
+     * @return the weather info as readable String
+     */
+    private String getReadableWeather(JSONObject jsonObject){
+        StringBuilder readableWeatherInfo = new StringBuilder();
+        JSONObject mainJson = jsonObject.getJSONObject("main");
+        readableWeatherInfo.append(mainJson.getDouble("temp") +
+                "\u00b0C met " +
+                jsonObject.getJSONArray("weather").getJSONObject(0).getString("description") + "\n");
+
+        readableWeatherInfo.append("Windsnelheid: " +
+                jsonObject.getJSONObject("wind").getDouble("speed") +
+                "m/s; Richting: " +
+                jsonObject.getJSONObject("wind").getDouble("deg") + "\u00b0\n");
+
+        readableWeatherInfo.append("Bewolking en regen: " +
+                jsonObject.getJSONObject("clouds").getInt("all") + " % bewolkt");
+
+        try {
+            readableWeatherInfo.append(" Regen: " + jsonObject.getJSONObject("rain").getDouble("3h") + "mm");
+        }
+        catch (JSONException exp) {
+            readableWeatherInfo.append(" en geen regen.");
+        }
+
+        try {
+            readableWeatherInfo.append(" Sneeuw: " + jsonObject.getJSONObject("snow").getDouble("3h") + "mm");
+        }
+        catch (JSONException exp) {
+            exp.printStackTrace();
+        }
+
+        return readableWeatherInfo.toString();
     }
 
     //TODO JAVADOC

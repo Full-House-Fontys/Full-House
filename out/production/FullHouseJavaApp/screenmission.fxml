@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.createMissionController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="GUI.createMissionController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,17 +16,19 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="558.0">
          <children>
-            <Button fx:id="BTNreateMission" layoutX="253.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#createMission" prefHeight="57.0" prefWidth="149.0" text="maak aan" />
-            <TextField fx:id="TFlocationXMission" layoutX="35.0" layoutY="196.0" />
-            <TextField fx:id="TFlocationYMission" layoutX="35.0" layoutY="237.0" />
-            <Label layoutX="37.0" layoutY="179.0" text="Locatie X:" />
-            <Label layoutX="39.0" layoutY="221.0" text="locatie Y:" />
-            <TextField fx:id="TFnameMission" layoutX="35.0" layoutY="49.0" />
-            <Label layoutX="35.0" layoutY="32.0" text="Naam" />
-            <TextArea fx:id="TAdescriptionMission" layoutX="35.0" layoutY="105.0" prefHeight="66.0" prefWidth="292.0" wrapText="true" />
-            <Label layoutX="35.0" layoutY="88.0" prefHeight="17.0" prefWidth="62.0" text="descriptie" />
-            <TextField fx:id="TFestimatedTime" layoutX="35.0" layoutY="289.0" />
-            <Label layoutX="39.0" layoutY="272.0" text="verwachte tijd" />
+            <Button fx:id="BTNreateMission" layoutX="253.0" layoutY="260.0" mnemonicParsing="false"
+                    onMouseClicked="#createMission" prefHeight="57.0" prefWidth="149.0" text="maak aan"/>
+            <TextField fx:id="TFlocationXMission" layoutX="35.0" layoutY="196.0"/>
+            <TextField fx:id="TFlocationYMission" layoutX="35.0" layoutY="237.0"/>
+            <Label layoutX="37.0" layoutY="179.0" text="Locatie X:"/>
+            <Label layoutX="39.0" layoutY="221.0" text="locatie Y:"/>
+            <TextField fx:id="TFnameMission" layoutX="35.0" layoutY="49.0"/>
+            <Label layoutX="35.0" layoutY="32.0" text="Naam"/>
+            <TextArea fx:id="TAdescriptionMission" layoutX="35.0" layoutY="105.0" prefHeight="66.0" prefWidth="292.0"
+                      wrapText="true"/>
+            <Label layoutX="35.0" layoutY="88.0" prefHeight="17.0" prefWidth="62.0" text="descriptie"/>
+            <TextField fx:id="TFestimatedTime" layoutX="35.0" layoutY="289.0"/>
+            <Label layoutX="39.0" layoutY="272.0" text="verwachte tijd"/>
          </children>
       </AnchorPane>
    </children>
