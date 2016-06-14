@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
@@ -21,12 +22,14 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="635.0" prefWidth="953.0">
                                  <children>
-                                     <ListView fx:id="LvTeams" layoutX="1013.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <Label layoutX="1013.0" layoutY="30.0" text="Teams" />
-                                     <Label layoutX="1013.0" layoutY="298.0" text="Beschrijving" />
-                                     <TextArea fx:id="TaBeschrijving" layoutX="1013.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
+                                     <ListView fx:id="LvTeams" layoutX="1164.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <Label layoutX="1164.0" layoutY="30.0" text="Teams" />
+                                     <Label layoutX="1164.0" layoutY="298.0" text="Beschrijving" />
+                                     <TextArea fx:id="TaBeschrijving" layoutX="1164.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
                                      <Button fx:id="BTNcreaterapport" layoutX="23.0" layoutY="534.0" mnemonicParsing="false" onAction="#createRapport" prefHeight="71.0" prefWidth="124.0" text="maak rapport" />
                               <TextArea fx:id="taWeatherInfo" editable="false" layoutX="47.0" layoutY="47.0" prefHeight="300.0" prefWidth="356.0" text="Weerinformatie:" />
+                              <WebView fx:id="wvGoogleMaps" layoutX="486.0" layoutY="56.0" prefHeight="297.0" prefWidth="564.0" />
+                              <Label layoutX="499.0" layoutY="39.0" text="Kaart:" />
                                  </children>
                              </AnchorPane>
                          </content>

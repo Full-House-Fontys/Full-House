@@ -13,10 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.awt.geom.Point2D;
 import java.io.*;
@@ -44,6 +49,8 @@ public class missionsdetailcontroller {
     private ListView lvActieveMissies;
     @FXML
     private TextArea taWeatherInfo;
+    @FXML
+    private WebView wvGoogleMaps;
 
     @FXML
     private TableView<Material> tvAvailableMat;
@@ -107,6 +114,12 @@ public class missionsdetailcontroller {
         }
         setSettings();
         receiveAndShowWeatherInfo();
+        try {
+            editHtml();
+            initEngine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //TODO JAVADOC
@@ -157,7 +170,7 @@ public class missionsdetailcontroller {
      * Reads out the json of a reader
      * @param rd the reader which contains the json
      * @return the json as a String
-     * @throws IOException
+     * @throws IOException when file could not be read
      */
     private String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -203,6 +216,42 @@ public class missionsdetailcontroller {
         }
 
         return readableWeatherInfo.toString();
+    }
+
+    /**
+     * Edits the html, so that there are better location marks
+     * @throws IOException if html can't be read
+     */
+    private void editHtml() throws IOException {
+        File input = new File(missionsdetailcontroller.class.getClassLoader().getResource("Resources/googlemaps.html").getPath());
+        Document doc = Jsoup.parse(input, "UTF-8");
+        String javaScript = doc.getElementsByTag("Script").first().toString();
+        System.out.println(javaScript);
+        String lat = javaScript.substring(javaScript.indexOf("lat: ") + 5, javaScript.indexOf(","));
+        System.out.println(lat);
+        String lon = javaScript.substring(javaScript.indexOf("lng: ") + 5, javaScript.indexOf("}"));
+        System.out.println(lon);
+
+        lat = String.valueOf(mission.getLocationX());
+        lon = String.valueOf(mission.getLocationY());
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(javaScript.substring(javaScript.indexOf(">") + 1, javaScript.indexOf("lat: ") + 5));
+        stringBuilder.append(lat);
+        stringBuilder.append(", lng: ");
+        stringBuilder.append(lon);
+        stringBuilder.append(javaScript.substring(javaScript.indexOf("}"), javaScript.lastIndexOf("<")));
+        System.out.println(stringBuilder);
+        doc.getElementsByTag("Script").first().text(stringBuilder.toString());
+
+        System.out.println(doc.getElementsByTag("Script").first().toString());
+        FileUtils.writeStringToFile(input, doc.outerHtml(), "UTF-8");
+    }
+
+    private void initEngine(){
+        WebEngine webEngine = wvGoogleMaps.getEngine();
+        final URL urlGoogleMaps = getClass().getClassLoader().getResource("Resources/googlemaps.html");
+        webEngine.load(urlGoogleMaps.toExternalForm());
     }
 
     //TODO JAVADOC
