@@ -66,9 +66,16 @@ public class CommunicationMediator {
             case "missionDone":
                 comMissionDone(communicationRequestRequest);
                 break;
+            case "getSteps":
+                comGetSteps(communicationRequestRequest);
+                break;
             default:
                 System.out.println("error");
         }
+    }
+
+    private void comGetSteps(CommunicationRequest communicationRequestRequest) {
+        send("setSteps/" + centralPoint.getSteps(Integer.parseInt(communicationRequestRequest.getPayload())), communicationRequestRequest.getNetworkMessage().getSender());
     }
 
     /**

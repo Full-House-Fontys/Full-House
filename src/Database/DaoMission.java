@@ -34,8 +34,6 @@ public class DaoMission extends DaoGeneric<Mission> {
         super(connection, TABLENAME);
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
     @Override
     public ObservableList<Mission> getSpecificList(int id) {
         return null;
@@ -258,10 +256,29 @@ public class DaoMission extends DaoGeneric<Mission> {
         }
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * get steps of mission
+     *
+     * @param value object value
+     * @param key   key missionId
+     * @return mission with name, string of steps
+     */
     @Override
     public Mission getObject(Mission value, int key) {
-        return null;
+        System.out.println(key);
+        Mission mission = new Mission();
+        String query = "SELECT Stappen FROM Missie_Stappenplan WHERE MissieID = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, key);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                mission.setName(rs.getString(1));
+            }
+            return mission;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return mission;
     }
 }

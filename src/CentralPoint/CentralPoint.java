@@ -529,13 +529,21 @@ public class CentralPoint {
 
     /**
      * sets database mission as done
-     *
      * @param id mission id to set to done
      * @return true/false for success
      */
     public boolean missionDone(int id) {
-        System.out.println(id);
-        return daoManager.getDao(DbTables.MISSIE).update(new Mission(), "5");
+        return daoManager.getDao(DbTables.MISSIE).update(new Mission(), id);
+    }
+
+    /**
+     * get steps from database, is filled in as mission name
+     *
+     * @param missionId id of mission
+     * @return string of steps, else empty string
+     */
+    public String getSteps(int missionId) {
+        return ((Mission) daoManager.getDao(DbTables.MISSIE).getObject(new Mission(), missionId)).getName();
     }
 }
 

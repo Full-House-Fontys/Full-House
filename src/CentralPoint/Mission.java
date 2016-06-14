@@ -24,6 +24,7 @@ public class Mission implements Serializable{
     private ArrayList<Team> teamsAssigned;
     private ArrayList<Material> materialsAssigned;
     private int estimatedTime;
+
     /**
      * Constructor for the mission with all the details
      *
@@ -74,6 +75,14 @@ public class Mission implements Serializable{
         return name;
     }
 
+    /**
+     * set the name of the mission
+     *
+     * @param name string of name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
     /**
      * returns the description of the mission
      * @return Description
