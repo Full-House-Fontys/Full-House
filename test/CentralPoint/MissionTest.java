@@ -293,6 +293,11 @@ public class MissionTest {
         assertNotEquals("Shouldn't add team", teamList3, mission3.getTeamsAssigned());
     }
 
+    /**
+     * test to get a missions estimated time
+     *
+     * @throws Exception
+     */
     @Test
     public void testGetEstimatedTime() throws Exception {
         assertEquals("should be the same", 3, mission1.getEstimatedTime());
@@ -303,6 +308,9 @@ public class MissionTest {
         assertNotEquals("shouldn't be the same", 4, mission1.getEstimatedTime());
     }
 
+    /**
+     * @throws Exception
+     */
     @Test
     public void testSetEstimatedTime() throws Exception {
         assertEquals("should be the same", 3, mission1.getEstimatedTime());

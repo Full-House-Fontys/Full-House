@@ -98,7 +98,12 @@ public class missionsdetailcontroller {
     private ObservableList<Material> materialInMission;
     private Alert alert;
 
-    //TODO JAVADOC
+    /**
+     * set the mission controller in the detail controller
+     *
+     * @param mission
+     * @param centralPoint
+     */
     public void setMissionController(Mission mission, CentralPoint centralPoint) {
         this.mission = mission;
         this.centralPoint = centralPoint;
@@ -122,7 +127,9 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * set all details of the mission in the text area
+     */
     private void setSettings() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Beschrijving : " + mission.getDescription() + "\n");
@@ -254,7 +261,9 @@ public class missionsdetailcontroller {
         webEngine.load(urlGoogleMaps.toExternalForm());
     }
 
-    //TODO JAVADOC
+    /**
+     * add material to a mission.
+     */
     @FXML
     private void addMaterialToMission() {
         if (tvAvailableMat.getSelectionModel().getSelectedItem() != null) {
@@ -270,7 +279,9 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * add an available team to a current team
+     */
     public void addAvailableTeamToCurrentTeams() {
         if (lvTeamsAvailable.getSelectionModel().getSelectedItem() != null) {
             teamToAdd.add((Team) lvTeamsAvailable.getSelectionModel().getSelectedItem());
@@ -287,7 +298,9 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * remove a team from current teams
+     */
     public void removeFromCurrentTeam() {
         if (lvToAddTeams.getSelectionModel().getSelectedItem() != null) {
             teamAvailable.add((Team) lvToAddTeams.getSelectionModel().getSelectedItem());
@@ -303,7 +316,11 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * send a mission to the team
+     *
+     * @throws IOException
+     */
     public void sendMissionToTeam() throws IOException {
         String hostName = "";
         int portNumber = 0;
@@ -315,8 +332,12 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
-    //TODO DUPLICATE CODE
+    /**
+     * shows a pop up with the message
+     *
+     * @param bericht
+     */
+    //TODO niet gebruikt
     private void showPopup(String bericht) {
         Stage primaryStage = new Stage();
         final Stage dialog = new Stage();
@@ -329,7 +350,9 @@ public class missionsdetailcontroller {
         dialog.show();
     }
 
-    //TODO JAVADOC
+    /**
+     * creates a new teamrequest which will be send to the helpservice.
+     */
     @FXML
     public void createRequest() {
         ITeamRequest TR = null;
@@ -341,7 +364,10 @@ public class missionsdetailcontroller {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * creates the rapport of the mission
+     * @throws IOException
+     */
     @FXML
     public void createRapport() throws IOException {
         centralPoint.createRapport(mission);

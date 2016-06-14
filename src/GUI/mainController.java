@@ -41,7 +41,11 @@ public class mainController implements Initializable {
 
     private Timer keepNotificationsUpToDate;
 
-    //TODO JAVADOC
+    /**
+     * constructor for the maincontroller
+     *
+     * @throws Exception
+     */
     public mainController() throws Exception {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
@@ -59,7 +63,9 @@ public class mainController implements Initializable {
         keepNotificationsUpToDate = new Timer();
     }
 
-    //TODO JAVADOC
+    /**
+     * publish mission on the webpage
+     */
     @FXML
     private void publishOnWebpage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/publishOnWebScreen.fxml"));
@@ -75,7 +81,11 @@ public class mainController implements Initializable {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * creates a new view with all the mission details in it.
+     *
+     * @param selectedMission
+     */
     private void createMissionView(Mission selectedMission) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/missionscreen.fxml"));
         Stage stage = new Stage();
@@ -92,7 +102,9 @@ public class mainController implements Initializable {
         }
     }
 
-    //TODO JAVADOC
+    /**
+     * shows all the staff that is currently in the field
+     */
     public void ShowStaffInField() {
 
         ObservableList<Staff> staffOnLocation = centralPoint.getStaffOnLocation();
@@ -111,7 +123,11 @@ public class mainController implements Initializable {
         //Platform.runLater(() -> tvStaffOnLocation.setItems(staffOnLocation));
     }
 
-    //TODO JAVADOC
+    /**
+     * initialize of the maincontroller
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadAllElements();
@@ -132,24 +148,32 @@ public class mainController implements Initializable {
         );
     }
 
-    //TODO JAVADOC
+    /**
+     * reload all elements used in the controller
+     */
     private void loadAllElements() {
         loadTeams();
         loadMission();
         loadNotifications();
     }
 
-    //TODO JAVADOC
+    /**
+     * reload all the teams
+     */
     private void loadTeams() {
         lvTeams.setItems(teamListObservable);
     }
 
-    //TODO JAVADOC
+    /**
+     * reload all the missions
+     */
     private void loadMission() {
         lvMissions.setItems(missionListObservable);
     }
 
-    //TODO JAVADOC
+    /**
+     * reload all the notifications
+     */
     private void loadNotifications() {
         Platform.runLater(new Runnable() {
             @Override
@@ -159,7 +183,9 @@ public class mainController implements Initializable {
         });
     }
 
-    //TODO JAVADOC
+    /**
+     * create a new view in which you can create a new mission
+     */
     public void makeNewMission() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/screenmission.fxml"));
         Stage stage = new Stage();

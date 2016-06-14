@@ -27,7 +27,9 @@ public class createMissionController {
     private CentralPoint centralPoint;
     private int estimatedTime;
 
-    //TODO JAVADOC
+    /**
+     * creates and saves a mission
+     */
     public void createMission() {
         try {
             Date date = new Date();
@@ -55,7 +57,11 @@ public class createMissionController {
 
     }
 
-    //TODO JAVADOC
+    /**
+     * set the central point class in the controller.
+     *
+     * @param centralPoint
+     */
     public void setCentralPoint(CentralPoint centralPoint) {
         this.centralPoint = centralPoint;
     }
