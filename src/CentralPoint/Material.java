@@ -211,7 +211,7 @@ public class Material implements Serializable {
      * @return string representation for material
      */
     @Override
-    private String toString(){
+    public String toString(){
         return this.name;
     }
 }
