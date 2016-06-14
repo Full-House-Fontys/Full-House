@@ -205,4 +205,13 @@ public class Material implements Serializable {
     private double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
     }
+
+    /**
+     * ToString method for material
+     * @return string representation for material
+     */
+    @Override
+    private String toString(){
+        return this.name;
+    }
 }
