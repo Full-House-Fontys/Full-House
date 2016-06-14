@@ -51,6 +51,8 @@ public class missionsdetailcontroller {
     private TextArea taWeatherInfo;
     @FXML
     private WebView wvGoogleMaps;
+    @FXML
+    private WebView wvAirQuality;
 
     @FXML
     private TableView<Material> tvAvailableMat;
@@ -233,11 +235,8 @@ public class missionsdetailcontroller {
         File input = new File(missionsdetailcontroller.class.getClassLoader().getResource("Resources/googlemaps.html").getPath());
         Document doc = Jsoup.parse(input, "UTF-8");
         String javaScript = doc.getElementsByTag("Script").first().toString();
-        System.out.println(javaScript);
         String lat = javaScript.substring(javaScript.indexOf("lat: ") + 5, javaScript.indexOf(","));
-        System.out.println(lat);
         String lon = javaScript.substring(javaScript.indexOf("lng: ") + 5, javaScript.indexOf("}"));
-        System.out.println(lon);
 
         lat = String.valueOf(mission.getLocationX());
         lon = String.valueOf(mission.getLocationY());
@@ -248,17 +247,22 @@ public class missionsdetailcontroller {
         stringBuilder.append(", lng: ");
         stringBuilder.append(lon);
         stringBuilder.append(javaScript.substring(javaScript.indexOf("}"), javaScript.lastIndexOf("<")));
-        System.out.println(stringBuilder);
         doc.getElementsByTag("Script").first().text(stringBuilder.toString());
 
         System.out.println(doc.getElementsByTag("Script").first().toString());
         FileUtils.writeStringToFile(input, doc.outerHtml(), "UTF-8");
     }
 
+    /**
+     * Sets up the engine, so that the webpage is visible.
+     */
     private void initEngine(){
-        WebEngine webEngine = wvGoogleMaps.getEngine();
+        WebEngine googleWebEngine = wvGoogleMaps.getEngine();
         final URL urlGoogleMaps = getClass().getClassLoader().getResource("Resources/googlemaps.html");
-        webEngine.load(urlGoogleMaps.toExternalForm());
+        googleWebEngine.load(urlGoogleMaps.toExternalForm());
+
+        WebEngine airWebEngine = wvAirQuality.getEngine();
+        airWebEngine.load("https://www.luchtmeetnet.nl/");
     }
 
     /**
