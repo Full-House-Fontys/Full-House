@@ -52,6 +52,12 @@ public class Mission implements Serializable{
     }
 
     /**
+     * Empty constructor
+     */
+    public Mission() {
+    }
+
+    /**
      * returns the id of the mission
      *
      * @return ID
@@ -216,7 +222,7 @@ public class Mission implements Serializable{
         return this.ID + ": " + this.name;
     }
 
-
+    //TODO Not Used?
     /**
      * The teams who are assigned to the mission
      * @param id

@@ -60,10 +60,27 @@ public class CommunicationMediator {
                 comSend(communicationRequestRequest);
                 break;
             case "requestBackup":
+                System.out.println("start");
                 comRequest(communicationRequestRequest);
+                break;
+            case "missionDone":
+                comMissionDone(communicationRequestRequest);
                 break;
             default:
                 System.out.println("error");
+        }
+    }
+
+    /**
+     * sets mission to done
+     * sends results back
+     * @param communicationRequest comRequest
+     */
+    private void comMissionDone(CommunicationRequest communicationRequest) {
+        if (centralPoint.missionDone(Integer.parseInt(communicationRequest.getPayload()))) {
+            send("missionDone/" + "true", communicationRequest.getNetworkMessage().getSender());
+        } else {
+            send("missionDone/" + "false", communicationRequest.getNetworkMessage().getSender());
         }
     }
 
@@ -109,7 +126,7 @@ public class CommunicationMediator {
      */
     private void comSend(CommunicationRequest communicationRequestRequest) {
         if (centralPoint.insertMessage(communicationRequestRequest.getPayload())) {
-
+            send("getMessages/" + centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
         }
     }
 
@@ -119,7 +136,6 @@ public class CommunicationMediator {
      */
     private void comMessage(CommunicationRequest communicationRequestRequest) {
         send("getMessages/" + centralPoint.getLastMessages(), communicationRequestRequest.getNetworkMessage().getSender());
-        System.out.println("getMessages/" + centralPoint.getLastMessages());//TODO delete sout
     }
 
     /**

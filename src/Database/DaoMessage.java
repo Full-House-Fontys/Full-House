@@ -82,13 +82,13 @@ public class DaoMessage extends DaoGeneric<Message> {
     public boolean insert(Message value) {
         boolean result = false;
 
-        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}) VALUES (?, ?, ?, ?)", TABLENAME, Titel, Bericht, Tijdstip, MissieID);
+        String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}, {4}) VALUES (?, ?, GETDATE(), ?)", TABLENAME, Titel, Bericht, Tijdstip, MissieID);
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, value.getTitel());
             ps.setString(2, value.getMessage());
-            ps.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            ps.setInt(4, value.getMissionId());
+            //ps.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            ps.setInt(3, value.getMissionId());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {

@@ -49,7 +49,8 @@ public class AppCommunication {
         socket = new ServerSocket(socketServerPORT);
 
         // Create runnable
-        Runnable worker = () -> constantCheck();
+        Runnable worker = () ->
+                constantCheck();
 
         // Execute
         executorService.execute(worker);

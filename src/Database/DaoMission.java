@@ -88,11 +88,102 @@ public class DaoMission extends DaoGeneric<Mission> {
         return result;
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * Update to set mission to done, give it a enddate.
+     * remove mission material from Mission_Material table, set material onLocation to false
+     * remove mission staff from Team table, set staff onLocation to false
+     *
+     * @param value list of to update with int
+     * @param key   key of row
+     * @return
+     */
     @Override
     public boolean update(Mission value, String key) {
-        return false;
+        int missionId = Integer.parseInt(key);
+        String query;
+        List<Integer> materialIdList;
+        List<Integer> staffIdList;
+        try {
+            //fill material list
+            query = "SELECT MateriaalID FROM Materiaal_Missie WHERE MissieID = ?";
+            materialIdList = executeListQuery(query, missionId);
+            //fill staff list
+            query = "SELECT PersoneelID FROM Team WHERE MissieID = ?";
+            staffIdList = executeListQuery(query, missionId);
+            //rest material on location
+            query = "Update Materiaal Set OpLocatie = 0 WHERE ID = ?";
+            updateList(query, materialIdList);
+            //rest staff on location
+            query = "Update Personeel Set OpLocatie = 0 WHERE ID = ?";
+            updateList(query, staffIdList);
+            //delete connections in link table Material_mission
+            query = "Delete FROM Materiaal_Missie WHERE MissieID = ?;";
+            deleteLinks(query, missionId);
+            //delete connections in link table Team
+            query = "Delete FROM Team WHERE MissieID = ?";
+            deleteLinks(query, missionId);
+            //end mission
+            query = "UPDATE Missie SET EindTijd = GETDATE() WHERE ID = ?";
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setInt(1, missionId);
+                ps.executeUpdate();
+                return true;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * delete linked values of ended mission
+     *
+     * @param query     to execute
+     * @param missionId to seach for
+     * @throws SQLException database error
+     */
+    private void deleteLinks(String query, int missionId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, missionId);
+        ps.executeUpdate();
+    }
+
+    /**
+     * update data of list from onlocation true, to false
+     *
+     * @param query  to execute
+     * @param idList list of id's t0 check
+     * @throws SQLException database error
+     */
+    private void updateList(String query, List<Integer> idList) throws SQLException {
+        for (Integer id : idList) {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+    }
+
+    /**
+     * executes query to get list of ints
+     *
+     * @param query     the to be executed query
+     * @param missionId missionId variable
+     * @return list of id's
+     * @throws SQLException database error
+     */
+    private ArrayList<Integer> executeListQuery(String query, int missionId) throws SQLException {
+        ArrayList<Integer> list = new ArrayList<>();
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, missionId);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            list.add(rs.getInt(1));
+        }
+        return list;
     }
 
     //TODO JAVADOC

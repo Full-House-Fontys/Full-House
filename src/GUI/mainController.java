@@ -200,6 +200,4 @@ public class mainController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 }

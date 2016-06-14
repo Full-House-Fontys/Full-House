@@ -521,10 +521,21 @@ public class CentralPoint {
      * creates message from payload and sends it to the daomanager
      *
      * @param payload the full messages
-     * @return true/false for succes
+     * @return true/false for success
      */
     public boolean insertMessage(String payload) {
         return daoManager.getDao(DbTables.BERICHT).insert(new Message("", payload.substring(0, payload.length() - 1), Integer.parseInt(payload.substring(payload.length() - 1))));
+    }
+
+    /**
+     * sets database mission as done
+     *
+     * @param id mission id to set to done
+     * @return true/false for success
+     */
+    public boolean missionDone(int id) {
+        System.out.println(id);
+        return daoManager.getDao(DbTables.MISSIE).update(new Mission(), "5");
     }
 }
 
