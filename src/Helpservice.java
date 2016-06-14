@@ -25,7 +25,7 @@ public class Helpservice extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Helpservice.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Resources/Helpservice.fxml"));
         primaryStage.setTitle("Hulpdienst");
         primaryStage.setScene(new Scene(root, 619, 466));
         primaryStage.show();

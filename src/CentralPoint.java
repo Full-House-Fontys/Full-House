@@ -25,7 +25,7 @@ public class CentralPoint extends javafx.application.Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Resources/Main.fxml"));
         primaryStage.setTitle("Centraal punt programma");
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();

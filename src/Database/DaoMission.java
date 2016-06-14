@@ -48,7 +48,7 @@ public class DaoMission extends DaoGeneric<Mission> {
         ObservableList<Mission> missionListObservableList = FXCollections.observableArrayList(missionList);
         ResultSet rs;
 
-        String query = "SELECT * FROM " + TABLENAME;
+        String query = "SELECT * FROM " + TABLENAME + " WHERE EindTijd IS NULL";
 
         try {
             Statement statement = connection.createStatement();
