@@ -45,44 +45,11 @@ public class DaoTeam extends DaoGeneric<Team> {
      * @param missionid
      * @return
      */
-    //TODO DUPLICATE CODE
     @Override
     public ObservableList<Team> getSpecificList(int missionid) {
-        List<Team> missionList = new ArrayList();
-        ObservableList<Team> teamListObservableList = FXCollections.observableArrayList(missionList);
-        ResultSet rs;
-
         String query = "Select * FROM Personeel INNER JOIN " + TABLENAME + " ON Personeel.ID = Team.PersoneelID WHERE MissieID IS NULL";
 
-        try {
-            Statement statement = connection.createStatement();
-            rs = statement.executeQuery(query);
-            while (rs.next()) {
-                boolean teamExist = false;
-                Staff teamMember = new Staff(rs.getInt("ID"), rs.getString("Voornaam"),
-                        rs.getString("Tussenvoegsel"), rs.getString("Achternaam"), rs.getString("Gebruikersnaam"),
-                        rs.getString("Wachtwoord"), new Point2D.Double(rs.getDouble("LocatieX"),
-                        rs.getDouble("LocatieY")), rs.getString("Soort"), rs.getInt("OpLocatie") == 0);
-                for (Team team : teamListObservableList) {
-                    if (team.getName().equals(rs.getString("TeamNaam"))) {
-                        team.addMember(teamMember);
-                        team.addMissie(rs.getInt("MissieID"));
-                        teamExist = true;
-                    }
-                }
-                ArrayList<Staff> members = new ArrayList<>();
-                ArrayList<Integer> missions = new ArrayList<>();
-                if (!teamExist) {
-                    missions.add(rs.getInt("MissieID"));
-                    members.add(teamMember);
-                    teamListObservableList.add(new Team(rs.getInt("TeamID"), rs.getString("TeamNaam"), members, missions));
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return teamListObservableList;
+        return getTeam(query);
     }
 
     /**
@@ -91,12 +58,15 @@ public class DaoTeam extends DaoGeneric<Team> {
      */
     @Override
     public ObservableList<Team> getAllRecord() {
+        String query = "Select * FROM Personeel INNER JOIN " + TABLENAME + " ON Personeel.ID = Team.PersoneelID";
+
+        return getTeam(query);
+    }
+
+    private ObservableList<Team> getTeam(String query) {
         List<Team> missionList = new ArrayList();
         ObservableList<Team> teamListObservableList = FXCollections.observableArrayList(missionList);
         ResultSet rs;
-
-        String query = "Select * FROM Personeel INNER JOIN " + TABLENAME + " ON Personeel.ID = Team.PersoneelID";
-
         try {
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
@@ -124,9 +94,7 @@ public class DaoTeam extends DaoGeneric<Team> {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return teamListObservableList;
-
     }
 
     /**

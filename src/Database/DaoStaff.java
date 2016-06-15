@@ -43,12 +43,8 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * @param id for specific list
      * @return list of Staff
      */
-    //TODO DUPLICATE CODE
     @Override
     public ObservableList<Staff> getSpecificList(int id) {
-        ArrayList staffList = new ArrayList();
-        ObservableList<Staff> staffListObservableList = FXCollections.observableArrayList(staffList);
-        ResultSet rs;
         String query;
         if (id == 0) {
             query = "Select * FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Team.MissieID IS NOT NULL AND Personeel.OpLocatie = 1";
@@ -56,21 +52,7 @@ public class DaoStaff extends DaoGeneric<Staff> {
             query = "Select DISTINCT Personeel.* FROM Personeel INNER JOIN Team ON Personeel.ID = Team.PersoneelID AND Personeel.OpLocatie = 0";
         }
 
-        try{
-            Statement statement = connection.createStatement();
-            rs = statement.executeQuery(query);
-            while (rs.next()){
-                staffListObservableList.add(new Staff(rs.getInt(ID), rs.getString(Voornaam),
-                        rs.getString(Tussenvoegsel), rs.getString(Achternaam), rs.getString(Gebruikersnaam),
-                        rs.getString(Wachtwoord), new Point2D.Double(rs.getDouble(LocatieX),
-                        rs.getDouble(LocatieY)), rs.getString(Soort),
-                        rs.getInt(OpLocatie) == 0));
-            }
-        } catch (SQLException ex){
-            ex.printStackTrace();
-        }
-
-        return staffListObservableList;
+        return getObservableList(query);
     }
 
     /**
@@ -78,15 +60,23 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * @return list of staff
      * @see DaoGeneric#getAllRecord()
      */
-    //TODO DUPLICATE CODE
     @Override
     public ObservableList<Staff> getAllRecord() {
-        List<Staff> allStaff = new ArrayList<>();
-        ObservableList<Staff> obsStaff = FXCollections.observableArrayList(allStaff);
-        ResultSet res;
-
         String query = "SELECT * FROM " + TABLENAME;
 
+        return getObservableList(query);
+    }
+
+    /**
+     * return list of query
+     *
+     * @param query the query to execute
+     * @return return observableList
+     */
+    private ObservableList<Staff> getObservableList(String query) {
+        List<Staff> staffList = new ArrayList<>();
+        ObservableList<Staff> obsStaff = FXCollections.observableArrayList(staffList);
+        ResultSet res;
         try {
             Statement statement = connection.createStatement();
             res = statement.executeQuery(query);

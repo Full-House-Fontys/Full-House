@@ -46,20 +46,8 @@ public class DaoMaterial extends DaoGeneric<Material> {
         ObservableList<Material> materialObservableList = FXCollections.observableArrayList(materialList);
         switch (id) {
             case 0:
-                ResultSet rs = null;
-
                 String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'false'";
-                //TODO DUPLICATE CODE
-                try {
-                    Statement statement = connection.createStatement();
-                    rs = statement.executeQuery(query);
-                    while (rs.next()) {
-                        materialObservableList.add(new Material(rs.getInt(1), rs.getString(2), rs.getString(3), new Point2D.Double(rs.getDouble(4), rs.getDouble(5)), rs.getBoolean(6)));
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
+                materialObservableList = getMaterial(query);
                 break;
         }
         return materialObservableList;
@@ -72,12 +60,24 @@ public class DaoMaterial extends DaoGeneric<Material> {
      */
     @Override
     public ObservableList<Material> getAllRecord() {
-        List<Material> materialList = new ArrayList();
-        ObservableList<Material> materialObservableList = FXCollections.observableArrayList(materialList);
-        ResultSet rs = null;
+        ObservableList<Material> materialObservableList;
 
         String query = "SELECT * FROM " + TABLENAME;
-        //TODO DUPLICATE CODE
+        materialObservableList = getMaterial(query);
+
+        return addMissionIds(materialObservableList);
+    }
+
+    /**
+     * get material observable list
+     *
+     * @param query to execute
+     * @return observable list of material
+     */
+    private ObservableList<Material> getMaterial(String query) {
+        List<Material> materialList = new ArrayList();
+        ObservableList<Material> materialObservableList = FXCollections.observableArrayList(materialList);
+        ResultSet rs;
         try {
             Statement statement = connection.createStatement();
             rs = statement.executeQuery(query);
@@ -87,8 +87,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return addMissionIds(materialObservableList);
+        return materialObservableList;
     }
 
     /**

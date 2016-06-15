@@ -58,8 +58,6 @@ public class CentralPoint {
      * Renews the list with the updated data from the database
      * @param table object of table to renewLists
      */
-
-    //todo default is niet ingevuld
     private void renewLists(DbTables table) {
         switch (table) {
             case PERSONEEL:
