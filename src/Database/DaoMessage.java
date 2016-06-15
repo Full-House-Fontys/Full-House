@@ -3,6 +3,7 @@ package Database;
 import CentralPoint.Message;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,9 +34,15 @@ public class DaoMessage extends DaoGeneric<Message> {
         super(connection, DbTables.BERICHT.toString());
     }
 
+    /**
+     * NOT IMPLEMENTED
+     * returns a specific list of messages for given id
+     * @param id
+     * @return
+     */
     @Override
     public ObservableList<Message> getSpecificList(int id) {
-        return null;
+        throw new NotImplementedException();
     }
 
 
@@ -62,22 +69,35 @@ public class DaoMessage extends DaoGeneric<Message> {
         return null;
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Updates the message with int key
+     * @param value list of to update with int
+     * @param key key of row
+     * @return true if update is correctly executed
+     */
     @Override
     public boolean update(Message value, int key) {
-
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Updates the message with String key
+     * @param value list of to update with int
+     * @param key key of row
+     * @return true if update is correctly executed
+     */
     @Override
     public boolean update(Message value, String key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
+    /**
+     * Inserts a message in the database
+     * @param value to insert
+     * @return true if insert is correctly executed
+     */
     @Override
     public boolean insert(Message value) {
         boolean result = false;
@@ -97,24 +117,38 @@ public class DaoMessage extends DaoGeneric<Message> {
         return result;
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Delete mission from database
+     * @param key the id of the mission to delete
+     * @return true if delete is executed correctly
+     */
     @Override
     public boolean delete(int key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Inserts two ints in the database, most useful when there is a ManyToMany relation
+     * @param id the id for the first table
+     * @param id1 the id for the second table
+     */
     @Override
     public void insertTwoInts(int id, int id1) {
-
+        throw new NotImplementedException();
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Gets a object from database for given value and key
+     * @param value object value
+     * @param key   key
+     * @return
+     */
     @Override
     public Message getObject(Message value, int key) {
-        return null;
+
+        throw new NotImplementedException();
     }
 }
