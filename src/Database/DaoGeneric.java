@@ -65,7 +65,6 @@ public abstract class DaoGeneric<T> {
 
     /**
      * Inserts two ints in a database, useful for multiple to multiple relationships with pairing tables
-     *
      * @param id
      * @param id1
      */
@@ -73,7 +72,6 @@ public abstract class DaoGeneric<T> {
 
     /**
      * Get object from database
-     *
      * @param value object value
      * @param key   key
      * @return object

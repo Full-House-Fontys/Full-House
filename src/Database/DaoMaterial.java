@@ -3,6 +3,7 @@ package Database;
 import CentralPoint.Material;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 import java.sql.*;
@@ -24,7 +25,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     private final String OpLocatie = "OpLocatie";
 
     /**
-     * TODO ADD DESCRIPTION
+     * Sets up the connection for DaoMaterial
      * @param connection database connection
      *                   uses daoGenerics
      *                   database class of Material table
@@ -36,7 +37,6 @@ public class DaoMaterial extends DaoGeneric<Material> {
     /**
      * Get specified materials
      * if id=0 -> only available materials
-     *
      * @param id
      * @return
      */
@@ -66,7 +66,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
-     * TODO ADD DESCRIPTION
+     * Returns all the materials in the database
      * @return list of staff
      * @see DaoGeneric#getAllRecord()
      */
@@ -130,11 +130,10 @@ public class DaoMaterial extends DaoGeneric<Material> {
 
     /**
      * Update with int as key
-     *
      * @param value list of to update
      * @param key   key of row
      *              Update bool in a table row
-     * @return
+     * @return true if update is successfully executed
      */
     @Override
     public boolean update(Material value, int key) {
@@ -157,16 +156,15 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
+     * NOT IMPLEMENTED
      * Update with String as key
-     *
      * @param value the material to update
      * @param key the key of what should be updated
      * @return
      */
     @Override
-    //TODO NOT IMPLEMENTED
     public boolean update(Material value, String key) {
-        return false;
+        throw new NotImplementedException();
     }
 
     /**
@@ -196,7 +194,6 @@ public class DaoMaterial extends DaoGeneric<Material> {
 
     /**
      * Delete material from database
-     *
      * @param key the id of the material that should be deleted
      * @return
      */
@@ -217,20 +214,25 @@ public class DaoMaterial extends DaoGeneric<Material> {
     }
 
     /**
+     * NOT IMPLEMENTED
      * Inserts two ints in one table
      * @param id first id
      * @param id1 second id
      */
     @Override
-    //TODO NOT IMPLEMENTED
     public void insertTwoInts(int id, int id1) {
-
+        throw new NotImplementedException();
     }
 
-    //TODO NOT IMPLEMENTED
-    //TODO JAVADOC
+    /**
+     * NOT IMPLEMENTED
+     * Gets the value for the given int key
+     * @param value object value
+     * @param key   key
+     * @return the material what belongs to the key
+     */
     @Override
     public Material getObject(Material value, int key) {
-        return null;
+        throw new NotImplementedException();
     }
 }
