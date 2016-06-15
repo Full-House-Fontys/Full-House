@@ -39,7 +39,11 @@ public class DaoMission extends DaoGeneric<Mission> {
         return null;
     }
 
-    //TODO JAVADOC
+    /**
+     * get all mission records from database
+     *
+     * @return
+     */
     @Override
     public ObservableList getAllRecord() {
         List<Mission> missionList = new ArrayList();
@@ -62,7 +66,12 @@ public class DaoMission extends DaoGeneric<Mission> {
         return missionListObservableList;
     }
 
-    //TODO JAVADOC
+    /**
+     * update the mission with new values
+     * @param value list of to update with int
+     * @param key key of row
+     * @return
+     */
     @Override
     public boolean update(Mission value, int key) {
         boolean result = false;
@@ -184,7 +193,11 @@ public class DaoMission extends DaoGeneric<Mission> {
         return list;
     }
 
-    //TODO JAVADOC
+    /**
+     *  insert a new mission into the database
+     * @param value
+     * @return
+     */
     @Override
     public boolean insert(Mission value) {
         boolean result = false;
@@ -215,8 +228,12 @@ public class DaoMission extends DaoGeneric<Mission> {
         return result;
     }
 
-    //TODO JAVDOC
-    //TODO DUPLICATED CODE
+    /**
+     * delete a mission from the database
+     * @param key
+     * @return
+     */
+
     @Override
     public boolean delete(int key) {
         boolean result = false;

@@ -5,6 +5,7 @@ import CentralPoint.Staff;
 import CentralPoint.Team;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 import java.sql.*;
@@ -30,12 +31,20 @@ public class DaoTeam extends DaoGeneric<Team> {
     private final String missionID = "missieID";
     private CentralPoint centralPoint;
 
-    //TODO JAVADOC
+    /**
+     * constructor of DaoTeam
+     *
+     * @param connection
+     */
     public DaoTeam(Connection connection) {
         super(connection, TABLENAME);
     }
 
-    //TODO JAVADOC
+    /**
+     * get all staff where missionID is not null
+     * @param missionid
+     * @return
+     */
     //TODO DUPLICATE CODE
     @Override
     public ObservableList<Team> getSpecificList(int missionid) {
@@ -76,7 +85,10 @@ public class DaoTeam extends DaoGeneric<Team> {
         return teamListObservableList;
     }
 
-    //TODO JAVADOC
+    /**
+     * get all the teams that exist
+     * @return
+     */
     @Override
     public ObservableList<Team> getAllRecord() {
         List<Team> missionList = new ArrayList();
@@ -117,7 +129,12 @@ public class DaoTeam extends DaoGeneric<Team> {
 
     }
 
-    //TODO JAVADOC
+    /**
+     * update the teams mission
+     * @param team
+     * @param key key of row
+     * @return
+     */
     @Override
     public boolean update(Team team, int key) {
         boolean result = false;
@@ -134,14 +151,23 @@ public class DaoTeam extends DaoGeneric<Team> {
         return result;
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * update to the team
+     * @param team
+     * @param key key of row
+     * @return
+     */
+
     @Override
     public boolean update(Team team, String key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
+    /**
+     * insert new team
+     * @param team
+     * @return
+     */
     @Override
     public boolean insert(Team team) {
         for (Staff staff : team.getTeamMembers()) {
@@ -160,24 +186,37 @@ public class DaoTeam extends DaoGeneric<Team> {
         return true;
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * remove team from database
+     * @param key
+     * @return
+     */
+
     @Override
     public boolean delete(int key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * not used method
+     * @param id
+     * @param id1
+     */
+
     @Override
     public void insertTwoInts(int id, int id1) {
-
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * get a specific team object.
+     * @param value object value
+     * @param key   key
+     * @return
+     */
+
     @Override
     public Team getObject(Team value, int key) {
-        return null;
+        throw new NotImplementedException();
     }
 }

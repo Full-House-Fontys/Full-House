@@ -3,6 +3,7 @@ package Database;
 import CentralPoint.Notification;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,10 +40,10 @@ public class DaoNotification extends DaoGeneric<Notification> {
      * @param id for the specific item
      * @return list of objects
      */
-    //TODO NOT IMPL
+
     @Override
     public ObservableList<Notification> getSpecificList(int id) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -79,10 +80,10 @@ public class DaoNotification extends DaoGeneric<Notification> {
      *              Update bool in a table row
      * @return bool is completed
      */
-    //TODO NOT IMPL
+
     @Override
     public boolean update(Notification value, int key) {
-        return false;
+        throw new NotImplementedException();
     }
 
     /**
@@ -92,10 +93,10 @@ public class DaoNotification extends DaoGeneric<Notification> {
      *              Update bool in a table row
      * @return bool is completed
      */
-    //TODO NOT IMPL
+
     @Override
     public boolean update(Notification value, String key) {
-        return false;
+        throw new NotImplementedException();
     }
 
     /**
@@ -104,10 +105,10 @@ public class DaoNotification extends DaoGeneric<Notification> {
      * @param value the notification to insert
      * @return true if done correctly
      */
-    //TODO NOT IMPL
+
     @Override
     public boolean insert(Notification value) {
-        return false;
+        throw new NotImplementedException();
     }
 
     /**
@@ -116,10 +117,9 @@ public class DaoNotification extends DaoGeneric<Notification> {
      * @param key to identify the notification to delete
      * @return true if done correctly
      */
-    //TODO NOT IMPL
     @Override
     public boolean delete(int key) {
-        return false;
+        throw new NotImplementedException();
     }
 
     /**
@@ -128,16 +128,22 @@ public class DaoNotification extends DaoGeneric<Notification> {
      * @param id first id
      * @param id1 second id
      */
-    //TODO NOT IMPL
+
     @Override
     public void insertTwoInts(int id, int id1) {
-
+        throw new NotImplementedException();
     }
 
-    //TODO NOT IMPL
-    //TODO JAVADOC
+    /**
+     * get specific Notifcation object
+     *
+     * @param value object value
+     * @param key   key
+     * @return
+     */
+
     @Override
     public Notification getObject(Notification value, int key) {
-        return null;
+        throw new NotImplementedException();
     }
 }

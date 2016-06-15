@@ -3,6 +3,7 @@ package Database;
 import CentralPoint.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 import java.sql.*;
@@ -33,7 +34,6 @@ public class DaoStaff extends DaoGeneric<Staff> {
      * database class of Staff table
      * @param connection database connection
      */
-    //TODO NOT IMPL
     public DaoStaff(Connection connection) {
         super(connection, TABLENAME);
     }
@@ -127,31 +127,46 @@ public class DaoStaff extends DaoGeneric<Staff> {
             return result;
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * update staff values
+     *
+     * @param value list of to update with int
+     * @param key   key of row
+     * @return
+     */
     @Override
     public boolean update(Staff value, String key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * insert new staff
+     * @param value
+     * @return
+     */
     @Override
     public boolean insert(Staff value) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * delete staff from database
+     * @param key
+     * @return
+     */
     @Override
     public boolean delete(int key) {
-        return false;
+        throw new NotImplementedException();
     }
 
-    //TODO JAVADOC
-    //TODO NOT IMPL
+    /**
+     * not used method
+     * @param id
+     * @param id1
+     */
     @Override
     public void insertTwoInts(int id, int id1) {
+        throw new NotImplementedException();
     }
 
     /**
