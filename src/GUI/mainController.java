@@ -23,7 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by Qunfo on 29-3-2016.
+ * Qunfo on 29-3-2016.
  */
 public class mainController implements Initializable {
 

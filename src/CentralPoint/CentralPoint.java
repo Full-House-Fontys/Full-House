@@ -6,7 +6,6 @@ import HulpDienst.TeamRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -360,16 +359,21 @@ public class CentralPoint {
      * Creates a connection between Centralpoint and Helpservice
      * This is done by connecting sockets
      */
-    public void createserver() throws Exception {
-        try {
-            serverSocket = new ServerSocket(2006);
-            connection = serverSocket.accept();
-            objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
-            objectOutputStream.flush();
-            objectInputStream = new ObjectInputStream(connection.getInputStream());
-        } catch (IOException e) {
-            throw new Exception("Can't connect the socket");
-        }
+    public void createserver() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    serverSocket = new ServerSocket(2006);
+                    connection = serverSocket.accept();
+                    objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
+                    objectOutputStream.flush();
+                    objectInputStream = new ObjectInputStream(connection.getInputStream());
+                } catch (IOException e) {
+
+                }
+            }
+        });
     }
 
     /**
