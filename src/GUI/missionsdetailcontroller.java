@@ -221,7 +221,7 @@ public class missionsdetailcontroller {
             readableWeatherInfo.append(" Sneeuw: " + jsonObject.getJSONObject("snow").getDouble("3h") + "mm");
         }
         catch (JSONException exp) {
-            exp.printStackTrace();
+            readableWeatherInfo.append("");
         }
 
         return readableWeatherInfo.toString();
@@ -249,7 +249,6 @@ public class missionsdetailcontroller {
         stringBuilder.append(javaScript.substring(javaScript.indexOf("}"), javaScript.lastIndexOf("<")));
         doc.getElementsByTag("Script").first().text(stringBuilder.toString());
 
-        System.out.println(doc.getElementsByTag("Script").first().toString());
         FileUtils.writeStringToFile(input, doc.outerHtml(), "UTF-8");
     }
 
