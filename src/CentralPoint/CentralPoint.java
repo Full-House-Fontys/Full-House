@@ -374,6 +374,7 @@ public class CentralPoint {
                 }
             }
         });
+        thread.start();
     }
 
     /**
