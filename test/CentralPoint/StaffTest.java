@@ -84,6 +84,7 @@ public class StaffTest {
         assertEquals("Incorrect location boolean set",false,staff.isOnLocation());
     }
 
+
     /**
      * test to get staff job
      */
@@ -123,5 +124,68 @@ public class StaffTest {
     @Test
     public void testToString() throws Exception{
         assertNotNull("string not returned", staff.toString());
+    }
+
+    /**
+     * test to get username of staff member
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetUserName() throws Exception {
+        assertEquals("username wrong", "p_adams", staff.getUserName());
+    }
+
+    /**
+     * test to get password of staff member
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetPassword() throws Exception {
+        assertEquals("password wrong", "jkl(USDj2", staff.getPassword());
+    }
+
+    /**
+     * test to set the username of the staff member
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSetUserName() throws Exception {
+        staff.setUserName("testname");
+        assertEquals("username wrong", "testname", staff.getUserName());
+    }
+
+    /**
+     * test to set the password of the staff member
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSetPassword() throws Exception {
+        staff.setPassword("testpassword");
+        assertEquals("password wrong", "testpassword", staff.getPassword());
+    }
+
+    /**
+     * test to get staff id
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetId() throws Exception {
+        assertEquals("password wrong", 0, staff.getId());
+    }
+
+    /**
+     * test to set staff id
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSetId() throws Exception {
+        staff.setId(1);
+        assertEquals("password wrong", 0, staff.getId());
     }
 }

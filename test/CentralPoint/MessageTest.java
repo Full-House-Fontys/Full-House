@@ -50,4 +50,14 @@ public class MessageTest {
     public void testGetMessage() throws Exception {
         assertEquals("Title not correctly get", "We hebben een extra brandweerwagen nodig!", message.getMessage());
     }
+
+    /**
+     * test to get the missions id
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetMissionid() throws Exception {
+        assertEquals("not the same", 0, message.getMissionId());
+    }
 }

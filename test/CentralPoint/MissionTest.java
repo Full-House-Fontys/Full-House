@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  */
 public class MissionTest {
 
+    Mission mission0;
     Mission mission1;
     Mission mission2;
     Mission mission3;
@@ -34,6 +35,7 @@ public class MissionTest {
     @Before
     public void setUp() throws Exception {
         date1 = new Date();
+        mission0 = new Mission();
         mission1 = new Mission(1, "FIRE", "fire", date1, date1, null, 10.0, 10.0, 3);
         mission2 = new Mission(2, "BURGLER", "burgler", date1, date1, null, 12.5, 16.3, 4);
         mission3 = new Mission(3, "INJURED", "injured", date1, date1, null, 80.1, 60.9, 5);
@@ -283,6 +285,7 @@ public class MissionTest {
         assertEquals("Shouldn't add team", teamList2, mission2.getTeamsAssigned());
         assertEquals("Shouldn't add team", teamList3, mission3.getTeamsAssigned());
         mission1.addTeamToJob(team3);
+        mission1.addTeamToJob(team3);
         mission2.addTeamToJob(team1);
         mission3.addTeamToJob(team2);
         assertTrue("Shouldn't add team", teamList4.containsAll(mission1.getTeamsAssigned()));
@@ -321,5 +324,21 @@ public class MissionTest {
         assertEquals("should be the same", 7, mission2.getEstimatedTime());
         assertNotEquals("shouldn't be the same", 3, mission1.getEstimatedTime());
         assertNotEquals("shouldn't be the same", 4, mission2.getEstimatedTime());
+    }
+
+
+    @Test
+    public void testGetMaterialsAssigned() throws Exception {
+        Material materiaal = new Material(1, null, null, null, false);
+        ArrayList<Material> materialen = new ArrayList<>();
+        materialen.add(materiaal);
+        mission1.setMaterialsAssigned(materialen);
+        assertTrue("material not added", mission1.getMaterialsAssigned().contains(materiaal));
+    }
+
+    @Test
+    public void testSetName() throws Exception {
+        mission1.setName("test");
+        assertEquals("wrong name", "test", mission1.getName());
     }
 }

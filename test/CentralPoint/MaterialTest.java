@@ -173,4 +173,14 @@ public class MaterialTest {
         material.setOnLocation(true);
         assertEquals("onLocation not changed", true, material.isOnLocation());
     }
+
+    /**
+     * test to get the to string method of material.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testToString() throws Exception {
+        assertEquals("tostring wrong", "bla", material.toString());
+    }
 }
