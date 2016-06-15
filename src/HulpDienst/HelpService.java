@@ -43,7 +43,7 @@ public class HelpService {
         RequestObservableList = FXCollections.observableArrayList(listrequests);
         RQ = new requests();
         try {
-            requestSocket = new Socket("localhost", 2004);
+            requestSocket = new Socket("localhost", 2006);
             out = new ObjectOutputStream(requestSocket.getOutputStream());
             out.flush();
             in = new ObjectInputStream(requestSocket.getInputStream());
