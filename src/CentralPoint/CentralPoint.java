@@ -478,7 +478,7 @@ public class CentralPoint {
      */
     public void createserver() throws Exception {
         try {
-            serverSocket = new ServerSocket(2004);
+            serverSocket = new ServerSocket(2006);
             connection = serverSocket.accept();
             objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
             objectOutputStream.flush();
