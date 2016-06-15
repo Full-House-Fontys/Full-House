@@ -42,23 +42,36 @@ public class HelpService {
         staffObservableList = FXCollections.observableArrayList(staffList);
         RequestObservableList = FXCollections.observableArrayList(listrequests);
         RQ = new requests();
-        try {
-            requestSocket = new Socket("localhost", 2006);
-            out = new ObjectOutputStream(requestSocket.getOutputStream());
-            out.flush();
-            in = new ObjectInputStream(requestSocket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         renewStaffList();
         renewteams();
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        setthreads();
+    }
+
+    /**
+     * start the 1 thread for socket connection and a timer for receiving info
+     */
+    private void setthreads() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                receiveSocket();
+                try {
+                    requestSocket = new Socket("localhost", 2006);
+                    out = new ObjectOutputStream(requestSocket.getOutputStream());
+                    out.flush();
+                    in = new ObjectInputStream(requestSocket.getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        receiveSocket();
+                    }
+                }, 0, 1000);
             }
-        }, 0, 1000);
+        });
+        t.start();
     }
 
     /**
