@@ -50,6 +50,8 @@ public class HelpService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        renewStaffList();
+        renewteams();
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
