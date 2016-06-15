@@ -10,5 +10,6 @@ public enum DbTables {
     MISSIE,
     TEAM,
     BERICHT,
-    MELDING
+    MELDING,
+    MISSIE_STAPPENPLAN
 }

@@ -73,7 +73,7 @@ public class mainController implements Initializable {
         Parent root = null;
         try {
             root = loader.load();
-            missionsdetailcontroller MC = loader.getController();
+            pubOnWebController MC = loader.getController();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

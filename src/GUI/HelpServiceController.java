@@ -47,6 +47,12 @@ public class HelpServiceController implements Initializable {
     private TabPane TPhupldienst;
     @FXML
     private Button BTNassignTeam;
+    @FXML
+    private TextField tfAmountOfSteps;
+    @FXML
+    private ScrollPane tabSteps;
+
+
     private HelpService hulpdienst;
     private ObservableList<Staff> OBStaff;
     private int teamNR;
@@ -60,6 +66,7 @@ public class HelpServiceController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hulpdienst = new HelpService();
+
         OBStaff = FXCollections.observableArrayList();
         LVaddedStaff.setItems(OBStaff);
         LVpersoneel.setItems(hulpdienst.renewStaffList());
@@ -154,4 +161,5 @@ public class HelpServiceController implements Initializable {
         }
 
     }
+
 }

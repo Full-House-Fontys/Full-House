@@ -1,9 +1,6 @@
 package GUI;
 
-import CentralPoint.CentralPoint;
-import CentralPoint.Material;
-import CentralPoint.Mission;
-import CentralPoint.Team;
+import CentralPoint.*;
 import HulpDienst.ITeamRequest;
 import HulpDienst.TeamRequest;
 import javafx.collections.FXCollections;
@@ -11,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -28,6 +26,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 /**
  * Created by Mark on 16-3-2016.
@@ -90,6 +89,10 @@ public class missionsdetailcontroller {
     private TextField TFrequestMilitaryPolice;
     @FXML
     private Button BTrequest;
+    @FXML
+    private ScrollPane tabSteps;
+    @FXML
+    private TextField tfAmountOfSteps;
 
     private Mission mission;
     private CentralPoint centralPoint;
@@ -99,6 +102,9 @@ public class missionsdetailcontroller {
     private ObservableList<Material> materialAvailable;
     private ObservableList<Material> materialInMission;
     private Alert alert;
+    private ArrayList<TextField> steps;
+    private int ID = 0;
+    private Pane panel;
 
     /**
      * set the mission controller in the detail controller
@@ -107,6 +113,8 @@ public class missionsdetailcontroller {
      * @param centralPoint
      */
     public void setMissionController(Mission mission, CentralPoint centralPoint) {
+        steps = new ArrayList<>();
+        panel = new Pane();
         this.mission = mission;
         this.centralPoint = centralPoint;
         mission = centralPoint.addMaterialsToMission(mission.getID());
@@ -374,5 +382,50 @@ public class missionsdetailcontroller {
     @FXML
     public void createRapport() throws IOException {
         centralPoint.createRapport(mission);
+    }
+
+    @FXML
+    public void createSteps() {
+        panel.setLayoutX(100);
+        panel.setLayoutY(200);
+        int amountOfSteps = Integer.parseInt(tfAmountOfSteps.getText());
+        for (int i = 1; i < amountOfSteps + 1; i++) {
+            Label label = new Label();
+            label.setText(Integer.toString(i));
+            TextField textField = new TextField();
+            textField.setLayoutY(i * 50);
+            textField.setLayoutX(20);
+            label.setLayoutY(i * 50);
+            label.setLayoutX(10);
+            ID++;
+            steps.add(textField);
+            panel.getChildren().add(label);
+            panel.getChildren().add(textField);
+        }
+        tabSteps.setContent(panel);
+        // tabSteps.getChildren().add(panel);
+    }
+
+    @FXML
+    public void saveStepsToDatabase() {
+        ArrayList<TextField> allSteps = new ArrayList<>();
+        String steps = "";
+        Boolean saved = false;
+        for (Object step : panel.getChildren()) {
+            if (step instanceof TextField && !((TextField) step).getText().isEmpty()) {
+                allSteps.add((TextField) step);
+            }
+        }
+        for (int i = 1; i <= allSteps.size(); i++) {
+            steps += i + "." + allSteps.get(i - 1).getText() + "//";
+        }
+        saved = centralPoint.insertMissionPlan(new MissionPlan(mission.getID(), steps));
+        if (!saved) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Opslaan van missieplan");
+            alert.setHeaderText("Niet gelukt om op te slaan");
+            alert.setContentText("Probeer opnieuw");
+            alert.showAndWait();
+        }
     }
 }

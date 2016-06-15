@@ -10,10 +10,10 @@ import java.sql.SQLException;
 public enum DaoManager {
     INSTANCE;
 
-    private Connection connection;
     private final String userName = "dbi329146";
     private final String passWord = "Fullhouseaapje";
     private final String url = "jdbc:sqlserver://mssql.fhict.local";
+    private Connection connection;
 
     /**
      * Database access manager
@@ -96,6 +96,9 @@ public enum DaoManager {
                     break;
                 case MELDING:
                     dao = new DaoNotification(connection);
+                    break;
+                case MISSIE_STAPPENPLAN:
+                    dao = new DaoMissionPlan(connection);
                     break;
                 default:
                     dao = null;
