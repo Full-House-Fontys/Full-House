@@ -29,5 +29,10 @@ public class CentralPoint extends javafx.application.Application {
         primaryStage.setTitle("Centraal punt programma");
         primaryStage.setScene(new Scene(root, 900, 650));
         primaryStage.show();
+        Stage stage = new Stage();
+        Parent root2 = FXMLLoader.load(getClass().getResource("/Resources/Helpservice.fxml"));
+        stage.setTitle("Hulpdienst");
+        stage.setScene(new Scene(root2, 619, 466));
+        stage.show();
     }
 }

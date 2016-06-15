@@ -18,6 +18,7 @@ public class HelpServiceTest {
 
     private HelpService HS;
 
+
     /**
      * the set up that needs to be done before every test
      *

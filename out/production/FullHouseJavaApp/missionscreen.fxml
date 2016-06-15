@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.web.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionsdetailcontroller">
+<?import javafx.scene.web.WebView?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
+          fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -134,23 +133,29 @@
                            </children></AnchorPane>
                          </content>
                      </Tab>
-                  <Tab text="maak stappenplan">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TextField fx:id="tfAmountOfSteps" layoutX="67.0" layoutY="55.0" />
-                              <Button layoutX="240.0" layoutY="55.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
-                              <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                              <ScrollPane fx:id="tabSteps" layoutX="55.0" layoutY="109.0" prefHeight="307.0" prefWidth="370.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="374.0" />
-                                 </content>
-                              </ScrollPane>
-                              <Button layoutX="74.0" layoutY="504.0" mnemonicParsing="false" onAction="#saveStepsToDatabase" prefHeight="25.0" prefWidth="106.0" text="Sla stappenplan op" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
+                     <Tab text="maak stappenplan">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                     <TextField fx:id="tfAmountOfSteps" layoutX="67.0" layoutY="55.0"/>
+                                     <Button layoutX="240.0" layoutY="55.0" mnemonicParsing="false"
+                                             onAction="#createSteps" text="Creëer stappen"/>
+                                     <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0"
+                                                 prefHeight="200.0" prefWidth="200.0"/>
+                                     <ScrollPane fx:id="tabSteps" layoutX="55.0" layoutY="109.0" prefHeight="307.0"
+                                                 prefWidth="370.0">
+                                         <content>
+                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0"
+                                                         prefWidth="374.0"/>
+                                         </content>
+                                     </ScrollPane>
+                                     <Button layoutX="74.0" layoutY="504.0" mnemonicParsing="false"
+                                             onAction="#saveStepsToDatabase" prefHeight="25.0" prefWidth="106.0"
+                                             text="Sla stappenplan op"/>
+                                 </children>
+                             </AnchorPane>
+                         </content>
+                     </Tab>
                  </tabs>
              </TabPane>
          </children>
