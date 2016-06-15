@@ -29,14 +29,7 @@ public class CentralPoint {
     ObjectOutputStream objectOutputStream;
     ObjectInputStream objectInputStream;
 
-    //todo Dit kan korter, door direct bij het maken van de observable de list erin te voegen
     private DaoManager daoManager;
-    private List<Staff> staffList;
-    private List<Material> materialList;
-    private List<Material> availableMatList;
-    private List<Mission> missionsList;
-    private List<Team> teamList;
-    private List<Notification> notificationList;
     private ObservableList<Staff> staffObservableList;
     private ObservableList<Material> materialObservableList;
     private ObservableList<Mission> missionObservableList;
@@ -47,26 +40,18 @@ public class CentralPoint {
 
     /**
      * Constructor for central point
-     */
-    /*
-    todo De methode create server wordt niet vemeld in de javadoc
+     * Create server starts up the connection with the server.
      */
     public CentralPoint() throws Exception {
         daoManager = DaoManager.INSTANCE;
-        missionsList = new ArrayList<>();
-        staffList = new ArrayList<>();
-        materialList = new ArrayList();
-        availableMatList = new ArrayList();
-        teamList = new ArrayList<>();
-        notificationList = new ArrayList<>();
-        staffObservableList = FXCollections.observableArrayList(staffList);
-        materialObservableList = FXCollections.observableArrayList(materialList);
-        availableMaterialObservableList = FXCollections.observableArrayList(availableMatList);
-        missionObservableList = FXCollections.observableArrayList(missionsList);
-        teamObservableList = FXCollections.observableArrayList(teamList);
+        staffObservableList = FXCollections.observableArrayList(new ArrayList<Staff>());
+        materialObservableList = FXCollections.observableArrayList(new ArrayList<Material>());
+        availableMaterialObservableList = FXCollections.observableArrayList(new ArrayList<Material>());
+        missionObservableList = FXCollections.observableArrayList(new ArrayList<Mission>());
+        teamObservableList = FXCollections.observableArrayList(new ArrayList<Team>());
         availableTeamObservableList = FXCollections.observableArrayList();
         createserver();
-        notificationObservableList = FXCollections.observableArrayList(notificationList);
+        notificationObservableList = FXCollections.observableArrayList(new ArrayList<Notification>());
 
     }
 
@@ -94,8 +79,9 @@ public class CentralPoint {
             case TEAM:
                 teamObservableList.clear();
                 teamObservableList = daoManager.getDao(table).getAllRecord();
+                //Below: adds teams and materials to the mission, so that they are linked together
                 addTeamsToMission();
-                addMaterialsToMission(0);//todo waarom? mogelijk weghalen of uitleggen
+                addMaterialsToMission(0);
                 break;
             case MELDING:
                 notificationObservableList.clear();
@@ -114,20 +100,6 @@ public class CentralPoint {
         return daoManager.getDao(DbTables.PERSONEEL).getSpecificList(0);
     }
 
-    /**
-     * Updates the people who are on the location of the mission
-     * @param team list of staff in team
-     */
-
-    //todo;wordt niet gebruikt
-    public void setStaffOnLocation(List<String> team) {
-        for (String staffname : team) {
-            Staff toUpdate = new Staff();
-            toUpdate.setOnLocation(true);
-            daoManager.getDao(DbTables.PERSONEEL).update(toUpdate, staffname);
-        }
-    }
-
 
     /**
      * Returns the objectoutputstream of the helpservice
@@ -139,7 +111,6 @@ public class CentralPoint {
 
     /**
      * Returns the materialLists as observableList
-     *
      * @return unmodifiableObservableList of materials
      */
     public ObservableList<Material> getMaterials() {
@@ -158,29 +129,6 @@ public class CentralPoint {
     }
 
     /**
-     * Inserts a new material in the database
-     * @param name name of the material
-     * @param sort sort of material; Police Car, Guns, Ambulances, etc.
-     * @param locX Latitude of location
-     * @param locY Longitude of location
-     * @param onLoc is material on location
-     * @throws IllegalArgumentException //todo leg out waarom deze exceptie
-     * //TODO wordt niet gebruikt in programma, alleen unittests
-     */
-    public void insertMaterial(String name, String sort, double locX, double locY, boolean onLoc) throws IllegalArgumentException {
-        if (name == null || name.trim().length() <= 0) {
-            throw new IllegalArgumentException();
-        } else if (sort == null || sort.trim().length() <= 0) {
-            throw new IllegalArgumentException();
-
-        } else {
-            Material material = new Material(name, sort, new Point2D.Double(locX, locY), onLoc);
-            daoManager.getDao(DbTables.MATERIAAL).insert(material);
-            renewLists(DbTables.MATERIAAL);
-        }
-    }
-
-    /**
      * Returns the material for the given id
      * @param id; the id where this method should search for in materials
      * @return the material with the given id
@@ -193,70 +141,6 @@ public class CentralPoint {
             }
         }
         return materialById;
-    }
-
-    /**
-     * Update the material for given id
-     * //TODO verkeerde format, slechte beschrijving, excepties niet uitgelegd, dat is niet goed Joris
-     * @param matId    as int
-     * @param name     as String
-     * @param sort     as String
-     * @param location as Point2D
-     * @param onLoc    as boolean
-     * @throws IllegalArgumentException
-     * @throws IllegalStateException
-     */
-    //TODO commentaar tussendoor zetten
-    public void updateMaterial(int matId, String name, String sort, Point2D location, boolean onLoc) throws IllegalArgumentException, IllegalStateException {
-        Material m = getMaterialById(matId);
-        boolean changed = false;
-        if (!(m.getName().equals(name))) {
-            if (name != null && name.trim().length() > 0) {
-                m.setName(name);
-                changed = true;
-            } else {
-                throw new IllegalArgumentException();
-            }
-        } else {
-            throw new IllegalStateException();
-        }
-        if (!(m.getSort().equals(sort))) {
-            if (sort != null && sort.trim().length() > 0) {
-                m.setSort(sort);
-                changed = true;
-            } else {
-                throw new IllegalArgumentException();
-            }
-        } else {
-            throw new IllegalStateException();
-        }
-        if ((!(m.getLocation().equals(location))) && location != null) {
-            m.setLocation(location);
-            changed = true;
-        } else if (location == null) {
-            throw new IllegalArgumentException();
-        } else {
-            throw new IllegalStateException();
-        }
-        if (m.isOnLocation() != onLoc) {
-            m.setOnLocation(onLoc);
-            changed = true;
-        } else {
-            throw new IllegalStateException();
-        }
-        if (changed) {
-            daoManager.getDao(DbTables.MATERIAAL).update(m, matId);
-            renewLists(DbTables.MATERIAAL);
-        }
-    }
-
-    /**
-     * Delete given material
-     * @param m as material
-     */
-    public void deleteMaterial(Material m) {
-        daoManager.getDao(DbTables.MATERIAAL).delete(m.getId());
-        renewLists(DbTables.MATERIAAL);
     }
 
     /**

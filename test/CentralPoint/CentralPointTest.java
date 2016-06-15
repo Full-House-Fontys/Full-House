@@ -30,30 +30,6 @@ public class CentralPointTest {
         initialList = centralPoint.getMaterials();
         staffObservableList = centralPoint.getStaffOnLocation();
         material = new Material("Test", "MeerSoorten", new Point2D.Double(12.2, 12.4), true);
-        insTestMat();
-    }
-
-    /**
-     * Tear down method for unittests after running each test
-     * @throws Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-        delTestMat();
-    }
-
-    /**
-     * Inserts a test material, for the unittests
-     */
-    private void insTestMat(){
-        centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
-    }
-
-    /**
-     * Deletes the material, for the unittests
-     */
-    private void delTestMat(){
-        centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
     /**
@@ -117,47 +93,6 @@ public class CentralPointTest {
     }
 
     /**
-     * test insert material fail without name
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testInsertMaterialNameNullFail() {
-        centralPoint.insertMaterial(null, "Ambulance", 12.43, 12.66, true);
-    }
-
-    /**
-     * test insert material fail with empty name
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testInsertMaterialNameEmptyFail() {
-        centralPoint.insertMaterial(" ", "Ambulance", 12.43, 12.66, true);
-    }
-
-    /**
-     * test insert material fail without sort
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testInsertMaterialSortNullFail() {
-        centralPoint.insertMaterial("AmbuZiekenwagen", null, 12.43, 12.66, true);
-    }
-
-    /**
-     * test insert material fail with empty sort
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testInsertMaterialSortEmptyFail() {
-        centralPoint.insertMaterial("AmbuZiekenwagen", "   ", 12.43, 12.66, true);
-    }
-
-    /**
-     * test insert material
-     * @throws Exception
-     */
-    @Test
-    public void testInsertMaterial() throws Exception {
-        centralPoint.insertMaterial("AmbuZiekenwagen", "Ambulance", 12.3, 12.2, false);
-    }
-
-    /**
      * test add material to mission
      */
     @Test
@@ -165,96 +100,6 @@ public class CentralPointTest {
         Mission mission1 = centralPoint.getAllMissions().get(0);
         Material availableMat1 = centralPoint.getAvailableMaterials().get(0);
         assertEquals("Failed adding material to mission", mission1, centralPoint.addMaterialToMission(availableMat1, mission1));
-    }
-
-    /**
-     * test update material with same name
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testUpdateMaterialNameNotChanged() {
-        centralPoint.updateMaterial(getHighestMatId(), centralPoint.getMaterialById(getHighestMatId()).getName(), "soort", new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material without name
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testUpdateMaterialNameNull() {
-        centralPoint.updateMaterial(getHighestMatId(), null, "soort", new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material with empty name
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testUpdateMaterialNameEmpty() {
-        centralPoint.updateMaterial(getHighestMatId(), "    ", "soort", new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material with same sort
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testUpdateMaterialSortNotChanged() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", centralPoint.getMaterialById(getHighestMatId()).getSort(), new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material without sort
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testUpdateMaterialSortNull() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", null, new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material with empty sort
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testUpdateMaterialSortEmpty() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", "  ", new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test update material with same location
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testUpdateMaterialLocationNotChanged() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", centralPoint.getMaterialById(getHighestMatId()).getLocation(), true);
-    }
-
-    /**
-     * test update material without location
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testUpdateMaterialLocationNull() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", null, true);
-    }
-
-    /**
-     * test update material with same onLocation
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testUpdateMaterialOnLocNotChanged() {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), centralPoint.getMaterialById(getHighestMatId()).isOnLocation());
-    }
-
-    /**
-     * test update material
-     * @throws Exception
-     */
-    @Test
-    public void testUpdateMaterial() throws Exception {
-        centralPoint.updateMaterial(getHighestMatId(), "blabla", "soort", new Point2D.Double(12.2, 12.0), true);
-    }
-
-    /**
-     * test delete material
-     * @throws Exception
-     */
-    @Test
-    public void testDeleteMaterial() throws Exception {
-        centralPoint.deleteMaterial(centralPoint.getMaterialById(getHighestMatId()));
     }
 
     /**

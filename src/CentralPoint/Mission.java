@@ -231,15 +231,4 @@ public class Mission implements Serializable{
         return this.ID + ": " + this.name;
     }
 
-    //TODO Not Used?
-    /**
-     * The teams who are assigned to the mission
-     * @param id
-     * @return teams
-     */
-    public ObservableList getTeamsAssignedToMission(int id) {
-        DaoManager.INSTANCE.open();
-        DaoGeneric getAssignedMembers = DaoManager.INSTANCE.getDao(DbTables.PERSONEEL);
-        return getAssignedMembers.getSpecificList(id);
-    }
 }

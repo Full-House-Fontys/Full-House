@@ -126,9 +126,8 @@ public class CommunicationMediator {
         return null;
     }
 
-    //TODO finish
-
     /**
+     * sends a communication request
      * @param communicationRequestRequest Used to get data from mobile app
      */
     private void comSend(CommunicationRequest communicationRequestRequest) {
