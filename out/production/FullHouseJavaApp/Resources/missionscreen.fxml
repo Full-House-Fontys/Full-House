@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
-          fx:controller="GUI.missionsdetailcontroller">
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.missionsdetailcontroller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -15,7 +17,7 @@
    <children>
        <AnchorPane prefHeight="720.0" prefWidth="1464.0">
          <children>
-             <TabPane layoutX="1.0" layoutY="-30.0" prefHeight="750.0" prefWidth="1464.0" tabClosingPolicy="UNAVAILABLE">
+             <TabPane layoutX="1.0" prefHeight="720.0" prefWidth="1464.0" tabClosingPolicy="UNAVAILABLE">
                  <tabs>
                      <Tab text="Overzicht">
                          <content>
@@ -27,10 +29,10 @@
                                      <TextArea fx:id="TaBeschrijving" layoutX="1164.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
                                      <Button fx:id="BTNcreaterapport" layoutX="23.0" layoutY="534.0" mnemonicParsing="false" onAction="#createRapport" prefHeight="71.0" prefWidth="124.0" text="maak rapport" />
                               <TextArea fx:id="taWeatherInfo" editable="false" layoutX="47.0" layoutY="47.0" prefHeight="300.0" prefWidth="356.0" text="Weerinformatie:" />
-                              <WebView fx:id="wvGoogleMaps" layoutX="486.0" layoutY="56.0" prefHeight="297.0" prefWidth="564.0" />
-                              <Label layoutX="499.0" layoutY="39.0" text="Kaart:" />
-                              <Label layoutX="501.0" layoutY="389.0" text="Luchtkwaliteit" />
-                              <WebView fx:id="wvAirQuality" layoutX="486.0" layoutY="406.0" prefHeight="297.0" prefWidth="564.0" />
+                              <WebView fx:id="wvGoogleMaps" layoutX="486.0" layoutY="49.0" prefHeight="297.0" prefWidth="564.0" />
+                              <Label layoutX="499.0" layoutY="30.0" text="Kaart:" />
+                              <Label layoutX="499.0" layoutY="347.0" text="Luchtkwaliteit" />
+                              <WebView fx:id="wvAirQuality" layoutX="486.0" layoutY="365.0" prefHeight="298.0" prefWidth="564.0" />
                                  </children>
                              </AnchorPane>
                          </content>
@@ -137,21 +139,15 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <TextField fx:id="tfAmountOfSteps" layoutX="67.0" layoutY="55.0"/>
-                                     <Button layoutX="240.0" layoutY="55.0" mnemonicParsing="false"
-                                             onAction="#createSteps" text="Creëer stappen"/>
-                                     <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0"
-                                                 prefHeight="200.0" prefWidth="200.0"/>
-                                     <ScrollPane fx:id="tabSteps" layoutX="55.0" layoutY="109.0" prefHeight="307.0"
-                                                 prefWidth="370.0">
+                                     <TextField fx:id="tfAmountOfSteps" layoutX="67.0" layoutY="55.0" />
+                                     <Button layoutX="240.0" layoutY="55.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
+                                     <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                     <ScrollPane fx:id="tabSteps" layoutX="55.0" layoutY="109.0" prefHeight="307.0" prefWidth="370.0">
                                          <content>
-                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0"
-                                                         prefWidth="374.0"/>
+                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="374.0" />
                                          </content>
                                      </ScrollPane>
-                                     <Button layoutX="74.0" layoutY="504.0" mnemonicParsing="false"
-                                             onAction="#saveStepsToDatabase" prefHeight="25.0" prefWidth="106.0"
-                                             text="Sla stappenplan op"/>
+                                     <Button layoutX="74.0" layoutY="504.0" mnemonicParsing="false" onAction="#saveStepsToDatabase" prefHeight="25.0" prefWidth="106.0" text="Sla stappenplan op" />
                                  </children>
                              </AnchorPane>
                          </content>

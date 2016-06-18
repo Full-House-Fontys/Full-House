@@ -24,6 +24,7 @@ import org.jsoup.nodes.Document;
 import java.awt.geom.Point2D;
 import java.io.*;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -240,7 +241,12 @@ public class missionsdetailcontroller {
      * @throws IOException if html can't be read
      */
     private void editHtml() throws IOException {
-        File input = new File(missionsdetailcontroller.class.getClassLoader().getResource("Resources/googlemaps.html").getPath());
+        File input = null;
+        try {
+            input = new File(missionsdetailcontroller.class.getClassLoader().getResource("Resources/googlemaps.html").toURI().getPath());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         Document doc = Jsoup.parse(input, "UTF-8");
         String javaScript = doc.getElementsByTag("Script").first().toString();
         String lat = javaScript.substring(javaScript.indexOf("lat: ") + 5, javaScript.indexOf(","));
