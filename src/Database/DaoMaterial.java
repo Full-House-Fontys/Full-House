@@ -46,7 +46,7 @@ public class DaoMaterial extends DaoGeneric<Material> {
         ObservableList<Material> materialObservableList = FXCollections.observableArrayList(materialList);
         switch (id) {
             case 0:
-                String query = "SELECT mat.ID, mat.Naam, mat.Soort, mat.LocatieX, mat.LocatieY, mat.OpLocatie FROM Materiaal mat LEFT OUTER JOIN Materiaal_Missie mm ON mat.id = mm.MateriaalID LEFT OUTER JOIN Missie mis ON mm.MissieID = mis.id WHERE OpLocatie = 'false'";
+                String query = "SELECT ID, Naam, Soort, LocatieX, LocatieY, OpLocatie FROM Materiaal WHERE ID NOT IN (SELECT mm.MateriaalID FROM Materiaal_Missie mm INNER JOIN MISSIE mis ON mm.MissieID = mis.id WHERE mis.eindtijd IS NULL)";
                 materialObservableList = getMaterial(query);
                 break;
         }
