@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -51,7 +50,7 @@ public class mainController implements Initializable {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
-
+/*
         Thread comCom = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -59,7 +58,8 @@ public class mainController implements Initializable {
             }
         });
 
-        comCom.start();
+        comCom.start();*/
+        new CommunicationMediator(centralPoint);
 
         keepNotificationsUpToDate = new Timer();
     }

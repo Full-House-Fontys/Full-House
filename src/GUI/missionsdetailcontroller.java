@@ -3,6 +3,7 @@ package GUI;
 import CentralPoint.*;
 import HulpDienst.ITeamRequest;
 import HulpDienst.TeamRequest;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +29,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Mark on 16-3-2016.
@@ -106,6 +109,8 @@ public class missionsdetailcontroller {
     private ArrayList<TextField> steps;
     private int ID = 0;
     private Pane panel;
+    private Timer teamTimer;
+    private TimerTask timerTask;
 
     /**
      * set the mission controller in the detail controller
@@ -121,6 +126,14 @@ public class missionsdetailcontroller {
         mission = centralPoint.addMaterialsToMission(mission.getID());
         this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
         this.teamToAdd = FXCollections.observableArrayList();
+        teamTimer = new java.util.Timer();
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                refreshView();
+            }
+        };
+
         if(mission.getTeamsAssigned() != null) {
             this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
         }
@@ -128,6 +141,7 @@ public class missionsdetailcontroller {
         if(mission.getMaterialsAssigned() != null) {
             this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
         }
+        teamTimer.schedule(timerTask, 0, 1000);
         setSettings();
         receiveAndShowWeatherInfo();
         try {
@@ -136,6 +150,39 @@ public class missionsdetailcontroller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * update methode, updates list every second
+     */
+    private void refreshView() {
+        ObservableList<Team> obTeam = centralPoint.getAllTeams();
+        ArrayList<Team> teamList = new ArrayList<>();
+        for (Team team : obTeam) {
+            if (team.getMissionID().get(0) == mission.getID()) {
+                teamList.add(team);
+            }
+        }
+        System.out.println(teamList.size());
+        if (mission.getTeamsAssigned().size() == 2) {
+            int a = 1;
+        }
+        //if(tempMission == null){
+        // tempMission = new Mission();
+        //}
+        //final Mission currentMission = tempMission;
+        //if(mission.getTeamsAssigned().size() != teamList.size()) {
+
+        mission.setTeamsAssigned(teamList);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ObservableList<Team> teamsUpdate = FXCollections.observableArrayList(mission.getTeamsAssigned());
+                LvTeams.setItems(teamsUpdate);
+            }
+        });
+
+        //}
     }
 
     /**

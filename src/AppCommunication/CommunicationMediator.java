@@ -21,12 +21,18 @@ public class CommunicationMediator {
      */
     public CommunicationMediator(CentralPoint centralPoint) {
         this.centralPoint = centralPoint;
-        try {
-            appCommunication = new AppCommunication();
-            listen();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Thread comCom = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    appCommunication = new AppCommunication();
+                    listen();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        comCom.start();
     }
 
     /**
@@ -48,7 +54,7 @@ public class CommunicationMediator {
      * Possible outcomes are: login, getMessages, sendMessage and requestBackup.
      * @param communicationRequestRequest : The request that needs to be executed.
      */
-    private void handle(CommunicationRequest communicationRequestRequest) {
+    public void handle(CommunicationRequest communicationRequestRequest) {
         switch (communicationRequestRequest.getUrl()) {
             case "login":
                 comLogin(communicationRequestRequest);
