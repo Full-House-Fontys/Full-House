@@ -138,11 +138,11 @@
                            </children></AnchorPane>
                          </content>
                      </Tab>
-                     <Tab text="maak stappenplan">
+                     <Tab text="Stappenplan">
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <TextField fx:id="tfAmountOfSteps" layoutX="533.0" layoutY="67.0" />
+                                     <TextField fx:id="tfAmountOfSteps" layoutX="533.0" layoutY="67.0" promptText="Aantal stappen" />
                                      <Button layoutX="738.0" layoutY="67.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
                                      <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                                      <ScrollPane fx:id="tabSteps" layoutX="455.0" layoutY="109.0" prefHeight="435.0" prefWidth="500.0">

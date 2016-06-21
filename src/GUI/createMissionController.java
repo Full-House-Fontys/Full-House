@@ -3,8 +3,10 @@ package GUI;
 import CentralPoint.CentralPoint;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.Date;
 
@@ -23,6 +25,8 @@ public class createMissionController {
     private TextField TFlocationYMission;
     @FXML
     private TextField TFestimatedTime;
+    @FXML
+    private Button BTNreateMission;
 
     private CentralPoint centralPoint;
     private int estimatedTime;
@@ -45,7 +49,9 @@ public class createMissionController {
 
             if (!NameMission.isEmpty() && !Description.isEmpty()) {
                 centralPoint.createMission(NameMission, Description, date, LocationX, LocationY, estimatedTime);
-
+                Stage stage = (Stage) BTNreateMission.getScene().getWindow();
+                // do what you have to do
+                stage.close();
             }
         } catch (Exception exception) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
