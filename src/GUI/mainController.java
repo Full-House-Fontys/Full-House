@@ -121,6 +121,7 @@ public class mainController implements Initializable {
 
     /**
      * initialize of the maincontroller
+     *
      * @param location
      * @param resources
      */
@@ -139,7 +140,7 @@ public class mainController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 try {
                     taInfo.setText(((Notification) lvNotifications.getSelectionModel().getSelectedItem()).getContent());
-                } catch (NullPointerException exp){
+                } catch (NullPointerException exp) {
 
                 }
             }
