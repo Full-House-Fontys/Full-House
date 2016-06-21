@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,8 +104,12 @@ public class DaoMessage extends DaoGeneric<Message> {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, value.getTitel());
             ps.setString(2, value.getMessage());
-            //ps.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            ps.setInt(3, value.getMissionId());
+            if (value.getMissionId() == -1) {
+                ps.setNull(3, Types.INTEGER);
+            } else {
+                ps.setInt(3, value.getMissionId());
+            }
+
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {

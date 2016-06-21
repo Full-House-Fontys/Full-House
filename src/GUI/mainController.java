@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,6 +40,8 @@ public class mainController implements Initializable {
     private TextArea taInfo;
     @FXML
     private ListView lvMessage;
+    @FXML
+    private TextField tfMessage;
 
     private CentralPoint centralPoint;
     private ObservableList<Mission> missionListObservable;
@@ -80,6 +83,22 @@ public class mainController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * send message to database
+     */
+    public void sendMessage() {
+        String message = tfMessage.getText();
+        if (!message.equals("")) {
+            centralPoint.insertMessageCentral(message);
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                tfMessage.setText("");
+            }
+        });
     }
 
     /**

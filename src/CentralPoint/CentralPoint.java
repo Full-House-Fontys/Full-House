@@ -414,6 +414,10 @@ public class CentralPoint {
         return daoManager.getDao(DbTables.BERICHT).insert(new Message("", payload.substring(0, payload.length() - 1), Integer.parseInt(payload.substring(payload.length() - 1))));
     }
 
+    public boolean insertMessageCentral(String payload) {
+        return daoManager.getDao(DbTables.BERICHT).insert(new Message("", payload, -1));
+    }
+
     public boolean insertMissionPlan(MissionPlan missionPlan) {
         return daoManager.getDao(DbTables.MISSIE_STAPPENPLAN).insert(new MissionPlan(missionPlan.getMissionID(), missionPlan.getAllSteps()));
     }
