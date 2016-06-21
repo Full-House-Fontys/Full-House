@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -155,13 +156,27 @@ public class mainController implements Initializable {
                     public void run() {
                         notificationObservableList = FXCollections.observableList(centralPoint.getAllNotifications());
                         loadNotifications();
-                        try {
-                            loadMessages();
-                        } catch (IllegalStateException ex) {
-                        }
+                        loadMessages();
+                        loadMissions();
                     }
                 }, 0, 1000
         );
+    }
+
+    /**
+     * load missions on timer
+     */
+    private void loadMissions() {
+        ObservableList<Mission> tempMission = FXCollections.observableArrayList(centralPoint.getAllMissions());
+        if (!Arrays.equals(missionListObservable.toArray(), tempMission.toArray())) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    missionListObservable = tempMission;
+                    lvMissions.setItems(missionListObservable);
+                }
+            });
+        }
     }
 
     /**
