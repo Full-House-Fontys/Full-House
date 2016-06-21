@@ -1,10 +1,5 @@
 package CentralPoint;
 
-import Database.DaoGeneric;
-import Database.DaoManager;
-import Database.DbTables;
-import javafx.collections.ObservableList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,6 +51,8 @@ public class Mission implements Serializable{
      * Empty constructor
      */
     public Mission() {
+        this.teamsAssigned = new ArrayList<>();
+        this.materialsAssigned = new ArrayList<>();
     }
 
     /**

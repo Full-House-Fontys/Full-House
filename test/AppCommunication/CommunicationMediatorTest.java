@@ -1,35 +1,47 @@
 package AppCommunication;
 
-
+import CentralPoint.CentralPoint;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-
-
 /**
- * Kees on 26/04/2016.
+ * Created by Kaj Suiker on 15-6-2016.
  */
 public class CommunicationMediatorTest {
 
-    //CommunicationMediator communicationMediator = new CommunicationMediator(new CentralPoint());
+    CommunicationMediator communicationMediator;
+    CentralPoint centralPoint;
 
-    /**
-     * test communicationmediator on listening
-     *
-     * @throws Exception
-     */
-    @Test
-    public void listen() throws Exception {
-        //communicationMediator.listen();
+    @Before
+    public void setUp() throws Exception {
+        centralPoint = new CentralPoint();
+        communicationMediator = new CommunicationMediator(centralPoint);
     }
 
-    /**
-     * test communicationmediator on sending
-     *
-     * @throws Exception
-     */
-    @Test
-    public void send() throws Exception {
-        //Assert.assertTrue("Send did not work", communicationMediator.send("Hallo", ""));
+    @After
+    public void tearDown() throws Exception {
+
     }
 
+    @Test
+    public void testHandle() throws Exception {
+        String receiver = "0", sender = "0";
+        CommunicationMessage com;
+        com = new CommunicationMessage("login/h:h", sender, receiver);
+        communicationMediator.handle(new CommunicationRequest(com));
+        com = new CommunicationMessage("getMessages/2", sender, receiver);
+        communicationMediator.handle(new CommunicationRequest(com));
+        com = new CommunicationMessage("sendMessage/testmessage2", sender, receiver);
+        communicationMediator.handle(new CommunicationRequest(com));
+        com = new CommunicationMessage("requestBackup/:name:0:0:0:0:0:2", sender, receiver);
+        communicationMediator.handle(new CommunicationRequest(com));
+        com = new CommunicationMessage("getSteps/2", sender, receiver);
+        communicationMediator.handle(new CommunicationRequest(com));
+    }
+
+    @Test
+    public void testSend() throws Exception {
+        communicationMediator.send("getMessage/hoi", "0.0.0.0");
+    }
 }
