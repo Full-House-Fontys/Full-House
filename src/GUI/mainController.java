@@ -137,7 +137,11 @@ public class mainController implements Initializable {
         lvNotifications.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                taInfo.setText(((Notification) lvNotifications.getSelectionModel().getSelectedItem()).getContent());
+                try {
+                    taInfo.setText(((Notification) lvNotifications.getSelectionModel().getSelectedItem()).getContent());
+                } catch (NullPointerException exp){
+
+                }
             }
         });
 
