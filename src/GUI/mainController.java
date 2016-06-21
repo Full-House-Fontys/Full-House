@@ -36,11 +36,14 @@ public class mainController implements Initializable {
     private ListView lvNotifications;
     @FXML
     private TextArea taInfo;
+    @FXML
+    private ListView lvMessage;
 
     private CentralPoint centralPoint;
     private ObservableList<Mission> missionListObservable;
     private ObservableList<Team> teamListObservable;
     private ObservableList<Notification> notificationObservableList;
+    private ObservableList<String> messages;
 
     private Timer keepNotificationsUpToDate;
 
@@ -53,6 +56,7 @@ public class mainController implements Initializable {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
+        messages = FXCollections.observableArrayList(centralPoint.getLastMessages().split("///"));
 
         new CommunicationMediator(centralPoint);
 
@@ -121,6 +125,7 @@ public class mainController implements Initializable {
 
     /**
      * initialize of the maincontroller
+     *
      * @param location
      * @param resources
      */
@@ -139,7 +144,7 @@ public class mainController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 try {
                     taInfo.setText(((Notification) lvNotifications.getSelectionModel().getSelectedItem()).getContent());
-                } catch (NullPointerException exp){
+                } catch (NullPointerException exp) {
 
                 }
             }
@@ -150,9 +155,34 @@ public class mainController implements Initializable {
                     public void run() {
                         notificationObservableList = FXCollections.observableList(centralPoint.getAllNotifications());
                         loadNotifications();
+                        try {
+                            loadMessages();
+                        } catch (IllegalStateException ex) {
+                        }
                     }
                 }, 0, 1000
         );
+    }
+
+    /**
+     * loads messages
+     */
+    private void loadMessages() {
+        String[] messagesArray = centralPoint.getLastMessages().split("///");
+        ObservableList<String> messageList = FXCollections.observableArrayList(messagesArray);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (String message : messageList) {
+                    if (!messages.contains(message)) {
+
+                        messages.add(message);
+                    }
+                }
+                lvMessage.setItems(messages);
+            }
+        });
     }
 
     /**
@@ -162,6 +192,7 @@ public class mainController implements Initializable {
         loadTeams();
         loadMission();
         loadNotifications();
+        lvMessage.setItems(messages);
     }
 
     /**
