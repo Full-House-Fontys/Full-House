@@ -392,6 +392,7 @@ public class missionsdetailcontroller {
 
     @FXML
     public void createSteps() {
+        panel.getChildren().clear();
         panel.setLayoutX(100);
         panel.setLayoutY(200);
         int amountOfSteps = Integer.parseInt(tfAmountOfSteps.getText());

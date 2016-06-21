@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.control.*?>
@@ -23,12 +24,12 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="711.0" prefWidth="1464.0">
                                  <children>
-                                     <ListView fx:id="LvTeams" layoutX="1164.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <Label layoutX="1164.0" layoutY="30.0" text="Teams" />
-                                     <Label layoutX="1164.0" layoutY="298.0" text="Beschrijving" />
-                                     <TextArea fx:id="TaBeschrijving" layoutX="1164.0" layoutY="365.0" prefHeight="240.0" prefWidth="255.0" wrapText="true" />
-                                     <Button fx:id="BTNcreaterapport" layoutX="23.0" layoutY="534.0" mnemonicParsing="false" onAction="#createRapport" prefHeight="71.0" prefWidth="124.0" text="maak rapport" />
-                              <TextArea fx:id="taWeatherInfo" editable="false" layoutX="47.0" layoutY="47.0" prefHeight="300.0" prefWidth="356.0" text="Weerinformatie:" />
+                                     <ListView fx:id="LvTeams" layoutX="1127.0" layoutY="51.0" prefHeight="223.0" prefWidth="317.0" />
+                                     <Label layoutX="1127.0" layoutY="30.0" text="Teams" />
+                                     <Label layoutX="1127.0" layoutY="330.0" text="Beschrijving" />
+                                     <TextArea fx:id="TaBeschrijving" layoutX="1129.0" layoutY="358.0" prefHeight="284.0" prefWidth="312.0" wrapText="true" />
+                                     <Button fx:id="BTNcreaterapport" layoutX="163.0" layoutY="500.0" mnemonicParsing="false" onAction="#createRapport" prefHeight="71.0" prefWidth="124.0" text="maak rapport" />
+                              <TextArea fx:id="taWeatherInfo" editable="false" layoutX="47.0" layoutY="47.0" prefHeight="426.0" prefWidth="371.0" text="Weerinformatie:" />
                               <WebView fx:id="wvGoogleMaps" layoutX="486.0" layoutY="49.0" prefHeight="297.0" prefWidth="564.0" />
                               <Label layoutX="499.0" layoutY="30.0" text="Kaart:" />
                               <Label layoutX="499.0" layoutY="347.0" text="Luchtkwaliteit" />
@@ -41,28 +42,30 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <ListView fx:id="lvTeamsInMission" layoutX="51.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <Button layoutX="775.0" layoutY="105.0" mnemonicParsing="false" onAction="#addAvailableTeamToCurrentTeams" text="Voeg team toe" />
+                                     <ListView fx:id="lvTeamsInMission" layoutX="51.0" layoutY="68.0" prefHeight="247.0" prefWidth="291.0" />
+                                     <Button layoutX="860.0" layoutY="101.0" mnemonicParsing="false" onAction="#addAvailableTeamToCurrentTeams" prefHeight="31.0" prefWidth="128.0" text="Voeg team toe" />
                                      <Label layoutX="51.0" layoutY="37.0" text="Teams in missie" />
-                                     <ListView fx:id="lvTeamsAvailable" layoutX="490.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <Label layoutX="490.0" layoutY="37.0" text="Teams beschikbaar" />
-                                     <Button layoutX="951.0" layoutY="321.0" mnemonicParsing="false" onAction="#sendMissionToTeam" prefHeight="91.0" prefWidth="180.0" text="Stuur team notificatie" />
-                                     <ListView fx:id="lvToAddTeams" layoutX="949.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <Label layoutX="962.0" layoutY="29.0" text="Teams die je wilt toevoegen : " />
-                                     <Button layoutX="775.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeFromCurrentTeam" prefHeight="25.0" prefWidth="97.0" text="Verwijder team" />
-                                     <TextField fx:id="TFrequestName" layoutX="251.0" layoutY="308.0" />
-                                     <TextField fx:id="TFrequestDescription" layoutX="251.0" layoutY="345.0" />
-                                     <TextField fx:id="TFrequestPolice" layoutX="251.0" layoutY="386.0" />
-                                     <TextField fx:id="TFrequestMedic" layoutX="251.0" layoutY="422.0" />
-                                     <TextField fx:id="TFrequestFireman" layoutX="251.0" layoutY="457.0" />
-                                     <TextField fx:id="TFrequestMilitaryPolice" layoutX="251.0" layoutY="492.0" />
-                                     <Label layoutX="175.0" layoutY="313.0" text="naam:" />
-                                     <Label layoutX="174.0" layoutY="349.0" text="beschrijving:" />
-                                     <Label layoutX="177.0" layoutY="390.0" text="politie:" />
-                                     <Label layoutX="177.0" layoutY="426.0" text="EHBO:" />
-                                     <Label layoutX="177.0" layoutY="461.0" text="brandweer:" />
-                                     <Label layoutX="177.0" layoutY="496.0" text="militarypolice:" />
-                                     <Button fx:id="BTrequest" layoutX="344.0" layoutY="529.0" mnemonicParsing="false" onAction="#createRequest" text="request" />
+                                     <ListView fx:id="lvTeamsAvailable" layoutX="460.0" layoutY="68.0" prefHeight="445.0" prefWidth="381.0" />
+                                     <Label layoutX="460.0" layoutY="37.0" text="Beschikbare teams" />
+                                     <Button layoutX="1120.0" layoutY="553.0" mnemonicParsing="false" onAction="#sendMissionToTeam" prefHeight="91.0" prefWidth="180.0" text="Stuur team notificatie" />
+                                     <ListView fx:id="lvToAddTeams" layoutX="1012.0" layoutY="68.0" prefHeight="443.0" prefWidth="396.0" />
+                                     <Label layoutX="1013.0" layoutY="37.0" text="Teams die je wilt toevoegen: " />
+                                     <Button layoutX="860.0" layoutY="168.0" mnemonicParsing="false" onAction="#removeFromCurrentTeam" prefHeight="31.0" prefWidth="129.0" text="Verwijder team" />
+                                     <TextField fx:id="TFrequestName" layoutX="155.0" layoutY="383.0" promptText="naam" />
+                                     <TextField fx:id="TFrequestDescription" layoutX="155.0" layoutY="420.0" promptText="beschrijving" />
+                                     <TextField fx:id="TFrequestPolice" layoutX="155.0" layoutY="461.0" promptText="0" />
+                                     <TextField fx:id="TFrequestMedic" layoutX="155.0" layoutY="497.0" promptText="0" />
+                                     <TextField fx:id="TFrequestFireman" layoutX="155.0" layoutY="532.0" promptText="0" />
+                                     <TextField fx:id="TFrequestMilitaryPolice" layoutX="155.0" layoutY="567.0" promptText="0" />
+                                     <Label layoutX="52.0" layoutY="385.0" text="naam:" />
+                                     <Label layoutX="51.0" layoutY="421.0" text="beschrijving:" />
+                                     <Label layoutX="54.0" layoutY="462.0" text="politie:" />
+                                     <Label layoutX="54.0" layoutY="498.0" text="EHBO:" />
+                                     <Label layoutX="54.0" layoutY="533.0" text="brandweer:" />
+                                     <Label layoutX="54.0" layoutY="568.0" text="militarypolice:" />
+                                     <Button fx:id="BTrequest" layoutX="255.0" layoutY="613.0" mnemonicParsing="false" onAction="#createRequest" text="Vraag aan" />
+                              <Line endX="100.0" layoutX="401.0" layoutY="342.0" rotate="-90.0" scaleX="3.0" startX="-100.0" />
+                              <Label layoutX="130.0" layoutY="350.0" text="Vraag een team aan:" />
                                  </children>
                              </AnchorPane>
                          </content>
@@ -121,7 +124,7 @@
                                          </columns>
                                      </TableView>
                                      <Label layoutX="793.0" layoutY="87.0" text="Materialen in missie" />
-                                     <Button layoutX="625.0" layoutY="184.0" mnemonicParsing="false" onAction="#addMaterialToMission" text="Voeg toe aan Missie" />
+                                     <Button layoutX="614.0" layoutY="192.0" mnemonicParsing="false" onAction="#addMaterialToMission" text="Voeg toe aan Missie" />
                                  </children>
                              </AnchorPane>
                          </content>
@@ -139,15 +142,15 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <TextField fx:id="tfAmountOfSteps" layoutX="67.0" layoutY="55.0" />
-                                     <Button layoutX="240.0" layoutY="55.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
+                                     <TextField fx:id="tfAmountOfSteps" layoutX="533.0" layoutY="67.0" promptText="Aantal stappen" />
+                                     <Button layoutX="738.0" layoutY="67.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
                                      <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                     <ScrollPane fx:id="tabSteps" layoutX="55.0" layoutY="109.0" prefHeight="307.0" prefWidth="370.0">
+                                     <ScrollPane fx:id="tabSteps" layoutX="455.0" layoutY="109.0" prefHeight="435.0" prefWidth="500.0">
                                          <content>
-                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="374.0" />
+                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="503.0" />
                                          </content>
                                      </ScrollPane>
-                                     <Button layoutX="74.0" layoutY="504.0" mnemonicParsing="false" onAction="#saveStepsToDatabase" prefHeight="25.0" prefWidth="106.0" text="Sla stappenplan op" />
+                                     <Button layoutX="793.0" layoutY="562.0" mnemonicParsing="false" onAction="#saveStepsToDatabase" prefHeight="31.0" prefWidth="162.0" text="Sla stappenplan op" />
                                  </children>
                              </AnchorPane>
                          </content>

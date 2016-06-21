@@ -27,12 +27,12 @@ public class CentralPoint extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/Resources/Main.fxml"));
         primaryStage.setTitle("Centraal punt programma");
-        primaryStage.setScene(new Scene(root, 900, 650));
+        primaryStage.setScene(new Scene(root, 1186, 659));
         primaryStage.show();
         Stage stage = new Stage();
         Parent root2 = FXMLLoader.load(getClass().getResource("/Resources/Helpservice.fxml"));
         stage.setTitle("Hulpdienst");
-        stage.setScene(new Scene(root2, 619, 466));
+        stage.setScene(new Scene(root2, 747, 570));
         stage.show();
     }
 }

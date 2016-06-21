@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.mainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.mainController">
     <children>
-        <Button layoutX="191.0" layoutY="305.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="133.0" text="Nieuwe missie" />
-        <ListView fx:id="lvTeams" layoutX="425.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" />
-        <ListView fx:id="lvMissions" layoutX="425.0" layoutY="289.0" prefHeight="200.0" prefWidth="200.0" />
-        <Label layoutX="425.0" layoutY="257.0" text="Missie" />
-        <Label layoutX="425.0" layoutY="26.0" text="Teams : " />
-        <ListView layoutX="642.0" layoutY="50.0" prefHeight="400.0" prefWidth="200.0" />
-        <Label layoutX="642.0" layoutY="18.0" text="Berichten" />
-        <Button layoutX="641.0" layoutY="464.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Zet om in missie" />
-        <TextArea layoutX="191.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" />
-        <Label layoutX="191.0" layoutY="26.0" text="Info" />
-        <ListView fx:id="lvNotifications" focusTraversable="false" layoutX="14.0" layoutY="50.0" pickOnBounds="false" prefHeight="400.0" prefWidth="163.0" />
+        <Button layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="133.0" text="Nieuwe missie" />
+        <ListView fx:id="lvTeams" layoutX="560.0" layoutY="50.0" prefHeight="200.0" prefWidth="280.0" />
+        <ListView fx:id="lvMissions" layoutX="560.0" layoutY="284.0" prefHeight="200.0" prefWidth="280.0" />
+        <Label layoutX="560.0" layoutY="257.0" text="Missie" />
+        <Label layoutX="560.0" layoutY="26.0" text="Teams " />
+        <ListView layoutX="855.0" layoutY="50.0" prefHeight="387.0" prefWidth="315.0" />
+        <Label layoutX="855.0" layoutY="26.0" text="Berichten" />
+        <Button layoutX="855.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Zet om in missie" />
+        <TextArea layoutX="306.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" />
+        <Label layoutX="306.0" layoutY="31.0" text="Info" />
+        <ListView fx:id="lvNotifications" focusTraversable="false" layoutX="14.0" layoutY="50.0" pickOnBounds="false" prefHeight="410.0" prefWidth="280.0" />
         <Label layoutX="14.0" layoutY="27.0" text="Notificaties" />
-        <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#ShowStaffInField" text="staf-in-veld lijst" />
-      <Button layoutX="191.0" layoutY="376.0" mnemonicParsing="false" onAction="#publishOnWebpage" prefHeight="65.0" prefWidth="133.0" text="Publiceer de melding op de webpagina" textAlignment="CENTER" wrapText="true" />
+        <Button layoutX="306.0" layoutY="269.0" mnemonicParsing="false" onAction="#ShowStaffInField" prefHeight="31.0" prefWidth="133.0" text="staf-in-veld lijst" />
+      <Button layoutX="73.0" layoutY="476.0" mnemonicParsing="false" onAction="#publishOnWebpage" prefHeight="65.0" prefWidth="163.0" text="Publiceer de melding op de webpagina" textAlignment="CENTER" wrapText="true" />
+      <Line endX="100.0" layoutX="532.0" layoutY="270.0" rotate="-90.0" scaleX="2.5" startX="-100.0" />
     </children>
 </Pane>
