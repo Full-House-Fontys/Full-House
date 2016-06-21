@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +34,8 @@ public class mainController implements Initializable {
     private ListView lvTeams;
     @FXML
     private ListView lvNotifications;
+    @FXML
+    private TextArea taInfo;
 
     private CentralPoint centralPoint;
     private ObservableList<Mission> missionListObservable;
@@ -136,6 +139,13 @@ public class mainController implements Initializable {
             @Override
             public void changed(ObservableValue observable, Mission oldValue, Mission newValue) {
                 createMissionView((Mission) lvMissions.getSelectionModel().getSelectedItem());
+            }
+        });
+
+        lvNotifications.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                taInfo.setText(((Notification) lvNotifications.getSelectionModel().getSelectedItem()).getContent());
             }
         });
 
