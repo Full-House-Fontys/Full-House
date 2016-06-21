@@ -77,7 +77,7 @@ public class AppCommunication {
     private void constantCheck() {
         try {
             while (true) {
-                System.out.println(socket.getLocalSocketAddress());
+                //System.out.println(socket.getLocalSocketAddress());
                 Socket clientSocket = this.socket.accept();
 
                 String full = recv(clientSocket);
