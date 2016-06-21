@@ -53,15 +53,7 @@ public class mainController implements Initializable {
         centralPoint = new CentralPoint();
         missionListObservable = FXCollections.observableArrayList(centralPoint.getAllMissions());
         teamListObservable = FXCollections.observableArrayList(centralPoint.getAllTeams());
-/*
-        Thread comCom = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new CommunicationMediator(centralPoint);
-            }
-        });
 
-        comCom.start();*/
         new CommunicationMediator(centralPoint);
 
         keepNotificationsUpToDate = new Timer();

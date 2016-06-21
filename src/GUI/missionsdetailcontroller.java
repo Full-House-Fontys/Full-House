@@ -163,15 +163,6 @@ public class missionsdetailcontroller {
                 teamList.add(team);
             }
         }
-        System.out.println(teamList.size());
-        if (mission.getTeamsAssigned().size() == 2) {
-            int a = 1;
-        }
-        //if(tempMission == null){
-        // tempMission = new Mission();
-        //}
-        //final Mission currentMission = tempMission;
-        //if(mission.getTeamsAssigned().size() != teamList.size()) {
 
         mission.setTeamsAssigned(teamList);
         Platform.runLater(new Runnable() {
@@ -181,8 +172,6 @@ public class missionsdetailcontroller {
                 LvTeams.setItems(teamsUpdate);
             }
         });
-
-        //}
     }
 
     /**
@@ -439,6 +428,7 @@ public class missionsdetailcontroller {
 
     @FXML
     public void createSteps() {
+        panel.getChildren().clear();
         panel.setLayoutX(100);
         panel.setLayoutY(200);
         int amountOfSteps = Integer.parseInt(tfAmountOfSteps.getText());
