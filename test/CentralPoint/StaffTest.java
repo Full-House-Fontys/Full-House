@@ -186,6 +186,6 @@ public class StaffTest {
     @Test
     public void testSetId() throws Exception {
         staff.setId(1);
-        assertEquals("password wrong", 0, staff.getId());
+        assertEquals("password wrong", 1, staff.getId());
     }
 }

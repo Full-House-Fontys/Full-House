@@ -266,6 +266,7 @@ public class mainController implements Initializable {
             root = loader.load();
             createMissionController createMissionController = loader.getController();
             createMissionController.setCentralPoint(centralPoint);
+            stage.setTitle("nieuwe missie");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
