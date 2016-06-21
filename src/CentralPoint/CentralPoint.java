@@ -423,7 +423,7 @@ public class CentralPoint {
      * @return true/false for success
      */
     public boolean missionDone(int id) {
-        return daoManager.getDao(DbTables.MISSIE).update(new Mission(), id);
+        return daoManager.getDao(DbTables.MISSIE).update(new Mission(), id +"");
     }
 
     /**

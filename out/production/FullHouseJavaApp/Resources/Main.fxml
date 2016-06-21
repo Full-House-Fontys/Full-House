@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.mainController">
+<?import javafx.scene.shape.Line?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="659.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/8"
+      fx:controller="GUI.mainController">
     <children>
         <Button layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#makeNewMission" prefHeight="53.0" prefWidth="133.0" text="Nieuwe missie" />
         <ListView fx:id="lvTeams" layoutX="560.0" layoutY="50.0" prefHeight="200.0" prefWidth="280.0" />
         <ListView fx:id="lvMissions" layoutX="560.0" layoutY="284.0" prefHeight="200.0" prefWidth="280.0" />
         <Label layoutX="560.0" layoutY="257.0" text="Missie" />
         <Label layoutX="560.0" layoutY="26.0" text="Teams " />
-        <ListView layoutX="855.0" layoutY="50.0" prefHeight="387.0" prefWidth="315.0" />
+        <ListView fx:id="lvMessage" layoutX="855.0" layoutY="50.0" prefHeight="387.0" prefWidth="315.0"/>
         <Label layoutX="855.0" layoutY="26.0" text="Berichten" />
         <Button layoutX="855.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Zet om in missie" />
         <TextArea fx:id="taInfo" layoutX="306.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />

@@ -90,6 +90,7 @@ public class CommunicationMediator {
      * @param communicationRequest comRequest
      */
     private void comMissionDone(CommunicationRequest communicationRequest) {
+
         if (centralPoint.missionDone(Integer.parseInt(communicationRequest.getPayload()))) {
             send("missionDone/" + "true", communicationRequest.getNetworkMessage().getSender());
         } else {
