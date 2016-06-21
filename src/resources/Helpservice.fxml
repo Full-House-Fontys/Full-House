@@ -1,52 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0"
-      prefWidth="619.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="GUI.HelpServiceController">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HelpServiceController">
     <children>
-        <TabPane fx:id="TPhupldienst" layoutX="14.0" layoutY="14.0" prefHeight="448.0" prefWidth="601.0"
-                 tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="TPhupldienst" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="733.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="berichten">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea fx:id="TAmissiedetail" layoutX="14.0" layoutY="210.0" prefHeight="200.0"
-                                          prefWidth="200.0"/>
-                                <ListView fx:id="LVmissies" layoutX="14.0" layoutY="14.0" onMouseClicked="#getdetails"
-                                          prefHeight="180.0" prefWidth="202.0"/>
-                                <ListView fx:id="LVTeams" layoutX="386.0" layoutY="14.0" prefHeight="200.0"
-                                          prefWidth="200.0"/>
-                                <Button fx:id="BTNassignTeam" layoutX="386.0" layoutY="214.0" mnemonicParsing="false"
-                                        onAction="#assignteam" prefHeight="48.0" prefWidth="111.0" text="aanwijzen"/>
+                                <TextArea fx:id="TAmissiedetail" layoutX="17.0" layoutY="259.0" prefHeight="229.0" prefWidth="278.0" />
+                                <ListView fx:id="LVmissies" layoutX="14.0" layoutY="14.0" onMouseClicked="#getdetails" prefHeight="226.0" prefWidth="283.0" />
+                                <ListView fx:id="LVTeams" layoutX="399.0" layoutY="14.0" prefHeight="226.0" prefWidth="300.0" />
+                                <Button fx:id="BTNassignTeam" layoutX="494.0" layoutY="259.0" mnemonicParsing="false" onAction="#assignteam" prefHeight="48.0" prefWidth="111.0" text="aanwijzen" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="maak team">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="738.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="634.0">
                             <children>
-                                <ComboBox fx:id="CBfilterpersonen" layoutX="29.0" layoutY="47.0" prefHeight="25.0"
-                                          prefWidth="127.0" promptText="alle"/>
-                                <ListView fx:id="LVaddedStaff" layoutX="294.0" layoutY="124.0" prefHeight="200.0"
-                                          prefWidth="200.0"/>
-                                <Button fx:id="BTNaddStaff" layoutX="229.0" layoutY="224.0" mnemonicParsing="false"
-                                        onAction="#addStaff" prefHeight="100.0" prefWidth="66.0" text="&gt;"/>
-                                <ListView fx:id="LVpersoneel" layoutX="29.0" layoutY="124.0" prefHeight="200.0"
-                                          prefWidth="200.0"/>
-                                <Button fx:id="BTNcreateTeam" layoutX="294.0" layoutY="324.0" mnemonicParsing="false"
-                                        onAction="#maakTeam" prefHeight="73.0" prefWidth="199.0" text="maak team"/>
-                                <Button fx:id="ButtonBTNremoveStaff" layoutX="229.0" layoutY="124.0"
-                                        mnemonicParsing="false" onAction="#removeStaff" prefHeight="100.0"
-                                        prefWidth="66.0" text="&lt;"/>
-                                <TextField fx:id="TFteamNaam" layoutX="129.0" layoutY="348.0"/>
-                                <Label layoutX="63.0" layoutY="352.0" text="teamnaam:"/>
-                                <TextArea fx:id="TAmissiedetail2" layoutX="295.0" layoutY="14.0" prefHeight="102.0"
-                                          prefWidth="197.0"/>
+                                <ComboBox fx:id="CBfilterpersonen" layoutX="29.0" layoutY="47.0" prefHeight="32.0" prefWidth="197.0" promptText="alle" />
+                                <ListView fx:id="LVaddedStaff" layoutX="438.0" layoutY="129.0" prefHeight="205.0" prefWidth="281.0" />
+                                <Button fx:id="BTNaddStaff" layoutX="334.0" layoutY="229.0" mnemonicParsing="false" onAction="#addStaff" prefHeight="95.0" prefWidth="66.0" text="&gt;" />
+                                <ListView fx:id="LVpersoneel" layoutX="29.0" layoutY="124.0" prefHeight="208.0" prefWidth="264.0" />
+                                <Button fx:id="BTNcreateTeam" layoutX="482.0" layoutY="418.0" mnemonicParsing="false" onAction="#maakTeam" prefHeight="69.0" prefWidth="193.0" text="maak team" />
+                                <Button fx:id="ButtonBTNremoveStaff" layoutX="334.0" layoutY="124.0" mnemonicParsing="false" onAction="#removeStaff" prefHeight="93.0" prefWidth="66.0" text="&lt;" />
+                                <TextField fx:id="TFteamNaam" layoutX="522.0" layoutY="362.0" prefHeight="31.0" prefWidth="178.0" promptText="Team naam" />
+                                <Label layoutX="438.0" layoutY="367.0" text="teamnaam:" />
+                                <TextArea fx:id="TAmissiedetail2" layoutX="520.0" layoutY="19.0" prefHeight="102.0" prefWidth="197.0" />
                             </children>
                         </AnchorPane>
                     </content>
