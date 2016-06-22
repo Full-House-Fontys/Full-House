@@ -139,12 +139,12 @@ public class DaoTeam extends DaoGeneric<Team> {
     @Override
     public boolean insert(Team team) {
         for (Staff staff : team.getTeamMembers()) {
-            String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}, {3}) VALUES (?, ?, ?)", TABLENAME, ID, Naam, personeelID);
+            String query = MessageFormat.format("INSERT INTO {0} ({1}, {2}) VALUES (?, ?)", TABLENAME, Naam, personeelID);
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setInt(1, team.getId());
-                ps.setString(2, team.getName());
-                ps.setInt(3, staff.getId());
+                //ps.setInt(1, team.getId());
+                ps.setString(1, team.getName());
+                ps.setInt(2, staff.getId());
                 ps.executeUpdate();
             } catch (SQLException ex) {
                 ex.printStackTrace();
