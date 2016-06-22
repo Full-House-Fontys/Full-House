@@ -200,7 +200,6 @@ public class missionsdetailcontroller {
             LvTeams.setItems(FXCollections.observableArrayList(mission.getTeamsAssigned()));
         }
         lvTeamsInMission.setItems(teamsInTheMission);
-        lvTeamsAvailable.setItems(teamAvailable);
         tvAvailableMat.setItems(materialAvailable);
         tvNotAvailableMat.setItems(materialInMission);
     }
@@ -418,10 +417,24 @@ public class missionsdetailcontroller {
         ITeamRequest TR = null;
         TR = new TeamRequest(TFrequestName.getText(), TFrequestDescription.getText(), Integer.parseInt(TFrequestPolice.getText()), Integer.parseInt(TFrequestMedic.getText()), Integer.parseInt(TFrequestFireman.getText()), Integer.parseInt(TFrequestMilitaryPolice.getText()), mission);
         try {
+            clearText();
             centralPoint.getOutput().writeObject(TR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Team verzoek");
+            alert.setHeaderText("Het voor verzoek voor team : " + TFrequestName.getText() + " is succesvol ingediend");
+            alert.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearText() {
+        TFrequestName.clear();
+        TFrequestDescription.clear();
+        TFrequestPolice.clear();
+        TFrequestMedic.clear();
+        TFrequestFireman.clear();
+        TFrequestMilitaryPolice.clear();
     }
 
     /**
@@ -475,6 +488,11 @@ public class missionsdetailcontroller {
             alert.setTitle("Opslaan van missieplan");
             alert.setHeaderText("Niet gelukt om op te slaan");
             alert.setContentText("Probeer opnieuw");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Opslaan stappenplan");
+            alert.setHeaderText("Stappenplan is opgeslagen en verstuurd");
             alert.showAndWait();
         }
     }

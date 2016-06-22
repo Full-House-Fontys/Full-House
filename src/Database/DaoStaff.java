@@ -77,18 +77,34 @@ public class DaoStaff extends DaoGeneric<Staff> {
         List<Staff> staffList = new ArrayList<>();
         ObservableList<Staff> obsStaff = FXCollections.observableArrayList(staffList);
         ResultSet res;
-        try {
-            Statement statement = connection.createStatement();
-            res = statement.executeQuery(query);
-            while (res.next()) {
-                obsStaff.add(new Staff(res.getInt(ID), res.getString(Voornaam),
-                        res.getString(Tussenvoegsel), res.getString(Achternaam), res.getString(Gebruikersnaam),
-                        res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
-                        res.getDouble(LocatieY)), res.getString(Soort),
-                        res.getInt(OpLocatie) == 0));
+        if(query.contains("DISTINCT")){
+            try {
+                Statement statement = connection.createStatement();
+                res = statement.executeQuery(query);
+                while (res.next()) {
+                    obsStaff.add(new Staff(res.getInt(ID), res.getString(Voornaam),
+                            res.getString(Tussenvoegsel), res.getString(Achternaam), res.getString(Gebruikersnaam),
+                            res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
+                            res.getDouble(LocatieY)), res.getString(Soort),
+                            false));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }else{
+            try {
+                Statement statement = connection.createStatement();
+                res = statement.executeQuery(query);
+                while (res.next()) {
+                    obsStaff.add(new Staff(res.getInt(ID), res.getString(Voornaam),
+                            res.getString(Tussenvoegsel), res.getString(Achternaam), res.getString(Gebruikersnaam),
+                            res.getString(Wachtwoord), new Point2D.Double(res.getDouble(LocatieX),
+                            res.getDouble(LocatieY)), res.getString(Soort),
+                            true, res.getInt(TeamID), res.getInt(MissionID)));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return obsStaff;
     }
