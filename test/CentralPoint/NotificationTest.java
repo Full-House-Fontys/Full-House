@@ -147,7 +147,7 @@ public class NotificationTest {
      */
     @Test
     public void toStringTest() throws Exception {
-        Assert.assertEquals("ToString gave wrong text", n.getContent(), n.toString());
+        Assert.assertEquals("ToString gave wrong text", "EHLP", n.toString());
     }
 
 }
