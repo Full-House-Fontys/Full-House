@@ -4,6 +4,7 @@ import CentralPoint.Staff;
 import CentralPoint.Team;
 import Database.DaoManager;
 import Database.DbTables;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -143,13 +144,19 @@ public class HelpService {
 
                 TR = null;
                 TR = (ITeamRequest) in.readObject();
-            if (TR == null) {
+            if (TR != null) {
                 RQ.addRequests((TeamRequest) TR);
                 RequestObservableList.clear();
                 RequestObservableList.addAll(RQ.GetRequests());
 
             }
-            renewStaffList();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    renewStaffList();
+                }
+            });
+
 
 
         } catch (IOException e) {
