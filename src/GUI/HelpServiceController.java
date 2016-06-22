@@ -4,7 +4,6 @@ import CentralPoint.Staff;
 import CentralPoint.Team;
 import HulpDienst.HelpService;
 import HulpDienst.TeamRequest;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,8 +15,6 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Mark on 6-4-2016.
@@ -59,7 +56,7 @@ public class HelpServiceController implements Initializable {
     private HelpService hulpdienst;
     private ObservableList<Staff> OBStaff;
     private int teamNR;
-
+    private ObservableList<Team> obTeamCurrent;
     /**
      * initialize the helpservicecontroller.
      *
@@ -72,8 +69,9 @@ public class HelpServiceController implements Initializable {
 
         OBStaff = FXCollections.observableArrayList();
         LVaddedStaff.setItems(OBStaff);
+        obTeamCurrent = FXCollections.observableArrayList(hulpdienst.renewteams());
         LVpersoneel.setItems(hulpdienst.getStaffList());
-        LVTeams.setItems(hulpdienst.renewteams());
+        LVTeams.setItems(obTeamCurrent);
         teamNR = hulpdienst.getAllTeams().size() + 1;
         LVmissies.setItems(hulpdienst.getTeamRequests());
         CBfilterpersonen.getItems().clear();
@@ -86,19 +84,6 @@ public class HelpServiceController implements Initializable {
 
             }
         });
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        renew();
-                    }
-                });
-
-            }
-        }, 0, 1000);
     }
 
     /**

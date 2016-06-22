@@ -17,7 +17,7 @@ public class TeamRequest implements ITeamRequest, Serializable {
     private int militarypolice;
     private Mission mission;
 
-    public TeamRequest(String name, String description, int medic, int Police, int fireman, int militarypolice, Mission mission) {
+    public TeamRequest(String name, String description, int Police, int medic, int fireman, int militarypolice, Mission mission) {
         this.name = name;
         this.description = description;
         this.Medic = medic;

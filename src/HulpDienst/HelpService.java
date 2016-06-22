@@ -145,7 +145,6 @@ public class HelpService {
      * Socket which receives new request from central point
      */
     private void receiveSocket() {
-
         try {
             ITeamRequest TR;
 
@@ -157,9 +156,6 @@ public class HelpService {
                 RequestObservableList.addAll(RQ.GetRequests());
 
             }
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
