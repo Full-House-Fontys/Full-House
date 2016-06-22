@@ -155,7 +155,9 @@ public class mainController implements Initializable {
         lvMissions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mission>() {
             @Override
             public void changed(ObservableValue observable, Mission oldValue, Mission newValue) {
-                createMissionView((Mission) lvMissions.getSelectionModel().getSelectedItem());
+                if (newValue != null) {
+                    createMissionView((Mission) lvMissions.getSelectionModel().getSelectedItem());
+                }
             }
         });
 
@@ -192,7 +194,9 @@ public class mainController implements Initializable {
                 @Override
                 public void run() {
                     missionListObservable = tempMission;
-                    lvMissions.setItems(missionListObservable);
+                    if (missionListObservable != null) {
+                        lvMissions.setItems(missionListObservable);
+                    }
                 }
             });
         }

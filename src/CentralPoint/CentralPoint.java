@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
 
@@ -201,19 +202,24 @@ public class CentralPoint {
         Mission mission1 = null;
         renewLists(DbTables.MATERIAAL);
         ArrayList<Material> allMaterialsAssignedToMission = new ArrayList();
-        for (Mission mission : missionObservableList) {
-            if (mission.getID() == id) {
-                for (Material material : materialObservableList) {
-                    for (int i : material.getMissionIds()) {
-                        if (mission.getID() == i) {
-                            allMaterialsAssignedToMission.add(material);
+        try {
+            for (Mission mission : missionObservableList) {
+                if (mission.getID() == id) {
+                    for (Material material : materialObservableList) {
+                        for (int i : material.getMissionIds()) {
+                            if (mission.getID() == i) {
+                                allMaterialsAssignedToMission.add(material);
+                            }
                         }
                     }
+                    mission.setMaterialsAssigned(allMaterialsAssignedToMission);//copyAllMaterialsAssignedToMission);
+                    mission1 = mission;
                 }
-                mission.setMaterialsAssigned(allMaterialsAssignedToMission);//copyAllMaterialsAssignedToMission);
-                mission1 = mission;
             }
+        } catch (ConcurrentModificationException cme) {
+            return null;
         }
+
         return mission1;
     }
 

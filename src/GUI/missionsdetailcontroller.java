@@ -123,32 +123,37 @@ public class missionsdetailcontroller {
         panel = new Pane();
         this.mission = mission;
         this.centralPoint = centralPoint;
-        mission = centralPoint.addMaterialsToMission(mission.getID());
-        this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
-        this.teamToAdd = FXCollections.observableArrayList();
-        teamTimer = new java.util.Timer();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                refreshView();
+        if (mission != null) {
+            Mission tempMission = centralPoint.addMaterialsToMission(mission.getID());
+            if (tempMission != null) {
+                mission = tempMission;
             }
-        };
+            this.teamAvailable = FXCollections.observableArrayList(centralPoint.getSpecificTeam());
+            this.teamToAdd = FXCollections.observableArrayList();
+            teamTimer = new java.util.Timer();
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    refreshView();
+                }
+            };
 
-        if(mission.getTeamsAssigned() != null) {
-            this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
-        }
-        this.materialAvailable = FXCollections.observableArrayList(centralPoint.getAvailableMaterials());
-        if(mission.getMaterialsAssigned() != null) {
-            this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
-        }
-        teamTimer.schedule(timerTask, 0, 1000);
-        setSettings();
-        receiveAndShowWeatherInfo();
-        try {
-            editHtml();
-            initEngine();
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (mission.getTeamsAssigned() != null) {
+                this.teamsInTheMission = FXCollections.observableArrayList(mission.getTeamsAssigned());
+            }
+            this.materialAvailable = FXCollections.observableArrayList(centralPoint.getAvailableMaterials());
+            if (mission.getMaterialsAssigned() != null) {
+                this.materialInMission = FXCollections.observableArrayList(mission.getMaterialsAssigned());
+            }
+            teamTimer.schedule(timerTask, 0, 1000);
+            setSettings();
+            receiveAndShowWeatherInfo();
+            try {
+                editHtml();
+                initEngine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -169,7 +174,9 @@ public class missionsdetailcontroller {
             @Override
             public void run() {
                 ObservableList<Team> teamsUpdate = FXCollections.observableArrayList(mission.getTeamsAssigned());
-                LvTeams.setItems(teamsUpdate);
+                if (teamsUpdate != null) {
+                    LvTeams.setItems(teamsUpdate);
+                }
             }
         });
     }
