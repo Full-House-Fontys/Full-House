@@ -39,7 +39,21 @@ public class DaoMessage extends DaoGeneric<Message> {
      */
     @Override
     public ObservableList<Message> getSpecificList(int id) {
-        throw new NotImplementedException();
+        ResultSet res;
+        List<Message> last5Messages = new ArrayList<>();
+        ObservableList<Message> obsMessage = FXCollections.observableArrayList(last5Messages);
+        String query = "select * from bericht where id ="+id;
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            res = ps.executeQuery();
+            while (res.next()) {
+                obsMessage.add(new Message(res.getString("Titel"), res.getString("Bericht"), res.getInt("MissieID")));
+            }
+            return obsMessage;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

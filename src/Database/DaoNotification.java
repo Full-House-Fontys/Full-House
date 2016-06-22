@@ -43,7 +43,24 @@ public class DaoNotification extends DaoGeneric<Notification> {
 
     @Override
     public ObservableList<Notification> getSpecificList(int id) {
-        throw new NotImplementedException();
+        List<Notification> notificationList = new ArrayList();
+        ObservableList<Notification> notificationObservableList = FXCollections.observableArrayList(notificationList);
+        ResultSet rs;
+
+        String query = "SELECT * FROM " + TABLENAME + " WHERE MissieID="+id;
+
+        try{
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()){
+                notificationObservableList.add(new Notification(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getInt(5), rs.getInt(6)));
+
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return notificationObservableList;
     }
 
     /**
