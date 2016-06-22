@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.web.*?>
@@ -125,8 +126,8 @@
                          <content>
                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                     <TextField fx:id="tfAmountOfSteps" layoutX="533.0" layoutY="67.0" promptText="Aantal stappen" />
-                                     <Button layoutX="738.0" layoutY="67.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
+                                     <TextField fx:id="tfAmountOfSteps" layoutX="679.0" layoutY="67.0" promptText="Aantal stappen" />
+                                     <Button layoutX="858.0" layoutY="67.0" mnemonicParsing="false" onAction="#createSteps" text="Creëer stappen" />
                                      <AnchorPane layoutX="16.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                                      <ScrollPane fx:id="tabSteps" layoutX="455.0" layoutY="109.0" prefHeight="435.0" prefWidth="500.0">
                                          <content>
@@ -134,6 +135,12 @@
                                          </content>
                                      </ScrollPane>
                                      <Button layoutX="793.0" layoutY="562.0" mnemonicParsing="false" onAction="#saveStepsToDatabase" prefHeight="31.0" prefWidth="162.0" text="Sla stappenplan op" />
+                              <Label layoutX="455.0" layoutY="71.0" text="Aantal stappen in het stappenplan :" />
+                              <Label layoutX="597.0" layoutY="23.0" text="Creeër stappenplan ">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
                                  </children>
                              </AnchorPane>
                          </content>

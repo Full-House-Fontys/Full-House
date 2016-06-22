@@ -106,11 +106,11 @@ public class DaoTeam extends DaoGeneric<Team> {
     @Override
     public boolean update(Team team, int key) {
         boolean result = false;
-        String query = MessageFormat.format("UPDATE {0} SET {1} = ? WHERE TeamID = ?", TABLENAME, missionID);
+        String query = MessageFormat.format("UPDATE {0} SET {1} = ? WHERE TeamNaam = ?", TABLENAME, missionID);
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, key);
-            ps.setInt(2, team.getId());
+            ps.setString(2, team.getName());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
