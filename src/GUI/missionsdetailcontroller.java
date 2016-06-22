@@ -176,6 +176,7 @@ public class missionsdetailcontroller {
                 ObservableList<Team> teamsUpdate = FXCollections.observableArrayList(mission.getTeamsAssigned());
                 if (teamsUpdate != null) {
                     LvTeams.setItems(teamsUpdate);
+                    lvTeamsInMission.setItems(teamsUpdate);
                 }
             }
         });
