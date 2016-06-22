@@ -137,18 +137,21 @@ public class HelpService {
      * Socket which receives new request from central point
      */
     private void receiveSocket() {
+
         try {
             ITeamRequest TR;
-            do {
+
                 TR = null;
                 TR = (ITeamRequest) in.readObject();
-            }
-            while (TR == null);
-            RQ.addRequests((TeamRequest) TR);
-            RequestObservableList.clear();
-            RequestObservableList.addAll(RQ.GetRequests());
+            if (TR == null) {
+                RQ.addRequests((TeamRequest) TR);
+                RequestObservableList.clear();
+                RequestObservableList.addAll(RQ.GetRequests());
 
-            System.out.println("done");
+            }
+            renewStaffList();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

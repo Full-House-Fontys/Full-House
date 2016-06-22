@@ -138,20 +138,11 @@ public class CentralPointTest {
         assertTrue("There aren't notifications", centralPoint.getAllNotifications().size() > 0);
     }
 
-    @Test
-    public void testGetOutput() throws Exception {
-
-    }
-
-    @Test
-    public void testAddTeamsToMission() throws Exception {
-
-    }
-
-    @Test
-    public void testAddMaterialsToMission() throws Exception {
-
-    }
+    /**
+     * test to get a specific team from the database.
+     *
+     * @throws Exception
+     */
 
     @Test
     public void testGetSpecificTeam() throws Exception {
@@ -159,53 +150,10 @@ public class CentralPointTest {
         assertTrue("geen teams gevonden", teams.size() > 0);
     }
 
-    @Test
-    public void testCheckExistingUser() throws Exception {
-
-    }
-
-    @Test
-    public void testCreateRapport() throws Exception {
-
-    }
-
-    @Test
-    public void testGetLastMessages() throws Exception {
-    }
-
-    @Test
-    public void testCreateserver() throws Exception {
-
-    }
-
-    @Test
-    public void testGetMissionFromId() throws Exception {
-
-    }
-
-    @Test
-    public void testSendSupportService() throws Exception {
-
-    }
-
-    @Test
-    public void testInsertMessage() throws Exception {
-
-    }
-
-    @Test
-    public void testInsertMissionPlan() throws Exception {
-
-    }
-
-    @Test
-    public void testMissionDone() throws Exception {
-        Mission mission = centralPoint.getMissionFromId(1);
-        assertNull("zou niet klaar moeten zijn", mission.getEndTime());
-        centralPoint.missionDone(1);
-        Mission mission1 = centralPoint.getMissionFromId(1);
-        assertNotNull("niet klaar", mission1.getEndTime());
-    }
+    /**
+     * test to get the steps of a mission
+     * @throws Exception
+     */
 
     @Test
     public void testGetSteps() throws Exception {
