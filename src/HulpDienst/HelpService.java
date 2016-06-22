@@ -4,7 +4,6 @@ import CentralPoint.Staff;
 import CentralPoint.Team;
 import Database.DaoManager;
 import Database.DbTables;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -117,6 +116,14 @@ public class HelpService {
     }
 
     /**
+     * gets all staff members
+     *
+     * @return
+     */
+    public ObservableList<Staff> getStaffList() {
+        return staffObservableList;
+    }
+    /**
      * Filters the stafflist based on the filter you selected
      * @param filter the filter as String
      * @return the observable list of the staff
@@ -150,12 +157,6 @@ public class HelpService {
                 RequestObservableList.addAll(RQ.GetRequests());
 
             }
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    renewStaffList();
-                }
-            });
 
 
 
